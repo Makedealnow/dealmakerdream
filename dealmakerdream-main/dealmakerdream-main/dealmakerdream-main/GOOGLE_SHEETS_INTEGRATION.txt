@@ -1,0 +1,1 @@
+Production step: replace localStorage saves in assets/app.js with Google Apps Script POST to capture search term, email, phone, priority, timestamp, and referrer.

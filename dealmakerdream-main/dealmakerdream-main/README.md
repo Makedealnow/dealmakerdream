@@ -1,3 +1,3 @@
-# MakeDealNow Design Restored Lead Comparison
+# MakeDealNow Design Restored Lead comparison
 
-Restores logo/category design while adding search-first saved contact and supplier comparison comparison.
+Restores logo/category design while adding search-first customer inquiry and supplier show comparison.
