@@ -1,5 +1,3 @@
-# MakeDealNow Complete Lead Funnel Site
+# MakeDealNow Design Restored Lead Funnel
 
-Static GitHub Pages website with search teaser, email unlock, supplier reveal, and follow-up lead capture concept.
-
-Replace placeholder supplier links with affiliate/tracked partner links before launch.
+Restores logo/category design while adding search-first lead capture and supplier reveal funnel.

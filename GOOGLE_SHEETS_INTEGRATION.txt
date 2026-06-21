@@ -1,2 +1,1 @@
-Connect production lead capture by replacing localStorage save functions in assets/app.js with a Google Apps Script web app POST.
-Recommended columns: Timestamp, SearchTerm, OfferKey, Email, Phone, Priority, Referrer.
+Production step: replace localStorage saves in assets/app.js with Google Apps Script POST to capture search term, email, phone, priority, timestamp, and referrer.
