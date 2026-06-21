@@ -1,3 +1,5 @@
-# Dealmaker
+# MakeDealNow Complete Lead Funnel Site
 
-First working Dealmaker redesign rebuilt cleanly.
+Static GitHub Pages website with search teaser, email unlock, supplier reveal, and follow-up lead capture concept.
+
+Replace placeholder supplier links with affiliate/tracked partner links before launch.
