@@ -1,3 +1,3 @@
-# MakeDealNow Design Restored Lead Funnel
+# MakeDealNow Design Restored Lead comparison
 
-Restores logo/category design while adding search-first lead capture and supplier reveal funnel.
+Restores logo/category design while adding search-first customer inquiry and supplier show comparison.
