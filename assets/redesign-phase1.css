@@ -12,17 +12,20 @@
 /* --- Scout welcome hero --- */
 .scout-hero{padding:30px 20px 10px;background:linear-gradient(135deg,#ecfdf5,#eff6ff)}
 .scout-hero .hero-inner{max-width:760px;margin:0 auto;text-align:center}
-.scout-hero h1{margin:6px 0 10px}
+.scout-hero h1{margin:18px 0 10px}
 .scout-hero .lead{color:var(--m);margin:0 auto 18px;max-width:560px}
 
-/* Click-to-play facade: poster is the hero, the video file loads only on tap */
-.video-facade{position:relative;max-width:330px;margin:0 auto;border-radius:20px;overflow:hidden;box-shadow:0 14px 34px rgba(15,23,42,.22);background:#0b3b42;cursor:pointer}
-.video-facade img{display:block;width:100%;height:587px;object-fit:cover;object-position:50% 22%}
+/* Click-to-play facade: poster is the hero, the video file loads only on tap.
+   Total view (Jeff, Nov 8, 2026): the 9:16 frame's width is capped at 43vh so
+   its height stays under ~76vh — the complete frame fits the first screen
+   under the header on phone and desktop, never cut off at the fold. */
+.video-facade{position:relative;max-width:min(330px,43vh);margin:0 auto;border-radius:20px;overflow:hidden;box-shadow:0 14px 34px rgba(15,23,42,.22);background:#0b3b42;cursor:pointer}
+.video-facade img{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:cover;object-position:50% 22%}
 .video-facade .play-btn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:84px;height:84px;border-radius:50%;background:var(--g);border:4px solid #fff;box-shadow:0 8px 22px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center}
 .video-facade .play-btn::after{content:"";border-style:solid;border-width:15px 0 15px 26px;border-color:transparent transparent transparent #fff;margin-left:6px}
 .video-facade .video-label{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(6,32,38,.88));color:#fff;font-weight:900;font-size:1.02rem;padding:30px 12px 12px;text-align:center}
-.video-frame{max-width:330px;margin:0 auto;border-radius:20px;overflow:hidden;box-shadow:0 14px 34px rgba(15,23,42,.22);background:#000}
-.video-frame video{display:block;width:100%;aspect-ratio:9/16}
+.video-frame{max-width:min(330px,43vh);margin:0 auto;border-radius:20px;overflow:hidden;box-shadow:0 14px 34px rgba(15,23,42,.22);background:#000}
+.video-frame video{display:block;width:100%;aspect-ratio:9/16;max-height:76vh;object-fit:contain}
 .video-summary{max-width:560px;margin:14px auto 0;color:var(--m);font-size:.98rem}
 .video-transcript{max-width:560px;margin:8px auto 0;text-align:left;font-size:.92rem;color:var(--m)}
 .video-transcript summary{cursor:pointer;font-weight:900;color:var(--gd);text-align:center}
