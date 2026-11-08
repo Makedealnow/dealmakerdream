@@ -6,6 +6,7 @@
 <title>Find the Lowest Price Before You Buy | MakeDealNow</title>
 <meta name="description" content="Find verified deals, closeouts, and big-ticket savings from major retailers.">
 <link rel="stylesheet" href="assets/style.css?v=20261029">
+<link rel="stylesheet" href="assets/redesign-phase1.css?v=20261108">
 <meta name="verification" content="bd59995b6a4835ef5f815d0b3fff47a8">
 <meta name="fo-verify" content="99a495bd-0839-4b29-87f4-7db92f8cd3e8" />
 <script type="text/javascript">(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})('https://utt.impactcdn.com/P-A8043878-2ccd-4105-aae4-f9adff5e942e1.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');</script>
@@ -19,159 +20,116 @@
 </script>
 </head>
 <body>
-<header class="site-header">
-<a href="index.html"><img src="Logo.PNG" alt="MakeDealNow logo" width="180" height="120" style="max-height:44px;width:auto;max-width:180px">MakeDealNow</a>
-<nav>
-<a href="index.html">Home</a>
-<a href="index.html#search">Search Deals</a>
-<a href="featured-deals.html">Featured Deals</a>
-<a href="closeouts-clearance.html">Closeouts &amp; Clearance</a>
-<a href="big-ticket-deals.html">Big-Ticket Deals</a>
-<a href="electronics.html">Electronics</a>
-<a href="home-kitchen.html">Home &amp; Kitchen</a>
-<a href="tools-home-improvement.html">Tools &amp; Home Improvement</a>
-<a href="health-wellness.html">Health &amp; Wellness</a>
-<a href="sports-outdoors.html">Sports &amp; Outdoors</a>
-<a href="automotive.html">Automotive</a>
-<a href="lowest-price.html">Lowest Prices</a>
+<div class="disclosure-strip">MakeDealNow may earn a commission from links on this page — never from Deal Scout Club finds, and never at extra cost to you. <a href="#disclosure">Details</a></div>
+<header class="site-header"><a class="brand" href="index.html"><img src="Logo.PNG" alt="MakeDealNow logo"><span>MakeDealNow</span></a><nav>
+<a href="#picks">Today's Picks</a>
 <a href="deal-scout-club.html">Deal Scout Club</a>
-<a href="contact.html">Contact</a>
-</nav>
-</header>
-<section class="hero">
-<span class="badge">Compare Prices</span>
-<span class="badge">Verified Deals</span>
-<span class="badge">Major Retailers</span>
-<h1>Find the Lowest Price Before You Buy</h1>
-<p>Search for a deal, compare prices across major retailers, and buy from the store you trust. We check prices before posting so you see real savings, not inflated "was" prices.</p>
-<p><a class="btn" href="#search">Start Search</a></p>
-<form class="search-box" data-search-form id="search">
-<input id="q" name="q" type="search" placeholder="Search deals">
-<button class="btn" type="submit">Search</button>
-</form>
-<p>Prices change — check the retailer page before buying.</p>
-</section>
-<main>
-<section>
-<h2>Deal Categories</h2>
-<p>These category pages are temporarily offline while we review our offers. What's live right now: the Free Trial &amp; Membership Guides and the Deal Scout Club's verified finds, both below.</p>
-<div class="grid">
-<div class="category-card">
-<h3>Featured Deals</h3>
-<p>Our hand-picked featured offers — temporarily offline while we review them.</p>
-<p><a class="btn" href="featured-deals.html">View</a></p>
+<a href="guides.html">Guides</a>
+<a href="deal-scout-club.html">Ask Deal Scout</a>
+<a href="subscription-trap-checklist.html">Free Checklist</a>
+</nav></header>
+
+<section class="scout-hero">
+<div class="hero-inner">
+<h1>I hunt the deals. You save.</h1>
+<p class="lead">I'm Deal Scout. Every deal on this page was checked by me first — the seller, the price, the fine print. If it doesn't check out, it doesn't run.</p>
+
+<div class="video-facade" id="welcomeFacade" role="button" tabindex="0" aria-label="Play Deal Scout's welcome video">
+<img src="assets/scout-poster.jpg" alt="Deal Scout, the MakeDealNow fox, holding a price tag" width="330" height="587">
+<div class="play-btn" aria-hidden="true"></div>
+<div class="video-label">&#9654; Meet your Deal Scout &#8212; <span id="welcomeDuration">0:46</span></div>
 </div>
-<div class="category-card">
-<h3>Closeouts &amp; Clearance</h3>
-<p>Clearance and closeout offers — temporarily offline while we review them.</p>
-<p><a class="btn" href="closeouts-clearance.html">View</a></p>
+<div class="welcome-banner" id="welcomeBanner">
+<span>Welcome back, hunter.</span>
+<button class="btn" id="welcomeReplay" type="button">&#9654; Watch Scout's welcome</button>
 </div>
-<div class="category-card">
-<h3>Big-Ticket Deals</h3>
-<p>Higher-value items where a real price drop actually moves the total — temporarily offline while we review them.</p>
-<p><a class="btn" href="big-ticket-deals.html">View</a></p>
+<div class="video-frame" id="welcomeFrame" hidden>
+<video id="welcomeVideo" controls playsinline preload="none" poster="assets/scout-poster.jpg" src="welcome-scout.mp4"></video>
 </div>
-<div class="category-card">
-<h3>Electronics</h3>
-<p>Tech from headphones to TVs — temporarily offline while we review these offers.</p>
-<p><a class="btn" href="electronics.html">View</a></p>
-</div>
-<div class="category-card">
-<h3>Home &amp; Kitchen</h3>
-<p>Everyday home and kitchen items, from cookware to appliances — temporarily offline while we review these offers.</p>
-<p><a class="btn" href="home-kitchen.html">View</a></p>
-</div>
-<div class="category-card">
-<h3>Tools &amp; Home Improvement</h3>
-<p>Tools and home-improvement gear for the garage, workshop, and house — temporarily offline while we review these offers.</p>
-<p><a class="btn" href="tools-home-improvement.html">View</a></p>
-</div>
-<div class="category-card">
-<h3>Health &amp; Wellness</h3>
-<p>Everyday wellness products — temporarily offline while we review these offers.</p>
-<p><a class="btn" href="health-wellness.html">View</a></p>
-</div>
-<div class="category-card">
-<h3>Sports &amp; Outdoors</h3>
-<p>Gear for training, hiking, and the outdoors — temporarily offline while we review these offers.</p>
-<p><a class="btn" href="sports-outdoors.html">View</a></p>
-</div>
-<div class="category-card">
-<h3>Automotive</h3>
-<p>Car accessories, tools, and gear for drivers — temporarily offline while we review these offers.</p>
-<p><a class="btn" href="automotive.html">View</a></p>
-</div>
-</div>
-</section>
-<section class="card">
-<h2>Free Trial &amp; Membership Guides</h2>
-<p>Plain-English guides to how these trials and memberships really work — what they cost after the trial, how to cancel, and the traps to avoid. Checked against the seller's own terms.</p>
-<div class="category-grid">
-<div class="category-card">
-<h3>Amazon Prime Free Trial</h3>
-<p>30 days free, then $14.99/month or $139/year. How to cancel and keep your benefits to the last day.</p>
-<p><a class="btn" href="prime-free-trial-guide.html">Read the guide</a></p>
-</div>
-<div class="category-card">
-<h3>Prime for Young Adults</h3>
-<p>Ages 18–24 and students: a 6-month free trial, then half price. Who qualifies and the no-sharing catch.</p>
-<p><a class="btn" href="prime-young-adults-guide.html">Read the guide</a></p>
-</div>
-<div class="category-card">
-<h3>Prime Video</h3>
-<p>Standalone for $8.99/month — ads, the ad-free upgrade, and why channels bill you separately.</p>
-<p><a class="btn" href="prime-video-guide.html">Read the guide</a></p>
-</div>
-<div class="category-card">
-<h3>Amazon Business</h3>
-<p>The account is free. The membership is $179/year and up, billed annually. What you actually need.</p>
-<p><a class="btn" href="amazon-business-guide.html">Read the guide</a></p>
-</div>
-<div class="category-card">
-<h3>Audible Free Trial</h3>
-<p>30 days free and a book you keep forever — if you cancel right. Credits, costs after, and cancel steps.</p>
-<p><a class="btn" href="audible-free-trial-guide.html">Read the guide</a></p>
-</div>
-<div class="category-card">
-<h3>Audible Plans Compared</h3>
-<p>Monthly vs annual vs 24-credit: which Audible plan fits how you actually listen.</p>
-<p><a class="btn" href="audible-plans-compared-guide.html">Read the guide</a></p>
-</div>
-<div class="category-card">
-<h3>Audible Annual Plan</h3>
-<p>$149.50 for 12 credits up front. The savings math and the two ways people lose credits.</p>
-<p><a class="btn" href="audible-premium-plus-annual-guide.html">Read the guide</a></p>
-</div>
-<div class="category-card">
-<h3>Audible Gift Memberships</h3>
-<p>$15 to $150, and the gift never auto-renews. How gift credits work, even for current members.</p>
-<p><a class="btn" href="audible-gift-membership-guide.html">Read the guide</a></p>
-</div>
-</div>
-</section>
-<section class="card">
-<h2>Deal Scout Club — Now Open</h2>
-<p>A free pay-it-forward club: members submit deals they find, and Deal Scout checks every one against the seller's current price before it's passed on. No member links, no spam, nothing published unchecked.</p>
-<div class="category-grid">
-<div class="category-card">
-<h3>Submit a Find</h3>
-<p>Found a genuine deal? Tell Deal Scout what, where, and how much — if it checks out, it gets shared with the whole club.</p>
-<p><a class="btn" href="deal-scout-club.html">Visit the club</a></p>
-</div>
-<div class="category-card">
-<h3>Ask Deal Scout</h3>
-<p>Shopping for something specific? Ask Deal Scout to search the club's verified finds and check current prices for you.</p>
-<p><a class="btn" href="deal-scout-club.html">Ask Deal Scout</a></p>
-</div>
-</div>
-<p>Also at <a href="https://dealscoutclub.com">DealScoutClub.com</a> — same club, shorter name.</p>
-</section>
-<section class="card">
-<h2>Get the Subscription-Trap Checklist</h2>
-<p>Join the free MakeDealNow email list. The first thing you get is our <a href="subscription-trap-checklist.html">Subscription-Trap Checklist</a> — the free trials and memberships people forget to cancel, and how to catch yours in time. Then occasional verified finds and guides. No spam, unsubscribe anytime.</p>
+<p class="video-summary">Deal Scout in 46 seconds: how he hunts, how every price gets checked, and how the free club works.</p>
+<details class="video-transcript">
+<summary>Read the welcome instead</summary>
+<p>"See this? Deals like this hide in plain sight every day — and most folks just walk past. I don't. Hunting them down is my whole job. I'm Deal Scout, and this is MakeDealNow. Every deal here gets checked by me first — the seller, the price, the fine print. If it doesn't check out, it doesn't run. Right below me are today's Scout Picks — the best finds I've checked, with the day I checked them on every card. When a price dies, the pick comes down. And join the club while you're here: members pass good finds to each other, I check every single one, and nobody earns a cent off a club find. Pay it forward. Joining's free, and your first email brings the Subscription-Trap Checklist — the trials folks forget to cancel. Tap the button below. I'll be out hunting."</p>
+</details>
+
+<div class="join-box" id="join">
+<h2>Join the Deal Scout Club &#8212; free</h2>
+<p>Get Deal Scout's finds first. Free. No spam &#8212; just deals.</p>
+<p>Join the free MakeDealNow email list and your first delivery is our <a href="subscription-trap-checklist.html">Subscription-Trap Checklist</a> &#8212; the free trials and memberships people forget to cancel, and how to catch yours in time. After that, occasional verified finds and guides. Unsubscribe anytime.</p>
 <script async data-uid="0bc558657a" src="https://makedealnow.kit.com/0bc558657a/index.js"></script>
+<p class="fineprint">Membership runs by email: join the list and you're in. The club is 100% earn-nothing &#8212; MakeDealNow never earns a commission from club finds.</p>
+</div>
+</div>
 </section>
+
+<main>
+<section id="picks">
+<h2>Today's Scout Picks</h2>
+<p>The club's verified finds, newest check first. Every find is re-checked &#8212; when a price dies, the find comes down.</p>
+<div class="picks-grid">
+
+<article class="pick-card">
+<div class="pick-media"><img src="assets/scout-poster.jpg" alt="" loading="lazy"><div><div class="retailer">Lowe's</div><div class="found">Found by Deal Scout</div></div></div>
+<div class="pick-body">
+<div class="pick-name">CRAFTSMAN VERSASTACK 242-Piece Mechanics Tool Set with Hard Case</div>
+<div class="pick-prices"><span class="pick-price">$99.00</span><span class="pick-was">$229.00</span><span class="pick-off">57% off</span></div>
+<div class="pick-stamp">Checked Nov 4, 2026</div>
+<a class="btn" href="https://www.lowes.com/pd/CRAFTSMAN-24Pc-VERSASTACK-Mechanics-Tool-Set/5016365155" target="_blank" rel="noopener">See it at Lowe's</a>
+</div>
+</article>
+
+<article class="pick-card">
+<div class="pick-media"><img src="assets/scout-poster.jpg" alt="" loading="lazy"><div><div class="retailer">Home Depot</div><div class="found">Found by Deal Scout</div></div></div>
+<div class="pick-body">
+<div class="pick-name">Milwaukee M18 XC Starter Kit &#8212; Two 5.0Ah Batteries + Charger (plus a free M18 tool, up to $249)</div>
+<div class="pick-prices"><span class="pick-price">$199.00</span><span class="pick-was">$397.00</span><span class="pick-off">50% off</span></div>
+<div class="pick-stamp">Checked Nov 3, 2026</div>
+<a class="btn" href="https://www.homedepot.com/p/Milwaukee-M18-18-Volt-Lithium-Ion-XC-Starter-Kit-with-Two-5-0Ah-Batteries-and-Charger-48-59-1852B/320379720" target="_blank" rel="noopener">See it at Home Depot</a>
+</div>
+</article>
+
+<article class="pick-card">
+<div class="pick-media"><img src="assets/scout-poster.jpg" alt="" loading="lazy"><div><div class="retailer">Target</div><div class="found">Found by Deal Scout</div></div></div>
+<div class="pick-body">
+<div class="pick-name">Cuisinart Countertop Microwave Oven, 1.3 cu ft &#8212; 1000 watts</div>
+<div class="pick-prices"><span class="pick-price">$69.99</span><span class="pick-was">$109.99</span><span class="pick-off">36% off</span></div>
+<div class="pick-stamp">Checked Oct 31, 2026</div>
+<a class="btn" href="https://www.target.com/p/cuisinart-1-3-cu-ft-microwave-oven/-/A-88202473" target="_blank" rel="noopener">See it at Target</a>
+</div>
+</article>
+
+<article class="pick-card">
+<div class="pick-media"><img src="assets/scout-poster.jpg" alt="" loading="lazy"><div><div class="retailer">Tractor Supply Co.</div><div class="found">Found by Deal Scout</div></div></div>
+<div class="pick-body">
+<div class="pick-name">Wrangler Men's Logo Hoodie &#8212; Clearance (sizes and colors vary)</div>
+<div class="pick-prices"><span class="pick-price">$32.99</span><span class="pick-was">$54.99</span><span class="pick-off">40% off</span></div>
+<div class="pick-stamp">Checked Oct 31, 2026</div>
+<a class="btn" href="https://www.tractorsupply.com/tsc/product/wrangler-mens-logo-hoodie-2509979" target="_blank" rel="noopener">See it at Tractor Supply</a>
+</div>
+</article>
+
+</div>
+<p class="picks-note">Prices and offers subject to change. Check the seller's current price and terms before buying. Club finds link straight to the seller &#8212; MakeDealNow does not earn a commission from club finds. <a href="deal-scout-club.html">See all verified club finds and how the check works &#8594;</a></p>
+</section>
+
+<section id="choices">
+<h2>Start here &#8212; pick a door</h2>
+<div class="choices-grid">
+<a class="choice-tile" href="#picks"><span class="choice-title">Today's Scout Picks</span><span class="choice-sub">The verified finds above, refreshed as prices move.</span></a>
+<a class="choice-tile" href="deal-scout-club.html"><span class="choice-title">Deal Scout Club</span><span class="choice-sub">The free pay-it-forward club. Pass a find on; every one gets checked.</span></a>
+<a class="choice-tile" href="guides.html"><span class="choice-title">Guides</span><span class="choice-sub">Free trials and memberships in plain English &#8212; costs, cancel steps, traps.</span></a>
+<a class="choice-tile" href="deal-scout-club.html"><span class="choice-title">Ask Deal Scout</span><span class="choice-sub">Hunting something specific? Ask Scout to check current prices for you.</span></a>
+<a class="choice-tile" href="subscription-trap-checklist.html"><span class="choice-title">Free Checklist</span><span class="choice-sub">The Subscription-Trap Checklist: trials people forget to cancel.</span></a>
+</div>
+</section>
+
 <section class="card">
+<h2>Scout's Guide of the Week</h2>
+<p><strong>Amazon Prime Free Trial</strong> &#8212; 30 days free, then $14.99/month or $139/year. How to cancel and keep your benefits to the last day.</p>
+<p><a class="btn" href="prime-free-trial-guide.html">Read the guide</a> <a href="guides.html">See all 8 guides &#8594;</a></p>
+</section>
+
+<section class="disclosure-block" id="disclosure">
 <h2>Affiliate Disclosure</h2>
 <p>As an Amazon Associate, MakeDealNow earns from qualifying purchases.</p>
 <p>The links in MakeDealNow's guides are tracked Amazon Associates links (tag makedealnow0c-20), and each one is labeled "(paid link)" on its page. If you sign up for a trial or membership through one of those links and qualify, MakeDealNow may earn a bounty from Amazon at no extra cost to you. That is a signup bounty, not a commission on a product purchase.</p>
@@ -180,11 +138,44 @@
 <p>If MakeDealNow ever links to a retailer without tracking, that page will say so plainly, and MakeDealNow will earn nothing from a purchase through that link. MakeDealNow is not Amazon, Audible, or any other retailer, and is not endorsed by them unless a page says so.</p>
 </section>
 </main>
+
 <footer>
 <p>© MakeDealNow. Search first. Compare better.</p>
 <p>Deal Scout™ is a trademark of MakeDealNow. Deal Scout™ appears in our videos and reels.</p>
-<p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms.html">Terms</a> | <a href="contact.html">Contact</a></p>
+<p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms.html">Terms</a> | <a href="contact.html">Contact</a> | <a href="#disclosure">Affiliate Disclosure</a></p>
 </footer>
+
+<nav class="bottom-bar" aria-label="Quick navigation">
+<a href="#picks"><span>&#129517;</span>Picks</a>
+<a href="deal-scout-club.html"><span>&#129418;</span>Club</a>
+<a href="guides.html"><span>&#128214;</span>Guides</a>
+<a href="deal-scout-club.html"><span>&#128270;</span>Ask</a>
+<a href="subscription-trap-checklist.html"><span>&#9989;</span>Checklist</a>
+</nav>
+
 <script src="assets/app.js"></script>
+<script>
+(function(){
+  var facade=document.getElementById('welcomeFacade'),
+      banner=document.getElementById('welcomeBanner'),
+      frame=document.getElementById('welcomeFrame'),
+      video=document.getElementById('welcomeVideo'),
+      replay=document.getElementById('welcomeReplay'),
+      seen=false, storageOK=true;
+  try{ seen=localStorage.getItem('mdnWelcomeSeen')==='1'; }
+  catch(e){ storageOK=false; }
+  function showBanner(){ facade.style.display='none'; banner.style.display='flex'; }
+  function showFacade(){ banner.style.display='none'; facade.style.display='block'; }
+  function playWelcome(){
+    facade.style.display='none'; banner.style.display='none'; frame.hidden=false;
+    try{ localStorage.setItem('mdnWelcomeSeen','1'); }catch(e){}
+    if(video){ var p=video.play(); if(p&&p.catch){ p.catch(function(){}); } }
+  }
+  if(seen || !storageOK){ showBanner(); }
+  facade.addEventListener('click',playWelcome);
+  facade.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); playWelcome(); } });
+  replay.addEventListener('click',showFacade);
+})();
+</script>
 </body>
 </html>
