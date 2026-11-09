@@ -36,10 +36,6 @@
 <div class="play-btn" aria-hidden="true"></div>
 <div class="video-label">&#9654; Meet your Deal Scout &#8212; <span id="welcomeDuration">0:46</span></div>
 </div>
-<div class="welcome-banner" id="welcomeBanner">
-<span>Welcome back, hunter.</span>
-<button class="btn" id="welcomeReplay" type="button">&#9654; Watch Scout's welcome</button>
-</div>
 <div class="video-frame" id="welcomeFrame" hidden>
 <video id="welcomeVideo" controls playsinline preload="none" poster="assets/scout-poster.jpg" src="welcome-scout.mp4"></video>
 </div>
@@ -156,24 +152,14 @@
 <script>
 (function(){
   var facade=document.getElementById('welcomeFacade'),
-      banner=document.getElementById('welcomeBanner'),
       frame=document.getElementById('welcomeFrame'),
-      video=document.getElementById('welcomeVideo'),
-      replay=document.getElementById('welcomeReplay'),
-      seen=false, storageOK=true;
-  try{ seen=localStorage.getItem('mdnWelcomeSeen')==='1'; }
-  catch(e){ storageOK=false; }
-  function showBanner(){ facade.style.display='none'; banner.style.display='flex'; }
-  function showFacade(){ banner.style.display='none'; facade.style.display='block'; }
+      video=document.getElementById('welcomeVideo');
   function playWelcome(){
-    facade.style.display='none'; banner.style.display='none'; frame.hidden=false;
-    try{ localStorage.setItem('mdnWelcomeSeen','1'); }catch(e){}
+    facade.style.display='none'; frame.hidden=false;
     if(video){ var p=video.play(); if(p&&p.catch){ p.catch(function(){}); } }
   }
-  if(seen || !storageOK){ showBanner(); }
   facade.addEventListener('click',playWelcome);
   facade.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); playWelcome(); } });
-  replay.addEventListener('click',showFacade);
 })();
 </script>
 </body>
