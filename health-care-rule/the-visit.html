@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Health Care Rule Kit — Stage 4: The Visit</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#faf6ef; color:#26221e; font-family: Georgia, 'Times New Roman', serif;
+         font-size:20px; line-height:1.55; }
+  .wrap { max-width:760px; margin:0 auto; padding:0 16px 48px; }
+  header.titlebar { background:#26221e; color:#faf6ef; padding:14px 16px; }
+  header.titlebar .kit { font-size:15px; letter-spacing:.12em; text-transform:uppercase; color:#e8a06a; }
+  header.titlebar h1 { font-size:26px; margin:2px 0 0; font-weight:bold; }
+  header.titlebar .lane { font-size:16px; color:#e8d9c8; margin-top:2px; }
+  .loop { position:sticky; top:0; z-index:10; background:#fffdf8; border-bottom:3px solid #c45a14;
+          display:flex; justify-content:space-between; padding:10px 8px; }
+  .loop span { flex:1; text-align:center; font-size:16px; color:#6e6052; padding:6px 2px; border-radius:10px; }
+  .loop span b { display:block; font-size:19px; }
+  .loop span.now { background:#c45a14; color:#fff; }
+  .loop span.done { color:#2e7d32; }
+  video { width:100%; border-radius:14px; margin-top:16px; background:#000; }
+  .videoslot { width:100%; aspect-ratio:16/9; border-radius:14px; margin-top:16px; background:#26221e;
+               color:#faf6ef; display:flex; flex-direction:column; align-items:center; justify-content:center;
+               text-align:center; padding:24px; border:3px dashed #e8a06a; }
+  .videoslot .big { font-size:24px; font-weight:bold; margin-bottom:8px; }
+  .videoslot .small { font-size:18px; color:#e8d9c8; }
+  .micro { font-size:17px; color:#6e6052; margin:8px 2px 0; }
+  .promise { font-size:24px; font-weight:bold; margin:22px 0 6px; }
+  h2 { font-size:25px; margin:34px 0 10px; }
+  .step { background:#fffdf8; border:2px solid #e5d9c8; border-radius:14px; padding:16px 18px; margin:12px 0; }
+  .step h3 { margin:0 0 8px; font-size:22px; }
+  .needline { background:#eef4ea; border-radius:12px; padding:12px 16px; font-size:19px; }
+  .beat { margin:6px 0; }
+  .beat b.tag { color:#c45a14; }
+  .say { background:#f3ead9; border-left:6px solid #c45a14; padding:10px 14px; border-radius:0 10px 10px 0; font-style:italic; }
+  .lanenote { background:#eef4ea; border-left:6px solid #2e7d32; padding:10px 14px; border-radius:0 10px 10px 0; margin:12px 0; }
+  .lanenote b.lane { color:#2e7d32; }
+  .rulebox { background:#fffdf8; border:3px solid #c45a14; border-radius:16px; padding:18px; margin:16px 0; }
+  .rulebox h3 { margin:0 0 8px; font-size:23px; }
+  .rulebox .r { margin:8px 0; }
+  .rulebox .r b { color:#c45a14; }
+  .smooth { background:#eef4ea; border:3px solid #2e7d32; border-radius:16px; padding:16px 18px; margin:12px 0; }
+  .smooth h3 { margin:0 0 8px; font-size:22px; }
+  .smooth b.tag { color:#2e7d32; }
+  .ifcard { background:#fdf0e6; border:3px solid #a33b20; border-radius:16px; padding:16px 18px; margin:12px 0; }
+  .ifcard h3 { margin:0 0 8px; font-size:22px; }
+  .ifcard .iftag { display:inline-block; background:#a33b20; color:#fff; font-size:14.5px; font-weight:bold;
+               letter-spacing:.12em; text-transform:uppercase; padding:5px 12px; border-radius:8px; margin-bottom:10px; }
+  button, a.btn { font-family:inherit; cursor:pointer; border:none; border-radius:14px; text-decoration:none;
+                  display:block; width:100%; text-align:center; }
+  .bigbtn { font-size:23px; font-weight:bold; padding:20px 16px; margin:14px 0 6px; min-height:64px; }
+  .qcard { background:#fffdf8; border:3px solid #c45a14; border-radius:16px; padding:18px; margin:16px 0; }
+  .qhead { display:flex; justify-content:space-between; align-items:baseline; }
+  .qhead h3 { margin:0; font-size:23px; }
+  .qcount { font-size:17px; color:#6e6052; white-space:nowrap; }
+  .promptbox { background:#f7f1e5; border:2px dashed #a68b64; border-radius:12px; padding:14px 16px;
+               font-size:17.5px; line-height:1.5; white-space:pre-wrap; word-wrap:break-word; max-height:none; }
+  .copybtn { background:#26221e; color:#fff; }
+  .aiBtn { background:#e8e0d0; color:#26221e; border:3px solid #a68b64; }
+  .aiBtn.hot { background:#c45a14; color:#fff; border-color:#c45a14; animation:pulse 1.2s infinite; }
+  .selfbtn { background:#fffdf8; color:#26221e; border:3px solid #26221e; }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(196,90,20,.55);} 70%{box-shadow:0 0 0 16px rgba(196,90,20,0);} 100%{box-shadow:0 0 0 0 rgba(196,90,20,0);} }
+  .copiedBanner { display:none; background:#2e7d32; color:#fff; font-size:23px; font-weight:bold;
+                  text-align:center; padding:16px; border-radius:14px; margin:14px 0 4px; }
+  .copiedBanner.show { display:block; }
+  .fallbackBanner { display:none; background:#fff3cd; border:2px solid #c45a14; color:#26221e;
+                    font-size:19px; padding:14px 16px; border-radius:14px; margin:14px 0 4px; }
+  .fallbackBanner.show { display:block; }
+  .pasteguide { background:#eef4ea; border-radius:12px; padding:12px 16px; font-size:18.5px; margin:14px 0 4px; }
+  .navrow { display:flex; gap:12px; margin-top:18px; }
+  .navrow button, .navrow a.btn { flex:1; font-size:21px; font-weight:bold; padding:18px 10px; border-radius:14px; min-height:60px;
+                   background:#fffdf8; color:#26221e; border:3px solid #26221e; }
+  .navrow button:disabled, .navrow a.btn:disabled { opacity:.35; }
+  .navrow a.btn.next, .navrow button.next { background:#26221e; color:#fff; }
+  .printbtn { background:#fffdf8; color:#26221e; border:3px solid #26221e; font-size:21px; font-weight:bold;
+              padding:18px 16px; border-radius:14px; width:100%; margin-top:14px; min-height:60px; }
+  .wsline { border-bottom:2px solid #a68b64; min-height:34px; margin:4px 0 14px; }
+  .wsitem b { font-size:20px; }
+  table.ws { width:100%; border-collapse:collapse; margin:12px 0; }
+  table.ws th, table.ws td { text-align:left; padding:11px 8px; border:2px solid #e5d9c8; vertical-align:top; }
+  table.ws th { width:38%; font-size:19px; }
+  table.ws td { min-height:44px; }
+  .mistakes li, .deviations li { margin:10px 0; }
+  .checklist { margin:8px 0 4px; padding-left:30px; }
+  .checklist li { margin:14px 0; }
+  footer { margin-top:40px; font-size:15.5px; color:#6e6052; text-align:center; }
+  footer .disclaimer { text-align:left; font-size:15px; border-top:2px solid #e5d9c8; padding-top:16px; margin-bottom:20px; }
+  .hidden { display:none; }
+  @media print {
+    .loop, video, .videoslot, .copybtn, .aiBtn, .selfbtn, .navrow, .printbtn, .copiedBanner, .noPrint { display:none !important; }
+    body { background:#fff; font-size:13.5pt; }
+    .wrap { max-width:none; padding:0; }
+    header.titlebar { background:#fff; color:#000; border-bottom:2pt solid #000; padding:0 0 8pt; }
+    header.titlebar .kit, header.titlebar .lane { color:#000; }
+    .step, .qcard, .rulebox, .smooth, .ifcard { border:1.5pt solid #666; break-inside:avoid; }
+    .promptbox { border:1.5pt solid #666; background:#fff; font-size:11.5pt; max-height:none; overflow:visible; }
+    a { color:#000; text-decoration:none; }
+  }
+</style>
+</head>
+<body>
+<header class="titlebar">
+  <div class="kit">Health Care Rule Kit</div>
+  <h1>Stage 4: The Visit</h1>
+  <div class="lane">Shared road &mdash; every lane merges here</div>
+</header>
+
+<div class="wrap noPrint" style="padding-bottom:0;">
+  <p class="micro" style="margin-top:12px;"><a href="index.html">&#8592; Start over &mdash; back to the front door</a></p>
+</div>
+
+<div class="loop" id="loopBar" aria-label="Where you are">
+  <span id="ls-watch" class="now"><b>1. Watch</b>the video</span>
+  <span id="ls-desk"><b>2. Desk</b>the desk play</span>
+  <span id="ls-steps"><b>3. Do</b>the steps</span>
+  <span id="ls-next"><b>4. Next</b>stage</span>
+</div>
+
+<div class="wrap">
+
+  <!-- VIDEO SLOT: the Stage 4 Katie video ("The Visit: Sign Like a Customer",
+       script T1 in the stage file) is produced separately. Clearly-marked
+       placeholder only — no video file, nothing that pretends to be one.
+       Jeff previews every video before it goes live. -->
+  <video id="katieVideo" controls playsinline preload="metadata" src="media/stage4.mp4"></video>
+  <p class="micro">Watch Katie first &mdash; she walks you through this whole stage. (Katie&rsquo;s video for this stage &mdash; preview.)</p>
+
+  <p class="promise">Most of the time the visit just happens &mdash; you check in, you&rsquo;re seen, you leave with the summary. This kit is a watch, not a job: it is here for the moments that aren&rsquo;t smooth.</p>
+  <!-- ================= THE DESK PLAY ================= -->
+  <h2 id="deskplay">The desk play &mdash; check-in is the first transaction</h2>
+  <p><i>Read this when you arrive. Step 1 below is the night-before setup that makes it work.</i></p>
+  <p>You do not walk into the doctor&rsquo;s office empty-handed. Stage 1 taught you your plan. Stage 3 had you choose the doctor and verify them yourself &mdash; with the office and with the plan. So when the front desk asks for your insurance information, this is not the moment you find out what you have. It is the moment you check whether the office has it right.</p>
+
+  <div class="step" id="handover">
+    <h3>The handover</h3>
+    <p class="beat"><b class="tag">DO THIS:</b> Hand over your insurance card and photo ID. The desk will usually scan or copy both sides of the card. Then ask them to confirm the visit under your <b>exact plan name</b> &mdash; not just the insurance company&rsquo;s name.</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;Please check me in under [exact plan name]. Before the visit, please confirm that this office is in-network for that plan, that today&rsquo;s visit is covered, and what I owe today.&rdquo;</div>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> In your visit log, write the name of the person at the desk and the answers they gave you &mdash; especially the copay or other amount they say you owe today.</p>
+    <p>Compare every answer with your plan card and with your Stage 3 verification notes. Then follow the branch that happens.</p>
+  </div>
+
+  <div class="smooth">
+    <h3>Outcome A &mdash; It matches <span style="font-weight:normal; font-size:18px;">(what smooth looks like)</span></h3>
+    <p>The office confirms your exact plan, the doctor&rsquo;s network status, and the amount your plan says you owe today.</p>
+    <p class="beat"><b class="tag">DO THIS:</b> Proceed to the visit. Pay the confirmed amount if it is due at check-in, get a receipt, and write the amount in your visit log.</p>
+    <p>That is the quiet path. It is quiet because you checked. Most of the time, this is the whole desk play &mdash; and the rest of this section stays in the drawer.</p>
+  </div>
+
+  <div class="ifcard">
+    <span class="iftag">If this happens</span>
+    <h3>Outcome B &mdash; The numbers do not match</h3>
+    <p>The desk quotes a deductible, copay, or other term that does not match your plan card. Do not accept the different number silently, and do not assume you remembered yours wrong.</p>
+    <p>Most mismatches are screen errors: an old plan still on file, the wrong plan product or network tier, a deductible from last year, or the doctor&rsquo;s other office location pulled up instead of this one.</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;That doesn&rsquo;t match my plan. Please recheck it under my exact plan name, [plan name], using the card I just handed you. Can you tell me what changed when you rechecked it?&rdquo;</div>
+    <p class="beat"><b class="tag">DO THIS:</b> If the desk fixes it, write the corrected answer and the desk person&rsquo;s name in your log, then proceed. If they cannot fix it, make the lobby call described under Outcome C before you pay a different amount or agree to be treated as out-of-network.</p>
+  </div>
+
+  <div class="ifcard">
+    <span class="iftag">If this happens</span>
+    <h3>Outcome C &mdash; &ldquo;We don&rsquo;t take that insurance&rdquo;</h3>
+    <p>Stop here. <b>Do not decide at the desk.</b> A routine appointment can wait ten minutes, and it can be rescheduled. The pressured choice &mdash; hand over a credit card and sort it out later &mdash; is the one this play exists to prevent.</p>
+    <p>First, make them say which kind of &ldquo;we don&rsquo;t take it&rdquo; this is:</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;When you say you don&rsquo;t take it, which is it: this office never took my plan, this doctor is not in my plan&rsquo;s network, or this office stopped taking it?&rdquo;</div>
+    <p class="beat"><b class="tag">IF THE PLAN&rsquo;S DIRECTORY SENT YOU HERE:</b> If you found this doctor in your plan&rsquo;s directory &mdash; or the plan told you this office took your plan &mdash; keep the proof before you do anything else.</p>
+    <p class="beat"><b class="tag">DO THIS:</b> Photograph or screenshot the directory listing showing the doctor, this office, your plan, and today&rsquo;s date. Save it with your Stage 3 verification notes.</p>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The listing and your dated verification log. Together, they show that you relied on the plan&rsquo;s own information.</p>
+    <h3 style="margin-top:18px;">The lobby call</h3>
+    <p>Step away from the desk and call member services &mdash; the number on the back of your card. You are not calling to complain. You are calling the referee before any money moves.</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;I&rsquo;m standing in Dr. [name]&rsquo;s office. Your plan information says they take my plan. They&rsquo;re telling me they don&rsquo;t. What&rsquo;s going on? Please tell me whether this office is in-network for my exact plan, what I should do now, and the reference number for this call.&rdquo;</div>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Write down the date and time, the name of the person who answered, the reference number, and exactly what the plan told you to do.</p>
+    <p>The call usually resolves one of three ways:</p>
+    <ol class="checklist">
+      <li><b>The office is wrong.</b> The doctor or practice is in-network but bills under a group or practice name you would not recognize. The plan gives you the name it has on file &mdash; and may speak to the office &mdash; and the visit proceeds as an in-network visit.</li>
+      <li><b>The office left, and the plan&rsquo;s listing was stale.</b> The plan owns its bad information. Ask the plan to find you an in-network doctor and to note your reliance on the listing in your file. Keep the listing, the date you relied on it, and this call in your log; Stage 2&rsquo;s directory section is the toolbox for anything the plan refuses to make right.</li>
+      <li><b>You have a network tier you did not know about.</b> The office takes your insurer, but not the tier or network attached to your exact plan. That is painful &mdash; but you learned it free, in the lobby, instead of on a bill. Ask the plan to name doctors who <i>are</i> in your tier before you leave.</li>
+    </ol>
+  </div>
+
+  <div class="ifcard">
+    <span class="iftag">If this happens</span>
+    <h3>&ldquo;Your insurance doesn&rsquo;t cover what we&rsquo;re doing today&rdquo;</h3>
+    <p>Do not accept that sentence as a final answer. &ldquo;Doesn&rsquo;t cover&rdquo; hides three different problems, and each one has a different next step.</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;Is it not a covered benefit at all, or is it covered but needs approval first, or covered but needs a referral? Please write down the exact reason.&rdquo;</div>
+    <ul>
+      <li><b>Not a benefit at all:</b> the plan does not cover this service. Do not drift into paying for it by default. Ask the cash price, in writing, and decide &mdash; or reschedule, or leave. The cash fork below applies.</li>
+      <li><b>Covered, but it needs approval:</b> do not proceed as though it were covered. Pause or reschedule the service and get the prior authorization approved first, using Stage 2&rsquo;s authorization tools. An approval chased after the service is a fight; an approval obtained before it is a form.</li>
+      <li><b>Covered, but it needs a referral:</b> call your primary doctor&rsquo;s office &mdash; or the plan, if the referral rule is unclear &mdash; and get the referral in place before the visit happens. Reschedule if it cannot be done today.</li>
+    </ul>
+  </div>
+
+  <div class="ifcard">
+    <span class="iftag">If this happens</span>
+    <h3>&ldquo;We can&rsquo;t verify your coverage&rdquo;</h3>
+    <p>This usually means a computer said no, not that your coverage ended. A digit wrong in the member number, a name or birth date entered differently, a plan change not yet posted, or the office&rsquo;s system being down can all produce it.</p>
+    <p class="beat"><b class="tag">DO THIS:</b> First, have the desk recheck the exact spelling, member number, and birth date from your card. If it still fails, make the lobby call.</p>
+    <div class="say"><b class="tag">SAY THIS (to the plan):</b> &ldquo;The office cannot verify my coverage. Please confirm whether my [exact plan name] coverage is active today, whether this office is in-network for it, and give me a reference number the office can use.&rdquo;</div>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The reference number and the name of the plan representative. If the plan confirms you are active, ask the plan to document it and, if it will, speak to the office. If the plan says your coverage is not active, pause routine care and resolve the coverage problem first &mdash; do not pay as though you were uninsured until you know that is true.</p>
+  </div>
+
+  <div class="ifcard">
+    <span class="iftag">If this happens</span>
+    <h3>&ldquo;We need money from you today&rdquo; &mdash; the deposit demand</h3>
+    <p>An office may ask for a deposit or an estimated amount toward your deductible before it has billed your plan. Before you pay more than your plan&rsquo;s copay, separate the two numbers.</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;How much of that is today&rsquo;s copay, and how much is an estimated deposit toward my deductible?&rdquo;</div>
+    <p class="beat"><b class="tag">DO THIS:</b> Verify today&rsquo;s true obligation with the plan &mdash; the lobby call again. In most cases, the copay is the plan-set amount owed today; what you finally owe toward a deductible is decided after the claim is processed, not at the desk. If the office insists on a deposit as its policy, that is a choice point, not a surprise: verify first, then decide to pay it, reschedule, or find another doctor.</p>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> If you pay anything, get a receipt showing the amount, what it was for, and that it will be credited to today&rsquo;s visit. Photograph it into your care file.</p>
+  </div>
+
+  <div class="ifcard">
+    <span class="iftag">If you choose this</span>
+    <h3>The cash fork &mdash; only if you choose this doctor anyway</h3>
+    <p>After the lobby call, you may still want <i>this</i> doctor, today. That is your right as a customer. But understand what changes: <b>for this visit, you are now a cash patient</b>, and the cash lane&rsquo;s rules switch on. Use the cash lane setup&rsquo;s tools &mdash; Step 1 (the good-faith estimate), Step 2 (published prices), Step 3 (ask for the cash price), and Step 4 (the agreed price in writing) &mdash; rather than improvising a cash visit inside an insured one.</p>
+    <p class="beat"><b class="tag">DO THIS:</b> Agree the cash price <b>before</b> the service, and get it in writing: the total price for today&rsquo;s visit, what it includes, and what it excludes (labs, imaging, injections, and anything sent out are the usual surprises).</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;I&rsquo;ll pay cash for today&rsquo;s visit. Before I&rsquo;m seen, I need the total price in writing &mdash; what it includes and what it doesn&rsquo;t &mdash; and afterward I&rsquo;ll need an itemized receipt I can submit myself.&rdquo;</div>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The written price, and afterward an itemized receipt or superbill showing the provider, the date, the services and codes, and the amount you paid. With a <b>PPO</b>, keep it to submit the visit to your plan yourself. With an <b>HMO</b>, hear this warning <i>before</i> you choose, not after: the visit likely will not count toward your deductible, and the plan may pay nothing toward it. Verify that with the plan if the amount matters.</p>
+  </div>
+
+  <div class="step">
+    <h3>The walk-away door</h3>
+    <p>It stays open the whole time. You can say:</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;Thank you. I&rsquo;m not going to decide this at the desk. I&rsquo;ll find a doctor in my network.&rdquo;</div>
+    <p>Then leave, and use Stage 3 to choose again. For a routine visit, there is no penalty for walking away, and the appointment is not a contract. The desk is where the system expects you to feel trapped. You are not trapped. You are the customer, and this play is how you act like one at the exact moment it matters.</p>
+  </div>
+
+  <h2>Where this stage sits</h2>
+  <p>A medical visit looks like a conversation. On paper, it is something else: a <b>transaction wrapped in paperwork</b> &mdash; a stack of forms signed at the worst reading moment of your month, a set of decisions made in minutes, and a trail of promises (&ldquo;we&rsquo;ll send that referral,&rdquo; &ldquo;results in a few days&rdquo;) that somebody has to track or nobody does. The clinical part of the visit is between you and your doctor, and this kit stays out of it. The paperwork part &mdash; what you sign, what you ask, what you leave holding, and what you verify afterward &mdash; is yours. Rights in health care are mostly created or surrendered <b>at the visit</b>: in the intake packet, in the two questions you do or don&rsquo;t ask, and in the log you do or don&rsquo;t write that evening.</p>
+  <p>Start before you leave home &mdash; but read the desk play first. It is the first thing that happens when you arrive, so it leads this page.</p>
+
+  <div class="rulebox">
+    <h3>Katie&rsquo;s rule for this stage</h3>
+    <p class="r"><b>THE RULE:</b> the desk must bill you under the plan you actually hold. Your plan&rsquo;s directory has to be accurate, and an office bills under the contracts it actually holds for your <i>exact</i> plan &mdash; not just under your insurer&rsquo;s name in general.</p>
+    <p class="r"><b>THE CHECK:</b> compare every answer the desk gives you to your plan card &mdash; the photo or worksheet you saved in Stage 1 &mdash; and to your Stage 3 verification notes, and log who said what: the desk person&rsquo;s name, the amount they quoted, and the plan representative&rsquo;s name and reference number if you make the lobby call.</p>
+    <p class="r"><b>THE MEANING:</b> that dated record is what the bill is later measured against. A desk answer, a lobby-call reference number, and a receipt, all logged on the day, turn a later &ldquo;that&rsquo;s not what we said&rdquo; into a paperwork fact. Check it the way you&rsquo;d check a receipt: calmly, as a routine &mdash; verification, never accusation.</p>
+  </div>
+
+
+  <!-- ================= STEP 1 — BEFORE THE VISIT ================= -->
+  <h2>The steps</h2>
+  <div class="step" id="step1">
+    <h3>Step 1 &mdash; Before the visit: arrive with the visit already set up</h3>
+    <p>The visit starts the day before it, at your kitchen table. Three preparations, in order.</p>
+    <p class="beat"><b class="tag">FIRST &mdash; CONFIRM THE VISIT IS SET UP RIGHT:</b> A visit that happens without the paperwork your lane requires is a visit you may be billed for in full, and the time to discover that is before you&rsquo;re in the gown.</p>
+    <p class="beat"><b class="tag">DO THIS:</b> The day before (or when you book), confirm with the office: the appointment is in their system under your name and coverage; any referral or authorization your lane requires is <b>on file</b>, not &ldquo;being handled&rdquo;; and what today&rsquo;s expected cost is (below).</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;I&rsquo;m calling to confirm tomorrow&rsquo;s appointment. Is the referral [or authorization] on file for this visit? And what will I owe at check-in?&rdquo;</div>
+    <p class="beat">Log the answer, with the name of who gave it.</p>
+    <div class="lanenote"><b class="lane">Lane note &mdash; insured:</b> referral reality depends on your plan kind (Stage 1 named yours). In an <b>HMO or POS</b> plan, a specialist visit usually needs a referral from your primary doctor, and sometimes a prior authorization on top of it &mdash; a specialist visit with neither can be denied outright, however good the care was. In a <b>PPO</b>, you can usually self-refer, but prior authorization can still be required for the <i>service</i> even when no referral is needed for the <i>doctor</i>. The rule from Stage 2 holds: confirm it&rsquo;s approved, and get the authorization number, before the visit &mdash; not from the waiting room.</div>
+    <div class="lanenote"><b class="lane">Lane note &mdash; welfare:</b> in a managed-care plan, specialist visits generally run through your primary doctor&rsquo;s referral, and some services need the plan&rsquo;s prior authorization &mdash; your member handbook states which. In fee-for-service, the state&rsquo;s rules apply directly. Either way the check is the same call: referral/authorization confirmed <b>on file</b> before you go. If the office says the referral hasn&rsquo;t arrived, that is a phone call to your primary doctor or plan <i>today</i>, not a surprise to absorb at check-in.</div>
+    <div class="lanenote"><b class="lane">Lane note &mdash; cash:</b> there is no referral system and no authorization &mdash; and that freedom has one discipline of its own: <b>re-confirm the agreed visit price before the visit</b>, in the open, exactly as the cash lane taught. Prices quoted weeks ago by a different staff member have a way of changing. <i>&ldquo;I&rsquo;m confirming our agreed cash price for tomorrow&rsquo;s visit is still [amount], for [what it includes].&rdquo;</i> If the answer has moved, you learn it while you can still reschedule or re-shop &mdash; not at the register with a bandage on.</div>
+    <p class="beat"><b class="tag">SECOND &mdash; WRITE YOUR QUESTIONS DOWN BEFORE YOU GO:</b> This is the kit&rsquo;s standing discipline, and it is not a memory aid for forgetful people &mdash; it is a recognition of how visits work. The visit is short. The professional in the room controls its pace and its agenda, and an unwritten question competes, in your head, against everything being said at you. Paper doesn&rsquo;t compete. Paper waits. Write the questions the night before, in the order they matter to you, and bring two copies if you can &mdash; one to hold, one to hand over. What the questions <i>are</i> is your business and your doctor&rsquo;s. That they exist, in writing, in the room, is this kit&rsquo;s business.</p>
+    <p class="beat"><b class="tag">THIRD &mdash; BRING THE KIT, AND KNOW TODAY&rsquo;S NUMBER:</b></p>
+    <p class="beat"><b class="tag">DO THIS:</b> Bring: your insurance or program card (cash lane: your written agreed-price confirmation); your current <b>medication list</b> &mdash; from the bottles, as in Stage 3; your <b>written question list</b>; your <b>visit log</b> (the worksheet at the end of this stage &mdash; last visit&rsquo;s entry tells this visit what was promised); and a pen. And before you leave home, know <b>what today is expected to cost you</b>: your copay, your agreed cash price, or your program&rsquo;s cost-share &mdash; so a different number at check-in is a question you ask on the spot, not a surprise you find on a bill.</p>
+  </div>
+
+  <!-- ================= STEP 2 — SIGNATURE DISCIPLINE ================= -->
+  <div class="step" id="step2">
+    <h3>Step 2 &mdash; The signature discipline: read the packet like a customer</h3>
+    <p>Here is where this kit&rsquo;s proactive design lives. Almost every right you will ever wish you&rsquo;d kept was present, in fine print, in the <b>intake packet</b> &mdash; the clipboard or tablet handed to you in the waiting room, at the exact moment you are least inclined to read: you&rsquo;re early, you&rsquo;re unwell, the room is full, and the pen is already in your hand. The packet is not one form. It is several different documents wearing one cover sheet, and they do different things. A customer reads the packet. A captive signs it. This step is the whole difference, so take it slowly.</p>
+    <p class="beat"><b class="tag">THE RULES THAT GOVERN EVERY PAGE:</b></p>
+    <ol class="checklist">
+      <li><b>Never sign a blank form, and never sign a form you haven&rsquo;t read.</b> Not a summary of it, not &ldquo;the standard one.&rdquo; The actual words, on the actual page. If reading takes ten minutes, it takes ten minutes &mdash; that is not rudeness; it is the transaction working as designed, and offices are built to absorb it.</li>
+      <li><b>You are entitled to read first, at your own pace, and to ask what a form is before you sign it.</b> &ldquo;What is this one for?&rdquo; is a complete and sufficient question, and a front desk that can&rsquo;t answer it has told you something.</li>
+      <li><b>You are entitled to copies of everything you sign.</b> Ask for them before you leave, or photograph each signed page with your phone on the spot. A signature you can&rsquo;t produce later is a signature whose terms you&rsquo;ll be <i>told</i> later. The copies go in your care file (Stage 3, Step 5) the same day.</li>
+    </ol>
+    <p class="beat"><b class="tag">THE PAGES THEMSELVES &mdash; WHAT EACH ONE ACTUALLY IS:</b></p>
+    <ul>
+      <li><b>Consent to treat.</b> The practice&rsquo;s permission to examine and treat you. This is the one the visit actually needs. It is usually general &mdash; it covers ordinary care, not every future procedure, each of which carries its own consent conversation (Step 3).</li>
+      <li><b>Financial responsibility / assignment of benefits.</b> The money page: you agree the practice may bill your plan or program, and &mdash; read this part twice &mdash; you commonly agree that <b>whatever the plan doesn&rsquo;t pay is yours</b>. In the insured and welfare lanes this page cannot lawfully override protections your coverage gives you (Stage 2&rsquo;s appeal rights; the welfare lane&rsquo;s billing shield), but it is written broadly, and it is the page most often quoted back at patients later. Signing it is normal. Signing it <i>unread</i> is the mistake.</li>
+      <li><b>Notice of Privacy Practices acknowledgment.</b> You will be offered the practice&rsquo;s privacy notice and asked to sign an acknowledgment. Understand what that signature is: a <b>receipt</b>. It acknowledges you were offered the notice. It is <b>not</b> a waiver of your privacy rights, not permission for new uses of your information, and not consent to anything else. Sign the receipt if you&rsquo;ve been given the notice; do not let the word &ldquo;privacy&rdquo; on the page rush you past the pages around it.</li>
+    </ul>
+    <div class="ifcard" style="margin:16px 0 8px;">
+      <span class="iftag">Recognize this page</span>
+      <h3>The arbitration agreement &mdash; the page that hides</h3>
+      <p>Some intake packets include an agreement that disputes &mdash; including, in some versions, malpractice claims &mdash; will be decided by a private arbitrator instead of a court, waiving a jury trial. It frequently sits inside the packet looking like every other page. Here is what this kit can honestly tell you: in many practices and many states, this agreement is <b>optional</b> &mdash; a separate election that can be declined, or signed and later revoked within a window, without losing your care. In some places and some practices, the rules differ, and state law varies on how enforceable these clauses are in medical care at all. So the kit does not tell you to sign it or to refuse it. It tells you the <b>move</b>: find it, recognize it, and ask the question below, out loud, and note the answer in your log with the name of who answered. A page that changes where your disputes get heard deserves thirty seconds of daylight, whichever way you decide.</p>
+    </div>
+    <div class="say"><b class="tag">SAY THIS (the arbitration question &mdash; and for any form you don&rsquo;t understand):</b> &ldquo;Before I sign this one &mdash; is this required for me to be treated today? What happens if I don&rsquo;t sign it?&rdquo; Then, if you decline anything: &ldquo;Please note in my chart that I declined this form, and give me a copy of the packet showing what I did and didn&rsquo;t sign.&rdquo;</div>
+    <div class="say" style="margin-top:10px;"><b class="tag">SAY THIS (copies):</b> &ldquo;I&rsquo;ll need copies of everything I signed today &mdash; or I can photograph the pages now, whichever is easier for you.&rdquo;</div>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The full packet as you signed it &mdash; including any page you declined, marked or noted as declined &mdash; filed in your care file with the date. If a form was explained to you orally, the explanation goes in your visit log with the explainer&rsquo;s name.</p>
+    <p>One honest boundary: in a true emergency, forms get signed after stabilization, by you or someone for you, and the reading discipline applies when you&rsquo;re able &mdash; Stage 5 covers the hospital version of this packet. Nothing in this step is a reason to delay urgent care. It is a reason the <i>routine</i> packet, signed in a calm waiting room a dozen times a year, stops being a blank check.</p>
+  </div>
+
+  <!-- ================= STEP 3 — IN THE ROOM ================= -->
+  <div class="step" id="step3">
+    <h3>Step 3 &mdash; During the visit: who is in the room, and the two questions</h3>
+    <p class="beat"><b class="tag">AGENDA FIRST:</b> Open with your written list. Hand over the second copy if you brought one, and say what matters most today before the room sets its own agenda &mdash; paper waits, but it works best when it is on the table from the first minute.</p>
+    <p class="beat"><b class="tag">KNOW WHO IS IN THE ROOM:</b> A visit can involve more people than the doctor you booked: nurses and medical assistants, a scribe, students and residents in teaching practices, occasionally an observer or a vendor&rsquo;s representative. You are entitled to know who each person is and why they&rsquo;re there &mdash; names and roles, asked plainly and answered plainly. And for people whose presence isn&rsquo;t essential to your care &mdash; students observing, trainees beyond the care team, observers &mdash; you may generally <b>decline</b> and be examined without them. (A teaching practice&rsquo;s <i>treating</i> residents are part of its care model, which is a different thing from an audience; if the distinction matters to you, ask which is which &mdash; you are allowed to know who is treating you versus who is watching.) What you decide is your call. Not knowing is the only wrong answer.</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;Before we start &mdash; could everyone introduce themselves? Who&rsquo;s treating me today, and is anyone here to observe?&rdquo; And if you want someone out: &ldquo;I&rsquo;d prefer to keep this to the care team today. Thank you.&rdquo;</div>
+    <p class="beat"><b class="tag">LANGUAGE AND COMMUNICATION ACCESS ARE OBLIGATIONS, NOT FAVORS:</b> If you need an interpreter &mdash; for a spoken language, or for deaf or hard-of-hearing communication access such as a sign-language interpreter or other aids &mdash; federal law obliges providers who receive federal funds (nearly all of them) to provide those services <b>free of charge</b> to you. It is not a courtesy, not a paid add-on, and not a job for your family member in the waiting room unless you genuinely choose that. The discipline is timing: <b>ask in advance</b>, when you book, so the service is arranged rather than improvised &mdash; and if you arrive and it isn&rsquo;t there, say so on the record of your visit log, and ask the appointment to be rescheduled with access arranged rather than conducted through gestures. A visit you couldn&rsquo;t fully understand is a visit whose decisions you couldn&rsquo;t fully make.</p>
+    <div class="say"><b class="tag">SAY THIS (at booking):</b> &ldquo;I&rsquo;ll need a [language / sign-language] interpreter for this visit. Please arrange it and confirm it&rsquo;s arranged before my appointment.&rdquo;</div>
+    <p class="beat">Log the confirmation.</p>
+    <p class="beat"><b class="tag">THE CUSTOMER&rsquo;S TWO QUESTIONS:</b> For every test, scan, procedure, referral, or new service proposed in the room, two questions &mdash; both paperwork-and-price questions, neither of them clinical, both of them yours to ask about anything, however routine it&rsquo;s presented as:</p>
+    <ol class="checklist">
+      <li><b>&ldquo;What is this for?&rdquo;</b> &mdash; asked so the purpose lands in your log in plain words. (Whether the purpose justifies the test is a medical judgment between you and your doctor. This kit&rsquo;s point is narrower: a service whose purpose nobody stated out loud is a service you can&rsquo;t track, can&rsquo;t verify authorization for, and can&rsquo;t recognize on a bill.)</li>
+      <li><b>&ldquo;What will it cost me &mdash; and is it covered and authorized?&rdquo;</b> &mdash; asked <i>before</i> yes, while the answer can still change the plan: a different facility, a different day, an authorization filed first, a cash price quoted.</li>
+    </ol>
+    <div class="lanenote"><b class="lane">Lane note &mdash; cash:</b> the second question is the whole lane in one sentence: <b>get the price before yes.</b> A test agreed to in the room without a price is the cash lane&rsquo;s one unforced error &mdash; it converts you back into a captive at the exact moment you were a customer. If the office can&rsquo;t price it on the spot, the schedulable version of it can almost always wait a day for the good-faith estimate the cash lane taught you to get.</div>
+    <div class="lanenote"><b class="lane">Lane note &mdash; insured:</b> &ldquo;covered&rdquo; and &ldquo;authorized&rdquo; are two different words &mdash; a service can be a covered benefit and still need prior authorization (Stage 2). If the answer is &ldquo;we&rsquo;ll submit it,&rdquo; your follow-up is the Stage 2 habit: confirm approval and get the number before the service happens, whenever it&rsquo;s schedulable.</div>
+    <div class="lanenote"><b class="lane">Lane note &mdash; welfare:</b> cost-sharing in your program is small or none for most covered services &mdash; the second question&rsquo;s welfare form is <i>&ldquo;Is this covered by my plan, and is it authorized?&rdquo;</i> A service your program covers is not your bill (the welfare lane&rsquo;s billing shield); a service proposed <i>outside</i> the program &mdash; offered as a private-pay extra &mdash; should be named as such, in writing, before you agree to owe for it.</div>
+    <div class="ifcard" style="margin:16px 0 8px;">
+      <span class="iftag">If this happens</span>
+      <h3>The preventive-visit trap</h3>
+      <p>A visit booked and billed as <b>preventive</b> is priced as preventive only while it stays preventive. If, in the room, a new problem is raised and worked on &mdash; a symptom investigated, a condition managed &mdash; that part of the visit can be billed as a separate, regular office visit, with its own cost to you. Neither answer is wrong; being surprised by it is the trap. So if the visit changes shape in the room, ask the routing question out loud, before you leave:</p>
+      <div class="say"><b class="tag">SAY THIS:</b> &ldquo;This visit was booked as preventive. If we work on this problem today, will part of today be billed as a regular visit &mdash; and what would that cost me?&rdquo;</div>
+      <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The answer, in your visit log, with the name of who gave it. Stage 6 measures the bill against it.</p>
+    </div>
+    <p class="beat"><b class="tag">WHEN THE PROPOSAL IS A REFERRAL OR AN ORDER, A SECOND PLAY OPENS:</b> The moment the doctor says <i>&ldquo;I&rsquo;m referring you&rdquo;</i> or <i>&ldquo;I&rsquo;m ordering this,&rdquo;</i> the visit&rsquo;s paperwork stops being about today and starts being about a new episode &mdash; a new provider, a new building, new bills. The referral play at the start of Stage 5 is the full treatment: get the order on paper before you leave, verify the destination yourself, ask the routing question, settle who files the approval, and know the surprise-billing shield &mdash; and the waiver form that asks you to surrender it &mdash; before any clipboard appears. Run it there; Step 4 below then tracks the promise like every other promise from this room.</p>
+    <p class="beat"><b class="tag">LEAVE WITH THE SUMMARY:</b> Every visit generates an <b>after-visit summary</b> (AVS) &mdash; the printed or portal document listing what was done, what was decided, medications, follow-ups, and referrals. <b>Always leave with it</b> &mdash; printed, or confirmed posted to your portal before you walk out &mdash; and <b>photograph it into your care file</b>, the kit&rsquo;s record rule: the photo is the record you can find. It is paper: the office&rsquo;s own account of the visit, produced the same day, and the first document your visit log (Step 4) gets checked against. If the AVS says something you don&rsquo;t recognize &mdash; a service not performed, a follow-up never mentioned &mdash; that is a correction to raise now, while the visit is still today (Step 4 covers the formal route).</p>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The after-visit summary, every time, no exceptions. It is the spine of your care file&rsquo;s visit section.</p>
+  </div>
+
+  <!-- ================= STEP 4 — CHECKOUT / AFTER ================= -->
+  <div class="step" id="step4">
+    <h3>Step 4 &mdash; Checkout and after the visit: close the loop the same day</h3>
+    <p class="beat"><b class="tag">AT CHECKOUT:</b> Before you leave the building, settle today&rsquo;s money on paper: confirm what you paid at check-in was credited to today&rsquo;s visit, get a receipt for anything paid at checkout, and confirm how the follow-ups and referrals promised in the room will be handled &mdash; who sends them, and by when. The promises you walk out with are the ones Step 4 tracks; get their dates while the visit is still today.</p>
+    <p>The visit ends. The paperwork doesn&rsquo;t &mdash; and this step is the difference between a patient things happen <i>around</i> and a customer whose file things happen <i>in</i>.</p>
+    <p class="beat"><b class="tag">WRITE YOUR VISIT LOG ENTRY THE SAME DAY:</b> Ten minutes, the worksheet at the end of this stage: who you saw, what was decided, and &mdash; the field that matters most &mdash; <b>what was promised</b>: the referral that will be sent, the results that will come and roughly when, the follow-up to be scheduled, the prescription to be sent to the pharmacy. Memory edits promises kindly within a week. The log doesn&rsquo;t. Everything in the next paragraphs runs on this entry.</p>
+    <p class="beat"><b class="tag">VERIFY THE PROMISES ACTUALLY HAPPENED:</b> A promise in a visit is an intention. Whether it became an action is a separate fact, and checking it is your job &mdash; the system has no alarm that rings for a referral never sent or a result never communicated.</p>
+    <ul>
+      <li><b>Referrals:</b> within a few days, confirm the referral actually went out (portal, or one call to your primary doctor&rsquo;s office) and that the specialist&rsquo;s office received it. <b>A referral said in the room and never sent is a deviation</b> &mdash; the visit produced a decision that the paperwork abandoned &mdash; and it is fixed fastest by the call below, not by waiting to be called.</li>
+      <li><b>Results:</b> the office that ordered a test owns communicating its result &mdash; &ldquo;no news is good news&rdquo; is a custom, not a rule, and it fails silently. When the promised window passes with no result, call. Your log&rsquo;s promised date is what makes the call factual instead of anxious.</li>
+    </ul>
+    <div class="say"><b class="tag">SAY THIS (the follow-up call):</b> &ldquo;I was seen on [date]. At the visit I was told [the referral to Dr. ___ would be sent / my results would be ready by ___]. I haven&rsquo;t [received confirmation / heard anything]. Can you check today and tell me the status? &mdash; and your name, please, for my log.&rdquo;</div>
+    <p class="beat"><b class="tag">USE THE PORTAL FOR THE RECORD:</b> Portal messages are dated, written, and kept &mdash; the three things phone calls are not. Questions you&rsquo;d otherwise phone in (&ldquo;was that referral sent?&rdquo;) are often better asked in the portal, precisely because the answer becomes paper. Where a call is necessary, your log entry &mdash; date, name, what was said &mdash; is the call&rsquo;s paper, as everywhere in this kit.</p>
+    <p class="beat"><b class="tag">PRESCRIPTIONS ARE PAPERWORK TOO:</b> A prescription decided in the room becomes a transaction at a pharmacy, and <b>the choice of pharmacy is the patient&rsquo;s</b> &mdash; an office default is a default, not an assignment. Before the first fill, the lane notes decide what to check:</p>
+    <div class="lanenote"><b class="lane">Lane note &mdash; insured:</b> your plan&rsquo;s <b>formulary</b> (the drug list from Stage 1) decides what the drug costs you &mdash; tier, prior authorization for some drugs, and preferred or mail-order pharmacies your plan prices lower. A drug prescribed without a formulary check can arrive at the counter wearing a price nobody mentioned in the room; the check is one call or one portal lookup, and alternatives at lower tiers are a conversation your doctor&rsquo;s office has every day &mdash; ask them to have it before the pharmacy does it for them.</div>
+    <div class="lanenote"><b class="lane">Lane note &mdash; welfare:</b> your program or managed-care plan has its own formulary and pharmacy network, and cost-sharing is small &mdash; but a drug outside the formulary or a pharmacy outside the network can stall a fill entirely. Confirm the pharmacy is in your plan and the drug is covered; if the plan denies the drug, that denial is a written-notice, appeal-rights event (the welfare lane&rsquo;s rules), not a counter conversation to lose.</div>
+    <div class="lanenote"><b class="lane">Lane note &mdash; cash:</b> the same drug at the same dose can differ in price by multiples between pharmacies on the same street &mdash; no other purchase in this kit varies like it. <b>Ask the cash price before the fill, at more than one pharmacy for anything ongoing</b>, and ask about discount cards and programs, which exist precisely for cash buyers. A prescription is a standing order to spend; shop it like one.</div>
+    <p class="beat"><b class="tag">CORRECTING THE RECORD &mdash; THE AMENDMENT RIGHT:</b> Your chart is written by other people, and sometimes it is wrong &mdash; a medication you don&rsquo;t take, a condition you don&rsquo;t have, a visit described in a way that will distort every later decision and some bills. Under HIPAA, you have the right to <b>request an amendment</b> of your record: in writing, stating what is wrong and what it should say. Federal rules give the provider a set window to act &mdash; generally 60 days, with one limited extension they must explain in writing (verify the current rule and any faster state deadline, as with Stage 3&rsquo;s access window). The provider may agree and correct it. If they <b>refuse</b>, the refusal must be explained in writing &mdash; and here is the part almost nobody knows: <b>your written statement of disagreement must be included in your record</b> and accompany it when the disputed information is shared. A wrong chart entry you can&rsquo;t get removed, you can still get <i>answered</i> &mdash; permanently, in the file itself. For a kit built on deviation-hunting, this is a core tool: billing disputes, authorization fights, and second opinions all run on the chart, and the chart is correctable.</p>
+    <div class="say"><b class="tag">SAY THIS (amendment request, in writing &mdash; adapt the brackets):</b> &ldquo;[Your name, date of birth]. I am requesting an amendment to my medical record. The entry dated [date] states [quote or summarize the error]. This is incorrect because [the fact]. I am requesting it be corrected to [the correction]. Please confirm receipt of this request and respond within the required timeframe. &mdash; [Signature, date.]&rdquo;</div>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Your visit log, the AVS, every promise-verification note, amendment requests and their answers &mdash; filed by date in the care file. Stage 5 runs on the referrals and results tracked here; Stage 6 runs on all of it.</p>
+  </div>
+
+  <!-- ================= FORWARD POINTER ================= -->
+  <div class="step">
+    <h3>What comes next &mdash; Stage 5&rsquo;s referral play</h3>
+    <p>When the doctor says <i>&ldquo;I&rsquo;m referring you&rdquo;</i> or <i>&ldquo;I&rsquo;m ordering this,&rdquo;</i> a new episode begins &mdash; and the office staff usually prepares the referral <b>after you leave</b>. Stage 5 opens with the referral play for exactly that gap: the three commitments to get before you leave (what is being referred and to whom, who in the office owns it, and when you&rsquo;ll hear it&rsquo;s sent), verifying the destination yourself while the referral can still be re-aimed, and the rule that the appointment does not happen until the referral has arrived, any authorization is on file, and the destination is verified in-network. The specialist&rsquo;s desk, when you get there, is this page&rsquo;s desk play again &mdash; new desk, same transaction.</p>
+  </div>
+
+  <!-- ================= MISTAKES & DEVIATIONS ================= -->
+  <h2>The mistakes &mdash; yours to not make</h2>
+  <ol class="mistakes">
+    <li>Arriving with your questions in your head &mdash; and leaving with half of them unasked, because the room set the agenda.</li>
+    <li>Assuming the referral or authorization was on file because someone said it would be &mdash; and learning otherwise at check-in, or on the bill.</li>
+    <li>Signing the intake packet unread, at clipboard speed &mdash; including the one page that wasn&rsquo;t like the others.</li>
+    <li>Signing anything blank, or any form whose purpose nobody could explain to you.</li>
+    <li>Walking out without copies of what you signed, and without the after-visit summary.</li>
+    <li>Saying yes to a test or service before asking what it&rsquo;s for and what it will cost you &mdash; in the cash lane, before hearing any price at all.</li>
+    <li>Conducting a visit through a family member&rsquo;s interpreting because arranging the free, obligated service felt like a fuss.</li>
+    <li>Trusting &ldquo;we&rsquo;ll send that referral&rdquo; and &ldquo;we&rsquo;ll call with results&rdquo; as completed events &mdash; and discovering weeks later that neither happened.</li>
+    <li>Letting a wrong chart entry stand because correcting it felt confrontational. The amendment process is a form, not a fight.</li>
+    <li>Writing no visit log &mdash; so every promise, price, and explanation from the visit exists only as a memory, edited kindly, at bill time.</li>
+  </ol>
+
+  <h2>The deviations &mdash; theirs to answer for</h2>
+  <ol class="deviations">
+    <li>A visit conducted without the referral or authorization the office itself said was required &mdash; then billed to the patient as if the missing paperwork were the patient&rsquo;s failure.</li>
+    <li>An arbitration agreement buried in a routine intake packet, presented as one more required page, with its optional nature never mentioned.</li>
+    <li>Refusal &mdash; or visible penalty &mdash; when a patient reads forms before signing, declines an optional form, or asks for copies of what they signed.</li>
+    <li>Interpreter or communication-access services not arranged after a clear advance request, leaving the visit to proceed without real understanding.</li>
+    <li>An after-visit summary listing services not performed, or omitting the follow-ups and referrals promised in the room.</li>
+    <li>A referral stated in the visit and never transmitted; test results never communicated within the window the office itself promised.</li>
+    <li>A chart entry the provider refuses to amend <i>and</i> refuses to answer with the patient&rsquo;s statement of disagreement in the record &mdash; the second half is not theirs to refuse.</li>
+    <li>A prescription routed to a pharmacy or priced at a tier nobody disclosed, when the patient&rsquo;s own plan, program, or cash price would have decided it differently if asked.</li>
+  </ol>
+
+  <p><b>What &ldquo;done&rdquo; looks like for Stage 4:</b> you arrived with the visit set up and your questions on paper; you signed only what you read, kept copies of all of it, and know whether an arbitration page was in your packet and what you decided about it; you know who was in your room and what every proposed service was for and would cost; and you left with the summary in hand and a log entry written the same day, listing every promise &mdash; with the follow-up checks calendared, so the promises get verified instead of remembered. The visit happened <i>in your file</i>, not just in their building. Next: everything the visit sets in motion.</p>
+
+  <!-- ================= MONICA PROMPTS ================= -->
+  <h2>Now do it &mdash; two questions, one at a time</h2>
+  <p>Katie explained it. Now use the kit&rsquo;s helper for the two reading jobs in this stage &mdash; or do them yourself on paper. <span class="svcName"></span> was explained once, at Stage 1, Question 2 &mdash; after that, the kit just shows the button.</p>
+
+  <!-- QUESTION 1 — PROMPT 4.1 (used at Step 4: the visit log) -->
+  <div class="qcard" id="card1">
+    <div class="qhead"><h3>Turn my visit notes into a visit log</h3><span class="qcount">Question 1 of 2</span></div>
+    <p class="needline"><b>You&rsquo;ll need:</b> Your raw notes from the visit &mdash; written in the room, in the parking lot, or the same evening &mdash; and the text of the after-visit summary if you have it.</p>
+    <p>This question turns rough notes into a finished Visit Log entry, in the worksheet&rsquo;s exact shape &mdash; and flags where your notes and the summary differ.</p>
+    <p class="micro">This whole box is what gets copied &mdash; word for word, including the last paragraph.</p>
+    <div class="promptbox" id="box1">I keep a written log of every medical visit. Below I will paste my raw notes from a visit — written in the room, in the parking lot, or the same evening — along with the text of the after-visit summary if I have it.
+
+From the pasted material only, fill in exactly these fields, one per line, in this order:
+Date:
+Provider (name, practice, and anyone else in the room whose role mattered):
+Reason for the visit (in my words, from my notes):
+What was decided (tests ordered, prescriptions started or changed, follow-ups set):
+What was promised (each promise separately, with its date — a referral and to whom and by when; results and of what and expected when; a follow-up and when):
+Paper received (summaries, copies of signed forms, estimates, instructions — only what my notes say I left with):
+My cost (what I paid at the visit, and what I was told to expect after):
+
+Then add one section: &quot;Differences between my notes and the after-visit summary&quot; — anything one document states that the other does not, listed one by one. If I pasted no after-visit summary, write that and skip the section.
+
+Work only from what I pasted. If something is not in the pasted material, write &quot;Not in the document&quot; — do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language.</div>
+    <button class="bigbtn copybtn" data-copy="1">Copy this question</button>
+    <p class="micro">One tap copies the whole question. (Way 2 below doesn&rsquo;t need it.)</p>
+    <div class="copiedBanner" id="banner1">Copied! Now choose your way &#8595;</div>
+    <div class="fallbackBanner" id="fallback1">Copy didn&rsquo;t work on this phone &mdash; no problem. Hold your finger on the words in the box above until <b>Copy</b> appears, tap Copy, then tap the button below.</div>
+    <p class="pasteguide"><b>What to paste with it:</b> your own visit notes &mdash; rough is fine, roughness is what this prompt is for &mdash; and the after-visit summary&rsquo;s text or a clear photo of it.</p>
+    <p><b>What you&rsquo;ll get back &mdash; and what to do with it:</b> a finished <b>Visit Log</b> entry, in the worksheet&rsquo;s exact shape. Copy it onto the worksheet and file it behind the after-visit summary. Read the &ldquo;Differences&rdquo; section first: a decision or promise in your notes that the summary omits &mdash; or the reverse &mdash; gets raised with the office <i>now</i>, while the visit is still yesterday (Step 4), not at bill time. And every promise now has a date on paper, which means it can be verified &mdash; and a promise that quietly never happens is a deviation your log can prove.</p>
+    <p style="margin-top:18px;"><b>Two ways from here &mdash; your choice:</b></p>
+    <p class="beat"><b class="tag">WAY 1 &mdash; ASK <span class="svcName"></span> FOR HELP:</b></p>
+    <a class="btn bigbtn aiBtn" id="aiBtn1" href="#" target="_blank" rel="noopener"></a>
+    <div class="pasteguide"><b>How to paste on her page:</b> hold your finger in the question box until <b>Paste</b> appears, tap Paste, add your document pages, then tap her send arrow. Before you paste anything: never paste your Social Security number or full bank or card numbers, and cover any number you don&rsquo;t want seen <i>before</i> you photograph or paste it &mdash; you decide what she sees. Come right back here when you&rsquo;re done.</div>
+    <p class="micro">MakeDealNow may earn a commission when you sign up through our link &mdash; it never changes what you pay.</p>
+    <p class="beat" style="margin-top:18px;"><b class="tag">WAY 2 &mdash; DO IT MYSELF:</b></p>
+    <p>Skip the AI entirely. Write the Visit Log worksheet below yourself, the same evening, from your notes and the after-visit summary &mdash; one line per field, each promise with its date. Nothing on this route depends on <span class="svcName"></span> &mdash; no account, nothing leaves your hands.</p>
+    <a class="btn bigbtn selfbtn" href="#worksheet">Do it myself &mdash; use the worksheet</a>
+    <div class="navrow">
+      <button disabled>&#8592; Back</button>
+      <button class="next" id="next1">Next question &#8594;</button>
+    </div>
+  </div>
+
+  <!-- QUESTION 2 — PROMPT 4.2 (used at Step 2: the signature discipline) -->
+  <div class="qcard hidden" id="card2">
+    <div class="qhead"><h3>Read this form before I sign it</h3><span class="qcount">Question 2 of 2</span></div>
+    <p class="needline"><b>You&rsquo;ll need:</b> The form itself &mdash; the text, or clear photos of its pages &mdash; photographed <i>before</i> you sign, which is itself Step 2&rsquo;s discipline.</p>
+    <p>This question unpacks a form before the pen comes out: what kind it is, what it obliges, what it says about money, and what it does not say. It does not tell you whether to sign &mdash; that decision is yours.</p>
+    <p class="micro">This whole box is what gets copied &mdash; word for word, including the last paragraph.</p>
+    <div class="promptbox" id="box2">At a medical office I have been handed forms to sign. Below I will paste the text of the form, or the text from clear photos of its pages.
+
+Read only the form and tell me:
+1. What kind of form this appears to be, in plain words: consent to treatment, financial responsibility or assignment of benefits, a privacy-practices acknowledgment, an arbitration agreement, or something else. If the pasted pages contain more than one form, treat each one separately.
+2. What the form says I am agreeing to — the obligations it puts on me, in plain language, point by point.
+3. Anything about money: what it says I owe, when, and what happens to charges my coverage does not pay, in the form&#x27;s own words first, then plainly.
+4. Anything about giving up a process or a right — arbitration instead of court, consent to be billed, permission to share information — quoting the exact lines.
+5. What the form does NOT say: whether it states a price or a total, whether it states I may decline it, whether it states a deadline. Label each &quot;Not in the document.&quot;
+
+Do not tell me whether to sign it. That decision is mine. Your job is only to make sure I can see what the form actually says before I decide.
+
+Work only from what I pasted. If something is not in the pasted material, write &quot;Not in the document&quot; — do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language.</div>
+    <button class="bigbtn copybtn" data-copy="2">Copy this question</button>
+    <p class="micro">One tap copies the whole question. (Way 2 below doesn&rsquo;t need it.)</p>
+    <div class="copiedBanner" id="banner2">Copied! Now choose your way &#8595;</div>
+    <div class="fallbackBanner" id="fallback2">Copy didn&rsquo;t work on this phone &mdash; no problem. Hold your finger on the words in the box above until <b>Copy</b> appears, tap Copy, then tap the button below.</div>
+    <p class="pasteguide"><b>What to paste with it:</b> the intake packet&rsquo;s pages &mdash; photographed <i>before</i> you sign. Redact nothing on the form itself except any Social Security number if a page asks you to write one in &mdash; leave that line blank for the helper and fill it (or decline to) at the office, your call.</p>
+    <p><b>What you&rsquo;ll get back &mdash; and what to do with it:</b> the packet, unpacked: which page is consent, which page is money, which page &mdash; if any &mdash; is arbitration, and the exact lines that carry each. Then the stage&rsquo;s move is yours: ask out loud, <i>&ldquo;Is this required for me to be treated today?&rdquo;</i>, note the answer with a name in your log, and get your copies. The helper read the form; it does not make the signature decision, and neither does this kit &mdash; Step 2 teaches the discipline, you exercise it.</p>
+    <p style="margin-top:18px;"><b>Two ways from here &mdash; your choice:</b></p>
+    <p class="beat"><b class="tag">WAY 1 &mdash; ASK <span class="svcName"></span> FOR HELP:</b></p>
+    <a class="btn bigbtn aiBtn" id="aiBtn2" href="#" target="_blank" rel="noopener"></a>
+    <div class="pasteguide"><b>How to paste on her page:</b> hold your finger in the question box until <b>Paste</b> appears, tap Paste, add your document pages, then tap her send arrow. Before you paste anything: never paste your Social Security number or full bank or card numbers, and cover any number you don&rsquo;t want seen <i>before</i> you photograph or paste it &mdash; you decide what she sees. Come right back here when you&rsquo;re done.</div>
+    <p class="micro">MakeDealNow may earn a commission when you sign up through our link &mdash; it never changes what you pay.</p>
+    <p class="beat" style="margin-top:18px;"><b class="tag">WAY 2 &mdash; DO IT MYSELF:</b></p>
+    <p>Skip the AI entirely. Read the packet yourself with Step 2&rsquo;s discipline: separate the pages, name each one, find the arbitration page if there is one, and ask the question out loud before you sign anything. Nothing on this route depends on <span class="svcName"></span> &mdash; no account, nothing leaves your hands.</p>
+    <a class="btn bigbtn selfbtn" href="#step2">Do it myself &mdash; use Step 2</a>
+    <div class="navrow">
+      <button id="back2">&#8592; Back</button>
+      <button class="next" disabled>Next question &#8594;</button>
+    </div>
+    <p class="micro">That&rsquo;s both questions for this stage. When your visit log entry is written and filed behind the after-visit summary &mdash; every promise dated &mdash; Stage 4 is done.</p>
+  </div>
+
+  <!-- ================= WORKSHEET ================= -->
+  <h2 id="worksheet">Visit Log &mdash; the worksheet</h2>
+  <p><i>The Health Care Rule Kit &middot; Shared Road, Stage 4 companion. One page per visit (print copies). Fill the top half in the room or the parking lot; finish it the same evening. File it behind the visit&rsquo;s after-visit summary in your care file.</i></p>
+  <p><b>Your facts stay yours.</b> Nothing on this page is uploaded, submitted, or sent anywhere. It exists in exactly one place &mdash; your hands.</p>
+  <div class="step">
+    <p class="wsitem"><b>Date</b> &mdash; the date of the visit. <i>Every clock and every promise in this stage counts from here.</i></p><div class="wsline"></div>
+    <p class="wsitem"><b>Provider</b> &mdash; who you saw: name, practice, and anyone else in the room whose role mattered. <i>The names you asked for in Step 3 &mdash; written down while they&rsquo;re fresh.</i></p><div class="wsline"></div>
+    <p class="wsitem"><b>Reason for the visit</b> &mdash; why you went, in your words. <i>So a later bill or summary can be matched against the visit you actually had.</i></p><div class="wsline"></div>
+    <p class="wsitem"><b>What was decided</b> &mdash; the decisions made: tests ordered, prescriptions started or changed, follow-ups set. <i>Compare this line against the after-visit summary before you file it &mdash; differences get raised now, not at bill time.</i></p><div class="wsline"></div>
+    <p class="wsitem"><b>What was promised</b> &mdash; each promise, with its date: the referral (to whom, sent by when), the results (of what, expected when), the follow-up (what, when). <i>The most important field on the page. A promise with a date can be verified; a promise without one can only be remembered.</i></p><div class="wsline"></div>
+    <p class="wsitem"><b>Paper received</b> &mdash; what you left holding: after-visit summary, copies of signed forms, estimates, instructions. <i>Check them off as they go into the care file. Missing paper is a call the next morning, while the visit is still &lsquo;yesterday.&rsquo;</i></p><div class="wsline"></div>
+    <p class="wsitem"><b>My cost</b> &mdash; what you paid at the visit, and what you were told to expect after (copay paid, agreed cash price, amount quoted for anything ordered). <i>Stage 6 compares the bill against this line and Step 1&rsquo;s expected number.</i></p><div class="wsline"></div>
+    <table class="ws" aria-label="Visit Log table">
+      <tr><th>Date</th><td></td></tr>
+      <tr><th>Provider (name &middot; practice &middot; others in the room)</th><td></td></tr>
+      <tr><th>Reason for the visit</th><td></td></tr>
+      <tr><th>What was decided</th><td></td></tr>
+      <tr><th>What was promised (referral / results / follow-up &mdash; each with its date)</th><td></td></tr>
+      <tr><th>Paper received (summary &middot; signed-form copies &middot; other)</th><td></td></tr>
+      <tr><th>My cost (paid today &middot; expected later)</th><td></td></tr>
+    </table>
+  </div>
+  <button class="printbtn" onclick="window.print()">Print this stage</button>
+  <p class="micro">Print this and keep it in your care file &mdash; one page per visit.</p>
+  <a class="btn printbtn noPrint" href="worksheets/visit-log.pdf" download>Download the worksheet (PDF)</a>
+
+  <!-- ================= PREV / NEXT ================= -->
+  <div class="navrow" style="margin-top:34px;">
+    <a class="btn" href="your-doctor.html">&#8592; Back: Stage 3 &mdash; Your Doctor</a>
+    <a class="btn next" href="everything-after.html">Next: Stage 5 &mdash; Everything After &#8594;</a>
+  </div>
+
+  <footer>
+    <div class="disclaimer">
+      <p><b>Please read this first.</b> This kit is educational information. It is <b>not legal advice</b>, and it is <b>not medical advice</b>. It does not tell you what care to get, what care to refuse, or whether a treatment is right for you &mdash; those decisions belong to you and your doctor. This kit is about rights, paperwork, prices, and billing only. The publisher sells educational information only and performs no services of any kind: nobody will attend your visit, read your forms, or call an office on your behalf. You make your own calls, sign your own forms, and make your own decisions at every step. Health coverage rules vary &mdash; by state, by plan, and by program &mdash; and they change. Wherever this kit states a rule, it also tells you where to verify it against your own documents and notices. If your situation involves a lawsuit, a collections action, or a deadline in court papers, talk to a lawyer.</p>
+    </div>
+    <p>MakeDealNow &mdash; The Health Care Rule Kit (preview)</p>
+    <p>Educational information &mdash; not legal or medical advice.</p>
+  </footer>
+</div>
+
+<script>
+/* ============================================================
+   THE KIT'S HELPER — MONICA. ONE PLACE ONLY.
+   Decided Nov 20, 2026: Monica is the kit's helper, presented
+   as a HELP BUTTON ("Ask Monica for help") — never as an
+   AI-service or partner link. Introduce-once: the full
+   explanation lives at Stage 1, Question 2 — this page shows
+   the plain button only. The url below is Monica's PLAIN
+   public URL. Once the affiliate account is approved, the
+   referral link replaces the url on the ONE line below.
+   Nothing else on this page hardcodes the service.
+   ============================================================ */
+var AI_SERVICE = { name: "Monica", url: "https://monica.im" };
+
+document.querySelectorAll(".svcName").forEach(function(el) { el.textContent = AI_SERVICE.name; });
+["1","2"].forEach(function(n) {
+  var b = document.getElementById("aiBtn" + n);
+  b.setAttribute("href", AI_SERVICE.url);
+  b.textContent = "Ask " + AI_SERVICE.name + " for help";
+});
+
+/* Prompt copy payloads — byte-identical to the prompt-layer file
+   (ai-companion-prompt-layer-2026-11-19.md, Prompts 4.1 and 4.2).
+   Injected from the source file by the build script, never retyped.
+   The visible boxes carry the same text. */
+var PROMPTS = {"1": "I keep a written log of every medical visit. Below I will paste my raw notes from a visit — written in the room, in the parking lot, or the same evening — along with the text of the after-visit summary if I have it.\n\nFrom the pasted material only, fill in exactly these fields, one per line, in this order:\nDate:\nProvider (name, practice, and anyone else in the room whose role mattered):\nReason for the visit (in my words, from my notes):\nWhat was decided (tests ordered, prescriptions started or changed, follow-ups set):\nWhat was promised (each promise separately, with its date — a referral and to whom and by when; results and of what and expected when; a follow-up and when):\nPaper received (summaries, copies of signed forms, estimates, instructions — only what my notes say I left with):\nMy cost (what I paid at the visit, and what I was told to expect after):\n\nThen add one section: \"Differences between my notes and the after-visit summary\" — anything one document states that the other does not, listed one by one. If I pasted no after-visit summary, write that and skip the section.\n\nWork only from what I pasted. If something is not in the pasted material, write \"Not in the document\" — do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language.", "2": "At a medical office I have been handed forms to sign. Below I will paste the text of the form, or the text from clear photos of its pages.\n\nRead only the form and tell me:\n1. What kind of form this appears to be, in plain words: consent to treatment, financial responsibility or assignment of benefits, a privacy-practices acknowledgment, an arbitration agreement, or something else. If the pasted pages contain more than one form, treat each one separately.\n2. What the form says I am agreeing to — the obligations it puts on me, in plain language, point by point.\n3. Anything about money: what it says I owe, when, and what happens to charges my coverage does not pay, in the form's own words first, then plainly.\n4. Anything about giving up a process or a right — arbitration instead of court, consent to be billed, permission to share information — quoting the exact lines.\n5. What the form does NOT say: whether it states a price or a total, whether it states I may decline it, whether it states a deadline. Label each \"Not in the document.\"\n\nDo not tell me whether to sign it. That decision is mine. Your job is only to make sure I can see what the form actually says before I decide.\n\nWork only from what I pasted. If something is not in the pasted material, write \"Not in the document\" — do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language."};
+window.PROMPTS = PROMPTS;
+
+function setLoop(stage) {
+  var order = ["watch","desk","steps","next"];
+  order.forEach(function(s) { document.getElementById("ls-" + s).className = ""; });
+  var idx = order.indexOf(stage);
+  order.forEach(function(s, i) {
+    var el = document.getElementById("ls-" + s);
+    if (i < idx) el.className = "done";
+    if (i === idx) el.className = "now";
+  });
+}
+
+function selectBoxText(id) {
+  var el = document.getElementById(id);
+  var range = document.createRange();
+  range.selectNodeContents(el);
+  var sel = window.getSelection();
+  sel.removeAllRanges(); sel.addRange(range);
+}
+
+document.querySelectorAll(".copybtn").forEach(function(btn) {
+  btn.addEventListener("click", function() {
+    var n = btn.getAttribute("data-copy");
+    var text = PROMPTS[n];
+    var banner = document.getElementById("banner" + n);
+    var fb = document.getElementById("fallback" + n);
+    var aiBtn = document.getElementById("aiBtn" + n);
+    function onCopied() {
+      banner.classList.add("show"); fb.classList.remove("show");
+      aiBtn.classList.add("hot"); setLoop("steps");
+      banner.scrollIntoView({behavior:"smooth", block:"center"});
+    }
+    function onFailed() {
+      selectBoxText("box" + n);
+      fb.classList.add("show"); banner.classList.remove("show");
+      aiBtn.classList.add("hot"); setLoop("steps");
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(onCopied, function() {
+        var ta = document.createElement("textarea");
+        ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select();
+        var ok = false;
+        try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+        document.body.removeChild(ta);
+        if (ok) { onCopied(); } else { onFailed(); }
+      });
+    } else {
+      onFailed();
+    }
+  });
+});
+
+document.getElementById("next1").addEventListener("click", function() {
+  document.getElementById("card1").classList.add("hidden");
+  document.getElementById("card2").classList.remove("hidden");
+  setLoop("steps");
+  document.getElementById("card2").scrollIntoView({behavior:"smooth"});
+});
+document.getElementById("back2").addEventListener("click", function() {
+  document.getElementById("card2").classList.add("hidden");
+  document.getElementById("card1").classList.remove("hidden");
+  document.getElementById("card1").scrollIntoView({behavior:"smooth"});
+});
+</script>
+</body>
+</html>

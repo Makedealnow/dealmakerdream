@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Health Care Rule Kit — Stage 5: Everything After</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#faf6ef; color:#26221e; font-family: Georgia, 'Times New Roman', serif;
+         font-size:20px; line-height:1.55; }
+  .wrap { max-width:760px; margin:0 auto; padding:0 16px 48px; }
+  header.titlebar { background:#26221e; color:#faf6ef; padding:14px 16px; }
+  header.titlebar .kit { font-size:15px; letter-spacing:.12em; text-transform:uppercase; color:#e8a06a; }
+  header.titlebar h1 { font-size:26px; margin:2px 0 0; font-weight:bold; }
+  header.titlebar .lane { font-size:16px; color:#e8d9c8; margin-top:2px; }
+  /* progress loop — always visible */
+  .loop { position:sticky; top:0; z-index:10; background:#fffdf8; border-bottom:3px solid #c45a14;
+          display:flex; justify-content:space-between; padding:10px 8px; }
+  .loop span { flex:1; text-align:center; font-size:16px; color:#6e6052; padding:6px 2px; border-radius:10px; }
+  .loop span b { display:block; font-size:19px; }
+  .loop span.now { background:#c45a14; color:#fff; }
+  .loop span.done { color:#2e7d32; }
+  video { width:100%; border-radius:14px; margin-top:16px; background:#000; }
+  .videoslot { width:100%; aspect-ratio:16/9; border-radius:14px; margin-top:16px; background:#26221e;
+               color:#faf6ef; display:flex; flex-direction:column; align-items:center; justify-content:center;
+               text-align:center; padding:24px; border:3px dashed #e8a06a; }
+  .videoslot .big { font-size:24px; font-weight:bold; margin-bottom:8px; }
+  .videoslot .small { font-size:18px; color:#e8d9c8; }
+  .micro { font-size:17px; color:#6e6052; margin:8px 2px 0; }
+  .promise { font-size:24px; font-weight:bold; margin:22px 0 6px; }
+  h2 { font-size:25px; margin:34px 0 10px; }
+  .step { background:#fffdf8; border:2px solid #e5d9c8; border-radius:14px; padding:16px 18px; margin:12px 0; }
+  .step h3 { margin:0 0 8px; font-size:22px; }
+  .needline { background:#eef4ea; border-radius:12px; padding:12px 16px; font-size:19px; }
+  .beat { margin:6px 0; }
+  .beat b.tag { color:#c45a14; }
+  .say { background:#f3ead9; border-left:6px solid #c45a14; padding:10px 14px; border-radius:0 10px 10px 0; font-style:italic; }
+  .lanenote { background:#eef4ea; border-left:6px solid #2e7d32; padding:10px 14px; border-radius:0 10px 10px 0; margin:12px 0; }
+  .lanenote b.lane { color:#2e7d32; }
+  .rulebox { background:#fffdf8; border:3px solid #c45a14; border-radius:16px; padding:18px; margin:16px 0; }
+  .rulebox h3 { margin:0 0 8px; font-size:23px; }
+  .rulebox .r { margin:8px 0; }
+  .rulebox .r b { color:#c45a14; }
+  .doorwrap { margin:16px 0 4px; }
+  button, a.btn { font-family:inherit; cursor:pointer; border:none; border-radius:14px; text-decoration:none;
+                  display:block; width:100%; text-align:center; }
+  .bigbtn { font-size:23px; font-weight:bold; padding:20px 16px; margin:14px 0 6px; min-height:64px; }
+  .doorbtn { background:#fffdf8; color:#26221e; border:3px solid #c45a14; padding:22px 18px; margin:14px 0 6px;
+             font-size:24px; font-weight:bold; min-height:84px; }
+  .doorbtn small { display:block; font-weight:normal; font-size:18.5px; color:#6e6052; margin-top:6px; }
+  .doorbtn.picked { background:#c45a14; color:#fff; }
+  .doorbtn.picked small { color:#ffe9d6; }
+  .door2box { background:#fffdf8; border:2px solid #2e7d32; border-radius:14px; padding:16px 18px; margin:12px 0; }
+  .door2box h3 { margin:0 0 8px; font-size:22px; }
+  .checklist { margin:8px 0 4px; padding-left:30px; }
+  .checklist li { margin:14px 0; }
+  /* prompt cards */
+  .qcard { background:#fffdf8; border:3px solid #c45a14; border-radius:16px; padding:18px; margin:16px 0; }
+  .qhead { display:flex; justify-content:space-between; align-items:baseline; }
+  .qhead h3 { margin:0; font-size:23px; }
+  .qcount { font-size:17px; color:#6e6052; white-space:nowrap; }
+  .promptbox { background:#f7f1e5; border:2px dashed #a68b64; border-radius:12px; padding:14px 16px;
+               font-size:17.5px; line-height:1.5; white-space:pre-wrap; word-wrap:break-word; max-height:none; }
+  .copybtn { background:#26221e; color:#fff; }
+  .aiBtn { background:#e8e0d0; color:#26221e; border:3px solid #a68b64; }
+  .aiBtn.hot { background:#c45a14; color:#fff; border-color:#c45a14; animation:pulse 1.2s infinite; }
+  .selfbtn { background:#fffdf8; color:#26221e; border:3px solid #26221e; }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(196,90,20,.55);} 70%{box-shadow:0 0 0 16px rgba(196,90,20,0);} 100%{box-shadow:0 0 0 0 rgba(196,90,20,0);} }
+  .copiedBanner { display:none; background:#2e7d32; color:#fff; font-size:23px; font-weight:bold;
+                  text-align:center; padding:16px; border-radius:14px; margin:14px 0 4px; }
+  .copiedBanner.show { display:block; }
+  .fallbackBanner { display:none; background:#fff3cd; border:2px solid #c45a14; color:#26221e;
+                    font-size:19px; padding:14px 16px; border-radius:14px; margin:14px 0 4px; }
+  .fallbackBanner.show { display:block; }
+  .pasteguide { background:#eef4ea; border-radius:12px; padding:12px 16px; font-size:18.5px; margin:14px 0 4px; }
+  .navrow { display:flex; gap:12px; margin-top:18px; }
+  .navrow button, .navrow a.btn { flex:1; font-size:21px; font-weight:bold; padding:18px 10px; border-radius:14px; min-height:60px;
+                   background:#fffdf8; color:#26221e; border:3px solid #26221e; }
+  .navrow button:disabled, .navrow a.btn:disabled { opacity:.35; }
+  .navrow a.btn.next { background:#26221e; color:#fff; }
+  .printbtn { background:#fffdf8; color:#26221e; border:3px solid #26221e; font-size:21px; font-weight:bold;
+              padding:18px 16px; border-radius:14px; width:100%; margin-top:14px; min-height:60px; }
+  .wsline { border-bottom:2px solid #a68b64; min-height:34px; margin:4px 0 14px; }
+  .wsitem b { font-size:20px; }
+  .mistakes li, .deviations li { margin:10px 0; }
+  footer { margin-top:40px; font-size:15.5px; color:#6e6052; text-align:center; }
+  footer .disclaimer { text-align:left; font-size:15px; border-top:2px solid #e5d9c8; padding-top:16px; margin-bottom:20px; }
+  .hidden { display:none; }
+  @media print {
+    .loop, video, .videoslot, .copybtn, .aiBtn, .selfbtn, .navrow, .printbtn, .copiedBanner, .noPrint, .doorbtn { display:none !important; }
+    body { background:#fff; font-size:13.5pt; }
+    .wrap { max-width:none; padding:0; }
+    header.titlebar { background:#fff; color:#000; border-bottom:2pt solid #000; padding:0 0 8pt; }
+    header.titlebar .kit, header.titlebar .lane { color:#000; }
+    .step, .qcard, .door2box, .rulebox { border:1.5pt solid #666; break-inside:avoid; }
+    .promptbox { border:1.5pt solid #666; background:#fff; font-size:11.5pt; max-height:none; overflow:visible; }
+    a { color:#000; text-decoration:none; }
+  }
+
+  .devcard { background:#fdf0e8; border:3px solid #b33a12; border-radius:14px; padding:16px 18px; margin:12px 0; }
+  .devcard h3 { margin:0 0 8px; font-size:22px; color:#7a2408; }
+  .devcard .if { font-weight:bold; color:#b33a12; text-transform:uppercase; letter-spacing:.06em; font-size:15px; }
+  .smooth { background:#eef4ea; border:2px solid #2e7d32; border-radius:14px; padding:16px 18px; margin:12px 0; }
+</style>
+</head>
+<body>
+<header class="titlebar">
+  <div class="kit">Health Care Rule Kit</div>
+  <h1>Stage 5: Everything After</h1>
+  <div class="lane">Shared road &mdash; every lane merges here</div>
+</header>
+<div class="wrap noPrint" style="padding-bottom:0;">
+  <p class="micro" style="margin-top:12px;"><a href="index.html">&#8592; Start over &mdash; back to the front door</a></p>
+</div>
+<div class="loop" id="loopBar" aria-label="Where you are">
+  <span id="ls-watch" class="now"><b>1. Watch</b>the video</span>
+  <span id="ls-steps"><b>2. Do</b>the steps</span>
+  <span id="ls-prompts"><b>3. Ask</b>for help</span>
+  <span id="ls-next"><b>4. Next</b>stage</span>
+</div>
+<div class="wrap">
+  <video id="katieVideo" controls playsinline preload="metadata" src="media/stage5.mp4"></video>
+  <p class="micro">Watch Katie first &mdash; she walks you through this whole stage. (Katie&rsquo;s video for this stage &mdash; preview.)</p>
+  <p class="promise">Everything after the visit &mdash; most of the time you just wait while it moves on its own. This kit is a watch, not a job, here for the moments that aren&rsquo;t smooth.</p>
+
+  <h2>The referral play &mdash; start here</h2>
+  <p>The visit is ending, and the doctor says: <i>&ldquo;I&rsquo;m referring you to&hellip;&rdquo;</i> It sounds like one decision, already made. It is actually the start of a new episode.</p>
+  <div class="smooth"><h3>What normally happens &mdash; the smooth path</h3><p>The office prepares the referral, sends it, the other end receives it, the authorization lands where your plan requires one, and the appointment gets booked. When it runs smooth, you just wait. The checks below are how you know it is still smooth.</p></div>
+  <h3>The gap &mdash; where referrals go quiet</h3>
+  <p>Here is the timing nobody tells you: <b>the referral is almost never prepared while you sit there.</b> The doctor orders it; the office staff prepares it <i>after you leave</i> &mdash; and the sentence you will hear is <i>&ldquo;We&rsquo;re going to prepare a referral and get it sent, and then we&rsquo;ll let you know.&rdquo;</i> From that moment the referral moves office-to-office over days, entirely out of your sight. &ldquo;We&rsquo;ll let you know&rdquo; is where referrals die quietly. Your protection happens in the gap, while it is still moving and still fixable.</p>
+  <p>So the play has two halves: <b>before you leave</b>, you extract three commitments and one piece of paper; <b>during the window</b>, you run the checks &mdash; destination, authorization, arrival &mdash; in that order.</p>
+  <div class="step">
+    <h3>Before you leave &mdash; the three commitments and the paper</h3>
+    <ol class="checklist">
+      <li><b>WHAT</b> &mdash; exactly what is being referred, and, if known, to whom or where. If the destination hasn&rsquo;t been chosen yet: who chooses it, and when will you be told the name?</li>
+      <li><b>WHO</b> &mdash; the name of the person in this office who owns the referral, or the desk that does.</li>
+      <li><b>WHEN</b> &mdash; when you will hear that it has been sent. Set your own call date in your log: if there is no word by that day, you call.</li>
+    </ol>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;Before I go, I need three things about this referral. First &mdash; what exactly is being referred, and to whom? If the doctor or facility hasn&rsquo;t been chosen yet, who chooses them, and when will I be told the name? Second &mdash; who here handles the referral, so I know who to call? And third &mdash; when should I expect to hear that it&rsquo;s been sent? If I haven&rsquo;t heard by then, I&rsquo;ll call and check.&rdquo;</div>
+    <p class="beat"><b class="tag">DO THIS:</b> Write the three answers in your log before you leave the building.</p>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The doctor&rsquo;s order or the after-visit summary showing the referral was ordered. Photograph it into your album before you leave, next to your plan card.</p>
+  </div>
+  <div class="step">
+    <h3>During the window &mdash; verify the destination yourself</h3>
+    <p class="beat"><b class="tag">DO THIS:</b> First, get the name if you don&rsquo;t have it: <i>&ldquo;Has the referral been prepared yet, and who is it going to?&rdquo;</i> Then verify every name on the order &mdash; the specialist, the imaging facility, and the lab &mdash; the Stage 3 way: office and plan, both, logged with dates and names, during the window, before the appointment.</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;Which lab will my blood work be sent to? I need to check it&rsquo;s in my plan before it&rsquo;s drawn.&rdquo;</div>
+    <p class="beat"><b>The routing question:</b> the same scan at an in-network independent imaging facility is frequently a fraction of the hospital department&rsquo;s price.</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;I&rsquo;d like this scan done at an in-network facility. Is there an independent imaging center in my plan you can send the order to instead of the hospital&rsquo;s department? If the order has to name that facility, please write it that way.&rdquo;</div>
+    <div class="lanenote"><b class="lane">Lane note &mdash; insured:</b> in an HMO or POS plan, the referral itself is also a coverage document &mdash; confirm it is on file before you go.</div>
+    <div class="lanenote"><b class="lane">Lane note &mdash; welfare:</b> your plan&rsquo;s network and referral rules govern the destination the same way; a destination outside the network runs through the plan&rsquo;s process, started early and kept in writing.</div>
+    <div class="lanenote"><b class="lane">Lane note &mdash; cash:</b> there is no network to verify &mdash; the verification is the price, in writing, for each destination.</div>
+  </div>
+  <div class="step">
+    <h3>Approvals &mdash; two different papers</h3>
+    <p>A referral and an authorization are <b>two different papers</b>, and a service can need both. Before you leave, settle: does this need prior authorization or a formal referral on file? Who files it? By when, and how will you know it is approved?</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;Does this need approval from my plan before the appointment &mdash; and who submits it, your office or the specialist&rsquo;s? How will I know it&rsquo;s approved?&rdquo;</div>
+    <p class="beat"><b class="tag">DO THIS:</b> During the window, watch for it to actually appear &mdash; check your plan&rsquo;s portal, or call the plan: <i>&ldquo;Has a referral or authorization for [service] with [destination] come through for me?&rdquo;</i></p>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The authorization number, what it covers, and who confirmed it &mdash; in your log.</p>
+  </div>
+  <div class="step">
+    <h3>During the window, last check &mdash; confirm the other end has it</h3>
+    <p class="beat"><b class="tag">DO THIS:</b> Confirm with the receiving office that the referral actually arrived and is complete: <i>&ldquo;Has my referral from Dr. [primary] arrived, and is anything missing from it?&rdquo;</i> The referral is not real until the other end says they have it.</p>
+    <p><b>The three-check rule, stated plainly: the appointment does not happen until three things check out &mdash; (1) the referral has been received at the other end, (2) the plan&rsquo;s authorization is on file where your plan requires one, and (3) the destination is verified in-network.</b> If any one is missing, the appointment waits while it gets fixed.</p>
+  </div>
+  <div class="devcard"><p class="if">If this happens</p><h3>The window passes with no word</h3><p>Your log&rsquo;s date arrives and nothing has come &mdash; so you call, in this order. First, the referring office, to the owner or desk you named: <i>&ldquo;On [date] I was told the referral to [destination] would be sent and I&rsquo;d hear by [date]. I haven&rsquo;t heard &mdash; has it gone, and to whom?&rdquo;</i> Then, if it stalls, the plan. Your dated log is the evidence that you did everything right.</p></div>
+
+  <div class="rulebox">
+    <h3>Katie&rsquo;s rule for this stage</h3>
+    <p class="r"><b>THE RULE:</b> federal law generally shields her from balance bills by providers she didn&rsquo;t choose at an in-network facility.</p>
+    <p class="r"><b>THE CHECK:</b> verifying every destination and never signing a waiver &mdash; verify each name on every order, and never sign away the protection at check-in.</p>
+    <p class="r"><b>THE MEANING:</b> the shield holds and any such bill is a deviation, not a debt. Check it the way you&rsquo;d check a receipt: calmly, as a routine.</p>
+  </div>
+
+  <h2>Step 1 &mdash; The referral loop, in full</h2>
+  <div class="step">
+    <p>A referral is not done when your doctor says it. It is done when three separate facts are true: the referral was <b>sent</b>, the specialist&rsquo;s office <b>received</b> it, and the appointment is <b>booked</b>.</p>
+    <p class="beat"><b class="tag">DO THIS:</b> Track the three facts separately in your log: date sent, date received, date booked.</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;I&rsquo;m following up on the referral from Dr. [primary] to Dr. [specialist], sent around [date]. Has it arrived, and can we book the appointment today? &mdash; and your name, please, for my records.&rdquo;</div>
+    <p><b>The name on the referral is partly your choice.</b> You can ask for a different specialist: one closer, one with a shorter wait, one whose hospital affiliation you prefer.</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;Before you send that &mdash; could the referral go to Dr. [name] instead? [She&rsquo;s closer to me / his wait is shorter / she&rsquo;s affiliated with the hospital I&rsquo;d prefer.] If my plan needs the referral written a particular way for that, please let me know what it takes.&rdquo;</div>
+    <p class="beat"><b>Verify the specialist yourself &mdash; verify twice, again:</b> confirm with the office and with the plan or agency, logged, dated, with names.</p>
+    <p class="beat"><b>Second opinions are a right, not an insult.</b> Before a significant procedure or a life-altering diagnosis settles, you are generally entitled to have another qualified doctor review it.</p>
+    <div class="lanenote"><b class="lane">Lane note &mdash; insured:</b> most plans cover a second opinion from an in-network specialist; some require a referral or authorization for it. Check your Evidence of Coverage.</div>
+    <div class="lanenote"><b class="lane">Lane note &mdash; welfare:</b> Medicaid managed-care enrollees have a right to a second opinion from a qualified provider in the plan&rsquo;s network &mdash; and if the plan has no qualified provider in network, the plan must arrange one outside it at no extra cost to you.</div>
+    <div class="lanenote"><b class="lane">Lane note &mdash; cash:</b> a second opinion is a purchase &mdash; get its price in writing before the visit.</div>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Every referral, both verification logs for each specialist, second-opinion requests and answers &mdash; filed by episode in your care file.</p>
+  </div>
+  <p>And when you arrive at the specialist&rsquo;s office, recognize the room: it is the desk again. Stage 4&rsquo;s desk play runs at that desk exactly as it ran at your primary doctor&rsquo;s. <b>New desk, same transaction.</b></p>
+
+  <h2 id="step-cast">Step 2 &mdash; Scheduled procedures: the cast of billers</h2>
+  <div class="step">
+    <p>A scheduled hospital or surgery-center procedure is not one service. It is a <b>cast</b> &mdash; and every member bills separately:</p>
+    <ul>
+      <li><b>The facility</b> &mdash; the hospital or ambulatory surgery center.</li>
+      <li><b>The surgeon or proceduralist</b></li>
+      <li><b>The anesthesiology group</b> &mdash; usually a separate practice; historically the single most common source of surprise bills.</li>
+      <li><b>Radiology</b> &mdash; the reading physician&rsquo;s group bills separately.</li>
+      <li><b>Pathology and lab</b> &mdash; separate groups, separate bills.</li>
+      <li><b>Assistants and others</b> &mdash; an assistant surgeon, a consulting physician, a device or monitoring company, durable-medical-equipment suppliers.</li>
+    </ul>
+    <p>Each cast member has its own network status, its own price, and its own bill. &ldquo;The hospital is in-network&rdquo; answers exactly one of those questions.</p>
+    <p class="beat"><b class="tag">DO THIS:</b> Get the cast list in writing before the day, then work the list: for each name, the Step 1 verification or, cash lane, the price.</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;Before the procedure on [date], I need the complete list of everyone who will bill me separately &mdash; the facility, Dr. [surgeon], the anesthesia group, radiology, pathology and lab, and any assistants. Please send it to me in writing. I&rsquo;ll be confirming each one&rsquo;s [network status / price] before the day.&rdquo;</div>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The cast list itself, with a checked-off verification or price beside every name.</p>
+    <p class="beat"><b>Authorization in hand before the day</b> &mdash; get the authorization number and its scope in writing before the day.</p>
+    <div class="lanenote"><b class="lane">Lane note &mdash; insured:</b> most scheduled procedures need prior authorization, covering the procedure, the facility, and the date window.</div>
+    <div class="lanenote"><b class="lane">Lane note &mdash; welfare:</b> confirm the authorization exists, by number, before the day.</div>
+    <div class="lanenote"><b class="lane">Lane note &mdash; cash:</b> your authorization-equivalent is the good-faith estimate, per cast member, in writing, before the day.</div>
+    <p class="beat"><b>Financial assistance: ask before, not after.</b></p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;If cost is going to be a problem for this procedure &mdash; and it may be &mdash; I want to apply under the hospital&rsquo;s financial assistance policy before the date, not after. Please send me the policy and the application, and tell me the deadline to have it decided before [procedure date].&rdquo;</div>
+  </div>
+
+  <h2>Step 3 &mdash; No Surprises, in full</h2>
+  <div class="step">
+    <p>Here is the federal <b>No Surprises Act</b>, which took effect in 2022, and what it actually does for an insured patient.</p>
+    <p><b>The protection.</b> For insured readers, federal law now generally provides:</p>
+    <ul>
+      <li><b>Emergency care:</b> if you receive emergency services from an out-of-network hospital or provider, your cost-sharing is calculated as if the care were <b>in-network</b>, and the provider may not bill you the balance above that.</li>
+      <li><b>Ancillary providers at an in-network facility:</b> the specialists you don&rsquo;t choose &mdash; <b>anesthesiology, radiology, pathology, laboratory, assistant surgeons</b>, and similar &mdash; may not balance-bill you when they are out-of-network but the <i>facility</i> is in-network and the care is part of your visit there. Your cost is the in-network cost-sharing; the plan and the provider settle the rest between themselves.</li>
+      <li><b>Out-of-network clinicians at an in-network facility</b> generally: the same principle &mdash; your episode at an in-network building is priced to you at in-network cost-sharing, even if an individual clinician in the cast turns out to be out-of-network.</li>
+    </ul>
+    <p><b>A balance bill from an out-of-network ancillary provider for care at an in-network facility is a deviation</b> &mdash; and Stage 6 gives you the dispute it deserves. Verify the current rules (the federal No Surprises Act help desk and your plan can confirm how they apply to your plan type).</p>
+    <div class="lanenote"><b class="lane">Lane note &mdash; welfare:</b> your billing shield is stronger and older than this one (your front end, Step 8): a participating provider accepts the program&rsquo;s payment as payment in full beyond any allowed cost-sharing.</div>
+    <div class="lanenote"><b class="lane">Lane note &mdash; cash:</b> there is no network shield in your lane; your protection is the good-faith estimate and the agreed price in writing, per destination.</div>
+  </div>
+  <div class="devcard"><p class="if">If this happens &mdash; the waiver trap</p><h3>A form asks you to sign away the protection</h3>
+    <p>For certain <b>non-emergency</b> services, an out-of-network provider may ask you to sign a <b>notice and consent</b> form &mdash; waiving your surprise-billing protections and agreeing to be billed at out-of-network rates.</p>
+    <ul>
+      <li><b>It is optional.</b> Signing is a choice, not a condition the law imposes.</li>
+      <li><b>It is never valid for emergency care.</b> No consent form can waive your protections for emergency services.</li>
+      <li><b>It is never valid for the ancillary cast.</b> Anesthesiology, radiology, pathology, lab, assistant surgeons, and other providers you don&rsquo;t choose at an in-network facility <b>cannot</b> ask you to waive &mdash; the exception does not exist for them.</li>
+      <li><b>It applies only to the provider named on it.</b></li>
+    </ul>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;This paper asks me to waive my surprise-billing protections. I&rsquo;m not signing it at check-in. I&rsquo;ll take it home, review it, and call my plan.&rdquo;</div>
+    <div class="say"><b class="tag">SAY THIS (full):</b> &ldquo;I understand this form asks me to waive my federal surprise-billing protections and agree to out-of-network charges. I&rsquo;m not signing it today. I&rsquo;ll review it and call my plan, and if I decide to sign, I&rsquo;ll return it signed before the deadline. Please note that I was given the form today, [date].&rdquo;</div>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The form itself &mdash; signed or not &mdash; with the date and hour it was handed to you written on your copy.</p>
+  </div>
+
+  <h2>Step 4 &mdash; Emergency care and the hospital</h2>
+  <div class="step">
+    <h3>EMTALA &mdash; the screening right</h3>
+    <p>Under the federal Emergency Medical Treatment and Labor Act, <b>anyone who comes to a hospital emergency department</b> is entitled to a <b>medical screening examination</b> to determine whether an emergency medical condition exists, and, if one does, to <b>stabilizing treatment</b> or an appropriate transfer. Ability to pay is not part of the test.</p>
+    <p><b>Registration is fine; delay for payment is not.</b> The hospital may not delay the screening examination to ask about payment, demand payment or a deposit before screening or stabilization, or route you through insurance authorization while an emergency waits.</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;I understand you&rsquo;ll need my information, and I&rsquo;ll provide it. I also understand I&rsquo;m entitled to a medical screening exam and stabilizing treatment regardless of payment, and I&rsquo;d like the exam not to be delayed for insurance or payment questions.&rdquo;</div>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Afterward: the ER records and discharge papers, names and times, and any payment conversation that happened before screening, noted with the time.</p>
+    <div class="lanenote"><b class="lane">Lane note &mdash; insured:</b> emergency services are billed to you at in-network cost-sharing even at an out-of-network facility, and no notice-and-consent form can waive any of it.</div>
+    <div class="lanenote"><b class="lane">Lane note &mdash; cash:</b> there is no good-faith estimate for a true emergency. What you still hold: EMTALA, the hospital&rsquo;s financial assistance policy, and the itemized-bill rights Stage 6 develops.</div>
+  </div>
+  <div class="step">
+    <h3>Step 5 &mdash; The hospital stay and discharge</h3>
+    <p><b>Everything the hospital hands you, you keep; everything you sign, you hold a copy of; and nothing about discharge gets decided without your participation.</b></p>
+    <p><b>Discharge is a plan, and you are a party to it.</b> The hospital must assess your post-hospital needs, build a plan with you, and offer you a choice of post-acute providers, noting which ones its own organization owns or has a financial interest in.</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;Before we settle the discharge plan, I need the list of [home health agencies / rehabilitation facilities / nursing facilities] that serve my area and accept [my plan / my program], including any the hospital has a financial interest in &mdash; that has to be disclosed. We&rsquo;ll choose from the list, and I&rsquo;d like our choice noted in the plan.&rdquo;</div>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The discharge plan, the provider list, your discharge instructions and medication list, and the names of discharge staff.</p>
+  </div>
+  <div class="devcard"><p class="if">If this happens &mdash; Medicare discharge</p><h3>The same-day Medicare discharge appeal</h3>
+    <p>Medicare patients receive a notice titled <b>&ldquo;An Important Message from Medicare&rdquo;</b> &mdash; explaining the right to appeal your discharge if you believe you are being sent home too soon. The appeal runs to an independent Quality Improvement Organization (QIO), named on the notice. It is expedited: <b>act the same day you receive a discharge you dispute</b> &mdash; the operative deadline is generally no later than the day of discharge. <b>The paper titled &ldquo;An Important Message from Medicare&rdquo; is the most time-sensitive document in this entire kit &mdash; read it the hour it arrives, and if you dispute the discharge, make the call that day.</b></p>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The Important Message notice itself, the date and time it was handed to you (write it on the notice), and the log of any QIO call.</p>
+  </div>
+  <div class="step">
+    <p class="beat"><b class="tag">DO THIS:</b> Leave the hospital with four things: the follow-up appointment (date and time), the aftercare start (who, when), the equipment supplier&rsquo;s name and paperwork, and the complete stack of the stay&rsquo;s paper.</p>
+  </div>
+
+  <h2>The mistakes &mdash; yours to not make</h2>
+  <ol class="mistakes">
+    <li>Treating a referral as done when your doctor said it &mdash; and never confirming it was sent, received, and booked.</li>
+    <li>Accepting the specialist named on the referral as an assignment, when asking for a different name was a thirty-second conversation.</li>
+    <li>Verifying the hospital is in-network and assuming the whole episode is &mdash; while five other cast members bill under five other statuses.</li>
+    <li>Scheduling a procedure without the cast list in writing: every biller named, every status or price checked, before the day.</li>
+    <li>Letting the surgeon&rsquo;s office&rsquo;s &ldquo;we handle the authorization&rdquo; substitute for an authorization number you hold yourself.</li>
+    <li>Waiting until the bill arrives to ask about financial assistance that could have been applied for &mdash; and decided &mdash; before the procedure.</li>
+    <li>Signing a notice-and-consent waiver in the scheduling office or the pre-op area because it was inside a stack of forms and the pen was moving.</li>
+    <li>Believing a payment or insurance conversation may lawfully come before an emergency screening exam &mdash; and not noting the time if one does.</li>
+    <li>Letting discharge planning happen <i>to</i> you: one facility named, no list offered, no choice recorded.</li>
+    <li>Filing the &ldquo;Important Message from Medicare&rdquo; to read later. Later, for that notice, is a different and worse appeal.</li>
+    <li>Leaving the hospital with the follow-up &ldquo;to be arranged&rdquo; and no date.</li>
+    <li>Losing track of the equipment supplier&rsquo;s name, while its monthly billing quietly continues past the equipment&rsquo;s return.</li>
+  </ol>
+  <h2>The deviations &mdash; theirs to answer for</h2>
+  <ol class="deviations">
+    <li>A referral documented in the visit and never transmitted &mdash; or transmitted to a specialist the patient&rsquo;s plan or program cannot cover, without anyone saying so.</li>
+    <li>A cast member&rsquo;s out-of-network status known to the facility or surgeon&rsquo;s office and never disclosed before a scheduled procedure.</li>
+    <li>A balance bill from an out-of-network ancillary provider &mdash; anesthesia, radiology, pathology, lab, assistant &mdash; for care at an in-network facility: the federal protection&rsquo;s core case.</li>
+    <li>A notice-and-consent waiver presented for emergency care, or by an ancillary provider who is not permitted to ask for one.</li>
+    <li>A waiver presented for the first time on the day of the procedure, under time pressure, when the rules required it in hand well in advance.</li>
+    <li>Payment demanded, or screening delayed for insurance processing, before a medical screening examination in the emergency department.</li>
+    <li>Discharge executed without a provider list, without disclosing the hospital&rsquo;s financial interest in a listed provider, or over the patient&rsquo;s stated choice without explanation.</li>
+    <li>A Medicare discharge pushed forward while the patient&rsquo;s Important Message rights go unmentioned.</li>
+    <li>Aftercare billed by suppliers the patient was never given the name of before the service began.</li>
+  </ol>
+  <p><b>What &ldquo;done&rdquo; looks like for Stage 5:</b> every referral in your file is sent, received, and booked &mdash; or its failure is documented and being chased. Every scheduled procedure ran off a cast list you held in advance. You can recognize a notice-and-consent waiver on sight. You know the emergency rule &mdash; screening first, payment never a precondition. And you left any hospital stay holding the discharge plan, the provider list, the follow-up date, the equipment paperwork, and every notice. Next: the bills arrive, and Stage 6 opens the file.</p>
+
+  <h2>Now do it &mdash; two questions, one at a time</h2>
+  <p>Katie explained it. Now use the kit&rsquo;s helper for the two reading jobs in this stage &mdash; or do them yourself on paper.</p>
+
+  <div class="qcard" id="card1">
+    <div class="qhead"><h3>Build my cast list</h3><span class="qcount">Question 1 of 2</span></div>
+    <p class="needline"><b>You&rsquo;ll need:</b> Everything Step 2 tells you to gather before the day: the scheduling packet, the referral, the authorization, each provider&rsquo;s estimate or status confirmation, and your own notes.</p>
+    <p>This question builds your cast list from your paperwork &mdash; and names what the paperwork doesn&rsquo;t settle.</p>
+    <p class="micro">This whole box is what gets copied &mdash; word for word, including the last paragraph.</p>
+    <div class="promptbox" id="box1">I have a procedure or hospital episode scheduled. Below I will paste the paperwork I have collected about it: the scheduling documents, the referral, any authorization, estimates, and my own notes.
+
+From the pasted material only, build me a cast list:
+1. The episode: what is happening, in plain words, and who ordered or referred it.
+2. The date or dates, and the facility, exactly as the documents state them.
+3. Every provider, group, or company named anywhere in the paperwork who might bill me — surgeon, anesthesiology group, radiology, pathology or lab, assistants, consultants, equipment suppliers, anyone else named — one per line, with what the documents say their role is.
+4. For each name on the list: what the documents say about their status (in-network, participating, authorized) or their price (an estimate or agreed amount) — or &quot;Not in the document&quot; if the paperwork says nothing about that name&#x27;s status or price.
+5. Any authorization number in the paperwork, what it covers (procedure, facility, dates), and who issued it.
+6. Any name I mention in my notes as involved in this care that does NOT appear in the official paperwork. List each separately.
+
+Work only from what I pasted. If something is not in the pasted material, write &quot;Not in the document&quot; — do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language.</div>
+    <button class="bigbtn copybtn" data-copy="1">Copy this question</button>
+    <p class="micro">One tap copies the whole question. (Way 2 below doesn&rsquo;t need it.)</p>
+    <div class="copiedBanner" id="banner1">Copied! Now choose your way &#8595;</div>
+    <div class="fallbackBanner" id="fallback1">Copy didn&rsquo;t work on this phone &mdash; no problem. Hold your finger on the words in the box above until <b>Copy</b> appears, tap Copy, then tap the button below.</div>
+    <p class="pasteguide"><b>What to paste with it:</b> the scheduling documents, the referral, any authorization, estimates, and your own notes.</p>
+    <p><b>What you&rsquo;ll get back &mdash; and what to do with it:</b> your Care Episode Planner cast list, with a status box beside every name. No box stays empty on the day of the procedure: every &ldquo;Not in the document&rdquo; gets run down with Step 2&rsquo;s script.</p>
+    <p style="margin-top:18px;"><b>Two ways from here &mdash; your choice:</b></p>
+    <p class="beat"><b class="tag">WAY 1 &mdash; ASK <span class="svcName"></span> FOR HELP:</b></p>
+    <a class="btn bigbtn aiBtn" id="aiBtn1" href="#" target="_blank" rel="noopener"></a>
+    <div class="pasteguide"><b>How to paste on her page:</b> hold your finger in the question box until <b>Paste</b> appears, tap Paste, add your document pages, then tap her send arrow. Before you paste anything: never paste your Social Security number or full bank or card numbers, and cover any number you don&rsquo;t want seen <i>before</i> you photograph or paste it &mdash; you decide what she sees. Come right back here when you&rsquo;re done.</div>
+    <p class="micro">MakeDealNow may earn a commission when you sign up through our link &mdash; it never changes what you pay.</p>
+    <p class="beat" style="margin-top:18px;"><b class="tag">WAY 2 &mdash; DO IT MYSELF:</b></p>
+    <p>Skip the AI entirely. Build the cast list yourself on the Care Episode Planner below, using Step 2&rsquo;s script to demand the full cast in writing. Nothing on this route depends on <span class="svcName"></span> &mdash; no account, nothing leaves your hands.</p>
+    <a class="btn bigbtn selfbtn" href="#step-cast">Do it myself &mdash; use Step 2</a>
+    <div class="navrow"><button disabled>&#8592; Back</button><button class="next" id="next1">Next question &#8594;</button></div>
+  </div>
+
+  <div class="qcard hidden" id="card2">
+    <div class="qhead"><h3>Check this waiver before I sign it</h3><span class="qcount">Question 2 of 2</span></div>
+    <p class="needline"><b>You&rsquo;ll need:</b> The notice-and-consent form itself, photographed when it is handed to you.</p>
+    <p>This question makes the waiver visible &mdash; what signing would agree to, and who is asking.</p>
+    <p class="micro">This whole box is what gets copied &mdash; word for word, including the last paragraph.</p>
+    <div class="promptbox" id="box2">Before a scheduled service, a provider has handed me a form about paying out-of-network charges — a notice-and-consent form asking me to agree to be billed more than my plan&#x27;s in-network cost-sharing. Below I will paste the form&#x27;s text.
+
+Read only the form and tell me:
+1. In plain words, what signing this form would agree to: which provider it names, what service, and what it says I would owe beyond my in-network cost-sharing.
+2. The dates in the form: when it was given to me (if it states a date), the date of service, and any deadline or timing the form itself states. Copy dates exactly.
+3. Whether the form states that signing is optional, or that I may decline and what happens if I do. Quote its words, or write &quot;Not in the document.&quot;
+4. Whether the named provider is an individual practitioner or one of these kinds of services: anesthesiology, radiology, pathology, laboratory, assistant surgeon, or emergency care. Answer from the form&#x27;s own words about who the provider is.
+5. Anything else the form asks me to agree to beyond the billing consent. List each item.
+
+Do not tell me whether to sign it. That decision is mine. Your job is only to make sure I can see exactly what the form says.
+
+Work only from what I pasted. If something is not in the pasted material, write &quot;Not in the document&quot; — do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language.</div>
+    <button class="bigbtn copybtn" data-copy="2">Copy this question</button>
+    <p class="micro">One tap copies the whole question. (Way 2 below doesn&rsquo;t need it.)</p>
+    <div class="copiedBanner" id="banner2">Copied! Now choose your way &#8595;</div>
+    <div class="fallbackBanner" id="fallback2">Copy didn&rsquo;t work on this phone &mdash; no problem. Hold your finger on the words in the box above until <b>Copy</b> appears, tap Copy, then tap the button below.</div>
+    <p class="pasteguide"><b>What to paste with it:</b> the notice-and-consent form itself. Note the date and time it reached you in your log alongside the photo.</p>
+    <p><b>What you&rsquo;ll get back &mdash; and what to do with it:</b> the waiver, made visible. Then Step 3&rsquo;s rules do the judging: don&rsquo;t sign under time pressure &mdash; take it home, call the plan, and keep the dated copy either way.</p>
+    <p style="margin-top:18px;"><b>Two ways from here &mdash; your choice:</b></p>
+    <p class="beat"><b class="tag">WAY 1 &mdash; ASK <span class="svcName"></span> FOR HELP:</b></p>
+    <a class="btn bigbtn aiBtn" id="aiBtn2" href="#" target="_blank" rel="noopener"></a>
+    <div class="pasteguide"><b>How to paste on her page:</b> hold your finger in the question box until <b>Paste</b> appears, tap Paste, add your document pages, then tap her send arrow. Before you paste anything: never paste your Social Security number or full bank or card numbers, and cover any number you don&rsquo;t want seen <i>before</i> you photograph or paste it &mdash; you decide what she sees. Come right back here when you&rsquo;re done.</div>
+    <p class="micro">MakeDealNow may earn a commission when you sign up through our link &mdash; it never changes what you pay.</p>
+    <p class="beat" style="margin-top:18px;"><b class="tag">WAY 2 &mdash; DO IT MYSELF:</b></p>
+    <p>Skip the AI entirely. Read the form yourself with Step 3&rsquo;s limits beside you: never valid for emergency care, never available to the ancillary cast, binds only the provider it names. Nothing on this route depends on <span class="svcName"></span>.</p>
+    <a class="btn bigbtn selfbtn" href="#worksheet">Do it myself &mdash; use the worksheet</a>
+    <div class="navrow"><button id="back2">&#8592; Back</button><button class="next" disabled>Next question &#8594;</button></div>
+    <p class="micro">That&rsquo;s both questions for this stage.</p>
+  </div>
+
+  <div id="worksheetSection">
+    <h2 id="worksheet">Care Episode Planner &mdash; the worksheet</h2>
+    <p><i>The Health Care Rule Kit &middot; Shared Road, Stage 5 companion. One page per episode &mdash; one procedure, one hospital stay, one course of aftercare. Start it the day the episode is scheduled; finish it the day you&rsquo;re home. File it at the front of the episode&rsquo;s papers in your care file.</i></p>
+    <p><b>Your facts stay yours.</b> Nothing on this page is uploaded, submitted, or sent anywhere. It exists in exactly one place &mdash; your hands.</p>
+    <div class="step">
+      <p class="wsitem"><b>Episode / procedure</b> &mdash; what is happening, in plain words, and who ordered or referred it. <i>Every paper in this episode gets matched against this line at bill time.</i></p><div class="wsline"></div>
+      <p class="wsitem"><b>Date(s)</b> &mdash; the scheduled date, and the actual date if it moves. <i>Authorizations and estimates are tied to dates; a moved date can quietly void both.</i></p><div class="wsline"></div>
+      <p class="wsitem"><b>Facility</b> &mdash; the hospital or surgery center&rsquo;s name and location. <i>The first cast member, and the one whose network status everyone wrongly assumes covers the rest.</i></p><div class="wsline"></div>
+      <p class="wsitem"><b>The cast list &mdash; status checked</b> &mdash; every provider or group expected to bill you: surgeon, anesthesiology group, radiology, pathology/lab, assistants, consultants. One line each, with its box: <b>in-network / program-participating confirmed</b> (insured and welfare lanes) or <b>price/estimate in hand</b> (cash lane). <i>An unchecked box is an unasked question. No box stays empty on the day of the procedure.</i></p><div class="wsline"></div>
+      <p class="wsitem"><b>Cast &mdash; Surgeon (status checked &#9744;)</b></p><div class="wsline"></div>
+      <p class="wsitem"><b>Cast &mdash; Anesthesiology group (status checked &#9744;)</b></p><div class="wsline"></div>
+      <p class="wsitem"><b>Cast &mdash; Radiology (status checked &#9744;)</b></p><div class="wsline"></div>
+      <p class="wsitem"><b>Cast &mdash; Pathology / Lab (status checked &#9744;)</b></p><div class="wsline"></div>
+      <p class="wsitem"><b>Cast &mdash; Assistants / others (status checked &#9744;)</b></p><div class="wsline"></div>
+      <p class="wsitem"><b>Authorization #</b> &mdash; the authorization number, what it covers (procedure, facility, dates), and who confirmed it. <i>&ldquo;The office is handling it&rdquo; is not an entry &mdash; the number is.</i></p><div class="wsline"></div>
+      <p class="wsitem"><b>Estimates received</b> &mdash; the plan&rsquo;s cost estimate (insured), the good-faith estimates per provider (cash), or coverage-and-authorization confirmation (welfare), with dates. <i>Stage 6 compares every bill against this field first.</i></p><div class="wsline"></div>
+      <p class="wsitem"><b>Financial assistance applied?</b> &mdash; yes/no, the date applied, and the answer or pending status. <i>Asked before the procedure wherever possible.</i></p><div class="wsline"></div>
+      <p class="wsitem"><b>Discharge papers checklist</b> &mdash; check as received: discharge plan &middot; provider list offered &middot; discharge instructions + medication list &middot; follow-up appointment booked (date) &middot; aftercare start confirmed &middot; equipment supplier named + delivery papers &middot; Important Message from Medicare received (Medicare stays; note the time). <i>Anything unchecked at the exit door goes in your log as an open promise with a follow-up date.</i></p><div class="wsline"></div>
+    </div>
+    <button class="printbtn" onclick="window.print()">Print this stage</button>
+    <p class="micro">Print this and keep it at the front of the episode&rsquo;s papers in your care file.</p>
+    <a class="btn printbtn noPrint" href="worksheets/care-episode-planner.pdf" download>Download the worksheet (PDF)</a>
+  </div>
+
+  <div class="navrow" style="margin-top:34px;">
+    <a class="btn" href="the-visit.html">&#8592; Back: Stage 4 &mdash; The Visit</a>
+    <a class="btn next" href="the-bill.html">Next: Stage 6 &mdash; The Bill &#8594;</a>
+  </div>
+
+  <footer>
+    <div class="disclaimer">
+      <p><b>Please read this first.</b> This kit is educational information. It is <b>not legal advice</b>, and it is <b>not medical advice</b>. It does not tell you what care to get, what care to refuse, or whether a treatment is right for you &mdash; those decisions belong to you and your doctor. This kit is about rights, paperwork, prices, and billing only. The publisher sells educational information only and performs no services of any kind: nobody will verify a specialist, attend your procedure, or call a hospital on your behalf. You make your own calls, sign your own forms, and make your own decisions at every step. Health coverage rules vary &mdash; by state, by plan, and by program &mdash; and they change. Wherever this kit states a rule, it also tells you where to verify it against your own documents and notices. If your situation involves a lawsuit, a collections action, or a deadline in court papers, talk to a lawyer.</p>
+    </div>
+    <p>MakeDealNow &mdash; The Health Care Rule Kit (preview)</p>
+    <p>Educational information &mdash; not legal or medical advice.</p>
+  </footer>
+</div>
+<script>
+var AI_SERVICE = { name: "Monica", url: "https://monica.im" };
+document.querySelectorAll(".svcName").forEach(function(el) { el.textContent = AI_SERVICE.name; });
+["1","2"].forEach(function(n) {
+  var b = document.getElementById("aiBtn" + n);
+  b.setAttribute("href", AI_SERVICE.url);
+  b.textContent = "Ask " + AI_SERVICE.name + " for help";
+});
+var PROMPTS = { "1": "I have a procedure or hospital episode scheduled. Below I will paste the paperwork I have collected about it: the scheduling documents, the referral, any authorization, estimates, and my own notes.\n\nFrom the pasted material only, build me a cast list:\n1. The episode: what is happening, in plain words, and who ordered or referred it.\n2. The date or dates, and the facility, exactly as the documents state them.\n3. Every provider, group, or company named anywhere in the paperwork who might bill me \u2014 surgeon, anesthesiology group, radiology, pathology or lab, assistants, consultants, equipment suppliers, anyone else named \u2014 one per line, with what the documents say their role is.\n4. For each name on the list: what the documents say about their status (in-network, participating, authorized) or their price (an estimate or agreed amount) \u2014 or \"Not in the document\" if the paperwork says nothing about that name's status or price.\n5. Any authorization number in the paperwork, what it covers (procedure, facility, dates), and who issued it.\n6. Any name I mention in my notes as involved in this care that does NOT appear in the official paperwork. List each separately.\n\nWork only from what I pasted. If something is not in the pasted material, write \"Not in the document\" \u2014 do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language.", "2": "Before a scheduled service, a provider has handed me a form about paying out-of-network charges \u2014 a notice-and-consent form asking me to agree to be billed more than my plan's in-network cost-sharing. Below I will paste the form's text.\n\nRead only the form and tell me:\n1. In plain words, what signing this form would agree to: which provider it names, what service, and what it says I would owe beyond my in-network cost-sharing.\n2. The dates in the form: when it was given to me (if it states a date), the date of service, and any deadline or timing the form itself states. Copy dates exactly.\n3. Whether the form states that signing is optional, or that I may decline and what happens if I do. Quote its words, or write \"Not in the document.\"\n4. Whether the named provider is an individual practitioner or one of these kinds of services: anesthesiology, radiology, pathology, laboratory, assistant surgeon, or emergency care. Answer from the form's own words about who the provider is.\n5. Anything else the form asks me to agree to beyond the billing consent. List each item.\n\nDo not tell me whether to sign it. That decision is mine. Your job is only to make sure I can see exactly what the form says.\n\nWork only from what I pasted. If something is not in the pasted material, write \"Not in the document\" \u2014 do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language." };
+window.PROMPTS = PROMPTS;
+function selectBoxText(id) {
+  var el = document.getElementById(id);
+  var range = document.createRange(); range.selectNodeContents(el);
+  var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+}
+document.querySelectorAll(".copybtn").forEach(function(btn) {
+  btn.addEventListener("click", function() {
+    var n = btn.getAttribute("data-copy");
+    var text = PROMPTS[n];
+    var banner = document.getElementById("banner" + n);
+    var fb = document.getElementById("fallback" + n);
+    var aiBtn = document.getElementById("aiBtn" + n);
+    function onCopied() { banner.classList.add("show"); fb.classList.remove("show"); aiBtn.classList.add("hot"); banner.scrollIntoView({behavior:"smooth", block:"center"}); }
+    function onFailed() { selectBoxText("box" + n); fb.classList.add("show"); banner.classList.remove("show"); aiBtn.classList.add("hot"); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(onCopied, function() {
+        var ta = document.createElement("textarea"); ta.value = text; ta.style.position="fixed"; ta.style.opacity="0";
+        document.body.appendChild(ta); ta.select(); var ok=false; try { ok=document.execCommand("copy"); } catch(e) { ok=false; }
+        document.body.removeChild(ta); if (ok) { onCopied(); } else { onFailed(); }
+      });
+    } else { onFailed(); }
+  });
+});
+document.getElementById("next1").addEventListener("click", function() {
+  document.getElementById("card1").classList.add("hidden");
+  document.getElementById("card2").classList.remove("hidden");
+  document.getElementById("card2").scrollIntoView({behavior:"smooth"});
+});
+document.getElementById("back2").addEventListener("click", function() {
+  document.getElementById("card2").classList.add("hidden");
+  document.getElementById("card1").classList.remove("hidden");
+  document.getElementById("card1").scrollIntoView({behavior:"smooth"});
+});
+</script>
+</body>
+</html>

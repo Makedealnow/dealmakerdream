@@ -1,0 +1,547 @@
+{
+ "planYear": 2026,
+ "states": {
+  "AK": {
+   "qhp": {
+    "file": "qhp-AK.json",
+    "plans": 15,
+    "bytes": 6752
+   },
+   "ma": {
+    "file": "ma-AK.json",
+    "plans": 9,
+    "bytes": 1964
+   }
+  },
+  "AL": {
+   "qhp": {
+    "file": "qhp-AL.json",
+    "plans": 54,
+    "bytes": 21018
+   },
+   "ma": {
+    "file": "ma-AL.json",
+    "plans": 95,
+    "bytes": 20322
+   }
+  },
+  "AR": {
+   "qhp": {
+    "file": "qhp-AR.json",
+    "plans": 52,
+    "bytes": 20068
+   },
+   "ma": {
+    "file": "ma-AR.json",
+    "plans": 94,
+    "bytes": 20210
+   }
+  },
+  "AZ": {
+   "qhp": {
+    "file": "qhp-AZ.json",
+    "plans": 105,
+    "bytes": 47503
+   },
+   "ma": {
+    "file": "ma-AZ.json",
+    "plans": 130,
+    "bytes": 28064
+   }
+  },
+  "DE": {
+   "qhp": {
+    "file": "qhp-DE.json",
+    "plans": 40,
+    "bytes": 17769
+   },
+   "ma": {
+    "file": "ma-DE.json",
+    "plans": 45,
+    "bytes": 9947
+   }
+  },
+  "FL": {
+   "qhp": {
+    "file": "qhp-FL.json",
+    "plans": 334,
+    "bytes": 150838
+   },
+   "ma": {
+    "file": "ma-FL.json",
+    "plans": 357,
+    "bytes": 77207
+   }
+  },
+  "HI": {
+   "qhp": {
+    "file": "qhp-HI.json",
+    "plans": 17,
+    "bytes": 7209
+   },
+   "ma": {
+    "file": "ma-HI.json",
+    "plans": 49,
+    "bytes": 10546
+   }
+  },
+  "IA": {
+   "qhp": {
+    "file": "qhp-IA.json",
+    "plans": 121,
+    "bytes": 51435
+   },
+   "ma": {
+    "file": "ma-IA.json",
+    "plans": 81,
+    "bytes": 18043
+   }
+  },
+  "IN": {
+   "qhp": {
+    "file": "qhp-IN.json",
+    "plans": 80,
+    "bytes": 35809
+   },
+   "ma": {
+    "file": "ma-IN.json",
+    "plans": 124,
+    "bytes": 26786
+   }
+  },
+  "KS": {
+   "qhp": {
+    "file": "qhp-KS.json",
+    "plans": 64,
+    "bytes": 26985
+   },
+   "ma": {
+    "file": "ma-KS.json",
+    "plans": 82,
+    "bytes": 18066
+   }
+  },
+  "LA": {
+   "qhp": {
+    "file": "qhp-LA.json",
+    "plans": 100,
+    "bytes": 44942
+   },
+   "ma": {
+    "file": "ma-LA.json",
+    "plans": 99,
+    "bytes": 21357
+   }
+  },
+  "MI": {
+   "qhp": {
+    "file": "qhp-MI.json",
+    "plans": 116,
+    "bytes": 52801
+   },
+   "ma": {
+    "file": "ma-MI.json",
+    "plans": 132,
+    "bytes": 29072
+   }
+  },
+  "MO": {
+   "qhp": {
+    "file": "qhp-MO.json",
+    "plans": 117,
+    "bytes": 51738
+   },
+   "ma": {
+    "file": "ma-MO.json",
+    "plans": 142,
+    "bytes": 30745
+   }
+  },
+  "MS": {
+   "qhp": {
+    "file": "qhp-MS.json",
+    "plans": 48,
+    "bytes": 19699
+   },
+   "ma": {
+    "file": "ma-MS.json",
+    "plans": 94,
+    "bytes": 20056
+   }
+  },
+  "MT": {
+   "qhp": {
+    "file": "qhp-MT.json",
+    "plans": 42,
+    "bytes": 18449
+   },
+   "ma": {
+    "file": "ma-MT.json",
+    "plans": 40,
+    "bytes": 8789
+   }
+  },
+  "NC": {
+   "qhp": {
+    "file": "qhp-NC.json",
+    "plans": 146,
+    "bytes": 67181
+   },
+   "ma": {
+    "file": "ma-NC.json",
+    "plans": 161,
+    "bytes": 35256
+   }
+  },
+  "ND": {
+   "qhp": {
+    "file": "qhp-ND.json",
+    "plans": 59,
+    "bytes": 26967
+   },
+   "ma": {
+    "file": "ma-ND.json",
+    "plans": 40,
+    "bytes": 8721
+   }
+  },
+  "NE": {
+   "qhp": {
+    "file": "qhp-NE.json",
+    "plans": 124,
+    "bytes": 53504
+   },
+   "ma": {
+    "file": "ma-NE.json",
+    "plans": 63,
+    "bytes": 13796
+   }
+  },
+  "NH": {
+   "qhp": {
+    "file": "qhp-NH.json",
+    "plans": 46,
+    "bytes": 21134
+   },
+   "ma": {
+    "file": "ma-NH.json",
+    "plans": 28,
+    "bytes": 6038
+   }
+  },
+  "OH": {
+   "qhp": {
+    "file": "qhp-OH.json",
+    "plans": 189,
+    "bytes": 87707
+   },
+   "ma": {
+    "file": "ma-OH.json",
+    "plans": 176,
+    "bytes": 38418
+   }
+  },
+  "OK": {
+   "qhp": {
+    "file": "qhp-OK.json",
+    "plans": 116,
+    "bytes": 48875
+   },
+   "ma": {
+    "file": "ma-OK.json",
+    "plans": 87,
+    "bytes": 19267
+   }
+  },
+  "OR": {
+   "qhp": {
+    "file": "qhp-OR.json",
+    "plans": 59,
+    "bytes": 27097
+   },
+   "ma": {
+    "file": "ma-OR.json",
+    "plans": 91,
+    "bytes": 20109
+   }
+  },
+  "SC": {
+   "qhp": {
+    "file": "qhp-SC.json",
+    "plans": 125,
+    "bytes": 59584
+   },
+   "ma": {
+    "file": "ma-SC.json",
+    "plans": 90,
+    "bytes": 19315
+   }
+  },
+  "SD": {
+   "qhp": {
+    "file": "qhp-SD.json",
+    "plans": 48,
+    "bytes": 22674
+   },
+   "ma": {
+    "file": "ma-SD.json",
+    "plans": 38,
+    "bytes": 8310
+   }
+  },
+  "TN": {
+   "qhp": {
+    "file": "qhp-TN.json",
+    "plans": 74,
+    "bytes": 30653
+   },
+   "ma": {
+    "file": "ma-TN.json",
+    "plans": 119,
+    "bytes": 25667
+   }
+  },
+  "TX": {
+   "qhp": {
+    "file": "qhp-TX.json",
+    "plans": 222,
+    "bytes": 100412
+   },
+   "ma": {
+    "file": "ma-TX.json",
+    "plans": 313,
+    "bytes": 69002
+   }
+  },
+  "UT": {
+   "qhp": {
+    "file": "qhp-UT.json",
+    "plans": 57,
+    "bytes": 23860
+   },
+   "ma": {
+    "file": "ma-UT.json",
+    "plans": 61,
+    "bytes": 13269
+   }
+  },
+  "WI": {
+   "qhp": {
+    "file": "qhp-WI.json",
+    "plans": 264,
+    "bytes": 114075
+   },
+   "ma": {
+    "file": "ma-WI.json",
+    "plans": 123,
+    "bytes": 27618
+   }
+  },
+  "WV": {
+   "qhp": {
+    "file": "qhp-WV.json",
+    "plans": 37,
+    "bytes": 16057
+   },
+   "ma": {
+    "file": "ma-WV.json",
+    "plans": 67,
+    "bytes": 14418
+   }
+  },
+  "WY": {
+   "qhp": {
+    "file": "qhp-WY.json",
+    "plans": 23,
+    "bytes": 10074
+   },
+   "ma": {
+    "file": "ma-WY.json",
+    "plans": 23,
+    "bytes": 5032
+   }
+  },
+  "AS": {
+   "ma": {
+    "file": "ma-AS.json",
+    "plans": 1,
+    "bytes": 236
+   }
+  },
+  "CA": {
+   "ma": {
+    "file": "ma-CA.json",
+    "plans": 300,
+    "bytes": 66566
+   }
+  },
+  "CO": {
+   "ma": {
+    "file": "ma-CO.json",
+    "plans": 108,
+    "bytes": 23607
+   }
+  },
+  "CT": {
+   "ma": {
+    "file": "ma-CT.json",
+    "plans": 56,
+    "bytes": 12109
+   }
+  },
+  "DC": {
+   "ma": {
+    "file": "ma-DC.json",
+    "plans": 30,
+    "bytes": 6610
+   }
+  },
+  "GA": {
+   "ma": {
+    "file": "ma-GA.json",
+    "plans": 138,
+    "bytes": 29862
+   }
+  },
+  "GU": {
+   "ma": {
+    "file": "ma-GU.json",
+    "plans": 1,
+    "bytes": 236
+   }
+  },
+  "ID": {
+   "ma": {
+    "file": "ma-ID.json",
+    "plans": 54,
+    "bytes": 11948
+   }
+  },
+  "IL": {
+   "ma": {
+    "file": "ma-IL.json",
+    "plans": 142,
+    "bytes": 31255
+   }
+  },
+  "KY": {
+   "ma": {
+    "file": "ma-KY.json",
+    "plans": 108,
+    "bytes": 23054
+   }
+  },
+  "MA": {
+   "ma": {
+    "file": "ma-MA.json",
+    "plans": 81,
+    "bytes": 18389
+   }
+  },
+  "MD": {
+   "ma": {
+    "file": "ma-MD.json",
+    "plans": 69,
+    "bytes": 15444
+   }
+  },
+  "ME": {
+   "ma": {
+    "file": "ma-ME.json",
+    "plans": 51,
+    "bytes": 11304
+   }
+  },
+  "MN": {
+   "ma": {
+    "file": "ma-MN.json",
+    "plans": 81,
+    "bytes": 18426
+   }
+  },
+  "MP": {
+   "ma": {
+    "file": "ma-MP.json",
+    "plans": 1,
+    "bytes": 237
+   }
+  },
+  "NJ": {
+   "ma": {
+    "file": "ma-NJ.json",
+    "plans": 84,
+    "bytes": 18210
+   }
+  },
+  "NM": {
+   "ma": {
+    "file": "ma-NM.json",
+    "plans": 79,
+    "bytes": 17551
+   }
+  },
+  "NV": {
+   "ma": {
+    "file": "ma-NV.json",
+    "plans": 103,
+    "bytes": 22419
+   }
+  },
+  "NY": {
+   "ma": {
+    "file": "ma-NY.json",
+    "plans": 181,
+    "bytes": 40193
+   }
+  },
+  "PA": {
+   "ma": {
+    "file": "ma-PA.json",
+    "plans": 213,
+    "bytes": 47624
+   }
+  },
+  "PR": {
+   "ma": {
+    "file": "ma-PR.json",
+    "plans": 46,
+    "bytes": 9586
+   }
+  },
+  "RI": {
+   "ma": {
+    "file": "ma-RI.json",
+    "plans": 34,
+    "bytes": 7689
+   }
+  },
+  "VA": {
+   "ma": {
+    "file": "ma-VA.json",
+    "plans": 142,
+    "bytes": 30907
+   }
+  },
+  "VI": {
+   "ma": {
+    "file": "ma-VI.json",
+    "plans": 1,
+    "bytes": 238
+   }
+  },
+  "VT": {
+   "ma": {
+    "file": "ma-VT.json",
+    "plans": 14,
+    "bytes": 3032
+   }
+  },
+  "WA": {
+   "ma": {
+    "file": "ma-WA.json",
+    "plans": 129,
+    "bytes": 28199
+   }
+  }
+ }
+}

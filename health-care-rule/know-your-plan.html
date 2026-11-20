@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Health Care Rule Kit — Stage 1: Know Your Plan</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#faf6ef; color:#26221e; font-family: Georgia, 'Times New Roman', serif;
+         font-size:20px; line-height:1.55; }
+  .wrap { max-width:760px; margin:0 auto; padding:0 16px 48px; }
+  header.titlebar { background:#26221e; color:#faf6ef; padding:14px 16px; }
+  header.titlebar .kit { font-size:15px; letter-spacing:.12em; text-transform:uppercase; color:#e8a06a; }
+  header.titlebar h1 { font-size:26px; margin:2px 0 0; font-weight:bold; }
+  /* progress loop — always visible */
+  .loop { position:sticky; top:0; z-index:10; background:#fffdf8; border-bottom:3px solid #c45a14;
+          display:flex; justify-content:space-between; padding:10px 8px; }
+  .loop span { flex:1; text-align:center; font-size:16px; color:#6e6052; padding:6px 2px; border-radius:10px; }
+  .loop span b { display:block; font-size:19px; }
+  .loop span.now { background:#c45a14; color:#fff; }
+  .loop span.done { color:#2e7d32; }
+  video { width:100%; border-radius:14px; margin-top:16px; background:#000; }
+  .micro { font-size:17px; color:#6e6052; margin:8px 2px 0; }
+  .promise { font-size:24px; font-weight:bold; margin:22px 0 6px; }
+  h2 { font-size:25px; margin:34px 0 10px; }
+  .step { background:#fffdf8; border:2px solid #e5d9c8; border-radius:14px; padding:16px 18px; margin:12px 0; }
+  .step h3 { margin:0 0 8px; font-size:22px; }
+  .bigsteps { margin:8px 0 4px; padding-left:30px; }
+  .bigsteps li { margin:14px 0; }
+  .bigsteps .tip { color:#6e6052; font-size:18.5px; }
+  .needline { background:#eef4ea; border-radius:12px; padding:12px 16px; font-size:19px; }
+  .beat { margin:6px 0; }
+  .beat b.tag { color:#c45a14; }
+  .say { background:#f3ead9; border-left:6px solid #c45a14; padding:10px 14px; border-radius:0 10px 10px 0; font-style:italic; }
+  /* prompt cards */
+  .qcard { background:#fffdf8; border:3px solid #c45a14; border-radius:16px; padding:18px; margin:16px 0; }
+  .qhead { display:flex; justify-content:space-between; align-items:baseline; }
+  .qhead h3 { margin:0; font-size:23px; }
+  .qcount { font-size:17px; color:#6e6052; white-space:nowrap; }
+  .promptbox { background:#f7f1e5; border:2px dashed #a68b64; border-radius:12px; padding:14px 16px;
+               font-size:17.5px; line-height:1.5; white-space:pre-wrap; word-wrap:break-word; max-height:none; }
+  .promptbox .docline { display:block; margin-top:14px; padding-top:10px; border-top:2px solid #a68b64; font-weight:bold; }
+  .promptbox .docnote { display:block; font-size:15px; color:#6e6052; font-weight:normal; }
+  button, a.btn { font-family:inherit; cursor:pointer; border:none; border-radius:14px; text-decoration:none;
+                  display:block; width:100%; text-align:center; }
+  .bigbtn { font-size:23px; font-weight:bold; padding:20px 16px; margin:14px 0 6px; min-height:64px; }
+  .copybtn { background:#26221e; color:#fff; }
+  .aiBtn { background:#e8e0d0; color:#26221e; border:3px solid #a68b64; }
+  .aiBtn.hot { background:#c45a14; color:#fff; border-color:#c45a14; animation:pulse 1.2s infinite; }
+  .selfbtn { background:#fffdf8; color:#26221e; border:3px solid #26221e; }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(196,90,20,.55);} 70%{box-shadow:0 0 0 16px rgba(196,90,20,0);} 100%{box-shadow:0 0 0 0 rgba(196,90,20,0);} }
+  .copiedBanner { display:none; background:#2e7d32; color:#fff; font-size:23px; font-weight:bold;
+                  text-align:center; padding:16px; border-radius:14px; margin:14px 0 4px; }
+  .copiedBanner.show { display:block; }
+  .fallbackBanner { display:none; background:#fff3cd; border:2px solid #c45a14; color:#26221e;
+                    font-size:19px; padding:14px 16px; border-radius:14px; margin:14px 0 4px; }
+  .fallbackBanner.show { display:block; }
+  .pasteguide { background:#eef4ea; border-radius:12px; padding:12px 16px; font-size:18.5px; margin:14px 0 4px; }
+  /* Monica comfort path (Nov 20, 2026): papers line, worked sample, redaction beat */
+  .papersline { background:#eef4ea; border-radius:12px; padding:12px 16px; font-size:19px; margin:14px 0 4px; }
+  .redact { background:#fdf3e0; border:2px solid #c45a14; border-radius:12px; padding:12px 16px; font-size:18.5px; margin:14px 0 4px; }
+  .samplebox { background:#f4efe4; border:3px solid #6e6052; border-radius:14px; padding:16px 18px; margin:16px 0; }
+  .sampletag { display:inline-block; background:#26221e; color:#fff; font-size:14.5px; font-weight:bold;
+               letter-spacing:.14em; text-transform:uppercase; padding:5px 12px; border-radius:8px; margin-bottom:10px; }
+  .sampletag.light { background:#6e6052; }
+  .sampledoc { position:relative; overflow:hidden; background:#fff; border:2px solid #a68b64; border-radius:10px;
+               padding:14px 16px; font-size:17.5px; margin:6px 0 14px; }
+  .sampledoc::after { content:"SAMPLE"; position:absolute; right:6px; bottom:-8px; font-size:64px; font-weight:bold;
+                      color:rgba(196,90,20,.13); letter-spacing:.08em; pointer-events:none; }
+  .sampledochead { font-weight:bold; font-size:16.5px; color:#6e6052; margin:0 0 8px; text-transform:uppercase; letter-spacing:.06em; }
+  .sampleanswer { background:#fffdf8; border:2px solid #2e7d32; border-radius:10px; padding:14px 16px; font-size:18px; margin:6px 0 10px; }
+  .sampleanswer p { margin:8px 0; }
+  table.sampletable { margin:12px 0 4px; }
+  .navrow { display:flex; gap:12px; margin-top:18px; }
+  .navrow button, .navrow a.btn { flex:1; font-size:21px; font-weight:bold; padding:18px 10px; border-radius:14px; min-height:60px;
+                   background:#fffdf8; color:#26221e; border:3px solid #26221e; }
+  .navrow button:disabled { opacity:.35; }
+  .navrow button.next, .navrow a.btn.next { background:#26221e; color:#fff; }
+  .printbtn { background:#fffdf8; color:#26221e; border:3px solid #26221e; font-size:21px; font-weight:bold;
+              padding:18px 16px; border-radius:14px; width:100%; margin-top:14px; min-height:60px; }
+  .wsline { border-bottom:2px solid #a68b64; min-height:34px; margin:4px 0 14px; }
+  .wsitem b { font-size:20px; }
+  /* lookup tool (Question 1) — same language as lookup-prototype.html */
+  .lklabel { font-weight:bold; font-size:21px; margin:18px 0 6px; }
+  .doors { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:12px 0 4px; }
+  .door { font-family:inherit; cursor:pointer; background:#fffdf8; color:#26221e; border:3px solid #a68b64;
+          border-radius:14px; padding:18px 12px; font-size:20px; font-weight:bold; min-height:76px; text-align:center; width:100%; }
+  .door small { display:block; font-weight:normal; font-size:16.5px; color:#6e6052; margin-top:4px; }
+  .door.picked { background:#c45a14; border-color:#c45a14; color:#fff; }
+  .door.picked small { color:#ffe9d6; }
+  label.field { display:block; font-weight:bold; font-size:21px; margin:18px 0 6px; }
+  select, input[type="text"] { font-family:inherit; font-size:21px; width:100%; padding:16px 14px; min-height:60px;
+          border:3px solid #a68b64; border-radius:14px; background:#fffdf8; color:#26221e; }
+  .sugg { margin:10px 0 0; }
+  .sugg button { display:block; width:100%; text-align:left; font-family:inherit; cursor:pointer;
+          background:#fffdf8; border:2px solid #e5d9c8; border-radius:12px; padding:14px 16px; margin:8px 0;
+          font-size:19.5px; color:#26221e; min-height:60px; }
+  .sugg button b { display:block; font-size:20.5px; }
+  .sugg button span { color:#6e6052; font-size:17px; }
+  .lookupbtn { background:#26221e; color:#fff; }
+  .docbtn { background:#fffdf8; color:#26221e; border:3px solid #26221e; font-size:20px; font-weight:bold;
+            padding:18px 16px; margin:14px 0 6px; min-height:60px; }
+  .result { background:#fffdf8; border:3px solid #2e7d32; border-radius:16px; padding:18px; margin:16px 0; }
+  .result h3 { margin:0 0 2px; font-size:24px; }
+  .result .who { color:#6e6052; font-size:18.5px; margin:0 0 10px; }
+  table.money { width:100%; border-collapse:collapse; margin:10px 0; }
+  table.money th, table.money td { text-align:left; padding:11px 8px; border-bottom:2px solid #e5d9c8; vertical-align:top; }
+  table.money th { font-size:19px; width:52%; }
+  table.money td { font-size:20px; font-weight:bold; }
+  table.money td small { display:block; font-weight:normal; font-size:16.5px; color:#6e6052; }
+  .srcline { background:#eef4ea; border-radius:12px; padding:12px 16px; font-size:18px; margin:12px 0 4px; }
+  .fallback { background:#fffdf8; border:3px solid #c45a14; border-radius:16px; padding:18px; margin:16px 0; }
+  .fallback h3 { margin:0 0 8px; font-size:23px; }
+  footer { margin-top:40px; font-size:15.5px; color:#6e6052; text-align:center; }
+  .hidden { display:none; }
+  @media print {
+    .loop, video, .copybtn, .aiBtn, .navrow, .printbtn, .copiedBanner, .noPrint, .doors, .sugg, #lkBtn, #lkState, #lkName { display:none !important; }
+    body { background:#fff; font-size:13.5pt; }
+    .wrap { max-width:none; padding:0; }
+    header.titlebar { background:#fff; color:#000; border-bottom:2pt solid #000; padding:0 0 8pt; }
+    header.titlebar .kit { color:#000; }
+    .step, .qcard { border:1.5pt solid #666; break-inside:avoid; }
+    .promptbox { border:1.5pt solid #666; background:#fff; font-size:11.5pt; max-height:none; overflow:visible; }
+    a { color:#000; text-decoration:none; }
+  }
+</style>
+</head>
+<body>
+<header class="titlebar">
+  <div class="kit">Health Care Rule Kit</div>
+  <h1>Stage 1: Know Your Plan</h1>
+</header>
+
+<div class="wrap noPrint" style="padding-bottom:0;">
+  <p class="micro" style="margin-top:12px;"><a href="index.html">&#8592; Start over — back to the front door</a></p>
+</div>
+
+<div class="loop" id="loopBar" aria-label="Where you are">
+  <span id="ls-watch" class="now"><b>1. Watch</b>the video</span>
+  <span id="ls-copy"><b>2. Look up</b>your plan</span>
+  <span id="ls-try"><b>3. Ask</b><span class="svcName"></span> for help</span>
+  <span id="ls-next"><b>4. Next</b>question</span>
+</div>
+
+<div class="wrap">
+
+  <!-- VIDEO NOTE (Nov 20, 2026): design (B) is DECIDED — the closing points below the video to this page's own lookup box (Question 1), and the AI first appears at Question 2. The video below is the v5 cut: v1 body + the (B) closing, refined so Katie explains that plan benefit information is public (only the plan's name is needed) BEFORE the ask. -->
+<video id="katieVideo" controls playsinline preload="metadata" src="media/stage1.mp4"></video>
+  <p class="micro">Watch Katie first — she walks you through this whole stage. Takes about two minutes.</p>
+
+  <p class="promise">Know what kind of plan you have, what's covered, and what isn't — before anyone bills you.</p>
+  <p>Do this in one calm sitting, with your insurance card and your plan papers in front of you. Nothing here needs you to be sick or to have a bill. That's the point.</p>
+
+  <h2>The steps</h2>
+
+  <div class="step">
+    <h3>Step 1 — Name your plan kind</h3>
+    <p class="beat"><b class="tag">DO THIS:</b> Find the letters on your card — HMO, PPO, EPO, POS, or high-deductible — and note your kind. It's the first line of your plan card (on paper, the first line of the worksheet below).</p>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Your card itself — keep it where you can reach it.</p>
+  </div>
+
+  <div class="step">
+    <h3>Step 2 — Get the two documents that answer everything</h3>
+    <p class="beat"><b class="tag">DO THIS:</b> Get your <b>Summary of Benefits and Coverage</b> (the short one — look here first) and your <b>Evidence of Coverage</b> (the full contract). They're in your plan's app or member website, or one phone call away.</p>
+    <div class="say"><b class="tag">SAY THIS:</b> "Please send me my Summary of Benefits and Coverage and my Evidence of Coverage — the full plan document."</div>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Both documents, in one folder you can find in one minute.</p>
+  </div>
+
+  <div class="step">
+    <h3>Step 3 — Learn the money words</h3>
+    <p class="beat"><b class="tag">DO THIS:</b> Pull six numbers out of your Summary — these are your money words: your deductible, your out-of-pocket maximum (your ceiling for the year — the most protective number you own), what a regular doctor visit costs you, what a specialist costs you, what an emergency room visit costs you, and how your prescriptions are priced. In Question 1 below, our lookup shows them in one table — save that table as a photo on your phone; that photo is your plan card. Prefer paper? The worksheet at the bottom of this page is the same six numbers, ready to print and write in.</p>
+  </div>
+
+  <div class="step">
+    <h3>Step 4 — Check a service before you get it</h3>
+    <p class="beat"><b class="tag">DO THIS:</b> Before any test, scan, or procedure that isn't routine, look it up — then call the number on the back of your card and ask.</p>
+    <div class="say"><b class="tag">SAY THIS:</b> "I'm scheduled for this service on this date. Is it covered? Is the provider in my network? Does it need approval first? And what will my share be?"</div>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Your note of that call — the date, the name of the person, the reference number, and the answer. A logged answer is evidence.</p>
+  </div>
+
+  <div class="step">
+    <h3>Step 5 — Check the network twice</h3>
+    <p class="beat"><b class="tag">DO THIS:</b> For your main doctor and any specialist, check twice: once in the plan's list of doctors, and once by calling the doctor's office and asking if they take your exact plan. Lists of doctors are wrong more often than you'd think — the office knows.</p>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> A dated picture or printout of the listing you relied on.</p>
+  </div>
+
+  <div class="step">
+    <h3>Step 6 — Ask about approval first</h3>
+    <p class="beat"><b class="tag">DO THIS:</b> Some care needs the plan's OK <i>before</i> it happens. For anything beyond a regular office visit, ask: "Does this need approval first?" If yes, make sure the approval is in place before the appointment — and write down who told you, and when.</p>
+  </div>
+
+  <h2>Now do it — two questions, one at a time</h2>
+  <p>Katie explained it. Now find your plan's own numbers. <b>Question 1 is our lookup:</b> type just the name of your plan, and it fills in your money words from the plan's official published summary — right here, no AI, no sign-up, nothing personal. <b>Question 2 is where Monica comes in</b> — the kit's helper. You can ask her for help with your plan's own pages, or do the same job yourself on paper. Question 2 explains both, once — the choice is yours.</p>
+  <p class="micro">Before you paste anything anywhere: never paste your Social Security number or full bank or card numbers. Your name, dates, and amounts are all this work needs.</p>
+
+  <!-- AFTER THE VIDEO — DO THIS -->
+  <!-- DESTINATION DECIDED (Nov 20, 2026): design (B) — Question 1 is this page's own lookup tool (plan name → official published summary → money words, from the CMS files in lookup-data/). The AI link first appears at Question 2. The card PHOTO stays out — that decision is final. -->
+  <div class="step aftersteps" id="afterVideo">
+    <h3>After the video — do this</h3>
+    <p>Katie just explained the stage. Now do it once, slowly, with Question 1 below. Five little steps:</p>
+    <ol class="bigsteps">
+      <li><b>Answer one tap:</b> in the lookup below, tap where you got your plan — bought it yourself, Medicare, through a job, or Medicaid.</li>
+      <li><b>Pick your state.</b> The lookup loads your state's official 2026 plan list.</li>
+      <li><b>Type the name of your plan.</b> Just the name printed on your card or your paperwork.
+        <br><span class="tip">Health plans publish this information for anyone to see — the name of your plan is all we need to look it up. Just the name — nothing personal. No photo of your card, no member number, nothing about you. We don't need anything personal from you — just the name of your plan.</span></li>
+      <li><b>Tap your plan when it appears.</b> Your money words come up, from the plan's own published summary.</li>
+      <li><b>Save them as a photo — your plan card.</b> Screenshot the table and keep it in an album or folder on your phone named for your plan. If a number in the photo ever disagrees with your plan's own document, the document wins. Prefer paper? Print the worksheet below and write them in instead. Then go on to Question 2 — that's where <span class="svcName"></span> comes in. She's explained there, once, and the choice is yours.</li>
+    </ol>
+  </div>
+
+  <!-- QUESTION 1 — THE LOOKUP (design (B), decided Nov 20, 2026).
+       This card IS the kit's own plan-lookup tool — the same tool as
+       lookup-prototype.html, embedded where the buyer uses it.
+       Data: lookup-data/ (CMS QHP + MA Landscape, plan year 2026,
+       verbatim — see lookup-data/README.md). Nothing typed here
+       leaves the page. The AI link first appears at Question 2. -->
+  <div class="qcard" id="card1">
+    <div class="qhead"><h3>Look up my plan</h3><span class="qcount">Question 1 of 2</span></div>
+    <p class="needline"><b>You'll need:</b> The name of your health plan — just the name, printed on your card or paperwork. Nothing personal.</p>
+    <p>We look your plan up in the government's own published plan files for 2026, and fill in your money words from its official summary.</p>
+
+    <p class="lklabel">Where did you get your plan?</p>
+    <div class="doors" id="lkDoors">
+      <button class="door" data-src="marketplace">I bought it myself<small>The Marketplace — HealthCare.gov or my state's site</small></button>
+      <button class="door" data-src="medicare">Medicare<small>A Medicare Advantage or Part D plan</small></button>
+      <button class="door" data-src="job">Through my job<small>Or a spouse's or parent's job</small></button>
+      <button class="door" data-src="medicaid">Medicaid<small>My state helps cover me</small></button>
+    </div>
+
+    <div class="fallback hidden" id="lkJob">
+      <h3>Your plan comes through a job — here's the honest answer</h3>
+      <p>Employer plans aren't published in any government file — not ours, not anyone's. No website can look yours up, and any site that claims it can is guessing. But you don't need a lookup: you need your plan's <b>two documents</b>, and you are entitled to both.</p>
+      <p class="beat"><b class="tag">DO THIS:</b> Call the member number on the back of your insurance card — or ask your HR department — and say this:</p>
+      <div class="say"><b>SAY THIS:</b> "Please send me my Summary of Benefits and Coverage and my Evidence of Coverage — the full plan document."</div>
+      <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Both documents, in one folder you can find in one minute. Write down who you talked to, and when.</p>
+      <p>When the documents arrive, your money words are in the Summary's cost tables — photograph those pages and keep the photo as your plan card. If a number in the photo ever disagrees with your plan's own document, the document wins. (The worksheet below lists the same six numbers, if you prefer paper.) Question 2 — the Next question button, below — works from those pages with you.</p>
+    </div>
+
+    <div class="fallback hidden" id="lkMedicaid">
+      <h3>Medicaid works differently — and this kit has a whole lane for it</h3>
+      <p>Medicaid is run state by state, and its plans aren't in the federal files this lookup uses — so there's no honest way to look yours up here. What protects you in Medicaid isn't a price table; it's your rights: written notice before anything changes, a fair hearing if you disagree, and coverage that continues while you appeal.</p>
+      <p class="beat"><b class="tag">DO THIS:</b> Keep every letter your state sends you, and note the name of your plan exactly as it appears on your Medicaid card. Your state's Medicaid agency is the official source for what your plan covers.</p>
+      <p>The kit's welfare lane — <b>Stay on the Track, Keep Your Rights</b> — walks your whole road from there.</p>
+      <a class="btn docbtn" href="https://www.healthcare.gov/medicaid-chip/" target="_blank" rel="noopener">HealthCare.gov — Medicaid &amp; CHIP, by state</a>
+    </div>
+
+    <div id="lkForm" class="hidden">
+      <label class="field" for="lkState">Your state — the state your plan is in</label>
+      <select id="lkState"><option value="">Choose your state…</option></select>
+      <p class="micro" id="lkLoadNote"></p>
+      <div id="lkNameBlock" class="hidden">
+        <label class="field" for="lkName">Your plan's name — exactly as it's printed on your card or paperwork</label>
+        <input type="text" id="lkName" autocomplete="off" placeholder="Start typing your plan's name…">
+        <div class="sugg" id="lkSugg"></div>
+        <button class="bigbtn lookupbtn" id="lkBtn">Look up my plan</button>
+        <p class="micro">Just the name — the name is printed on a million identical cards. It says nothing about you.</p>
+      </div>
+    </div>
+
+    <div class="fallback hidden" id="lkSbe">
+      <h3>Your state runs its own marketplace</h3>
+      <p>So its plans aren't in the federal file this lookup uses — and we won't guess at your numbers. Your plan's official summary is on your state's own marketplace site, and HealthCare.gov will send you straight there:</p>
+      <p class="beat"><b class="tag">TAP THIS:</b> Tap the button below → tap <b>"See plans &amp; prices"</b> → type your ZIP code → it routes you to your state's marketplace, where your plan's own page shows the same numbers this lookup would.</p>
+      <a class="btn docbtn" href="https://www.healthcare.gov/see-plans/" target="_blank" rel="noopener">Go to HealthCare.gov — see plans &amp; prices</a>
+      <p>Or skip the website entirely — your two documents have everything, and you're entitled to them:</p>
+      <div class="say"><b>SAY THIS:</b> "Please send me my Summary of Benefits and Coverage and my Evidence of Coverage — the full plan document."</div>
+      <p class="micro">Call the member number on the back of your card. Write down who you talked to, and when.</p>
+    </div>
+
+    <div class="fallback hidden" id="lkNoMatch">
+      <h3>We couldn't find that name in the official 2026 list for your state</h3>
+      <p>That happens, and it doesn't mean your plan isn't real. The usual reasons:</p>
+      <ul>
+        <li><b>The name is typed a little differently</b> than the plan prints it. Check the exact name on your card or paperwork — every word and abbreviation — and try again above.</li>
+        <li><b>Your plan comes through a job</b> — employer plans aren't in any public file. Use the "Through my job" door above; your two documents are the way.</li>
+        <li><b>Your plan is from a different year</b> — this lookup holds the 2026 plans.</li>
+      </ul>
+      <p class="beat"><b class="tag">OR GO TO THE SOURCE:</b></p>
+      <div id="lkFinder"></div>
+      <p>And the route that always works — your two documents:</p>
+      <div class="say"><b>SAY THIS:</b> "Please send me my Summary of Benefits and Coverage and my Evidence of Coverage — the full plan document."</div>
+      <p class="micro">Call the member number on the back of your card. Write down who you talked to, and when.</p>
+    </div>
+
+    <div class="result hidden" id="lkResult"></div>
+
+    <div class="navrow">
+      <button disabled>&#8592; Back</button>
+      <button class="next" id="next1">Next question &#8594;</button>
+    </div>
+  </div>
+
+  <!-- QUESTION 2 -->
+  <div class="qcard hidden" id="card2">
+    <div class="qhead"><h3>Check this service before I get it</h3><span class="qcount">Question 2 of 2</span></div>
+    <p><b>This is where <span class="svcName"></span> comes in — the kit's helper.</b> Question 1 was our lookup: public numbers. This question works from <i>your</i> plan's own pages, and that's a reading job. You have two ways to do it, and the choice is yours every time: <b>ask <span class="svcName"></span> for help</b>, or <b>do it yourself</b> on paper. This is the one place we explain her — after this, the kit just shows the button.</p>
+    <p class="micro">New to working with a helper like this? The full method is on the <a href="using-your-ai.html">Using Your AI page</a> — read it once, on the way in.</p>
+    <p class="papersline"><b>Your papers stay yours:</b> anything you share goes only between you and <span class="svcName"></span>. MakeDealNow never receives, sees, or stores your documents — your paperwork goes from your hands to <span class="svcName"></span> and back to your hands.</p>
+    <p><b>First, get ready:</b> write down the service you're scheduled for — its name, the provider, and the date — and find every page of your plan documents that mentions this service, referrals, or approval.</p>
+    <p style="margin-top:18px;"><b>See it happen first — with a sample.</b> Here is the whole thing, start to finish, with a made-up plan and a made-up visit. Watch what happens to a document before you ever use one of your own.</p>
+    <div class="samplebox">
+      <span class="sampletag">Sample — made up, start to finish</span>
+      <p style="margin-top:2px;"><b>The visit (made up):</b> "I am scheduled for an MRI of my lower back, at Valley Imaging Center, on March 12."</p>
+      <p style="margin-bottom:4px;"><b>The plan pages pasted with it (made up):</b></p>
+      <div class="sampledoc">
+        <p class="sampledochead">Sample document — SampleCare Standard Silver · Summary of Benefits and Coverage (part of one page)</p>
+        <p style="margin:6px 0;"><b>If you need a test:</b> Diagnostic test (x-ray, blood work) — $40 copayment. Imaging (CT/PET scans, MRIs) — 30% coinsurance after deductible.</p>
+        <p style="margin:6px 0;"><b>Limits:</b> Imaging needs a referral from your primary care doctor. Care from out-of-network providers is not covered, except in an emergency.</p>
+      </div>
+      <p style="margin-bottom:4px;">The question she copies is <b>the exact one in the box below</b> — with those pages pasted under its last line. Here is what <span class="svcName"></span> sends back:</p>
+      <div class="sampleanswer">
+        <span class="sampletag light">Sample answer</span>
+        <p><b>1. Is it covered?</b> Covered only under conditions. The document's own words: "Imaging (CT/PET scans, MRIs) — 30% coinsurance after deductible," and "Imaging needs a referral from your primary care doctor." In plain language: your plan covers the MRI, but only with a referral from your regular doctor.</p>
+        <p><b>2. The conditions:</b> A referral is required — from your primary care doctor. An in-network provider is required: "Care from out-of-network providers is not covered, except in an emergency." Prior authorization required? <b>Not in the document</b> — the pasted pages never mention it.</p>
+        <p><b>3. Your cost:</b> 30% coinsurance after your deductible. How much the deductible is: <b>Not in the document</b> — these pages don't state it, so no dollar total can be worked out from them.</p>
+        <p><b>4. Questions the document does NOT answer:</b> Does the plan have to approve this MRI before March 12? How much of the deductible is already met? Is Valley Imaging Center in the plan's network? (The document never names providers.)</p>
+        <p style="margin-bottom:2px;">And the same answer as a table — the one you would save as a photo:</p>
+        <table class="money sampletable">
+          <tr><th>Covered?</th><td>Yes — with conditions</td></tr>
+          <tr><th>Referral needed?</th><td>Yes — from your primary care doctor</td></tr>
+          <tr><th>Approval needed first?</th><td>Not in the document</td></tr>
+          <tr><th>Your cost</th><td>30% coinsurance after deductible</td></tr>
+          <tr><th>Deductible amount</th><td>Not in the document</td></tr>
+        </table>
+      </div>
+      <p class="micro" style="margin-top:10px;">See the "Not in the document" answers? That's on purpose. <span class="svcName"></span> works only from the pages she's given — where a page is silent, she says so instead of guessing. Your real answer works exactly the same way.</p>
+    </div>
+    <p class="micro">This whole box is what gets copied — including the last line, where your document goes.</p>
+    <div class="promptbox" id="box2">I am scheduled for a medical service and I want to know how my plan treats it BEFORE I receive it. Below I will paste: (1) what I know about the service — its name, the provider, and the date — and (2) every part of my plan documents (Summary of Benefits and Coverage and Evidence of Coverage) that mentions this service, this kind of provider, referrals, or prior authorization.
+
+From the pasted material only, tell me:
+1. Is this service listed as covered, covered only under conditions, or not covered? Quote the document&#x27;s own words for the answer, then say it in plain language.
+2. Every condition the documents attach to it: in-network provider required? Referral required? Prior authorization required? Anything else?
+3. What the documents say my cost would be — copay, or deductible and coinsurance — or &quot;Not in the document&quot; if the pasted pages don&#x27;t price it.
+4. A list of questions the documents do NOT answer about this service — the gaps I still have to ask my plan about.
+
+Work only from what I pasted. If something is not in the pasted material, write &quot;Not in the document&quot; — do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language.<span class="docline">Here is my document:<span class="docnote">(On the AI page, paste your notes and the plan pages right under this line.)</span></span></div>
+    <button class="bigbtn copybtn" data-copy="2">Copy this question</button>
+    <p class="micro">One tap copies the whole question. (Way 2 below doesn't need it.)</p>
+    <div class="copiedBanner" id="banner2">Copied! Now choose your way &#8595;</div>
+    <div class="fallbackBanner" id="fallback2">Copy didn't work on this phone — no problem. Hold your finger on the words in the box above until <b>Copy</b> appears, tap Copy, then tap the orange button below.</div>
+    <p style="margin-top:18px;"><b>Two ways from here — your choice:</b></p>
+    <p class="beat"><b class="tag">WAY 1 — ASK <span class="svcName"></span> FOR HELP:</b></p>
+    <a class="btn bigbtn aiBtn" id="aiBtn2" href="#" target="_blank" rel="noopener"></a>
+    <p>First time? Here's what to expect: <span class="svcName"></span> will ask you to make a <b>free account</b> first. It costs nothing, no card — and it's the only sign-up in this whole kit, so when you see it, it's expected, not a catch. Her free level (about 40 uses a day) is enough for everything in this kit.</p>
+    <div class="redact"><b>Before you paste — cover what she doesn't need:</b> Never paste your Social Security number, or full bank, card, or account numbers — this work never needs them. Anything else you'd rather keep private — a member number, an address — cover it with a fingertip or a scrap of paper <b>before</b> you photograph the page, or leave it out of what you paste. You decide what <span class="svcName"></span> sees.</div>
+    <div class="pasteguide"><b>How to paste on her page:</b> hold your finger in the question box until <b>Paste</b> appears, tap Paste, add your document pages, then tap her send arrow. Come right back here when you're done.</div>
+    <p><b>When her answer comes back:</b> screenshot the table and save it in the same album as your plan card. If a number in the photo ever disagrees with your plan's own document, the document wins.</p>
+    <p class="micro">MakeDealNow may earn a commission when you sign up through our link — it never changes what you pay.</p>
+    <p class="beat" style="margin-top:18px;"><b class="tag">WAY 2 — DO IT MYSELF:</b></p>
+    <p>Skip the AI entirely. Do you already know your plan information? Then just write down what you know on the worksheet below — for your own review, your own records, all in one place. Don't know a number? Leave it blank — the kit shows you how to get it yourself: the steps above show where it sits in your plan's own pages, and Step 4 has the exact words to ask member services on the phone. Nothing on this route depends on <span class="svcName"></span> — no account, nothing leaves your hands. And if you saved the photo of your plan card in Question 1, that photo does this job too — the worksheet is simply the paper version.</p>
+    <a class="btn bigbtn selfbtn" href="#worksheet">Do it myself — use the worksheet</a>
+    <div class="navrow">
+      <button id="back2">&#8592; Back</button>
+      <button class="next" disabled>Next question &#8594;</button>
+    </div>
+    <p class="micro">That's both questions for this stage. When your plan card is saved — the photo from Question 1, with Monica's table saved beside it if you used her — Stage 1 is done.</p>
+  </div>
+
+  <h2 id="worksheet">The paper worksheet — the six numbers</h2>
+  <p>This sheet is the paper option. The kit's primary record is the photo: the table from Question 1 — and Monica's table from Question 2, if you used her — saved on your phone as your plan card. If you prefer paper, or want a printed backup, print this sheet and write the six numbers in, checking each one against your own Summary of Benefits and Coverage as you go. If a number in the photo ever disagrees with your plan's own document, the document wins. Six numbers in one place will answer most "what will this cost me?" questions faster than any phone call.</p>
+  <div class="step">
+    <p class="wsitem"><b>My plan kind (HMO, PPO, EPO, POS, high-deductible):</b></p><div class="wsline"></div>
+    <p class="wsitem"><b>My deductible:</b></p><div class="wsline"></div>
+    <p class="wsitem"><b>My out-of-pocket maximum (my ceiling for the year):</b></p><div class="wsline"></div>
+    <p class="wsitem"><b>What I pay for a regular doctor visit:</b></p><div class="wsline"></div>
+    <p class="wsitem"><b>What I pay for a specialist:</b></p><div class="wsline"></div>
+    <p class="wsitem"><b>What I pay for an emergency room visit:</b></p><div class="wsline"></div>
+    <p class="wsitem"><b>How my prescriptions are priced:</b></p><div class="wsline"></div>
+    <p class="wsitem"><b>The phone number on the back of my card:</b></p><div class="wsline"></div>
+  </div>
+  <button class="printbtn" onclick="window.print()">Print this stage</button>
+  <p class="micro">Print this and keep it next to your phone — you can read along while the AI page is open.</p>
+  <a class="btn printbtn noPrint" href="worksheets/know-your-plan-worksheet.pdf" download>Download the worksheet (PDF)</a>
+
+  <!-- ================= PREV / NEXT ================= -->
+  <div class="navrow" style="margin-top:34px;">
+    <a class="btn" href="index.html">&#8592; Back: the front door</a>
+    <a class="btn next" href="your-doctor.html">Next: Your Doctor &mdash; the shared road &#8594;</a>
+  </div>
+  <p class="micro">Stage 1 is done. From here, your road is the shared road every lane walks: your doctor, the visit, everything after, the bill. (Your insurer-rights material is a toolbox the later pages draw on when you need it — it isn't a stage you walk.)</p>
+
+  <footer>
+    <p>MakeDealNow — The Health Care Rule Kit (preview)</p>
+    <p>Educational information — not legal or medical advice.</p>
+  </footer>
+</div>
+
+<script>
+/* ============================================================
+   THE KIT'S HELPER — MONICA. ONE PLACE ONLY.
+   Decided Nov 20, 2026: Monica is the kit's helper, presented
+   as a HELP BUTTON ("Ask Monica for help") — never as an
+   AI-service or partner link — and the kit earns the referral
+   (Tapfiliate program — 25% recurring for the referred user's
+   first year; see ai-affiliate-research-2026-11-19.md).
+   The url below is Monica's PLAIN public URL. Once the
+   affiliate account is approved, the referral link replaces
+   the url on the ONE line below — name and structure stay —
+   and every label and link on this page follows.
+   Nothing else on this page hardcodes the service.
+   ============================================================ */
+var AI_SERVICE = { name: "Monica", url: "https://monica.im" };
+
+/* Render every service label and link from AI_SERVICE. */
+document.querySelectorAll(".svcName").forEach(function(el) { el.textContent = AI_SERVICE.name; });
+/* Design (B): the AI link appears at Question 2 only — Question 1 is the lookup. */
+["2"].forEach(function(n) {
+  var b = document.getElementById("aiBtn" + n);
+  b.setAttribute("href", AI_SERVICE.url);
+  b.textContent = "Ask " + AI_SERVICE.name + " for help";
+});
+
+var PROMPTS = { "2": "I am scheduled for a medical service and I want to know how my plan treats it BEFORE I receive it. Below I will paste: (1) what I know about the service \u2014 its name, the provider, and the date \u2014 and (2) every part of my plan documents (Summary of Benefits and Coverage and Evidence of Coverage) that mentions this service, this kind of provider, referrals, or prior authorization.\n\nFrom the pasted material only, tell me:\n1. Is this service listed as covered, covered only under conditions, or not covered? Quote the document's own words for the answer, then say it in plain language.\n2. Every condition the documents attach to it: in-network provider required? Referral required? Prior authorization required? Anything else?\n3. What the documents say my cost would be \u2014 copay, or deductible and coinsurance \u2014 or \"Not in the document\" if the pasted pages don't price it.\n4. A list of questions the documents do NOT answer about this service \u2014 the gaps I still have to ask my plan about.\n\nWork only from what I pasted. If something is not in the pasted material, write \"Not in the document\" \u2014 do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language.\n\nHere is my document:\n" };
+var current = 1;
+
+function setLoop(stage) {
+  ["watch","copy","try","next"].forEach(function(s) {
+    var el = document.getElementById("ls-" + s);
+    el.className = "";
+  });
+  var order = ["watch","copy","try","next"];
+  var idx = order.indexOf(stage);
+  order.forEach(function(s, i) {
+    var el = document.getElementById("ls-" + s);
+    if (i < idx) el.className = "done";
+    if (i === idx) el.className = "now";
+  });
+}
+var video = document.getElementById("katieVideo");
+video.addEventListener("play", function(){ setLoop("copy"); });
+video.addEventListener("ended", function(){ setLoop("copy"); });
+
+function selectBoxText(id) {
+  var el = document.getElementById(id);
+  var range = document.createRange();
+  range.selectNodeContents(el);
+  var sel = window.getSelection();
+  sel.removeAllRanges(); sel.addRange(range);
+}
+
+document.querySelectorAll(".copybtn").forEach(function(btn) {
+  btn.addEventListener("click", function() {
+    var n = btn.getAttribute("data-copy");
+    var text = PROMPTS[n];
+    var banner = document.getElementById("banner" + n);
+    var fb = document.getElementById("fallback" + n);
+    var aiBtn = document.getElementById("aiBtn" + n);
+    function onCopied() {
+      banner.classList.add("show"); fb.classList.remove("show");
+      aiBtn.classList.add("hot"); setLoop("try");
+      banner.scrollIntoView({behavior:"smooth", block:"center"});
+    }
+    function onFailed() {
+      selectBoxText("box" + n);
+      fb.classList.add("show"); banner.classList.remove("show");
+      aiBtn.classList.add("hot"); setLoop("try");
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(onCopied, function() {
+        // fallback: temporary textarea + execCommand
+        var ta = document.createElement("textarea");
+        ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select();
+        var ok = false;
+        try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+        document.body.removeChild(ta);
+        if (ok) { onCopied(); } else { onFailed(); }
+      });
+    } else {
+      onFailed();
+    }
+  });
+});
+
+["2"].forEach(function(n) {
+  document.getElementById("aiBtn" + n).addEventListener("click", function(){ setLoop("next"); });
+});
+
+document.getElementById("next1").addEventListener("click", function() {
+  document.getElementById("card1").classList.add("hidden");
+  document.getElementById("card2").classList.remove("hidden");
+  current = 2; setLoop("copy");
+  document.getElementById("card2").scrollIntoView({behavior:"smooth"});
+});
+document.getElementById("back2").addEventListener("click", function() {
+  document.getElementById("card2").classList.add("hidden");
+  document.getElementById("card1").classList.remove("hidden");
+  current = 1; setLoop("copy");
+  document.getElementById("card1").scrollIntoView({behavior:"smooth"});
+});
+</script>
+<script>
+/* ============================================================
+   QUESTION 1 — THE PLAN LOOKUP (design (B), Nov 20, 2026).
+   Same tool as lookup-prototype.html, embedded in the stage page.
+   Data: lookup-data/qhp-<ST>.json / ma-<ST>.json — slimmed
+   VERBATIM from the official CMS files (lookup-data/README.md).
+   Nothing typed here leaves the page.
+   ============================================================ */
+(function(){
+  var LK_STATES = [["AL","Alabama"],["AK","Alaska"],["AZ","Arizona"],["AR","Arkansas"],["CA","California"],["CO","Colorado"],["CT","Connecticut"],["DE","Delaware"],["DC","District of Columbia"],["FL","Florida"],["GA","Georgia"],["HI","Hawaii"],["ID","Idaho"],["IL","Illinois"],["IN","Indiana"],["IA","Iowa"],["KS","Kansas"],["KY","Kentucky"],["LA","Louisiana"],["ME","Maine"],["MD","Maryland"],["MA","Massachusetts"],["MI","Michigan"],["MN","Minnesota"],["MS","Mississippi"],["MO","Missouri"],["MT","Montana"],["NE","Nebraska"],["NV","Nevada"],["NH","New Hampshire"],["NJ","New Jersey"],["NM","New Mexico"],["NY","New York"],["NC","North Carolina"],["ND","North Dakota"],["OH","Ohio"],["OK","Oklahoma"],["OR","Oregon"],["PA","Pennsylvania"],["RI","Rhode Island"],["SC","South Carolina"],["SD","South Dakota"],["TN","Tennessee"],["TX","Texas"],["UT","Utah"],["VT","Vermont"],["VA","Virginia"],["WA","Washington"],["WV","West Virginia"],["WI","Wisconsin"],["WY","Wyoming"],["AS","American Samoa"],["GU","Guam"],["MP","Northern Mariana Islands"],["PR","Puerto Rico"],["VI","U.S. Virgin Islands"]];
+  var LK_QHP_STATES = ["AK","AL","AR","AZ","DE","FL","HI","IA","IN","KS","LA","MI","MO","MS","MT","NC","ND","NE","NH","OH","OK","OR","SC","SD","TN","TX","UT","WI","WV","WY"];
+  var lkSource = null, lkPlans = [], lkState = "";
+  function E(id){ return document.getElementById(id); }
+  var sel = E("lkState");
+  LK_STATES.forEach(function(s){
+    var o = document.createElement("option"); o.value = s[0]; o.textContent = s[1];
+    sel.appendChild(o);
+  });
+  function lkHide(){
+    ["lkJob","lkMedicaid","lkSbe","lkNoMatch","lkResult"].forEach(function(id){ E(id).classList.add("hidden"); });
+  }
+  function lkShow(id){
+    lkHide();
+    var el = E(id); el.classList.remove("hidden");
+    el.scrollIntoView({behavior:"smooth", block:"start"});
+  }
+  document.querySelectorAll("#lkDoors .door").forEach(function(d){
+    d.addEventListener("click", function(){
+      document.querySelectorAll("#lkDoors .door").forEach(function(x){ x.classList.remove("picked"); });
+      d.classList.add("picked");
+      lkSource = d.getAttribute("data-src");
+      lkHide(); lkPlans = []; E("lkName").value = ""; E("lkSugg").innerHTML = "";
+      if (lkSource === "job"){ E("lkForm").classList.add("hidden"); lkShow("lkJob"); return; }
+      if (lkSource === "medicaid"){ E("lkForm").classList.add("hidden"); lkShow("lkMedicaid"); return; }
+      E("lkForm").classList.remove("hidden");
+      if (lkState) lkLoad();
+    });
+  });
+  sel.addEventListener("change", function(){
+    lkState = sel.value;
+    lkPlans = []; E("lkName").value = ""; E("lkSugg").innerHTML = "";
+    lkHide();
+    if (lkState) lkLoad();
+  });
+  function lkLoad(){
+    E("lkNameBlock").classList.add("hidden");
+    if (lkSource === "marketplace" && LK_QHP_STATES.indexOf(lkState) === -1){
+      E("lkLoadNote").textContent = "";
+      lkShow("lkSbe");
+      return;
+    }
+    var file = "lookup-data/" + (lkSource === "medicare" ? "ma-" : "qhp-") + lkState + ".json";
+    E("lkLoadNote").textContent = "Loading your state's 2026 plan list…";
+    fetch(file).then(function(r){
+      if (!r.ok) throw new Error("http " + r.status);
+      return r.json();
+    }).then(function(data){
+      lkPlans = data;
+      E("lkLoadNote").textContent = data.length + " plans in your state's official 2026 list. Now type yours.";
+      E("lkNameBlock").classList.remove("hidden");
+    }).catch(function(){
+      E("lkLoadNote").textContent = "We couldn't load your state's plan list just now. Check your connection and try again — or use your plan's two documents (the member number is on the back of your card).";
+    });
+  }
+  function lkNorm(s){ return (s||"").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim(); }
+  function lkMatches(q){
+    var toks = lkNorm(q).split(" ").filter(Boolean);
+    if (!toks.length) return [];
+    return lkPlans.filter(function(p){
+      var n = lkNorm(p.n) + " " + lkNorm(p.i || p.org || "");
+      return toks.every(function(t){ return n.indexOf(t) !== -1; });
+    });
+  }
+  function lkSuggBtn(p){
+    var b = document.createElement("button");
+    b.innerHTML = "<b></b><span></span>";
+    b.querySelector("b").textContent = p.n;
+    b.querySelector("span").textContent = (p.i || p.org || "") + (p.t ? " · " + p.t : "") + (p.m ? " · " + p.m : "");
+    b.addEventListener("click", function(){ lkRender(p); });
+    return b;
+  }
+  E("lkName").addEventListener("input", function(){
+    var q = E("lkName").value;
+    var box = E("lkSugg"); box.innerHTML = "";
+    lkHide();
+    if (lkNorm(q).length < 3) return;
+    lkMatches(q).slice(0, 8).forEach(function(p){ box.appendChild(lkSuggBtn(p)); });
+  });
+  E("lkBtn").addEventListener("click", function(){
+    var q = lkNorm(E("lkName").value);
+    if (!q) return;
+    var exact = lkPlans.filter(function(p){ return lkNorm(p.n) === q; });
+    if (exact.length === 1){ lkRender(exact[0]); return; }
+    var found = lkMatches(E("lkName").value);
+    if (found.length === 1){ lkRender(found[0]); return; }
+    if (found.length > 1){
+      var box = E("lkSugg"); box.innerHTML = "";
+      found.slice(0, 8).forEach(function(p){ box.appendChild(lkSuggBtn(p)); });
+      box.scrollIntoView({behavior:"smooth", block:"center"});
+      return;
+    }
+    var fl = E("lkFinder"); fl.innerHTML = "";
+    var a = document.createElement("a");
+    a.className = "btn docbtn"; a.target = "_blank"; a.rel = "noopener";
+    if (lkSource === "medicare"){
+      a.href = "https://www.medicare.gov/plan-compare";
+      a.textContent = "Medicare.gov Plan Finder — tap “Find plans,” pick Medicare Advantage, type your ZIP";
+    } else {
+      a.href = "https://www.healthcare.gov/see-plans/";
+      a.textContent = "HealthCare.gov — tap “See plans & prices,” type your ZIP, find your plan";
+    }
+    fl.appendChild(a);
+    lkShow("lkNoMatch");
+  });
+  function lkRow(label, value, sub){
+    if (!value) return "";
+    return "<tr><th>" + label + "</th><td>" + value + (sub ? "<small>" + sub + "</small>" : "") + "</td></tr>";
+  }
+  function lkEsc(s){ var d = document.createElement("div"); d.textContent = s || ""; return d.innerHTML; }
+  function lkRender(p){
+    var html = "";
+    if (lkSource === "medicare"){
+      var kindLabel = {"MA-PD":"Medicare Advantage with drug coverage","MA":"Medicare Advantage (no drug coverage in this plan)","SNP":"Medicare Special Needs Plan","PDP":"Medicare Part D drug plan"}[p.k] || p.k;
+      html += "<h3>" + lkEsc(p.n) + "</h3><p class='who'>" + lkEsc(p.org) + " · " + lkEsc(p.t) + " · " + lkEsc(kindLabel) + "</p>";
+      html += "<table class='money'>";
+      html += lkRow("What you pay each month (premium)", lkEsc(p.prem), p.prem === "Varies by county" ? "Medicare.gov's Plan Finder shows your county's exact amount." : "The plan's full monthly premium (Part C + Part D), before any help you get paying it.");
+      html += lkRow("Your out-of-pocket maximum — your ceiling for the year", lkEsc(p.moop), "The most you can be made to pay in a year for covered care in the plan's network.");
+      if (p.k !== "MA"){
+        html += lkRow("Prescription drug deductible", lkEsc(p.dd), "What you pay first for prescriptions, if your plan has one.");
+        html += lkRow("Of that premium, the drug part (Part D)", lkEsc(p.dp));
+      }
+      html += "</table>";
+      if (p.snp && p.snp !== "Not Applicable") html += "<p class='micro'>This is a Special Needs Plan (" + lkEsc(p.snp) + ") — it is only for people who meet its conditions.</p>";
+      html += "<p class='srcline'><b>Where these come from:</b> Medicare's official published plan file for 2026 (CMS Medicare Advantage Landscape). Medicare's file lists premiums and your out-of-pocket maximum — what you pay for a doctor or specialist visit is printed in your plan's own Summary of Benefits, which Medicare.gov's Plan Finder has for your county.</p>";
+      html += "<a class='btn docbtn' href='https://www.medicare.gov/plan-compare' target='_blank' rel='noopener'>Medicare.gov Plan Finder — this plan in your county</a>";
+    } else {
+      html += "<h3>" + lkEsc(p.n) + "</h3><p class='who'>" + lkEsc(p.i) + " · " + lkEsc(p.m) + " · " + lkEsc(p.t) + "</p>";
+      html += "<table class='money'>";
+      html += lkRow("Your deductible", lkEsc(p.d), "What you pay first, before the plan pays its share. Family: " + lkEsc(p.df));
+      html += lkRow("Your out-of-pocket maximum — your ceiling for the year", lkEsc(p.o), "The most protective number you own. Family: " + lkEsc(p.of));
+      html += lkRow("A regular doctor visit (primary care)", lkEsc(p.p));
+      html += lkRow("A specialist visit", lkEsc(p.s));
+      html += lkRow("An emergency room visit", lkEsc(p.e));
+      html += lkRow("Prescriptions — generic", lkEsc(p.g));
+      html += lkRow("Prescriptions — preferred brand", lkEsc(p.b));
+      html += lkRow("Prescriptions — non-preferred brand", lkEsc(p.nb));
+      html += lkRow("Prescriptions — specialty", lkEsc(p.sp));
+      html += "</table>";
+      if ((p.m || "").indexOf("Silver") !== -1)
+        html += "<p class='micro'>These are the plan's standard Silver numbers. If you got extra savings (cost-sharing reductions) when you enrolled, your own numbers are lower — your Summary of Benefits shows yours.</p>";
+      html += "<p class='srcline'><b>Where these come from:</b> your plan's official published summary for 2026 — the same Summary of Benefits and Coverage your plan files with HealthCare.gov (CMS QHP Landscape data). <b>Check them against your own plan document: if your paper and this page ever disagree, your paper wins.</b></p>";
+      if (p.u) html += "<a class='btn docbtn' href='" + lkEsc(p.u) + "' target='_blank' rel='noopener'>Open your plan's own Summary of Benefits (PDF)</a>";
+    }
+    html += "<p style='margin-top:16px;'>Save this table as a <b>photo on your phone</b> — screenshot it, and keep it in an album or folder named for your plan. That photo is your <b>plan card</b>. If a number in the photo ever disagrees with your plan's own document, the document wins. Prefer paper? Print the worksheet below and write them in instead. Then tap <b>Next question</b> — Question 2 is where Monica comes in, and she's explained there, once.</p>";
+    E("lkResult").innerHTML = html;
+    lkShow("lkResult");
+    if (typeof setLoop === "function") setLoop("try");
+  }
+})();
+</script>
+</body>
+</html>

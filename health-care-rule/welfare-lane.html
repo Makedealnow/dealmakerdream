@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Health Care Rule Kit — Medicaid or State Coverage: Stay on the Track</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#faf6ef; color:#26221e; font-family: Georgia, 'Times New Roman', serif;
+         font-size:20px; line-height:1.55; }
+  .wrap { max-width:760px; margin:0 auto; padding:0 16px 48px; }
+  header.titlebar { background:#26221e; color:#faf6ef; padding:14px 16px; }
+  header.titlebar .kit { font-size:15px; letter-spacing:.12em; text-transform:uppercase; color:#e8a06a; }
+  header.titlebar h1 { font-size:26px; margin:2px 0 0; font-weight:bold; }
+  header.titlebar .lane { font-size:16px; color:#e8d9c8; margin-top:2px; }
+  video { width:100%; border-radius:14px; margin-top:16px; background:#000; }
+  .videoslot { width:100%; aspect-ratio:16/9; border-radius:14px; margin-top:16px; background:#26221e;
+               color:#faf6ef; display:flex; flex-direction:column; align-items:center; justify-content:center;
+               text-align:center; padding:24px; border:3px dashed #e8a06a; }
+  .videoslot .big { font-size:24px; font-weight:bold; margin-bottom:8px; }
+  .videoslot .small { font-size:18px; color:#e8d9c8; }
+  .micro { font-size:17px; color:#6e6052; margin:8px 2px 0; }
+  .promise { font-size:24px; font-weight:bold; margin:22px 0 6px; }
+  h2 { font-size:25px; margin:34px 0 10px; }
+  .step { background:#fffdf8; border:2px solid #e5d9c8; border-radius:14px; padding:16px 18px; margin:12px 0; }
+  .step h3 { margin:0 0 8px; font-size:22px; }
+  .beat { margin:6px 0; }
+  .beat b.tag { color:#c45a14; }
+  .say { background:#f3ead9; border-left:6px solid #c45a14; padding:10px 14px; border-radius:0 10px 10px 0; font-style:italic; margin:10px 0; }
+  .rulebox { background:#fffdf8; border:3px solid #c45a14; border-radius:16px; padding:18px; margin:16px 0; }
+  .rulebox h3 { margin:0 0 8px; font-size:23px; }
+  .rulebox .r { margin:8px 0; }
+  .rulebox .r b { color:#c45a14; }
+  .needline { background:#eef4ea; border-radius:12px; padding:12px 16px; font-size:19px; }
+  .ifcard { background:#fffdf8; border:2px solid #c45a14; border-radius:14px; padding:16px 18px; margin:12px 0; }
+  .ifcard h3 { margin:0 0 8px; font-size:22px; }
+  .ifcard h3 .if { color:#c45a14; }
+  button, a.btn { font-family:inherit; cursor:pointer; border:none; border-radius:14px; text-decoration:none;
+                  display:block; width:100%; text-align:center; }
+  .bigbtn { font-size:23px; font-weight:bold; padding:20px 16px; margin:14px 0 6px; min-height:64px; }
+  .qcard { background:#fffdf8; border:3px solid #c45a14; border-radius:16px; padding:18px; margin:16px 0; }
+  .qhead { display:flex; justify-content:space-between; align-items:baseline; }
+  .qhead h3 { margin:0; font-size:23px; }
+  .qcount { font-size:17px; color:#6e6052; white-space:nowrap; }
+  .promptbox { background:#f7f1e5; border:2px dashed #a68b64; border-radius:12px; padding:14px 16px;
+               font-size:17.5px; line-height:1.5; white-space:pre-wrap; word-wrap:break-word; }
+  .copybtn { background:#26221e; color:#fff; }
+  .aiBtn { background:#e8e0d0; color:#26221e; border:3px solid #a68b64; }
+  .aiBtn.hot { background:#c45a14; color:#fff; border-color:#c45a14; animation:pulse 1.2s infinite; }
+  .selfbtn { background:#fffdf8; color:#26221e; border:3px solid #26221e; }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(196,90,20,.55);} 70%{box-shadow:0 0 0 16px rgba(196,90,20,0);} 100%{box-shadow:0 0 0 0 rgba(196,90,20,0);} }
+  .copiedBanner { display:none; background:#2e7d32; color:#fff; font-size:23px; font-weight:bold;
+                  text-align:center; padding:16px; border-radius:14px; margin:14px 0 4px; }
+  .copiedBanner.show { display:block; }
+  .fallbackBanner { display:none; background:#fff3cd; border:2px solid #c45a14; color:#26221e;
+                    font-size:19px; padding:14px 16px; border-radius:14px; margin:14px 0 4px; }
+  .fallbackBanner.show { display:block; }
+  .pasteguide { background:#eef4ea; border-radius:12px; padding:12px 16px; font-size:18.5px; margin:14px 0 4px; }
+  .navrow { display:flex; gap:12px; margin-top:18px; }
+  .navrow button, .navrow a.btn { flex:1; font-size:21px; font-weight:bold; padding:18px 10px; border-radius:14px; min-height:60px;
+                   background:#fffdf8; color:#26221e; border:3px solid #26221e; }
+  .navrow button:disabled { opacity:.35; }
+  .navrow a.btn.next { background:#26221e; color:#fff; }
+  .printbtn { background:#fffdf8; color:#26221e; border:3px solid #26221e; font-size:21px; font-weight:bold;
+              padding:18px 16px; border-radius:14px; width:100%; margin-top:14px; min-height:60px; }
+  .wsline { border-bottom:2px solid #a68b64; min-height:34px; margin:4px 0 14px; }
+  .wsitem b { font-size:20px; }
+  table.log { width:100%; border-collapse:collapse; margin:12px 0; font-size:16.5px; }
+  table.log th, table.log td { border:1.5px solid #a68b64; padding:10px 8px; text-align:left; vertical-align:top; }
+  table.log th { background:#f3ead9; font-size:17px; }
+  table.log td { height:44px; }
+  .mistakes li, .deviations li { margin:10px 0; }
+  .backbtn { background:#fffdf8; color:#26221e; border:3px solid #26221e; font-size:20px; font-weight:bold;
+             padding:16px; margin:18px 0 6px; min-height:60px; }
+  footer { margin-top:40px; font-size:15.5px; color:#6e6052; text-align:center; }
+  footer .disclaimer { text-align:left; font-size:15px; border-top:2px solid #e5d9c8; padding-top:16px; margin-bottom:20px; }
+  .hidden { display:none; }
+  @media print {
+    video, .videoslot, .copybtn, .aiBtn, .selfbtn, .navrow, .printbtn, .copiedBanner, .noPrint, .backbtn { display:none !important; }
+    body { background:#fff; font-size:13.5pt; }
+    .wrap { max-width:none; padding:0; }
+    header.titlebar { background:#fff; color:#000; border-bottom:2pt solid #000; padding:0 0 8pt; }
+    header.titlebar .kit, header.titlebar .lane { color:#000; }
+    .step, .qcard, .rulebox, .ifcard { border:1.5pt solid #666; break-inside:avoid; }
+    .promptbox { border:1.5pt solid #666; background:#fff; font-size:11.5pt; }
+    table.log th { background:#fff; }
+    a { color:#000; text-decoration:none; }
+  }
+</style>
+</head>
+<body>
+<header class="titlebar">
+  <div class="kit">Health Care Rule Kit</div>
+  <h1>Medicaid or State Coverage</h1>
+  <div class="lane">Stay on the track, keep your rights</div>
+</header>
+
+<div class="wrap">
+
+  <!-- VIDEO SLOT: placeholder only — no video file. The presenter video for this
+       lane is produced later and previewed before anything goes live. -->
+  <video id="katieVideo" controls playsinline preload="metadata" src="media/welfare-lane.mp4"></video>
+  <p class="micro">Watch Katie first &mdash; she walks you through this whole lane. (Katie&rsquo;s video for this lane &mdash; preview.)</p>
+
+  <p class="promise">Stay on the track, keep your rights &mdash; and most days, there is nothing to do at all.</p>
+
+  <h2>First, four quick questions &mdash; your router</h2>
+  <div class="step">
+    <p class="beat"><b class="tag">1. Enrolled, or applying?</b> If you&rsquo;re applying: there is no enrollment season for Medicaid &mdash; you can apply any time. And in many states it can cover care from up to three months <i>before</i> the month you applied, if you were eligible then. Ask the agency, in writing, whether that applies to care you&rsquo;ve already received. Your application also creates rights from day one: the agency must decide within its required timeframe and must tell you the decision <b>in writing</b> &mdash; and a written denial of an application carries the same notice-and-hearing rights described below.</p>
+    <p class="beat"><b class="tag">2. A managed-care plan, or the state directly?</b> A separate plan card with a company name usually means managed care &mdash; you have two counterparties: the plan day to day, and the state agency for eligibility and hearings. Only a state-issued card usually means the state pays directly. Don&rsquo;t know? Call the number on your card and ask:</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;Is my Medicaid coverage through a managed-care plan or through the state directly? And what is my renewal month?&rdquo;</div>
+    <p class="beat"><b class="tag">3. Do you also have Medicare?</b> Then you&rsquo;re a <b>dual eligible</b>, with protections from both rulebooks. If you&rsquo;re in the Qualified Medicare Beneficiary (QMB) program, providers may not bill you for Medicare cost-sharing <i>at all</i> &mdash; the strongest no-billing protection in this kit, and one billing offices get wrong constantly. Check your QMB status with your state agency, and read the QMB section below before anything else about bills.</p>
+    <p class="beat"><b class="tag">4. Did a notice just arrive?</b> Stop and do the four moves in the notice protocol below <i>first</i> &mdash; before anything else in this lane. The deadline on that notice is already running.</p>
+    <p class="beat"><b class="tag">CHIP:</b> if your child&rsquo;s coverage is the Children&rsquo;s Health Insurance Program, this lane&rsquo;s track-keeping applies to you almost word for word &mdash; in many states it runs through the same agency, the same application, and the same habits: renewals, notices, address on file. The program name and some cost rules differ.</p>
+    <p class="beat"><b class="tag">Your facts stay yours.</b> The worksheet on this page is completed by you, on paper or in your own copy of the file. Nothing is uploaded, submitted, or sent to us. There is no account to create and no form on any website.</p>
+  </div>
+
+  <p>In this lane, the danger isn&rsquo;t a bill. It&rsquo;s falling off the track &mdash; a renewal form never returned, a notice mailed to an old address &mdash; and losing coverage without anyone ever deciding you should. So this lane is a watch, not a job: if everything goes right, your coverage simply runs, and your only work is a few calm habits &mdash; keep your address current, open the mail, and know your renewal month. The plays on this page are for the days something doesn&rsquo;t go smooth. Learn what smooth looks like here, in calm, so you can relax &mdash; and keep this page for the day a notice tests it.</p>
+  <p>Medicaid is run by your state, under a federal floor of rules &mdash; and the state layer varies a great deal: program names, renewal procedures, reporting rules, and deadlines differ from state to state, and they change. Wherever this page states a rule, it also tells you where to verify it &mdash; in your state&rsquo;s agency materials and, above all, <b>on your own notices: the deadlines printed on a notice are the deadlines that govern you.</b></p>
+
+  <h2>Step 1 &mdash; Name your program, your plan, your renewal month</h2>
+  <div class="step">
+    <h3>Know your program, your agency, and your renewal month</h3>
+    <p>Medicaid wears a different name in many states, and may arrive through a managed-care plan with a third name on the card. Four facts matter more than all of that:</p>
+    <p class="beat"><b class="tag">DO THIS:</b> Write down (1) your program&rsquo;s exact name in your state, (2) your state agency&rsquo;s name and member phone number, (3) your managed-care plan&rsquo;s name and phone number, if you have one, and (4) your <b>renewal month</b> &mdash; the month your eligibility comes up for review. Make the calls to get them, and end each call with the same question:</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;What address do you have on file for me?&rdquo;</div>
+    <p class="beat">If the address is wrong, fix it on that call. Every right in this lane runs through the mail &mdash; a notice sent to an old address still counts as sent, and its deadline runs whether you saw it or not.</p>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Your eligibility notice &mdash; the letter that says you&rsquo;re covered, for what, and since when. It&rsquo;s this lane&rsquo;s equivalent of the insured lane&rsquo;s plan documents: the paper everything else quotes.</p>
+  </div>
+
+  <h2>Keeping the coverage alive</h2>
+  <div class="step">
+    <h3>Renewals &mdash; the number-one way people in this lane lose coverage</h3>
+    <p>Eligibility isn&rsquo;t permanent. Periodically &mdash; commonly once a year &mdash; the agency <b>redetermines</b> whether you still qualify. This renewal is where this lane loses more people than every denial and dispute in it combined, and it loses them to <i>paperwork</i>, not to ineligibility: a form that never arrived, arrived at an old address, or sat unopened past its deadline.</p>
+    <p>How it&rsquo;s supposed to work: the agency first tries to renew you from information it already has access to &mdash; if it can, you get a notice saying you&rsquo;re renewed and nothing is required. If it can&rsquo;t, it sends you a <b>renewal form</b> to complete, sign, and return by the date on the notice, possibly with documents. Both paths end in a notice. <b>Every notice in this step is a deadline wearing an envelope.</b></p>
+    <p class="beat"><b class="tag">DO THIS:</b> When a renewal form arrives: fill it in completely, sign it, <b>return it by the date on the notice</b> &mdash; even if nothing in your life has changed. &ldquo;No change&rdquo; is an answer the form needs from you, not a reason to skip it. Return it in a way that proves delivery and date: through the agency&rsquo;s portal with a screenshot of the confirmation, by fax with the confirmation page, or by mail with a certificate of mailing or certified mail for anything that decides your coverage. Keep a copy of the <i>entire</i> returned packet, exactly as sent.</p>
+    <div class="say"><b class="tag">SAY THIS (if the form never arrives, or arrives late, or you&rsquo;re told you&rsquo;re terminated for not returning it):</b> &ldquo;I am calling about my renewal for [renewal month]. I did not receive the renewal form [or: I returned it on (date) by (method) and I have proof]. Please tell me what is showing in my file, and what I need to do today to complete the renewal.&rdquo; Log the call: date, name, what was said.</div>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The renewal notice, the envelope, your copy of the completed form, and your proof of sending &mdash; filed together. This bundle is the whole case if the renewal goes wrong.</p>
+  </div>
+
+  <div class="ifcard">
+    <h3><span class="if">If this happens &mdash;</span> you miss the renewal deadline anyway</h3>
+    <p>Federal rules give you a <b>reconsideration window</b> &mdash; commonly <b>90 days after a termination for failure to return renewal paperwork</b>, during which you can turn in the renewal information and be restored <i>without filing a brand-new application</i>, with coverage generally reinstated back to the termination. States administer the details; the window&rsquo;s existence is federal. Confirm your state&rsquo;s version with the agency &mdash; and act inside it the day you learn you were cut, not the week after. And remember: <b>a renewal cut is still an adverse action.</b> If the agency ends your coverage &mdash; including for paperwork &mdash; it owes you the written notice and the hearing right below. Paperwork terminations are not outside the rights system. They are where the rights system does most of its work in this lane.</p>
+  </div>
+
+  <div class="step">
+    <h3>Your address and your changes &mdash; the agency can only reach the person on file</h3>
+    <p>Every right in this lane runs through the mail (or your state portal): notices, renewal forms, hearing letters. <b>They go to the address the agency has on file.</b> A notice mailed to an old address is, to the agency, a notice sent &mdash; and its deadline runs whether or not you ever saw it. Keeping your address current is not housekeeping. In this lane, it <i>is</i> rights protection.</p>
+    <p>Your state also requires you to <b>report certain changes</b> &mdash; a new address, income changes, people moving in or out of your household, new health coverage, a change in disability or pregnancy status &mdash; within a window your state&rsquo;s rules set (often a short one). Reporting protects you twice: it keeps notices reaching you, and it prevents the far worse problem of the agency discovering an unreported change a year later and treating the whole period as an overpayment to recover &mdash; or worse, as fraud. The rule: <b>report in writing, keep the proof, and let the agency decide what the change means.</b></p>
+    <p class="beat"><b class="tag">DO THIS:</b> Every time you move, and every time a reportable change happens: notify the state agency <i>and</i> your managed-care plan (they keep separate files; updating one does not update the other), ask each what address and facts they now show for you, and write the date and the name of the person who took the update on your worksheet.</p>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Proof of every report &mdash; the portal confirmation, the fax page, the mailed copy. &ldquo;I told them&rdquo; is a memory. The confirmation is a fact.</p>
+  </div>
+
+  <h2 id="notice-protocol">The notice protocol</h2>
+  <div class="step">
+    <h3>The day a notice arrives &mdash; four moves, same day</h3>
+    <p>In this lane, the notice is the main event. Approvals, renewals, denials, cuts, hearing letters &mdash; everything that can change your coverage or your rights arrives as a notice, and every notice carries a clock. Treat every one the same way, the day it lands:</p>
+    <p class="beat"><b class="tag">1. Open it today, and read the deadline first.</b> Before the reason, before the explanation &mdash; find the date: the effective date of any change, and the deadline to respond, renew, or appeal. That date runs the next three moves.</p>
+    <p class="beat"><b class="tag">2. Calendar it &mdash; and photograph it.</b> Write the deadline on your worksheet&rsquo;s notice log and wherever you actually look. Then photograph the notice, every page, and keep the photo with your file. Your response needs to be <i>sent</i>, provably, before that date, not started on it.</p>
+    <p class="beat"><b class="tag">3. Keep the envelope.</b> The postmark is evidence of when the agency actually mailed it &mdash; and mailing dates matter when a notice arrives with most of its window already gone. Envelope stapled to notice, every time.</p>
+    <p class="beat"><b class="tag">4. Act in writing, before the date, and keep proof.</b> Whatever the notice asks for or whatever you decide to do about it &mdash; renewal, change report, appeal, hearing request &mdash; do it in writing, in a way that proves the date, and file your copy with the notice. Phone calls are for information. Paper is for rights.</p>
+    <div class="say"><b class="tag">SAY THIS (when a notice is confusing &mdash; and many are):</b> &ldquo;I received a notice dated [date]. I want to make sure I understand it. What is changing, what is the effective date, what do I need to do, and what is my deadline to do it &mdash; and what is my deadline to ask for a hearing if I disagree?&rdquo; Log the answers.</div>
+  </div>
+
+  <div class="ifcard">
+    <h3><span class="if">If this happens &mdash;</span> a notice takes something away</h3>
+    <p>Before your eligibility is terminated, your benefits are reduced, or a requested service is denied, you are owed a <b>written notice</b>, sent in advance &mdash; under federal rules, generally <b>at least 10 days before the date the change takes effect</b>, with a few narrow exceptions. A proper notice states: <b>what</b> is going to happen, <b>why</b> &mdash; the specific reason and the rule or facts it rests on, <b>when</b> it takes effect, and <b>your right to appeal</b> &mdash; how to ask for a hearing, and by when, including whether your benefits can continue meanwhile.</p>
+    <p><b>Appeal fast.</b> If you request a fair hearing <b>before the date the change is scheduled to take effect</b> &mdash; or within the short additional window your notice states &mdash; <b>your benefits generally continue at the prior level until the hearing decision is issued.</b> The effective date on that notice is the line between <i>appealing from inside your coverage</i> and <i>appealing from outside it, hoping to get it back</i>. Treat the continuation window on any adverse notice as the most important date in this entire lane.</p>
+    <p class="beat"><b class="tag">A defective notice is not a detail:</b> a notice missing its reason, its hearing rights, or its effective date is the agency failing the first step of its own process &mdash; and it is the first thing you name, in writing, in any appeal: &ldquo;The notice dated [date] does not state [the reason / my hearing rights / the effective date]. I am asking that the action not proceed on a defective notice.&rdquo;</p>
+    <p class="beat"><b class="tag">A phone &ldquo;no&rdquo; is not a decision:</b> a denial of a service or a payment must come to you in writing, with the reason and your appeal rights. Ask for it: &ldquo;Please send me that decision as a written notice, with the reason and my appeal rights.&rdquo; If it isn&rsquo;t worth their writing down, it isn&rsquo;t a decision.</p>
+    <p class="beat"><b class="tag">Two honesty notes:</b> if the hearing decides against you, some states may seek repayment of the cost of benefits that continued during the appeal &mdash; ask the agency, in writing, what your state&rsquo;s rule is <i>before</i> the hearing if this worries you. And continuation is not automatic because you &ldquo;called someone&rdquo; &mdash; it follows the <i>written</i> hearing request, filed inside the window.</p>
+  </div>
+
+  <h2>Finding a doctor in this lane</h2>
+  <div class="step">
+    <h3>Narrower networks &mdash; and the plan&rsquo;s duty when the network fails</h3>
+    <p>Networks in this lane are narrower. Fewer doctors take the program, lists go stale, and the doctor the plan assigned you may be far away or no longer practicing. Work the shared road&rsquo;s method &mdash; the list nominates, your verification decides &mdash; and know the duty that stands behind it: <b>your plan is required to get you care.</b> If no in-network doctor can see you within a reasonable time, the plan must arrange care for you &mdash; including, where its own rules require, arranging an out-of-network appointment at no extra cost to you. A network that exists only on paper is the plan&rsquo;s problem to fix, not yours to absorb.</p>
+    <div class="say"><b class="tag">SAY THIS (to your plan, when no in-network doctor can see you in reasonable time):</b> &ldquo;I have called the in-network doctors on your list and none can see me within a reasonable time &mdash; I have the names and dates I called. I need you to arrange an appointment for me, as the plan is required to do when its network can&rsquo;t provide timely care. Please tell me today who will see me, and confirm it in writing.&rdquo; Log every call you made first: office, date, what they said. That log is what turns a complaint into a duty.</div>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The assignment letter, if the plan assigned your doctor &mdash; it proves who was assigned, when, and what your change rights are &mdash; plus your log of every office you called.</p>
+  </div>
+
+  <div class="rulebox">
+    <h3>Katie&rsquo;s through-line for this lane</h3>
+    <p class="r"><b>THE RULE:</b> a participating provider accepts the program&rsquo;s payment as payment in full for a covered service &mdash; and a QMB member can&rsquo;t be billed Medicare cost-sharing at all.</p>
+    <p class="r"><b>THE CHECK:</b> know it before any bill arrives. Learn your allowed copays, if your program has any, from your state&rsquo;s materials and write them on the worksheet &mdash; so you can tell an allowed copay from a balance bill at a glance.</p>
+    <p class="r"><b>THE MEANING:</b> a bill in your name for a covered service is a violation to hand back, not a debt to pay. Name the rule, in writing, and keep the bill &mdash; it is the documented proof of the deviation.</p>
+  </div>
+
+  <h2>At the desk</h2>
+  <div class="step">
+    <h3>Usually no copay, or a tiny one &mdash; and the shield behind it</h3>
+    <p>For a covered service, the most you can owe is any <b>allowed cost-sharing</b> your state imposes on your category &mdash; often nothing, sometimes a small copay, depending on the state, the group, and the service. <b>Billing you the balance</b> &mdash; the difference between the provider&rsquo;s price and the program&rsquo;s payment &mdash; for a covered service is not a debt. It is a deviation. It happens anyway, constantly, usually from billing offices running insured-lane habits on this lane&rsquo;s patients.</p>
+    <div class="say"><b class="tag">SAY THIS (to a billing office that billed you for a covered service):</b> &ldquo;I am covered by [Medicaid / state program name] and this service was covered. I received a bill for [amount] dated [date]. Medicaid-participating providers accept the program&rsquo;s payment as payment in full for covered services, apart from any allowed cost-sharing. Please correct this bill, and confirm the correction in writing.&rdquo; Log it. If the bill persists, it goes to the state agency complaint route below, with the bill and your coverage notice attached.</div>
+    <p class="beat"><b class="tag">The honest edges:</b> the shield covers <i>covered services from participating providers</i>. If a service isn&rsquo;t covered, or you chose a provider who doesn&rsquo;t participate, you can be a cash patient for that care &mdash; and then the cash lane&rsquo;s rules are your protection: get the price and the agreement in writing <i>before</i> the service. And a small allowed copay can be real &mdash; know your number from the worksheet, so you can tell the difference at a glance.</p>
+  </div>
+
+  <div class="ifcard">
+    <h3><span class="if">If this happens &mdash;</span> the clipboard trap at check-in</h3>
+    <p>Forms in this lane sometimes include an agreement to pay privately &ldquo;if Medicaid doesn&rsquo;t cover it&rdquo; &mdash; for services Medicaid <i>would</i> have covered. Signing it can convert you, for that service, into a cash patient: it moves the service from the shield&rsquo;s side of the line to yours. So: <b>read it before you sign it, photograph it, and know which kind of form you&rsquo;re signing</b> &mdash; a consent to treatment is one kind of paper; an agreement to pay is another, and it deserves a different pause.</p>
+    <div class="say"><b class="tag">SAY THIS (before signing any payment form):</b> &ldquo;Before I sign &mdash; what is this form for? Does it ask me to agree to pay for a service my coverage would cover? I&rsquo;d like to call my plan before I sign anything that waives my coverage.&rdquo; If it asks you to waive your coverage for a covered service, stop and call the agency or plan before signing.</div>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> A photo of any form you were handed &mdash; signed or not &mdash; with the date. The photo is how you later prove which kind of form it was.</p>
+  </div>
+
+  <h2>If you also have Medicare &mdash; the QMB shield</h2>
+  <div class="step">
+    <h3>Dual eligible? A bill with your name on it is probably not owed</h3>
+    <p>If you have Medicare <i>and</i> Medicaid through the <b>Qualified Medicare Beneficiary (QMB)</b> program, federal law forbids <b>any</b> Medicare provider from billing you for Medicare Part A and Part B cost-sharing &mdash; deductibles, coinsurance, copays &mdash; <b>whether or not the provider participates in Medicaid.</b> This protection is real, it is federal, and it is billed around every day by offices that never checked your status. It is the single most commonly violated billing rule in this entire kit.</p>
+    <p class="beat"><b class="tag">DO THIS:</b> if you are QMB and a bill for Medicare cost-sharing reaches you: <b>do not pay it first.</b> Make one call to the plan &mdash; and to the billing office, tell them you are QMB and may not be billed for Medicare cost-sharing, and show your Medicaid/QMB proof. If the bill persists, call <b>1-800-MEDICARE</b> and your state Medicaid agency and report it.</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;I am in the Qualified Medicare Beneficiary program. Federal law says I may not be billed for Medicare cost-sharing at all. Please correct this bill and confirm the correction in writing.&rdquo;</div>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Every such bill. Each one is a documented deviation with your name on it.</p>
+  </div>
+
+  <h2 id="ladder">The disagreement ladder</h2>
+  <div class="step">
+    <h3>Plan appeal first, then the state fair hearing</h3>
+    <p>If you&rsquo;re in a <b>managed-care plan</b> and the <i>plan</i> denies a service, the sequence is set by federal rules in most states, and climbing it out of order costs you the one thing you can&rsquo;t recover: time.</p>
+    <p class="beat"><b class="tag">1. Plan appeal first.</b> You appeal inside the plan, using the process and deadline in the plan&rsquo;s denial notice. The plan must decide within its required timelines &mdash; faster where your health can&rsquo;t wait (the notice describes the expedited route). One level of plan appeal is generally what the rules require you to complete.</p>
+    <p class="beat"><b class="tag">2. Then the state fair hearing.</b> Once the plan&rsquo;s appeal is finished and the denial stands &mdash; or the plan blows its deadline, which generally lets you move on as if the appeal were finished &mdash; you may request the <b>state fair hearing</b> on the plan&rsquo;s decision, within the window the plan&rsquo;s final notice states. Ask, in your hearing request, for your services to continue if you filed inside the window the notice describes.</p>
+    <p class="beat"><b class="tag">Eligibility decisions skip step 1.</b> Enrollment, renewal, and termination decisions are the <b>agency&rsquo;s</b>, not the plan&rsquo;s &mdash; agency action goes straight to the fair hearing. When you&rsquo;re unsure whose decision you&rsquo;re holding, look at the letterhead and the notice&rsquo;s own appeal instructions &mdash; the notice is required to tell you where its appeal goes. Follow the notice, in writing, and keep it.</p>
+    <p class="beat"><b class="tag">Grievances run anytime.</b> A <i>grievance</i> is a complaint about how you were treated &mdash; rudeness, access problems, a provider you can&rsquo;t reach &mdash; as opposed to an <i>appeal</i>, which fights a specific denial. Grievances don&rsquo;t have to wait for anything and don&rsquo;t replace an appeal: filing <i>only</i> a grievance about a denial leaves the denial standing. Know which fight you&rsquo;re in.</p>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The plan&rsquo;s denial notice, your plan appeal and proof of filing, the plan&rsquo;s decision, and then your hearing request &mdash; the whole chain, in order.</p>
+  </div>
+
+  <div class="step">
+    <h3>The fair hearing &mdash; free, often by phone</h3>
+    <p>A <b>state fair hearing</b> is a formal review of your case before an <b>impartial hearing officer</b> who was not involved in the decision. The agency must show the basis for what it did, and you can present your side, bring documents, and bring a representative &mdash; a friend, a family member, an advocate, or a lawyer. <b>It costs you nothing,</b> and asking for one cannot be held against you. It is not suing the state. It is the state&rsquo;s own process, built for exactly this.</p>
+    <p class="beat"><b class="tag">You request it, in writing,</b> using the instructions on the notice. Keep proof of the date you sent it; the request date decides whether your benefits continue. <b>Your deadline is on the notice</b> &mdash; federal rules cap the window (the outer limit for requesting a hearing on most actions runs to <b>90 days from the notice</b>), but states and situations vary, and <i>your notice states your number</i>. Use the notice&rsquo;s number; earlier is stronger.</p>
+    <p class="beat"><b class="tag">The agency&rsquo;s file is evidence.</b> You generally have the right to see the case file and the documents the agency relied on, before the hearing. Ask for them when you request the hearing. A decision that can&rsquo;t be documented is a decision that can be reversed.</p>
+    <div class="say"><b class="tag">SAY THIS (the hearing request &mdash; adapt the brackets, send it the way the notice directs, keep proof):</b> &ldquo;[Your name, address, and case ID if shown on the notice]. I am requesting a fair hearing on the action in your notice dated [date]: [describe it &mdash; termination of my Medicaid coverage effective (date) / denial of (service)]. I disagree because [your reason, in plain words]. [If within the continuation window:] I am requesting that my benefits continue at the current level until the hearing is decided, as the notice describes. Please send me a copy of my case file and the documents relied on for this decision. &mdash; [Signature, date, phone number.]&rdquo;</div>
+  </div>
+
+  <div class="step">
+    <h3>Complaint routes and free help &mdash; the ladder&rsquo;s upper rungs</h3>
+    <p>When the problem isn&rsquo;t one decision but the handling itself &mdash; notices that never come, a plan that won&rsquo;t answer, bills that won&rsquo;t die &mdash; this lane has referees, in this order: <b>the system&rsquo;s own processes first, the regulators next, attorneys last.</b></p>
+    <p class="beat"><b class="tag">The plan&rsquo;s grievance system</b> (managed care): the first door for treatment and access complaints. File in writing, keep the acknowledgment.</p>
+    <p class="beat"><b class="tag">The state Medicaid agency:</b> takes complaints about plans and about its own operations, and enforces the contracts the plans work under.</p>
+    <p class="beat"><b class="tag">Your state&rsquo;s managed-care ombudsman</b> (many states have one, under varying names): an independent office whose whole job is helping members resolve problems with plans &mdash; genuinely useful, genuinely free, and almost nobody in this lane has heard of it. Find yours through your state agency&rsquo;s website or your plan&rsquo;s member handbook.</p>
+    <p class="beat"><b class="tag">HHS &mdash; the federal backstop:</b> the U.S. Department of Health and Human Services (through its Office for Civil Rights for discrimination or privacy violations, and CMS for program-level complaints) sits above the state. Federal complaints rarely move fastest; they matter most when the state route has failed.</p>
+    <p class="beat"><b class="tag">Free legal help &mdash; legal aid.</b> Legal-aid organizations in every state represent members in fair hearings and coverage disputes <b>at no charge</b>, and disability-rights and health-law organizations (including the federally funded Protection &amp; Advocacy system in each state) exist for exactly these fights. In this lane, the attorney rung often costs you nothing. If your case reaches a hearing on a termination or a major service denial, make the call to legal aid <i>before</i> the hearing date, not after: find your state&rsquo;s program through your agency&rsquo;s website, your notice&rsquo;s resource listings, or LawHelp.org.</p>
+    <p>One calibration: none of these routes guarantees an outcome, and agencies decide complaints on their own timelines. What each route guarantees is a file, a record, and a reader whose job is your side of the counter. In a lane where the system&rsquo;s favorite outcome is that you quietly disappear, a paper trail with your name on it is the opposite of disappearing.</p>
+  </div>
+
+  <h2>The mistakes &mdash; yours to not make</h2>
+  <ol class="mistakes">
+    <li>Letting a renewal form sit &mdash; or skipping it because nothing changed. &ldquo;No change&rdquo; is an answer the form needs <i>from you</i>; an unreturned form is the lane&rsquo;s number-one cause of lost coverage.</li>
+    <li>Moving without updating your address with the agency <i>and</i> the plan &mdash; then never seeing the notices whose deadlines decided your coverage.</li>
+    <li>Throwing away notices, or reading them without finding the deadline first. In this lane, the envelope is evidence and the date is the point.</li>
+    <li>Sitting on a change &mdash; income, household, address &mdash; instead of reporting it in writing. Unreported changes come back as overpayment claims; reported ones are just updates.</li>
+    <li>Accepting a phone &ldquo;no&rdquo; &mdash; from a plan, a provider&rsquo;s office, anyone &mdash; as a decision. Decisions in this lane are written, noticed, and appealable, or they aren&rsquo;t decisions.</li>
+    <li>Appealing <i>after</i> the continuation window closes &mdash; turning a fight from inside your coverage into a fight to get it back.</li>
+    <li>Climbing out of order: requesting a state fair hearing on a plan&rsquo;s service denial before finishing the plan appeal, and losing weeks to the bounce-back.</li>
+    <li>Paying a bill for a covered service &mdash; or signing check-in paperwork that moves a covered service onto your side of the line &mdash; without reading it and naming the shield.</li>
+    <li>Keeping no file. In this lane, as in every lane: if it isn&rsquo;t dated and written down, it didn&rsquo;t happen.</li>
+  </ol>
+
+  <h2>The deviations &mdash; theirs to answer for</h2>
+  <ol class="deviations">
+    <li>A termination, reduction, or denial issued without proper advance written notice &mdash; or a notice missing the reason, the effective date, or your hearing rights.</li>
+    <li>Notices mailed to an old address <i>after</i> you updated the agency &mdash; the file says you told them; the mail says they didn&rsquo;t listen.</li>
+    <li>A renewal terminated for paperwork when the form never arrived, arrived too late to use, or when the agency could have renewed you from its own data.</li>
+    <li>A Medicaid-participating provider billing you the balance for a covered service, beyond any allowed cost-sharing.</li>
+    <li>Any provider billing a QMB dual eligible for Medicare cost-sharing &mdash; the kit&rsquo;s most violated rule.</li>
+    <li>Denial letters &mdash; plan or agency &mdash; that bury or omit the next step: the appeal order, the hearing right, the continuation window.</li>
+    <li>Plan appeal deadlines blown by the plan, then treated as your problem instead of your pass to the next rung.</li>
+    <li>A grievance closed without response, or a complaint treated as handled when nothing was answered in writing.</li>
+  </ol>
+
+  <p><b>What &ldquo;done&rdquo; looks like for this lane&rsquo;s front end:</b> you can say, without looking it up, your program&rsquo;s name, your agency&rsquo;s name and number, whether you&rsquo;re in a managed-care plan, and your renewal month. Your address is confirmed current with both the agency and the plan. You have a file where every notice lands with its envelope, and a worksheet where every deadline gets written the day it arrives. You know the three rights that catch you &mdash; written notice, the fair hearing, benefits that continue while you fight &mdash; and you know that a covered service is not your bill. The track is yours now. Next, the road merges &mdash; we go find your doctor.</p>
+
+  <h2>Now do it &mdash; two questions, one at a time</h2>
+  <p>Katie explained it. Now use the kit&rsquo;s helper for the two reading jobs in this lane &mdash; or do them yourself on paper.</p>
+
+  <div class="qcard" id="card1">
+    <div class="qhead"><h3>Read this notice</h3><span class="qcount">Question 1 of 2</span></div>
+    <p class="needline"><b>You&rsquo;ll need:</b> The whole notice, every page, the day it arrives &mdash; before you do anything else with it. Keep the envelope out of the helper and in your file; the postmark is your paper.</p>
+    <p>This question translates the notice into your notice log: who sent it, what is changing, every date, and what it says about appealing.</p>
+    <p class="micro">This whole box is what gets copied &mdash; word for word, including the last paragraph.</p>
+    <div class="promptbox" id="box1">I receive health coverage through a public program, and an agency or plan has sent me a notice. Below I will paste the full text of the notice.
+
+Read only the notice and give me back:
+1. Who sent it — the agency or the plan — using the name printed on the notice.
+2. What the notice says is happening or changing, in plain language: a renewal, a change, a denial, a termination — and what exactly it applies to.
+3. Every date the notice states, copied exactly: the date of the notice, any effective date for the change, and every deadline — to respond, to return a form, or to appeal. List each date with what the notice says it is the deadline FOR.
+4. What the notice says I must do, and by when — in the order the notice gives.
+5. What the notice says about my right to appeal or request a hearing, quoting its words — and whether it says anything about my benefits continuing while an appeal is decided.
+6. Anything the notice does NOT state: no reason given, no deadline given, no appeal rights mentioned. Label each &quot;Not in the notice.&quot;
+
+Work only from what I pasted. If something is not in the pasted material, write &quot;Not in the document&quot; — do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language.</div>
+    <button class="bigbtn copybtn" data-copy="1">Copy this question</button>
+    <p class="micro">One tap copies the whole question. (Way 2 below doesn&rsquo;t need it.)</p>
+    <div class="copiedBanner" id="banner1">Copied! Now choose your way &#8595;</div>
+    <div class="fallbackBanner" id="fallback1">Copy didn&rsquo;t work on this phone &mdash; no problem. Hold your finger on the words in the box above until <b>Copy</b> appears, tap Copy, then tap the button below.</div>
+    <p class="pasteguide"><b>What to paste with it:</b> the whole notice, every page. Before you paste anything: never paste your Social Security number or full bank or card numbers, and cover any number you don&rsquo;t want seen <i>before</i> you photograph or paste it &mdash; you decide what she sees.</p>
+    <p><b>What you&rsquo;ll get back &mdash; and what to do with it:</b> the notice translated into your Stay On Track notice log below: date received, from, what it says, deadline, what you did. Then run the four-move protocol &mdash; the deadline goes on your calendar <i>from the notice itself</i>. Anything labeled &ldquo;Not in the notice&rdquo; matters doubly here: a notice missing its reason or its appeal rights is a defective notice &mdash; a deviation to name in your appeal and your log.</p>
+    <p style="margin-top:18px;"><b>Two ways from here &mdash; your choice:</b></p>
+    <p class="beat"><b class="tag">WAY 1 &mdash; ASK <span class="svcName"></span> FOR HELP:</b></p>
+    <a class="btn bigbtn aiBtn" id="aiBtn1" href="#" target="_blank" rel="noopener"></a>
+    <div class="pasteguide"><b>How to paste on her page:</b> hold your finger in the question box until <b>Paste</b> appears, tap Paste, add your document pages, then tap her send arrow. Come right back here when you&rsquo;re done.</div>
+    <p class="micro">MakeDealNow may earn a commission when you sign up through our link — it never changes what you pay.</p>
+    <p class="beat" style="margin-top:18px;"><b class="tag">WAY 2 &mdash; DO IT MYSELF:</b></p>
+    <p>Skip the AI entirely. Read the notice with the four-move protocol above: deadline first, calendar it, keep the envelope, act in writing with proof. Fill the notice log on the worksheet below by hand. Nothing on this route depends on <span class="svcName"></span> &mdash; no account, nothing leaves your hands.</p>
+    <a class="btn bigbtn selfbtn" href="#notice-protocol">Do it myself &mdash; use the notice protocol</a>
+    <div class="navrow">
+      <button disabled>&#8592; Back</button>
+      <button class="next" id="next1" style="background:#26221e;color:#fff;border-color:#26221e;">Next question &#8594;</button>
+    </div>
+  </div>
+
+  <div class="qcard hidden" id="card2">
+    <div class="qhead"><h3>Sort my appeal: who do I answer first?</h3><span class="qcount">Question 2 of 2</span></div>
+    <p class="needline"><b>You&rsquo;ll need:</b> The denial or change notice, plus any pages from your program or plan materials that describe appeals, grievances, or fair hearings. If you have no appeal pages, use the notice alone &mdash; the gap list becomes the point.</p>
+    <p>This question sorts the order from your own documents: who decided, who you answer first, and every deadline.</p>
+    <p class="micro">This whole box is what gets copied &mdash; word for word, including the last paragraph.</p>
+    <div class="promptbox" id="box2">A service or benefit in my public coverage has been denied or cut. Below I will paste: (1) the denial or change notice, and (2) any pages I have from my program or plan materials that describe appeals, grievances, or fair hearings.
+
+From the pasted material only, tell me:
+1. Who made this decision — the managed-care plan or the state agency — as the notice itself states it.
+2. Every appeal step the pasted material describes, in the order the material gives them: who I appeal to first, what comes after that, and what a fair hearing is called in these documents.
+3. Every deadline the pasted material states for each step, copied exactly, with what each deadline is for.
+4. Anything the pasted material says about asking for my benefits to continue while the appeal is decided — the words it uses, and the deadline it attaches to asking.
+5. What the pasted material does NOT say about appealing this decision. Label each gap &quot;Not in the document.&quot;
+
+Work only from what I pasted. If something is not in the pasted material, write &quot;Not in the document&quot; — do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language.</div>
+    <button class="bigbtn copybtn" data-copy="2">Copy this question</button>
+    <p class="micro">One tap copies the whole question. (Way 2 below doesn&rsquo;t need it.)</p>
+    <div class="copiedBanner" id="banner2">Copied! Now choose your way &#8595;</div>
+    <div class="fallbackBanner" id="fallback2">Copy didn&rsquo;t work on this phone &mdash; no problem. Hold your finger on the words in the box above until <b>Copy</b> appears, tap Copy, then tap the button below.</div>
+    <p class="pasteguide"><b>What to paste with it:</b> the denial or change notice, plus whatever appeal pages your program booklet, plan materials, or the notice itself carries. Before you paste anything: never paste your Social Security number or full bank or card numbers, and cover any number you don&rsquo;t want seen <i>before</i> you photograph or paste it &mdash; you decide what she sees.</p>
+    <p><b>What you&rsquo;ll get back &mdash; and what to do with it:</b> the order, from your own documents &mdash; in most of this lane, the plan appeal comes first and the state fair hearing after, and eligibility decisions go straight to a hearing, but <i>your</i> notice and <i>your</i> state&rsquo;s materials govern. Then act on continuation before anything else: if benefits can continue while you appeal, its window is the most important date in this lane, read off the notice, never remembered. Log the chain on the worksheet&rsquo;s Appeals filed table below.</p>
+    <p style="margin-top:18px;"><b>Two ways from here &mdash; your choice:</b></p>
+    <p class="beat"><b class="tag">WAY 1 &mdash; ASK <span class="svcName"></span> FOR HELP:</b></p>
+    <a class="btn bigbtn aiBtn" id="aiBtn2" href="#" target="_blank" rel="noopener"></a>
+    <div class="pasteguide"><b>How to paste on her page:</b> hold your finger in the question box until <b>Paste</b> appears, tap Paste, add your document pages, then tap her send arrow. Come right back here when you&rsquo;re done.</div>
+    <p class="micro">MakeDealNow may earn a commission when you sign up through our link — it never changes what you pay.</p>
+    <p class="beat" style="margin-top:18px;"><b class="tag">WAY 2 &mdash; DO IT MYSELF:</b></p>
+    <p>Skip the AI entirely. Use the disagreement ladder above: follow the notice&rsquo;s own appeal instructions, in writing, in order &mdash; plan appeal first for a plan&rsquo;s service denial, straight to the fair hearing for an agency eligibility decision. Nothing on this route depends on <span class="svcName"></span> &mdash; no account, nothing leaves your hands.</p>
+    <a class="btn bigbtn selfbtn" href="#ladder">Do it myself &mdash; use the disagreement ladder</a>
+    <div class="navrow">
+      <button id="back2">&#8592; Back</button>
+      <button class="next" disabled>Next question &#8594;</button>
+    </div>
+    <p class="micro">That&rsquo;s both questions for this lane. When your worksheet&rsquo;s top block is filled and your notice file is started, this lane&rsquo;s front end is done.</p>
+  </div>
+
+  <h2 id="worksheet">Stay On Track Worksheet &amp; Notice Log</h2>
+  <p><b>Your facts stay yours.</b> Nothing on this page is uploaded, submitted, or sent anywhere. It exists in exactly one place &mdash; your hands. Fill the top block once, in calm; add a line to the notice log the day any notice arrives. Keep the sheet at the front of your notice file.</p>
+  <div class="step">
+    <h3>Your program block &mdash; fill once; update whenever any line changes</h3>
+    <p class="wsitem"><b>Program</b> &mdash; Medicaid under its name in your state, CHIP, or the specific program/waiver, exactly as your paperwork names it. <i>Program names decide which rules apply; write the name the agency uses, not the nickname.</i></p><div class="wsline"></div>
+    <p class="wsitem"><b>State agency + phone</b> &mdash; the agency that runs eligibility and renewals, and the member number you call. <i>This is your counterparty for coverage itself &mdash; the number you call about renewals, addresses, and hearings.</i></p><div class="wsline"></div>
+    <p class="wsitem"><b>Managed-care plan + phone</b> &mdash; your plan&rsquo;s name and member services number, or &ldquo;state directly (fee-for-service)&rdquo; if you have no plan. <i>This decides who you appeal to first about a service; if there&rsquo;s no plan, the agency is the only door.</i></p><div class="wsline"></div>
+    <p class="wsitem"><b>Medicare too? / QMB?</b> &mdash; yes or no on each. <i>If both are yes, the strongest billing shield in this kit is yours &mdash; and the billing offices are the last to know.</i></p><div class="wsline"></div>
+    <p class="wsitem"><b>Renewal month / date</b> &mdash; when your eligibility is redetermined, from your enrollment paperwork or the agency&rsquo;s answer. <i>The most important recurring date in this lane. The renewal form goes back by the notice&rsquo;s date, with proof.</i></p><div class="wsline"></div>
+    <p class="wsitem"><b>Address on file confirmed (date)</b> &mdash; the date you last confirmed the agency <i>and</i> the plan show your current address. <i>Notices go where the file says. Re-confirm after every move, and write the name of who confirmed it.</i></p><div class="wsline"></div>
+    <p class="wsitem"><b>Changes I must report</b> &mdash; the list from your state&rsquo;s materials (commonly: address, income, household members, other coverage) and the window for reporting them. <i>Copy your state&rsquo;s list and its deadline here once, so a change is never a guessing game.</i></p><div class="wsline"></div>
+    <p class="wsitem"><b>Allowed copays in my program</b> &mdash; what your state says you can be charged for common services, or &ldquo;none.&rdquo; <i>So you can tell an allowed copay from a balance bill at a glance.</i></p><div class="wsline"></div>
+  </div>
+  <div class="step">
+    <h3>Notice log &mdash; one line per notice, written the day it arrives</h3>
+    <p>The envelope goes in the file behind this sheet.</p>
+    <table class="log">
+      <tr><th>Date received</th><th>From</th><th>What it says</th><th>Deadline / effective date</th><th>What I did + date</th></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+    </table>
+    <p class="micro"><b>Date received</b> &mdash; paired with the postmark, this shows how much of your window was left. <b>From</b> &mdash; agency or plan; the sender tells you which appeal road. <b>What it says</b> &mdash; two or three plain words; the notice itself is in the file. <b>Deadline / effective date</b> &mdash; copied from the notice, exactly; this column runs your calendar. <b>What I did + date</b> &mdash; the action, the day, and the proof method (&ldquo;portal confirmation,&rdquo; &ldquo;fax page,&rdquo; &ldquo;certified mail&rdquo;). If it isn&rsquo;t in this column with a date and a proof, it didn&rsquo;t happen.</p>
+  </div>
+  <div class="step">
+    <h3>Appeals filed &mdash; one line per appeal or hearing</h3>
+    <table class="log">
+      <tr><th>What was appealed</th><th>Filed where + date</th><th>Continuation requested?</th><th>Outcome + date</th></tr>
+      <tr><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td></tr>
+    </table>
+    <p class="micro"><b>What was appealed</b> &mdash; the decision, in the notice&rsquo;s own words. <b>Filed where + date</b> &mdash; plan appeal, fair hearing, or grievance, with proof; order matters, and this line proves the order. <b>Continuation requested?</b> &mdash; yes/no, and whether benefits continued. <b>Outcome + date</b> &mdash; reversed, upheld, withdrawn, complaint filed &mdash; two or three words, with the date.</p>
+  </div>
+  <button class="printbtn" onclick="window.print()">Print this lane</button>
+  <p class="micro">Print this and keep it at the front of your notice file.</p>
+  <a class="btn printbtn noPrint" href="worksheets/stay-on-track-worksheet.pdf" download>Download the worksheet (PDF)</a>
+
+  <div class="step">
+    <h3>What comes next &mdash; the road merges</h3>
+    <p>After this lane&rsquo;s setup, your road merges with everyone&rsquo;s: <b>Stage 3 &mdash; find your doctor.</b> The doctor page carries this lane&rsquo;s notes where they differ &mdash; assigned doctors, change rights, and the plan&rsquo;s own record of who your doctor is.</p>
+  </div>
+
+  <div class="navrow" style="margin-top:34px;">
+    <a class="btn" href="index.html">&#8592; Back: Front Door</a>
+    <a class="btn next" href="your-doctor.html">Next: Stage 3 &mdash; Your Doctor &#8594;</a>
+  </div>
+
+  <footer>
+    <div class="disclaimer">
+      <p><b>Please read this first.</b> This kit is educational information. It is <b>not legal advice</b>, and it is <b>not medical advice</b>. It does not tell you what care to get, what care to refuse, or whether a treatment is right for you &mdash; those decisions belong to you and your doctor. This kit is about rights, paperwork, notices, and billing only. The publisher sells educational information only and performs no services of any kind: nobody will file your renewal, request your hearing, or call the agency on your behalf. You make your own calls, sign your own forms, and make your own decisions at every step. <b>Medicaid is run by your state, under a federal floor of rules &mdash; and the state layer varies a great deal: program names, renewal procedures, reporting rules, and deadlines differ from state to state, and they change.</b> Wherever this kit states a rule, it also tells you where to verify it &mdash; in your state&rsquo;s agency materials and, above all, <b>on your own notices: the deadlines printed on a notice are the deadlines that govern you.</b> If your situation involves a lawsuit, a collections action, or a deadline in court papers, talk to a lawyer. Free legal-help organizations exist in every state for exactly the disputes in this lane.</p>
+    </div>
+    <p>MakeDealNow &mdash; The Health Care Rule Kit (preview)</p>
+    <p>Educational information &mdash; not legal or medical advice.</p>
+  </footer>
+</div>
+
+<script>
+var AI_SERVICE = { name: "Monica", url: "https://monica.im" };
+document.querySelectorAll(".svcName").forEach(function(el) { el.textContent = AI_SERVICE.name; });
+["1","2"].forEach(function(n) {
+  var b = document.getElementById("aiBtn" + n);
+  b.setAttribute("href", AI_SERVICE.url);
+  b.textContent = "Ask " + AI_SERVICE.name + " for help";
+});
+var PROMPTS = {"1": "I receive health coverage through a public program, and an agency or plan has sent me a notice. Below I will paste the full text of the notice.\n\nRead only the notice and give me back:\n1. Who sent it — the agency or the plan — using the name printed on the notice.\n2. What the notice says is happening or changing, in plain language: a renewal, a change, a denial, a termination — and what exactly it applies to.\n3. Every date the notice states, copied exactly: the date of the notice, any effective date for the change, and every deadline — to respond, to return a form, or to appeal. List each date with what the notice says it is the deadline FOR.\n4. What the notice says I must do, and by when — in the order the notice gives.\n5. What the notice says about my right to appeal or request a hearing, quoting its words — and whether it says anything about my benefits continuing while an appeal is decided.\n6. Anything the notice does NOT state: no reason given, no deadline given, no appeal rights mentioned. Label each \"Not in the notice.\"\n\nWork only from what I pasted. If something is not in the pasted material, write \"Not in the document\" — do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language.", "2": "A service or benefit in my public coverage has been denied or cut. Below I will paste: (1) the denial or change notice, and (2) any pages I have from my program or plan materials that describe appeals, grievances, or fair hearings.\n\nFrom the pasted material only, tell me:\n1. Who made this decision — the managed-care plan or the state agency — as the notice itself states it.\n2. Every appeal step the pasted material describes, in the order the material gives them: who I appeal to first, what comes after that, and what a fair hearing is called in these documents.\n3. Every deadline the pasted material states for each step, copied exactly, with what each deadline is for.\n4. Anything the pasted material says about asking for my benefits to continue while the appeal is decided — the words it uses, and the deadline it attaches to asking.\n5. What the pasted material does NOT say about appealing this decision. Label each gap \"Not in the document.\"\n\nWork only from what I pasted. If something is not in the pasted material, write \"Not in the document\" — do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language."};
+window.PROMPTS = PROMPTS;
+function selectBoxText(id) {
+  var el = document.getElementById(id);
+  var range = document.createRange();
+  range.selectNodeContents(el);
+  var sel = window.getSelection();
+  sel.removeAllRanges(); sel.addRange(range);
+}
+document.querySelectorAll(".copybtn").forEach(function(btn) {
+  btn.addEventListener("click", function() {
+    var n = btn.getAttribute("data-copy");
+    var text = PROMPTS[n];
+    var banner = document.getElementById("banner" + n);
+    var fb = document.getElementById("fallback" + n);
+    var aiBtn = document.getElementById("aiBtn" + n);
+    function onCopied() { banner.classList.add("show"); fb.classList.remove("show"); aiBtn.classList.add("hot"); banner.scrollIntoView({behavior:"smooth", block:"center"}); }
+    function onFailed() { selectBoxText("box" + n); fb.classList.add("show"); banner.classList.remove("show"); aiBtn.classList.add("hot"); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(onCopied, function() {
+        var ta = document.createElement("textarea");
+        ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select();
+        var ok = false;
+        try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+        document.body.removeChild(ta);
+        if (ok) { onCopied(); } else { onFailed(); }
+      });
+    } else { onFailed(); }
+  });
+});
+document.getElementById("next1").addEventListener("click", function() {
+  document.getElementById("card1").classList.add("hidden");
+  document.getElementById("card2").classList.remove("hidden");
+  document.getElementById("card2").scrollIntoView({behavior:"smooth"});
+});
+document.getElementById("back2").addEventListener("click", function() {
+  document.getElementById("card2").classList.add("hidden");
+  document.getElementById("card1").classList.remove("hidden");
+  document.getElementById("card1").scrollIntoView({behavior:"smooth"});
+});
+</script>
+</body>
+</html>

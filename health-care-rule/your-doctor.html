@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Health Care Rule Kit — Stage 3: Your Doctor</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#faf6ef; color:#26221e; font-family: Georgia, 'Times New Roman', serif;
+         font-size:20px; line-height:1.55; }
+  .wrap { max-width:760px; margin:0 auto; padding:0 16px 48px; }
+  header.titlebar { background:#26221e; color:#faf6ef; padding:14px 16px; }
+  header.titlebar .kit { font-size:15px; letter-spacing:.12em; text-transform:uppercase; color:#e8a06a; }
+  header.titlebar h1 { font-size:26px; margin:2px 0 0; font-weight:bold; }
+  header.titlebar .lane { font-size:16px; color:#e8d9c8; margin-top:2px; }
+  /* progress loop — always visible */
+  .loop { position:sticky; top:0; z-index:10; background:#fffdf8; border-bottom:3px solid #c45a14;
+          display:flex; justify-content:space-between; padding:10px 8px; }
+  .loop span { flex:1; text-align:center; font-size:16px; color:#6e6052; padding:6px 2px; border-radius:10px; }
+  .loop span b { display:block; font-size:19px; }
+  .loop span.now { background:#c45a14; color:#fff; }
+  .loop span.done { color:#2e7d32; }
+  video { width:100%; border-radius:14px; margin-top:16px; background:#000; }
+  .videoslot { width:100%; aspect-ratio:16/9; border-radius:14px; margin-top:16px; background:#26221e;
+               color:#faf6ef; display:flex; flex-direction:column; align-items:center; justify-content:center;
+               text-align:center; padding:24px; border:3px dashed #e8a06a; }
+  .videoslot .big { font-size:24px; font-weight:bold; margin-bottom:8px; }
+  .videoslot .small { font-size:18px; color:#e8d9c8; }
+  .micro { font-size:17px; color:#6e6052; margin:8px 2px 0; }
+  .promise { font-size:24px; font-weight:bold; margin:22px 0 6px; }
+  h2 { font-size:25px; margin:34px 0 10px; }
+  .step { background:#fffdf8; border:2px solid #e5d9c8; border-radius:14px; padding:16px 18px; margin:12px 0; }
+  .step h3 { margin:0 0 8px; font-size:22px; }
+  .needline { background:#eef4ea; border-radius:12px; padding:12px 16px; font-size:19px; }
+  .beat { margin:6px 0; }
+  .beat b.tag { color:#c45a14; }
+  .say { background:#f3ead9; border-left:6px solid #c45a14; padding:10px 14px; border-radius:0 10px 10px 0; font-style:italic; }
+  .lanenote { background:#eef4ea; border-left:6px solid #2e7d32; padding:10px 14px; border-radius:0 10px 10px 0; margin:12px 0; }
+  .lanenote b.lane { color:#2e7d32; }
+  .rulebox { background:#fffdf8; border:3px solid #c45a14; border-radius:16px; padding:18px; margin:16px 0; }
+  .rulebox h3 { margin:0 0 8px; font-size:23px; }
+  .rulebox .r { margin:8px 0; }
+  .rulebox .r b { color:#c45a14; }
+  .doorwrap { margin:16px 0 4px; }
+  button, a.btn { font-family:inherit; cursor:pointer; border:none; border-radius:14px; text-decoration:none;
+                  display:block; width:100%; text-align:center; }
+  .bigbtn { font-size:23px; font-weight:bold; padding:20px 16px; margin:14px 0 6px; min-height:64px; }
+  .doorbtn { background:#fffdf8; color:#26221e; border:3px solid #c45a14; padding:22px 18px; margin:14px 0 6px;
+             font-size:24px; font-weight:bold; min-height:84px; }
+  .doorbtn small { display:block; font-weight:normal; font-size:18.5px; color:#6e6052; margin-top:6px; }
+  .doorbtn.picked { background:#c45a14; color:#fff; }
+  .doorbtn.picked small { color:#ffe9d6; }
+  .door2box { background:#fffdf8; border:2px solid #2e7d32; border-radius:14px; padding:16px 18px; margin:12px 0; }
+  .door2box h3 { margin:0 0 8px; font-size:22px; }
+  .checklist { margin:8px 0 4px; padding-left:30px; }
+  .checklist li { margin:14px 0; }
+  /* prompt cards */
+  .qcard { background:#fffdf8; border:3px solid #c45a14; border-radius:16px; padding:18px; margin:16px 0; }
+  .qhead { display:flex; justify-content:space-between; align-items:baseline; }
+  .qhead h3 { margin:0; font-size:23px; }
+  .qcount { font-size:17px; color:#6e6052; white-space:nowrap; }
+  .promptbox { background:#f7f1e5; border:2px dashed #a68b64; border-radius:12px; padding:14px 16px;
+               font-size:17.5px; line-height:1.5; white-space:pre-wrap; word-wrap:break-word; max-height:none; }
+  .copybtn { background:#26221e; color:#fff; }
+  .aiBtn { background:#e8e0d0; color:#26221e; border:3px solid #a68b64; }
+  .aiBtn.hot { background:#c45a14; color:#fff; border-color:#c45a14; animation:pulse 1.2s infinite; }
+  .selfbtn { background:#fffdf8; color:#26221e; border:3px solid #26221e; }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(196,90,20,.55);} 70%{box-shadow:0 0 0 16px rgba(196,90,20,0);} 100%{box-shadow:0 0 0 0 rgba(196,90,20,0);} }
+  .copiedBanner { display:none; background:#2e7d32; color:#fff; font-size:23px; font-weight:bold;
+                  text-align:center; padding:16px; border-radius:14px; margin:14px 0 4px; }
+  .copiedBanner.show { display:block; }
+  .fallbackBanner { display:none; background:#fff3cd; border:2px solid #c45a14; color:#26221e;
+                    font-size:19px; padding:14px 16px; border-radius:14px; margin:14px 0 4px; }
+  .fallbackBanner.show { display:block; }
+  .pasteguide { background:#eef4ea; border-radius:12px; padding:12px 16px; font-size:18.5px; margin:14px 0 4px; }
+  .navrow { display:flex; gap:12px; margin-top:18px; }
+  .navrow button, .navrow a.btn { flex:1; font-size:21px; font-weight:bold; padding:18px 10px; border-radius:14px; min-height:60px;
+                   background:#fffdf8; color:#26221e; border:3px solid #26221e; }
+  .navrow button:disabled, .navrow a.btn:disabled { opacity:.35; }
+  .navrow a.btn.next { background:#26221e; color:#fff; }
+  .printbtn { background:#fffdf8; color:#26221e; border:3px solid #26221e; font-size:21px; font-weight:bold;
+              padding:18px 16px; border-radius:14px; width:100%; margin-top:14px; min-height:60px; }
+  .wsline { border-bottom:2px solid #a68b64; min-height:34px; margin:4px 0 14px; }
+  .wsitem b { font-size:20px; }
+  .mistakes li, .deviations li { margin:10px 0; }
+  footer { margin-top:40px; font-size:15.5px; color:#6e6052; text-align:center; }
+  footer .disclaimer { text-align:left; font-size:15px; border-top:2px solid #e5d9c8; padding-top:16px; margin-bottom:20px; }
+  .hidden { display:none; }
+  @media print {
+    .loop, video, .videoslot, .copybtn, .aiBtn, .selfbtn, .navrow, .printbtn, .copiedBanner, .noPrint, .doorbtn { display:none !important; }
+    body { background:#fff; font-size:13.5pt; }
+    .wrap { max-width:none; padding:0; }
+    header.titlebar { background:#fff; color:#000; border-bottom:2pt solid #000; padding:0 0 8pt; }
+    header.titlebar .kit, header.titlebar .lane { color:#000; }
+    .step, .qcard, .door2box, .rulebox { border:1.5pt solid #666; break-inside:avoid; }
+    .promptbox { border:1.5pt solid #666; background:#fff; font-size:11.5pt; max-height:none; overflow:visible; }
+    a { color:#000; text-decoration:none; }
+  }
+</style>
+</head>
+<body>
+<header class="titlebar">
+  <div class="kit">Health Care Rule Kit</div>
+  <h1>Stage 3: Your Doctor</h1>
+  <div class="lane">Shared road &mdash; every lane merges here</div>
+</header>
+
+<div class="wrap noPrint" style="padding-bottom:0;">
+  <p class="micro" style="margin-top:12px;"><a href="index.html">&#8592; Start over &mdash; back to the front door</a></p>
+</div>
+
+<div class="loop" id="loopBar" aria-label="Where you are">
+  <span id="ls-watch" class="now"><b>1. Watch</b>the video</span>
+  <span id="ls-door"><b>2. Pick</b>your door</span>
+  <span id="ls-steps"><b>3. Do</b>the steps</span>
+  <span id="ls-next"><b>4. Next</b>stage</span>
+</div>
+
+<div class="wrap">
+
+  <!-- VIDEO SLOT (Nov 20, 2026): the Stage 3 Katie video ("Find Your Doctor: The
+       Merge Point", script T1 in the stage file) is produced later. This is a
+       clearly-marked placeholder — no video file, nothing that pretends to be one.
+       Jeff previews every video before it goes live. -->
+  <video id="katieVideo" controls playsinline preload="metadata" src="media/stage3.mp4"></video>
+  <p class="micro">Watch Katie first &mdash; she walks you through this whole stage. (Katie&rsquo;s video for this stage &mdash; preview.)</p>
+
+  <p class="promise">Find your doctor &mdash; or check the one you already have. Most of the time it&rsquo;s a few calm minutes of checking, done once. The kit is here for the day a listing turns out wrong.</p>
+  <p>Up to now, your lane had its own front end &mdash; your plan, your program, your prices. This stage is where every lane merges onto the same road. And the first stop on that road is a person: your primary doctor. Not a name on a list. A doctor who knows you before you&rsquo;re sick &mdash; because that doctor is your gatekeeper. Referrals start there. Authorizations run through there. And the hospital you&rsquo;re sent to, someday, will very likely be your doctor&rsquo;s hospital.</p>
+  <p>Do this stage in calm, before you&rsquo;re sick, like every front-end stage before it. A primary doctor chosen in a hurry, from a hospital bed or a pain spike, is a stranger. Chosen here, they&rsquo;re yours.</p>
+
+  <h2>Pick your door</h2>
+  <p>Buyers arrive two ways. Pick yours. Both end at the same place: a doctor who is verified &mdash; on paper, with dates &mdash; for <i>this</i> plan year.</p>
+
+  <div class="doorwrap">
+    <button class="doorbtn" id="door1Btn">I need to find a doctor
+      <small>I don&rsquo;t have a primary doctor, or mine is gone, or I&rsquo;ve just moved.</small></button>
+    <button class="doorbtn" id="door2Btn">I already have a doctor
+      <small>I have a doctor I like, and I&rsquo;m keeping them. I just need to check them.</small></button>
+  </div>
+  <p class="micro" id="doorHint">Tap a door above &mdash; your path opens below. Picked the wrong door? Tap the other one; nothing is lost.</p>
+
+  <!-- ================= DOOR 2 — ALREADY HAVE A DOCTOR ================= -->
+  <div id="door2Path" class="hidden">
+    <div class="door2box">
+      <h3>Door 2 &mdash; I already have a doctor</h3>
+      <p>You have a doctor you like, and you&rsquo;re keeping them. Good &mdash; this kit never asks you to shop for a doctor you&rsquo;re happy with. But &ldquo;I have a doctor&rdquo; is a claim about the past, and networks churn quietly. A doctor who was in your plan last year may be out of it this year. A doctor who moved practices may have changed network status with the address &mdash; participation often follows the practice, not the person. A practice may have quietly stopped taking your plan&rsquo;s product while still taking the insurer&rsquo;s other plans. And offices almost never volunteer any of it: you find out at a desk, mid-illness, which is the worst classroom in this kit. So Door 2 is short, and it is not optional: <b>you don&rsquo;t re-shop for your doctor &mdash; you verify the one you have.</b></p>
+      <p class="beat"><b class="tag">DO THIS &mdash; the whole path, three checks:</b></p>
+      <ol class="checklist">
+        <li><b>Verify twice, for this plan year</b> &mdash; the same two independent confirmations Step 1 teaches, run on the doctor you already have: the <b>office</b> (Step 2&rsquo;s questions work &mdash; ask them about your existing relationship, not a new one) and your <b>plan or agency</b>, confirming this doctor for you under your exact plan or program. Last year&rsquo;s yes is not this year&rsquo;s.</li>
+        <li><b>Confirm the office will book you under your exact plan</b> &mdash; by its full name, at the location you actually visit. &ldquo;We still take your insurance&rdquo; is not the same answer as &ldquo;you are in-network for [your plan product], here, now.&rdquo;</li>
+        <li><b>Log both confirmations next to your plan card</b> &mdash; date, name of who confirmed, what they confirmed. Door 2&rsquo;s paper is small. It is also the paper that answers Stage 4&rsquo;s desk if the desk disagrees with it.</li>
+      </ol>
+      <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Your log of both confirmations, next to your plan card.</p>
+      <p>Then skip ahead: <b>Step 4 (your records)</b> and <b>Step 5 (your care file)</b> below apply to you exactly as written. Steps 1&ndash;3 are the finding path; read them only if a Door 2 check fails. A failed check means you are standing at Door 1 now &mdash; and the stage is there for you.</p>
+      <div class="lanenote"><b class="lane">Lane note &mdash; welfare (Door 2):</b> your plan keeps its own answer to &ldquo;who is your doctor?&rdquo; &mdash; and it may not be the doctor you actually see. Auto-assignment, a move, or an office change can leave the plan showing a name you&rsquo;ve never visited, while the doctor you use isn&rsquo;t the one the plan counts. Check who the plan says your primary doctor is (the member line or your portal). If it&rsquo;s wrong &mdash; or the named doctor is unreachable, far away, or no longer practicing &mdash; change the assignment to the doctor you actually use, using the change rights in Step 1&rsquo;s welfare note, and confirm the change has taken effect before you rely on it. In this lane, referrals and authorizations run through the doctor the <i>plan</i> has on file; a mismatch there is a denial waiting for a date.</div>
+      <div class="lanenote"><b class="lane">Lane note &mdash; cash (Door 2):</b> your whole check is one question: does the office&rsquo;s cash price for a visit still hold? Cash prices drift the way networks do. Confirm the current visit price &mdash; and what it includes &mdash; before your next appointment, and log it with the date, the way the cash lane taught.</div>
+    </div>
+  </div>
+
+  <!-- ================= DOOR 1 — FIND A DOCTOR ================= -->
+  <div id="door1Path" class="hidden">
+    <div class="rulebox">
+      <h3>Katie&rsquo;s rule for this stage</h3>
+      <p class="r"><b>THE RULE:</b> the list a plan or program publishes &mdash; its directory of doctors &mdash; has to be accurate. That&rsquo;s a regulated obligation, and it exists because the lists are so often wrong. And an office has to bill under the contracts it actually holds: &ldquo;we take your insurer&rdquo; is not the same thing as &ldquo;we are in-network for your exact plan.&rdquo;</p>
+      <p class="r"><b>THE CHECK:</b> verify twice, before you rely on any name. The office confirms it, and the plan or agency confirms it &mdash; two independent yeses, with dates, in your log, plus a dated picture of the listing you relied on.</p>
+      <p class="r"><b>THE MEANING:</b> if the listing turns out wrong, your dated picture and your log are the protection &mdash; a doctor you chose because a directory said &ldquo;in-network and accepting patients,&rdquo; on a date you can prove, is a reliance the system has to answer for. Check it the way you&rsquo;d check a receipt: calmly, as a routine. The rule is named here, before you need it, so a violation reads as a paperwork fact &mdash; not a confrontation.</p>
+    </div>
+
+    <h2>The steps &mdash; Door 1</h2>
+
+    <div class="step" id="step1">
+      <h3>Step 1 &mdash; Choosing: start from your lane&rsquo;s list, then verify twice</h3>
+      <p class="beat"><b class="tag">DO THIS:</b> Every lane gives you a list to start from. None of the lists can be trusted as printed. So the rule of this step, for every lane, is the same: <b>the list nominates; the verification decides.</b> Before any name goes on your worksheet as <i>your doctor</i>, make two independent confirmations: (1) <b>the office</b> &mdash; call the practice itself and ask the questions in Step 2; (2) <b>the plan or agency</b> &mdash; confirm with your insurer, your Medicaid managed-care plan, or your state agency that this doctor is listed for you under your exact plan or program. (Cash lane: there is no second party &mdash; your second verification is the written price confirmation in Step 2.) When the two answers agree, you have a doctor. When they disagree, believe the disagreement, not either answer &mdash; and resolve it before you rely on the doctor, in writing where you can.</p>
+      <div class="lanenote"><b class="lane">Lane note &mdash; insured:</b> start from your plan&rsquo;s provider directory (Stage 1, Step 5). If your plan kind requires you to name a primary care physician &mdash; many HMO and POS plans do &mdash; that naming is a formal step with the plan, not just a choice you make in your head: the doctor you named is the one whose referrals and visits the plan counts. Verify the doctor is in-network for your exact plan, at the location you&rsquo;ll actually visit, and complete the plan&rsquo;s PCP-selection step if your plan has one.</div>
+      <div class="lanenote"><b class="lane">Lane note &mdash; welfare:</b> if your managed-care plan <b>assigned</b> you a primary doctor &mdash; auto-assignment is common when you enroll and don&rsquo;t choose &mdash; that assignment is a default, not a destiny. In most programs you may <b>change</b> your assigned doctor, and often your plan, within windows and rules your state and plan publish. Read the assignment letter as what it is: the system choosing for you because you hadn&rsquo;t yet. <b>Keep that letter</b> &mdash; it is the paper that proves who was assigned, when, and what your change rights are. And do not drift without a doctor because the assignment looked official or because the assigned office is far away: an assigned doctor you&rsquo;ve never seen is the welfare lane&rsquo;s version of having no doctor at all.</div>
+      <div class="lanenote"><b class="lane">Lane note &mdash; cash:</b> there is no directory. Your list is the practices near you, recommendations, and your own search &mdash; and your verification is about price as much as participation (Step 2&rsquo;s script covers both). Some practices offer <b>membership or direct-primary-care arrangements</b> &mdash; a recurring fee covering primary-care access outside insurance entirely. This kit names the model neutrally and makes no recommendation: if you meet it, get its terms in writing &mdash; what the fee covers, what it excludes, how hospital and specialist care are handled (almost always: separately) &mdash; and judge it with the cash lane&rsquo;s rules, like any other price.</div>
+      <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The directory or assignment listing you relied on &mdash; screenshot or printout, dated &mdash; plus your log of both verification calls: date, name of who you spoke to, and what they confirmed.</p>
+      <p>One warning travels forward: even after both checks say yes, the desk can still say no on the day &mdash; and the desk play at the start of Stage 4 covers exactly that moment.</p>
+    </div>
+
+    <div class="step" id="step2">
+      <h3>Step 2 &mdash; The first call: what to ask the office</h3>
+      <p class="beat"><b class="tag">DO THIS:</b> One call does most of this stage&rsquo;s work. Make it before you book anything, and log it like every call in this kit: date, name, answers.</p>
+      <div class="say"><b class="tag">SAY THIS:</b> &ldquo;Hello, I&rsquo;m choosing a primary care doctor and I&rsquo;m calling to confirm a few things before I schedule. One: is Dr. [name] accepting new patients right now? Two: does the practice take [my exact plan name / my Medicaid managed-care plan / &mdash; cash lane: &mdash; and if so, what are your new-patient and regular visit prices for someone paying cash]? Three: when is the first available appointment for a new patient? Four: which hospital is Dr. [name] affiliated with &mdash; where would I be sent if I needed hospital care?&rdquo;</div>
+      <p class="beat"><b>Accepting new patients</b> &mdash; the single most common directory lie, in every lane. A listing is a snapshot; this answer is today.</p>
+      <p class="beat"><b>Participation, in the plan&rsquo;s exact name</b> &mdash; practices bill under contracts with specific plans and products. &ldquo;We take [insurer]&rdquo; is not the same answer as &ldquo;we are in-network for [your plan product].&rdquo; Ask with the full name from your card.</p>
+      <p class="beat"><b>First available appointment</b> &mdash; a doctor you can&rsquo;t see for four months is a doctor you don&rsquo;t have, whatever the directory says. If the wait is unreasonable, that is information: choose someone reachable, and note the wait in your log.</p>
+      <p class="beat"><b>Hospital affiliation</b> &mdash; ask it now, in calm, because it decides something later under pressure: your doctor&rsquo;s hospital is, in practice, very likely to be <b>your</b> hospital. You are not just choosing a doctor in this call. You are choosing the building.</p>
+      <p class="beat"><b class="tag">DO THIS:</b> Make this call for your first-choice doctor. If any answer fails &mdash; not accepting, doesn&rsquo;t take your plan or program, unreachable wait &mdash; move to the next name on the list and make the same call. Do not book an establish-care visit (Step 3) until one office passes all four.</p>
+      <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Your log of the call &mdash; and of any failed calls before it. The failures are documentation of the directory problem, dated, in your hand.</p>
+    </div>
+
+    <div class="step" id="step3">
+      <h3>Step 3 &mdash; Getting on board: the establish-care visit</h3>
+      <p class="beat"><b class="tag">DO THIS:</b> Most practices will not treat you as <i>their patient</i> for a sick visit, a referral, or an after-hours call until you have had a first, get-established appointment &mdash; often called an <b>establish-care</b> or new-patient visit. Being established <i>before</i> you&rsquo;re sick is the entire point of doing it now: the first visit as a known patient is a different experience from the first visit as a stranger in pain.</p>
+      <p class="beat"><b class="tag">DO THIS:</b> Book the establish-care visit once Step 2&rsquo;s call passes, and bring: your photo ID; your insurance or program card (or, cash lane, your agreed price confirmation); a <b>list of your current medications</b> &mdash; names and doses, from the bottles, not from memory; the names and locations of your previous doctors and any hospital you&rsquo;ve used (Step 4 needs the same list, so write it once, carefully); and your worksheet.</p>
+      <div class="say"><b class="tag">SAY THIS (at booking):</b> &ldquo;I want to schedule a new-patient, establish-care visit with Dr. [name]. I&rsquo;m bringing my medication list and my previous providers&rsquo; information so you can request my records.&rdquo;</div>
+      <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The visit summary the practice gives you, and the names of everyone you dealt with. This visit is the first entry in your care file (Step 5).</p>
+      <div class="lanenote"><b class="lane">Lane note &mdash; insured:</b> confirm at booking whether the establish-care visit is billed as a preventive visit or a regular office visit under your plan &mdash; the two can price very differently against your deductible and copays &mdash; and log the answer. If your plan required a formal PCP selection (Step 1), confirm the selection is on file with the <i>plan</i>, not just the office, before this visit.</div>
+      <div class="lanenote"><b class="lane">Lane note &mdash; welfare:</b> if you changed an auto-assigned doctor (Step 1), confirm the change has taken effect &mdash; with the plan and with the new office &mdash; before booking, and keep the change confirmation with the assignment letter. An establish-care visit booked under a doctor your plan still shows as someone else is paperwork trouble you can prevent with one call.</div>
+      <div class="lanenote"><b class="lane">Lane note &mdash; cash:</b> confirm the establish-care visit&rsquo;s cash price in writing before the appointment, the way the cash lane taught: quoted price, what&rsquo;s included (are any labs or tests part of it, or billed separately?), and who quoted it, in your log.</div>
+    </div>
+  </div>
+
+  <!-- ================= SHARED STEPS 4–5 (both doors) ================= -->
+  <div id="sharedSteps" class="hidden">
+    <h2>The steps &mdash; both doors end here</h2>
+
+    <div class="step" id="step4">
+      <h3>Step 4 &mdash; Moving your records: they are yours</h3>
+      <p class="beat"><b class="tag">DO THIS:</b> Your new primary doctor works better with your history &mdash; and your history belongs, in the ways that matter here, to <b>you</b>. Under the federal HIPAA right of access, you have the right to get a copy of your medical records from your providers, and to direct that a copy be sent to a third party you choose &mdash; including your new doctor. This is not a courtesy the old office extends. It is a right you exercise, and this stage is where you exercise it on purpose, early, while nothing is urgent.</p>
+      <p class="beat"><b class="tag">DO THIS:</b> Providers may require the request in writing and may have their own form &mdash; ask for the form, or send a letter. Either way, the request that works has the same contents: who you are, exactly which records, the date range, where to send them, and your signature and date.</p>
+      <div class="say"><b class="tag">SAY THIS (letter or form cover note):</b> &ldquo;[Your name, date of birth, address, phone]. Under my right of access to my own health records, I am requesting a copy of my medical records for [date range, or: my complete record] &mdash; including visit notes, test and imaging results, and my medication history &mdash; to be sent to [new doctor&rsquo;s name, practice, address / fax / portal]. [Or: and I will pick up / please send to me directly.] Please let me know the cost before you process this, and if you need anything further from me to complete it. &mdash; [Signature, date.]&rdquo;</div>
+      <p class="beat"><b class="tag">DO THIS:</b> Send the request in a way that proves the date &mdash; portal message with a screenshot, fax with a confirmation page, or mail with proof of mailing &mdash; and log it. Ask each prior provider who holds a meaningful piece of your history: previous primary doctors first, then specialists and hospitals with records your new doctor will actually need.</p>
+      <p class="beat"><b>The clock, stated carefully:</b> federal HIPAA rules require a covered provider to act on an access request within a set outer window &mdash; <b>commonly 30 days</b> from the request, with a limited extension the provider must explain in writing &mdash; and many <b>states set a faster deadline</b> or stricter rules of their own. Treat the federal window as the floor of your rights, not the whole of them: <b>verify your state&rsquo;s rule</b> (your state health department or your new provider&rsquo;s office can point you to it), and write the date your request is due on your log the day you send it.</p>
+      <p class="beat"><b>What it may cost:</b> HIPAA limits the fee for your own records requested for yourself to a <b>reasonable, cost-based fee</b> &mdash; copying and labor, not a ransom &mdash; and electronic records requested electronically are generally cheaper still; some states cap fees lower. If a quote sounds like a wall rather than a fee, ask for it in writing, itemized: &ldquo;Please send me the fee in writing, with what it covers.&rdquo; A fee that can&rsquo;t be itemized can be questioned.</p>
+      <p class="beat"><b>When records are slow-walked &mdash; the deviation, and the route:</b> delay past the window, silence, or a demand for fees the rules don&rsquo;t support is a deviation, and it has a referee: complaints about a provider&rsquo;s handling of your access right go to the <b>U.S. Department of Health and Human Services, Office for Civil Rights (OCR)</b> &mdash; the federal office that enforces HIPAA. Filing is free, done in writing or online, and it runs on your paper: the dated request, your log of follow-ups, the provider&rsquo;s responses. One call first usually suffices:</p>
+      <div class="say"><b class="tag">SAY THIS:</b> &ldquo;My request went in on [date]. I know there&rsquo;s a deadline for acting on it, and I&rsquo;d like to complete this without a complaint. Can you tell me today when my records will be sent?&rdquo;</div>
+      <p class="beat"><b class="tag">KEEP THIS PAPER:</b> A copy of every records request, proof of its date, the due date you calculated, and every reply. Filed in your care file (Step 5), this bundle is the complete story if OCR ever reads it &mdash; and the complete reassurance that your history actually moved.</p>
+    </div>
+
+    <div class="step" id="step5">
+      <h3>Step 5 &mdash; Your care file starts here</h3>
+      <p class="beat"><b class="tag">DO THIS:</b> Every lane&rsquo;s front end started a folder. This stage starts the folder the rest of the road runs on &mdash; your <b>care file</b>. One place, paper or digital, holding the human map of your care: who your providers are, where your records live, and (from Stage 4 onward) your log of visits, calls, and papers. Start it today with three things: your <b>My Care Team worksheet</b> (below), the verification notes and establish-care summary from Steps 1&ndash;3, and the records bundle from Step 4. Everything after this stage &mdash; every referral, authorization, hospital stay, and bill in Stages 4&ndash;6 &mdash; gets filed behind it, in order. The care file is why, in Stage 6, you will be comparing their bill against <i>your</i> record instead of your memory.</p>
+      <p class="beat"><b class="tag">DO THIS:</b> Fill in the My Care Team worksheet in one sitting, from the papers this stage produced. If a line is blank &mdash; a records location you don&rsquo;t know, a hospital affiliation you didn&rsquo;t ask &mdash; the blank is a to-do, not a failure. Close the blanks within the week.</p>
+    </div>
+  </div>
+
+  <!-- ================= ANNUAL HABIT ================= -->
+  <div id="annualHabit" class="hidden">
+    <div class="step">
+      <h3>Every year, run it again</h3>
+      <p class="beat"><b class="tag">DO THIS:</b> Every new plan year, the verification runs again &mdash; even if nothing in your life changed. Plans rebuild their networks; doctors change practices, contracts, and panels; and none of them mail you a notice that your doctor quietly fell out of yours. One short check each year &mdash; the two confirmations, logged &mdash; is the cheapest step in this entire kit, and it is the step that prevents the worst branch of what comes next: arriving sick, card in hand, and hearing &ldquo;we don&rsquo;t take that anymore.&rdquo;</p>
+      <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The dated log of each year&rsquo;s check, next to your plan card.</p>
+    </div>
+  </div>
+
+  <!-- ================= MISTAKES & DEVIATIONS ================= -->
+  <div id="lists" class="hidden">
+    <h2>The mistakes &mdash; yours to not make</h2>
+    <ol class="mistakes">
+      <li>Picking a doctor from a directory, a list, or an assignment letter and never verifying &mdash; then meeting the truth during an illness.</li>
+      <li>Verifying with only one party. The office and the plan (or agency) keep separate files; one confirmation is half a fact.</li>
+      <li>Never asking the hospital affiliation &mdash; and discovering, at the worst moment, which building your choice of doctor chose for you.</li>
+      <li>Drifting without a primary doctor because the assigned one looked official, or the search felt like homework. An unchosen doctor is the same as none.</li>
+      <li>Booking sick care at a practice where you were never established &mdash; and getting the stranger&rsquo;s version of the first visit.</li>
+      <li>Assuming your records followed you. They move when you move them, in writing, on a clock you track.</li>
+      <li>Asking for records verbally, keeping no dated copy of the request, and having nothing to show when the window passes.</li>
+      <li>Starting no care file &mdash; leaving the worksheets, summaries, and logs scattered, so Stage 6&rsquo;s fight runs on memory.</li>
+    </ol>
+
+    <h2>The deviations &mdash; theirs to answer for</h2>
+    <ol class="deviations">
+      <li>Directory or assignment listings naming doctors who are not accepting patients, not participating, or no longer at the listed practice &mdash; in every lane, a known and regulated accuracy problem.</li>
+      <li>An office confirming participation in an insurer generally while not in-network for your specific plan product &mdash; a distinction the office&rsquo;s billing staff knows and the patient pays for.</li>
+      <li>An auto-assignment treated by a plan as if it were your informed choice, with your change rights nowhere mentioned in the letter that announced it.</li>
+      <li>Records requests ignored past the federal window (or your state&rsquo;s faster one), with no written explanation of any extension.</li>
+      <li>Record fees quoted as flat, unexplained sums, rather than the reasonable, cost-based fee the access right allows &mdash; especially fees that shrink when itemization is requested.</li>
+      <li>An establish-care visit billed under a different visit type than the one described at booking, changing what you owe without anyone saying so.</li>
+    </ol>
+
+    <p><b>What &ldquo;done&rdquo; looks like for Stage 3:</b> you can name your primary doctor, their practice, and their hospital without looking it up &mdash; and then you look it up anyway, on your worksheet, because it&rsquo;s written there. The doctor was verified twice, with dated notes. You&rsquo;re established, or the visit is booked. Your records are requested, with due dates on your log. And your care file exists, with this stage&rsquo;s paper in it, waiting for Stage 4. The shared road is open &mdash; and you&rsquo;re on it with a home base.</p>
+  </div>
+
+  <!-- ================= MONICA PROMPTS ================= -->
+  <div id="prompts" class="hidden">
+    <h2>Now do it &mdash; two questions, one at a time</h2>
+    <p>Katie explained it. Now use the kit&rsquo;s helper for the two reading jobs in this stage &mdash; or do them yourself on paper. <span class="svcName"></span> was explained once, at Stage 1, Question 2 &mdash; after that, the kit just shows the button.</p>
+
+    <!-- QUESTION 1 — PROMPT 3.2 (used at Step 1: verify) -->
+    <div class="qcard" id="card1">
+      <div class="qhead"><h3>What still needs verifying?</h3><span class="qcount">Question 1 of 2</span></div>
+      <p class="needline"><b>You&rsquo;ll need:</b> The plan or program directory listing for this doctor, and your notes from calling the doctor&rsquo;s office.</p>
+      <p>This question compares what the listing claims with what the office told you &mdash; and names what neither one settles.</p>
+      <p class="micro">This whole box is what gets copied &mdash; word for word, including the last paragraph.</p>
+      <div class="promptbox" id="box1">I am choosing a doctor and I must verify that they really take my coverage before I rely on them. Below I will paste: (1) the plan or program directory listing for this doctor, and (2) my notes from calling the doctor&#x27;s office.
+
+From the pasted material only, tell me:
+1. What the directory listing claims: the doctor&#x27;s name and practice, whether it shows them as in-network or participating in my plan or program, and whether it shows them accepting new patients.
+2. What the office told me, from my notes: whether they confirmed participation, whether they are accepting patients, and any date or name I recorded.
+3. Where the listing and the office DISAGREE, line by line. List each disagreement separately.
+4. What neither document establishes — the questions still unanswered. Label each &quot;Not in the document.&quot;
+
+Work only from what I pasted. If something is not in the pasted material, write &quot;Not in the document&quot; — do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language.</div>
+      <button class="bigbtn copybtn" data-copy="1">Copy this question</button>
+      <p class="micro">One tap copies the whole question. (Way 2 below doesn&rsquo;t need it.)</p>
+      <div class="copiedBanner" id="banner1">Copied! Now choose your way &#8595;</div>
+      <div class="fallbackBanner" id="fallback1">Copy didn&rsquo;t work on this phone &mdash; no problem. Hold your finger on the words in the box above until <b>Copy</b> appears, tap Copy, then tap the button below.</div>
+      <p class="pasteguide"><b>What to paste with it:</b> a screenshot&rsquo;s text or your transcription of the directory listing &mdash; and keep the dated screenshot itself in your file, exactly as Stage 1, Step 5 teaches &mdash; plus your call notes with the date and the name of who you spoke to.</p>
+      <p><b>What you&rsquo;ll get back &mdash; and what to do with it:</b> the disagreement list, which is the valuable part. Directory accuracy is the plan&rsquo;s regulated obligation: if you relied on a listing that turns out wrong, your dated screenshot and your call log are the protection &mdash; and a disagreement the helper surfaces is one you raise with the plan <i>before</i> care, in writing, not after a bill. Unanswered questions go back to the office or the plan with Step 2&rsquo;s script.</p>
+      <p style="margin-top:18px;"><b>Two ways from here &mdash; your choice:</b></p>
+      <p class="beat"><b class="tag">WAY 1 &mdash; ASK <span class="svcName"></span> FOR HELP:</b></p>
+      <a class="btn bigbtn aiBtn" id="aiBtn1" href="#" target="_blank" rel="noopener"></a>
+      <div class="pasteguide"><b>How to paste on her page:</b> hold your finger in the question box until <b>Paste</b> appears, tap Paste, add your document pages, then tap her send arrow. Before you paste anything: never paste your Social Security number or full bank or card numbers, and cover any number you don&rsquo;t want seen <i>before</i> you photograph or paste it &mdash; you decide what she sees. Come right back here when you&rsquo;re done.</div>
+      <p class="micro">MakeDealNow may earn a commission when you sign up through our link &mdash; it never changes what you pay.</p>
+      <p class="beat" style="margin-top:18px;"><b class="tag">WAY 2 &mdash; DO IT MYSELF:</b></p>
+      <p>Skip the AI entirely. Compare the listing and your call notes yourself, line by line, with Step 1&rsquo;s verify-twice rule: where they agree, you have a doctor; where they disagree, believe the disagreement and resolve it before you rely on the doctor. Nothing on this route depends on <span class="svcName"></span> &mdash; no account, nothing leaves your hands.</p>
+      <a class="btn bigbtn selfbtn" href="#step1">Do it myself &mdash; use Step 1</a>
+      <div class="navrow">
+        <button disabled>&#8592; Back</button>
+        <button class="next" id="next1">Next question &#8594;</button>
+      </div>
+    </div>
+
+    <!-- QUESTION 2 — PROMPT 3.1 (used at Step 5: care file) -->
+    <div class="qcard hidden" id="card2">
+      <div class="qhead"><h3>Build my care team page</h3><span class="qcount">Question 2 of 2</span></div>
+      <p class="needline"><b>You&rsquo;ll need:</b> Whatever this stage&rsquo;s work produced &mdash; appointment cards, portal printouts, office information sheets, and your notes about your doctors, pharmacy, and records.</p>
+      <p>This question turns what you collected into your one-page care team record &mdash; the front page of your care file.</p>
+      <p class="micro">This whole box is what gets copied &mdash; word for word, including the last paragraph.</p>
+      <div class="promptbox" id="box2">I am setting up a one-page record of my care team. Below I will paste what I have collected: appointment cards, portal printouts, office information sheets, and my own notes about my doctors, pharmacy, and records.
+
+From the pasted material only, fill in exactly these fields, one per line, in this order:
+My lane + plan / program:
+Member / ID number (only if it appears in what I pasted):
+Primary doctor:
+Practice name + address:
+Practice phone:
+Patient portal:
+Established? (date):
+Verified with plan / agency (date):
+Hospital affiliation:
+Specialists I use (one per line — name, specialty, phone):
+Pharmacy (name, location, phone):
+Records: where my history lives (one per line — provider, and &quot;requested / received&quot; dates if I gave them):
+Records now held by my primary doctor:
+
+For any field the pasted material does not fill, write &quot;Not in the document&quot; — that field is a to-do for me, not a gap for you to fill.
+
+Work only from what I pasted. If something is not in the pasted material, write &quot;Not in the document&quot; — do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language.</div>
+      <button class="bigbtn copybtn" data-copy="2">Copy this question</button>
+      <p class="micro">One tap copies the whole question. (Way 2 below doesn&rsquo;t need it.)</p>
+      <div class="copiedBanner" id="banner2">Copied! Now choose your way &#8595;</div>
+      <div class="fallbackBanner" id="fallback2">Copy didn&rsquo;t work on this phone &mdash; no problem. Hold your finger on the words in the box above until <b>Copy</b> appears, tap Copy, then tap the button below.</div>
+      <p class="pasteguide"><b>What to paste with it:</b> whatever Stage 3&rsquo;s work produced &mdash; the office&rsquo;s information, your verification notes from Step 1&rsquo;s two checks, appointment cards, portal details. Paste your own notes too; your notes are documents for this purpose.</p>
+      <p><b>What you&rsquo;ll get back &mdash; and what to do with it:</b> your <b>My Care Team</b> worksheet, filled in worksheet order. Copy it onto the worksheet itself &mdash; the worksheet is the record, not the chat. Every &ldquo;Not in the document&rdquo; field is an unfinished verification: the second directory check not yet done, the hospital affiliation never asked (Step 2&rsquo;s call). Finish them with the stage&rsquo;s scripts, then update the page.</p>
+      <p style="margin-top:18px;"><b>Two ways from here &mdash; your choice:</b></p>
+      <p class="beat"><b class="tag">WAY 1 &mdash; ASK <span class="svcName"></span> FOR HELP:</b></p>
+      <a class="btn bigbtn aiBtn" id="aiBtn2" href="#" target="_blank" rel="noopener"></a>
+      <div class="pasteguide"><b>How to paste on her page:</b> hold your finger in the question box until <b>Paste</b> appears, tap Paste, add your document pages, then tap her send arrow. Before you paste anything: never paste your Social Security number or full bank or card numbers, and cover any number you don&rsquo;t want seen <i>before</i> you photograph or paste it &mdash; you decide what she sees. Come right back here when you&rsquo;re done.</div>
+      <p class="micro">MakeDealNow may earn a commission when you sign up through our link &mdash; it never changes what you pay.</p>
+      <p class="beat" style="margin-top:18px;"><b class="tag">WAY 2 &mdash; DO IT MYSELF:</b></p>
+      <p>Skip the AI entirely. Fill in the My Care Team worksheet below by hand, in one sitting, from the papers this stage produced. If a line is blank, the blank is a to-do, not a failure &mdash; close the blanks within the week. Nothing on this route depends on <span class="svcName"></span> &mdash; no account, nothing leaves your hands.</p>
+      <a class="btn bigbtn selfbtn" href="#worksheet">Do it myself &mdash; use the worksheet</a>
+      <div class="navrow">
+        <button id="back2">&#8592; Back</button>
+        <button class="next" disabled>Next question &#8594;</button>
+      </div>
+      <p class="micro">That&rsquo;s both questions for this stage. When your care file exists &mdash; this stage&rsquo;s paper behind the My Care Team page &mdash; Stage 3 is done.</p>
+    </div>
+  </div>
+
+  <!-- ================= FORWARD POINTER ================= -->
+  <div id="forwardPtr" class="hidden">
+    <div class="step">
+      <h3>What comes next &mdash; the visit</h3>
+      <p>Even after both checks say yes, the desk can still say no on the day. The visit page opens with that moment &mdash; the desk play: your card handed over, the match or the mismatch, and the lobby call if the desk disagrees with your paper.</p>
+    </div>
+  </div>
+
+  <!-- ================= WORKSHEET ================= -->
+  <div id="worksheetSection">
+    <h2 id="worksheet">My Care Team &mdash; the worksheet</h2>
+    <p><b>Your facts stay yours.</b> Nothing on this page is uploaded, submitted, or sent anywhere. It exists in exactly one place &mdash; your hands. Fill it in one sitting from this stage&rsquo;s papers; update it the day anything on it changes. Keep it at the front of your care file.</p>
+    <div class="step">
+      <p class="wsitem"><b>My lane + plan / program</b> &mdash; insured, cash-pay, or welfare, with the plan or program&rsquo;s exact name. <i>So every person helping you &mdash; and every later worksheet &mdash; starts from the right rulebook.</i></p><div class="wsline"></div>
+      <p class="wsitem"><b>Member / ID number</b> &mdash; your number under that plan or program, copied from the card. <i>Offices ask for it on every call in this stage; having it here ends the wallet search.</i></p><div class="wsline"></div>
+      <p class="wsitem"><b>Primary doctor</b> &mdash; the doctor you chose and verified, full name as the practice uses it. <i>Not the assigned or listed name &mdash; the verified one, from Step 2&rsquo;s call.</i></p><div class="wsline"></div>
+      <p class="wsitem"><b>Practice name + address</b> &mdash; the office you&rsquo;ll actually visit. <i>Doctors practice at more than one address, and participation and affiliation can differ by location.</i></p><div class="wsline"></div>
+      <p class="wsitem"><b>Practice phone</b> &mdash; the office&rsquo;s number, including any separate scheduling or nurse line.</p><div class="wsline"></div>
+      <p class="wsitem"><b>Patient portal</b> &mdash; the portal name or web address, and where your login is kept (not the password itself). <i>Visit summaries, test results, and messages land here &mdash; and portal messages are dated writing, which this kit values.</i></p><div class="wsline"></div>
+      <p class="wsitem"><b>Established? (date)</b> &mdash; the date of your establish-care visit, or the date it&rsquo;s booked for. <i>Before this date, you&rsquo;re a stranger to the practice; after it, you&rsquo;re their patient. The date is the line.</i></p><div class="wsline"></div>
+      <p class="wsitem"><b>Verified with plan / agency (date)</b> &mdash; when your insurer, plan, or agency confirmed this doctor for you, and who confirmed it. <i>The second verification from Step 1 &mdash; half of your directory protection.</i></p><div class="wsline"></div>
+      <p class="wsitem"><b>Hospital affiliation</b> &mdash; the hospital your primary doctor is affiliated with. <i>Probably your hospital, if it ever matters. Better learned here than in an ambulance.</i></p><div class="wsline"></div>
+      <p class="wsitem"><b>Specialists I use</b> &mdash; name, specialty, practice phone, one line each.</p><div class="wsline"></div>
+      <p class="wsitem"><b>Pharmacy</b> &mdash; name, location, phone.</p><div class="wsline"></div>
+      <p class="wsitem"><b>Records: where my history lives</b> &mdash; previous doctors, hospitals, and clinics holding your records, one line each, with &ldquo;requested (date) / received (date)&rdquo; beside each. <i>A blank &ldquo;received&rdquo; line past its due date is a follow-up already written for you.</i></p><div class="wsline"></div>
+      <p class="wsitem"><b>Records now held by my primary doctor</b> &mdash; what has arrived, checked off as it lands.</p><div class="wsline"></div>
+    </div>
+    <button class="printbtn" onclick="window.print()">Print this stage</button>
+    <p class="micro">Print this and keep it at the front of your care file.</p>
+    <a class="btn printbtn noPrint" href="worksheets/my-care-team.pdf" download>Download the worksheet (PDF)</a>
+  </div>
+
+  <!-- ================= PREV / NEXT ================= -->
+  <div class="navrow" style="margin-top:34px;">
+    <a class="btn" href="know-your-plan.html">&#8592; Back: Stage 1 &mdash; Know Your Plan</a>
+    <a class="btn next" href="the-visit.html">Next: Stage 4 &mdash; The Visit &#8594;</a>
+  </div>
+  <p class="micro">Stage 4 &mdash; The Visit &mdash; is the next page in the walk; it opens with the desk play.</p>
+
+  <footer>
+    <div class="disclaimer">
+      <p><b>Please read this first.</b> This kit is educational information. It is <b>not legal advice</b>, and it is <b>not medical advice</b>. It does not tell you what care to get, what care to refuse, or whether a treatment is right for you &mdash; those decisions belong to you and your doctor. This kit is about rights, paperwork, prices, and billing only. The publisher sells educational information only and performs no services of any kind: nobody will find your doctor, request your records, or call a plan or agency on your behalf. You make your own calls, sign your own forms, and make your own decisions at every step. Health coverage rules vary &mdash; by state, by plan, and by program &mdash; and they change. Wherever this kit states a rule, it also tells you where to verify it against your own documents and notices. If your situation involves a lawsuit, a collections action, or a deadline in court papers, talk to a lawyer.</p>
+    </div>
+    <p>MakeDealNow &mdash; The Health Care Rule Kit (preview)</p>
+    <p>Educational information &mdash; not legal or medical advice.</p>
+  </footer>
+</div>
+
+<script>
+/* ============================================================
+   THE KIT'S HELPER — MONICA. ONE PLACE ONLY.
+   Decided Nov 20, 2026: Monica is the kit's helper, presented
+   as a HELP BUTTON ("Ask Monica for help") — never as an
+   AI-service or partner link. Introduce-once: the full
+   explanation lives at Stage 1, Question 2 — this page shows
+   the plain button only. The url below is Monica's PLAIN
+   public URL. Once the affiliate account is approved, the
+   referral link replaces the url on the ONE line below.
+   Nothing else on this page hardcodes the service.
+   ============================================================ */
+var AI_SERVICE = { name: "Monica", url: "https://monica.im" };
+
+/* Render every service label and link from AI_SERVICE. */
+document.querySelectorAll(".svcName").forEach(function(el) { el.textContent = AI_SERVICE.name; });
+["1","2"].forEach(function(n) {
+  var b = document.getElementById("aiBtn" + n);
+  b.setAttribute("href", AI_SERVICE.url);
+  b.textContent = "Ask " + AI_SERVICE.name + " for help";
+});
+
+/* Prompt copy payloads — byte-identical to the prompt-layer file
+   (ai-companion-prompt-layer-2026-11-19.md, Prompts 3.1 and 3.2).
+   The visible boxes carry the same text. */
+var PROMPTS = { "1": "I am choosing a doctor and I must verify that they really take my coverage before I rely on them. Below I will paste: (1) the plan or program directory listing for this doctor, and (2) my notes from calling the doctor's office.\n\nFrom the pasted material only, tell me:\n1. What the directory listing claims: the doctor's name and practice, whether it shows them as in-network or participating in my plan or program, and whether it shows them accepting new patients.\n2. What the office told me, from my notes: whether they confirmed participation, whether they are accepting patients, and any date or name I recorded.\n3. Where the listing and the office DISAGREE, line by line. List each disagreement separately.\n4. What neither document establishes \u2014 the questions still unanswered. Label each \"Not in the document.\"\n\nWork only from what I pasted. If something is not in the pasted material, write \"Not in the document\" \u2014 do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language.", "2": "I am setting up a one-page record of my care team. Below I will paste what I have collected: appointment cards, portal printouts, office information sheets, and my own notes about my doctors, pharmacy, and records.\n\nFrom the pasted material only, fill in exactly these fields, one per line, in this order:\nMy lane + plan / program:\nMember / ID number (only if it appears in what I pasted):\nPrimary doctor:\nPractice name + address:\nPractice phone:\nPatient portal:\nEstablished? (date):\nVerified with plan / agency (date):\nHospital affiliation:\nSpecialists I use (one per line \u2014 name, specialty, phone):\nPharmacy (name, location, phone):\nRecords: where my history lives (one per line \u2014 provider, and \"requested / received\" dates if I gave them):\nRecords now held by my primary doctor:\n\nFor any field the pasted material does not fill, write \"Not in the document\" \u2014 that field is a to-do for me, not a gap for you to fill.\n\nWork only from what I pasted. If something is not in the pasted material, write \"Not in the document\" \u2014 do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language." };
+window.PROMPTS = PROMPTS;
+
+function setLoop(stage) {
+  ["watch","door","steps","next"].forEach(function(s) {
+    document.getElementById("ls-" + s).className = "";
+  });
+  var order = ["watch","door","steps","next"];
+  var idx = order.indexOf(stage);
+  order.forEach(function(s, i) {
+    var el = document.getElementById("ls-" + s);
+    if (i < idx) el.className = "done";
+    if (i === idx) el.className = "now";
+  });
+}
+
+function showDoor(n) {
+  var d1 = document.getElementById("door1Path");
+  var d2 = document.getElementById("door2Path");
+  var shared = document.getElementById("sharedSteps");
+  var annual = document.getElementById("annualHabit");
+  var lists = document.getElementById("lists");
+  var prompts = document.getElementById("prompts");
+  var fwd = document.getElementById("forwardPtr");
+  document.getElementById("door1Btn").classList.toggle("picked", n === 1);
+  document.getElementById("door2Btn").classList.toggle("picked", n === 2);
+  d1.classList.toggle("hidden", n !== 1);
+  d2.classList.toggle("hidden", n !== 2);
+  shared.classList.remove("hidden");
+  annual.classList.remove("hidden");
+  lists.classList.remove("hidden");
+  prompts.classList.remove("hidden");
+  fwd.classList.remove("hidden");
+  setLoop("steps");
+  var target = n === 1 ? d1 : d2;
+  target.scrollIntoView({behavior:"smooth"});
+}
+document.getElementById("door1Btn").addEventListener("click", function(){ showDoor(1); });
+document.getElementById("door2Btn").addEventListener("click", function(){ showDoor(2); });
+
+function selectBoxText(id) {
+  var el = document.getElementById(id);
+  var range = document.createRange();
+  range.selectNodeContents(el);
+  var sel = window.getSelection();
+  sel.removeAllRanges(); sel.addRange(range);
+}
+
+document.querySelectorAll(".copybtn").forEach(function(btn) {
+  btn.addEventListener("click", function() {
+    var n = btn.getAttribute("data-copy");
+    var text = PROMPTS[n];
+    var banner = document.getElementById("banner" + n);
+    var fb = document.getElementById("fallback" + n);
+    var aiBtn = document.getElementById("aiBtn" + n);
+    function onCopied() {
+      banner.classList.add("show"); fb.classList.remove("show");
+      aiBtn.classList.add("hot");
+      banner.scrollIntoView({behavior:"smooth", block:"center"});
+    }
+    function onFailed() {
+      selectBoxText("box" + n);
+      fb.classList.add("show"); banner.classList.remove("show");
+      aiBtn.classList.add("hot");
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(onCopied, function() {
+        var ta = document.createElement("textarea");
+        ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select();
+        var ok = false;
+        try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+        document.body.removeChild(ta);
+        if (ok) { onCopied(); } else { onFailed(); }
+      });
+    } else {
+      onFailed();
+    }
+  });
+});
+
+document.getElementById("next1").addEventListener("click", function() {
+  document.getElementById("card1").classList.add("hidden");
+  document.getElementById("card2").classList.remove("hidden");
+  document.getElementById("card2").scrollIntoView({behavior:"smooth"});
+});
+document.getElementById("back2").addEventListener("click", function() {
+  document.getElementById("card2").classList.add("hidden");
+  document.getElementById("card1").classList.remove("hidden");
+  document.getElementById("card1").scrollIntoView({behavior:"smooth"});
+});
+</script>
+</body>
+</html>
