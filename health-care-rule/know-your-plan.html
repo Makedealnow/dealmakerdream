@@ -123,7 +123,12 @@
     .promptbox { border:1.5pt solid #666; background:#fff; font-size:11.5pt; max-height:none; overflow:visible; }
     a { color:#000; text-decoration:none; }
   }
-</style>
+
+    /* slide-style bullets (presentation redesign) */
+    .slide { margin:8px 0 8px 2px; padding-left:22px; }
+    .slide li { margin:9px 0; }
+    .slide li::marker { color:#c45a14; }
+  </style>
 </head>
 <body>
 <header class="titlebar">
@@ -144,80 +149,83 @@
 
 <div class="wrap">
 
-  <!-- VIDEO NOTE (Nov 20, 2026): design (B) is DECIDED — the closing points below the video to this page's own lookup box (Question 1), and the AI first appears at Question 2. The video below is the v5 cut: v1 body + the (B) closing, refined so Katie explains that plan benefit information is public (only the plan's name is needed) BEFORE the ask. -->
 <video id="katieVideo" controls playsinline preload="metadata" src="media/stage1.mp4"></video>
   <p class="micro">Watch Katie first — she walks you through this whole stage. Takes about two minutes.</p>
 
-  <p class="promise">Know what kind of plan you have, what's covered, and what isn't — before anyone bills you.</p>
-  <p>Do this in one calm sitting, with your insurance card and your plan papers in front of you. Nothing here needs you to be sick or to have a bill. That's the point.</p>
+  <p class="promise">Know your plan before anyone bills you.</p>
+  <ul class="slide">
+    <li><b>What kind of plan you have</b> — and what's covered, and what isn't.</li>
+    <li><b>One calm sitting.</b> Card and plan papers in front of you. No bill needed — that's the point.</li>
+  </ul>
 
   <h2>The steps</h2>
 
   <div class="step">
     <h3>Step 1 — Name your plan kind</h3>
-    <p class="beat"><b class="tag">DO THIS:</b> Find the letters on your card — HMO, PPO, EPO, POS, or high-deductible — and note your kind. It's the first line of your plan card (on paper, the first line of the worksheet below).</p>
-    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Your card itself — keep it where you can reach it.</p>
+    <p class="beat"><b class="tag">DO THIS:</b> Find the letters on your card — HMO, PPO, EPO, POS, or high-deductible. Note your kind.</p>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Your card — where you can reach it.</p>
   </div>
 
   <div class="step">
     <h3>Step 2 — Get the two documents that answer everything</h3>
-    <p class="beat"><b class="tag">DO THIS:</b> Get your <b>Summary of Benefits and Coverage</b> (the short one — look here first) and your <b>Evidence of Coverage</b> (the full contract). They're in your plan's app or member website, or one phone call away.</p>
+    <p class="beat"><b class="tag">DO THIS:</b> Get your <b>Summary of Benefits and Coverage</b> (the short one — look here first) and your <b>Evidence of Coverage</b> (the full contract). In your plan's app or member site — or one phone call away.</p>
     <div class="say"><b class="tag">SAY THIS:</b> "Please send me my Summary of Benefits and Coverage and my Evidence of Coverage — the full plan document."</div>
     <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Both documents, in one folder you can find in one minute.</p>
   </div>
 
   <div class="step">
     <h3>Step 3 — Learn the money words</h3>
-    <p class="beat"><b class="tag">DO THIS:</b> Pull six numbers out of your Summary — these are your money words: your deductible, your out-of-pocket maximum (your ceiling for the year — the most protective number you own), what a regular doctor visit costs you, what a specialist costs you, what an emergency room visit costs you, and how your prescriptions are priced. In Question 1 below, our lookup shows them in one table — save that table as a photo on your phone; that photo is your plan card. Prefer paper? The worksheet at the bottom of this page is the same six numbers, ready to print and write in.</p>
+    <p class="beat"><b class="tag">DO THIS:</b> Pull six numbers from your Summary:</p>
+    <ul class="slide">
+      <li>Your <b>deductible</b></li>
+      <li>Your <b>out-of-pocket maximum</b> — your ceiling for the year, the most protective number you own</li>
+      <li>A regular <b>doctor visit</b> cost · a <b>specialist</b> cost · an <b>emergency room</b> cost</li>
+      <li>How your <b>prescriptions</b> are priced</li>
+    </ul>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Question 1 below shows all six in one table — <b>save the photo; that photo is your plan card.</b> Prefer paper? The worksheet at the bottom is the same six numbers.</p>
   </div>
 
   <div class="step">
     <h3>Step 4 — Check a service before you get it</h3>
-    <p class="beat"><b class="tag">DO THIS:</b> Before any test, scan, or procedure that isn't routine, look it up — then call the number on the back of your card and ask.</p>
+    <p class="beat"><b class="tag">DO THIS:</b> Before any non-routine test, scan, or procedure: look it up, then call the number on the back of your card.</p>
     <div class="say"><b class="tag">SAY THIS:</b> "I'm scheduled for this service on this date. Is it covered? Is the provider in my network? Does it need approval first? And what will my share be?"</div>
-    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Your note of that call — the date, the name of the person, the reference number, and the answer. A logged answer is evidence.</p>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Your note of that call — date, name, reference number, answer. A logged answer is evidence.</p>
   </div>
 
   <div class="step">
     <h3>Step 5 — Check the network twice</h3>
-    <p class="beat"><b class="tag">DO THIS:</b> For your main doctor and any specialist, check twice: once in the plan's list of doctors, and once by calling the doctor's office and asking if they take your exact plan. Lists of doctors are wrong more often than you'd think — the office knows.</p>
+    <p class="beat"><b class="tag">DO THIS:</b> For your main doctor and any specialist, check <b>twice</b>: in the plan's doctor list, <i>and</i> by calling the office — do they take your exact plan? Lists are wrong more often than you'd think; the office knows.</p>
     <p class="beat"><b class="tag">KEEP THIS PAPER:</b> A dated picture or printout of the listing you relied on.</p>
   </div>
 
   <div class="step">
     <h3>Step 6 — Ask about approval first</h3>
-    <p class="beat"><b class="tag">DO THIS:</b> Some care needs the plan's OK <i>before</i> it happens. For anything beyond a regular office visit, ask: "Does this need approval first?" If yes, make sure the approval is in place before the appointment — and write down who told you, and when.</p>
+    <p class="beat"><b class="tag">DO THIS:</b> Some care needs the plan's OK <i>before</i> it happens. For anything beyond a regular office visit, ask: "Does this need approval first?" If yes — approval in place <i>before</i> the appointment. Write down who told you, and when.</p>
   </div>
 
   <h2>Now do it — two questions, one at a time</h2>
-  <p>Katie explained it. Now find your plan's own numbers. <b>Question 1 is our lookup:</b> type just the name of your plan, and it fills in your money words from the plan's official published summary — right here, no AI, no sign-up, nothing personal. <b>Question 2 is where Monica comes in</b> — the kit's helper. You can ask her for help with your plan's own pages, or do the same job yourself on paper. Question 2 explains both, once — the choice is yours.</p>
-  <p class="micro">Before you paste anything anywhere: never paste your Social Security number or full bank or card numbers. Your name, dates, and amounts are all this work needs.</p>
+  <ul class="slide">
+    <li><b>Question 1 is our lookup</b> — type just your plan's name; it fills in your money words from the official published summary. No AI, no sign-up, nothing personal.</li>
+    <li><b>Question 2 is where <span class="svcName"></span> comes in</b> — the kit's helper. Ask her, or do it yourself on paper. Explained once, in Question 2 — the choice is yours.</li>
+    <li><b>Never paste</b> your Social Security number or full bank or card numbers — anywhere.</li>
+  </ul>
 
-  <!-- AFTER THE VIDEO — DO THIS -->
-  <!-- DESTINATION DECIDED (Nov 20, 2026): design (B) — Question 1 is this page's own lookup tool (plan name → official published summary → money words, from the CMS files in lookup-data/). The AI link first appears at Question 2. The card PHOTO stays out — that decision is final. -->
   <div class="step aftersteps" id="afterVideo">
     <h3>After the video — do this</h3>
-    <p>Katie just explained the stage. Now do it once, slowly, with Question 1 below. Five little steps:</p>
     <ol class="bigsteps">
-      <li><b>Answer one tap:</b> in the lookup below, tap where you got your plan — bought it yourself, Medicare, through a job, or Medicaid.</li>
+      <li><b>One tap:</b> in the lookup below, tap where you got your plan.</li>
       <li><b>Pick your state.</b> The lookup loads your state's official 2026 plan list.</li>
-      <li><b>Type the name of your plan.</b> Just the name printed on your card or your paperwork.
-        <br><span class="tip">Health plans publish this information for anyone to see — the name of your plan is all we need to look it up. Just the name — nothing personal. No photo of your card, no member number, nothing about you. We don't need anything personal from you — just the name of your plan.</span></li>
-      <li><b>Tap your plan when it appears.</b> Your money words come up, from the plan's own published summary.</li>
-      <li><b>Save them as a photo — your plan card.</b> Screenshot the table and keep it in an album or folder on your phone named for your plan. If a number in the photo ever disagrees with your plan's own document, the document wins. Prefer paper? Print the worksheet below and write them in instead. Then go on to Question 2 — that's where <span class="svcName"></span> comes in. She's explained there, once, and the choice is yours.</li>
+      <li><b>Type the name of your plan</b> — just the name printed on your card.
+        <br><span class="tip">Plan information is public — the name is all we need. No photo of your card, no member number, nothing about you.</span></li>
+      <li><b>Tap your plan when it appears.</b> Your money words come up.</li>
+      <li><b>Save them as a photo — your plan card.</b> If a number in the photo ever disagrees with your plan's own document, the document wins. Then go to Question 2.</li>
     </ol>
   </div>
 
-  <!-- QUESTION 1 — THE LOOKUP (design (B), decided Nov 20, 2026).
-       This card IS the kit's own plan-lookup tool — the same tool as
-       lookup-prototype.html, embedded where the buyer uses it.
-       Data: lookup-data/ (CMS QHP + MA Landscape, plan year 2026,
-       verbatim — see lookup-data/README.md). Nothing typed here
-       leaves the page. The AI link first appears at Question 2. -->
   <div class="qcard" id="card1">
     <div class="qhead"><h3>Look up my plan</h3><span class="qcount">Question 1 of 2</span></div>
     <p class="needline"><b>You'll need:</b> The name of your health plan — just the name, printed on your card or paperwork. Nothing personal.</p>
-    <p>We look your plan up in the government's own published plan files for 2026, and fill in your money words from its official summary.</p>
+    <p>We look your plan up in the government's own published plan files for 2026.</p>
 
     <p class="lklabel">Where did you get your plan?</p>
     <div class="doors" id="lkDoors">
@@ -229,18 +237,24 @@
 
     <div class="fallback hidden" id="lkJob">
       <h3>Your plan comes through a job — here's the honest answer</h3>
-      <p>Employer plans aren't published in any government file — not ours, not anyone's. No website can look yours up, and any site that claims it can is guessing. But you don't need a lookup: you need your plan's <b>two documents</b>, and you are entitled to both.</p>
-      <p class="beat"><b class="tag">DO THIS:</b> Call the member number on the back of your insurance card — or ask your HR department — and say this:</p>
+      <ul class="slide">
+        <li>Employer plans aren't published in any government file. <b>No website can look yours up</b> — any site that claims it can is guessing.</li>
+        <li>You don't need a lookup. You need your plan's <b>two documents</b> — and you're entitled to both.</li>
+      </ul>
+      <p class="beat"><b class="tag">DO THIS:</b> Call the member number on the back of your card — or ask HR — and say this:</p>
       <div class="say"><b>SAY THIS:</b> "Please send me my Summary of Benefits and Coverage and my Evidence of Coverage — the full plan document."</div>
-      <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Both documents, in one folder you can find in one minute. Write down who you talked to, and when.</p>
-      <p>When the documents arrive, your money words are in the Summary's cost tables — photograph those pages and keep the photo as your plan card. If a number in the photo ever disagrees with your plan's own document, the document wins. (The worksheet below lists the same six numbers, if you prefer paper.) Question 2 — the Next question button, below — works from those pages with you.</p>
+      <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Both documents, in one folder. Write down who you talked to, and when.</p>
+      <p>When they arrive: photograph the Summary's cost tables — that photo is your plan card. If the photo and the document disagree, the document wins. Question 2 works from those pages with you.</p>
     </div>
 
     <div class="fallback hidden" id="lkMedicaid">
       <h3>Medicaid works differently — and this kit has a whole lane for it</h3>
-      <p>Medicaid is run state by state, and its plans aren't in the federal files this lookup uses — so there's no honest way to look yours up here. What protects you in Medicaid isn't a price table; it's your rights: written notice before anything changes, a fair hearing if you disagree, and coverage that continues while you appeal.</p>
-      <p class="beat"><b class="tag">DO THIS:</b> Keep every letter your state sends you, and note the name of your plan exactly as it appears on your Medicaid card. Your state's Medicaid agency is the official source for what your plan covers.</p>
-      <p>The kit's welfare lane — <b>Stay on the Track, Keep Your Rights</b> — walks your whole road from there.</p>
+      <ul class="slide">
+        <li>Medicaid plans aren't in the federal files — there's no honest way to look yours up here.</li>
+        <li>What protects you in Medicaid isn't a price table — it's your <b>rights</b>: written notice before anything changes, a fair hearing if you disagree, coverage that continues while you appeal.</li>
+      </ul>
+      <p class="beat"><b class="tag">DO THIS:</b> Keep every letter your state sends you. Note your plan's name exactly as it appears on your Medicaid card. Your state's Medicaid agency is the official source for what your plan covers.</p>
+      <p>Your lane — <b>Medicaid or State Coverage: Stay on the Track, Keep Your Rights</b> — starts at the front door.</p>
       <a class="btn docbtn" href="https://www.healthcare.gov/medicaid-chip/" target="_blank" rel="noopener">HealthCare.gov — Medicaid &amp; CHIP, by state</a>
     </div>
 
@@ -253,26 +267,26 @@
         <input type="text" id="lkName" autocomplete="off" placeholder="Start typing your plan's name…">
         <div class="sugg" id="lkSugg"></div>
         <button class="bigbtn lookupbtn" id="lkBtn">Look up my plan</button>
-        <p class="micro">Just the name — the name is printed on a million identical cards. It says nothing about you.</p>
+        <p class="micro">Just the name — it's printed on a million identical cards. It says nothing about you.</p>
       </div>
     </div>
 
     <div class="fallback hidden" id="lkSbe">
       <h3>Your state runs its own marketplace</h3>
-      <p>So its plans aren't in the federal file this lookup uses — and we won't guess at your numbers. Your plan's official summary is on your state's own marketplace site, and HealthCare.gov will send you straight there:</p>
-      <p class="beat"><b class="tag">TAP THIS:</b> Tap the button below → tap <b>"See plans &amp; prices"</b> → type your ZIP code → it routes you to your state's marketplace, where your plan's own page shows the same numbers this lookup would.</p>
+      <p>Its plans aren't in the federal file — and we won't guess at your numbers. Your plan's official summary is on your state's own marketplace site:</p>
+      <p class="beat"><b class="tag">TAP THIS:</b> Tap the button below → tap <b>"See plans &amp; prices"</b> → type your ZIP code → your state's marketplace shows the same numbers.</p>
       <a class="btn docbtn" href="https://www.healthcare.gov/see-plans/" target="_blank" rel="noopener">Go to HealthCare.gov — see plans &amp; prices</a>
-      <p>Or skip the website entirely — your two documents have everything, and you're entitled to them:</p>
+      <p>Or skip the website — your two documents have everything:</p>
       <div class="say"><b>SAY THIS:</b> "Please send me my Summary of Benefits and Coverage and my Evidence of Coverage — the full plan document."</div>
       <p class="micro">Call the member number on the back of your card. Write down who you talked to, and when.</p>
     </div>
 
     <div class="fallback hidden" id="lkNoMatch">
       <h3>We couldn't find that name in the official 2026 list for your state</h3>
-      <p>That happens, and it doesn't mean your plan isn't real. The usual reasons:</p>
+      <p>That happens — it doesn't mean your plan isn't real. The usual reasons:</p>
       <ul>
-        <li><b>The name is typed a little differently</b> than the plan prints it. Check the exact name on your card or paperwork — every word and abbreviation — and try again above.</li>
-        <li><b>Your plan comes through a job</b> — employer plans aren't in any public file. Use the "Through my job" door above; your two documents are the way.</li>
+        <li><b>The name is typed a little differently</b> than the plan prints it. Check the exact name on your card and try again above.</li>
+        <li><b>Your plan comes through a job</b> — employer plans aren't in any public file. Use the "Through my job" door above.</li>
         <li><b>Your plan is from a different year</b> — this lookup holds the 2026 plans.</li>
       </ul>
       <p class="beat"><b class="tag">OR GO TO THE SOURCE:</b></p>
@@ -293,11 +307,14 @@
   <!-- QUESTION 2 -->
   <div class="qcard hidden" id="card2">
     <div class="qhead"><h3>Check this service before I get it</h3><span class="qcount">Question 2 of 2</span></div>
-    <p><b>This is where <span class="svcName"></span> comes in — the kit's helper.</b> Question 1 was our lookup: public numbers. This question works from <i>your</i> plan's own pages, and that's a reading job. You have two ways to do it, and the choice is yours every time: <b>ask <span class="svcName"></span> for help</b>, or <b>do it yourself</b> on paper. This is the one place we explain her — after this, the kit just shows the button.</p>
-    <p class="micro">New to working with a helper like this? The full method is on the <a href="using-your-ai.html">Using Your AI page</a> — read it once, on the way in.</p>
-    <p class="papersline"><b>Your papers stay yours:</b> anything you share goes only between you and <span class="svcName"></span>. MakeDealNow never receives, sees, or stores your documents — your paperwork goes from your hands to <span class="svcName"></span> and back to your hands.</p>
-    <p><b>First, get ready:</b> write down the service you're scheduled for — its name, the provider, and the date — and find every page of your plan documents that mentions this service, referrals, or approval.</p>
-    <p style="margin-top:18px;"><b>See it happen first — with a sample.</b> Here is the whole thing, start to finish, with a made-up plan and a made-up visit. Watch what happens to a document before you ever use one of your own.</p>
+    <ul class="slide">
+      <li><b>This is where <span class="svcName"></span> comes in — the kit's helper.</b> Question 1 was public numbers. This one reads <i>your</i> plan's own pages.</li>
+      <li><b>Two ways, your choice every time:</b> ask <span class="svcName"></span> for help — or do it yourself on paper. This is the one place we explain her; after this, the kit just shows the button.</li>
+      <li>New to this? The full method is on the <a href="using-your-ai.html">Using Your AI page</a> — read it once, on the way in.</li>
+    </ul>
+    <p class="papersline"><b>Your papers stay yours:</b> anything you share goes only between you and <span class="svcName"></span>. MakeDealNow never receives, sees, or stores your documents.</p>
+    <p><b>First, get ready:</b> write down the service — its name, the provider, the date — and find every page of your plan documents that mentions this service, referrals, or approval.</p>
+    <p style="margin-top:18px;"><b>See it happen first — with a sample.</b> A made-up plan, a made-up visit, start to finish:</p>
     <div class="samplebox">
       <span class="sampletag">Sample — made up, start to finish</span>
       <p style="margin-top:2px;"><b>The visit (made up):</b> "I am scheduled for an MRI of my lower back, at Valley Imaging Center, on March 12."</p>
@@ -307,14 +324,9 @@
         <p style="margin:6px 0;"><b>If you need a test:</b> Diagnostic test (x-ray, blood work) — $40 copayment. Imaging (CT/PET scans, MRIs) — 30% coinsurance after deductible.</p>
         <p style="margin:6px 0;"><b>Limits:</b> Imaging needs a referral from your primary care doctor. Care from out-of-network providers is not covered, except in an emergency.</p>
       </div>
-      <p style="margin-bottom:4px;">The question she copies is <b>the exact one in the box below</b> — with those pages pasted under its last line. Here is what <span class="svcName"></span> sends back:</p>
+      <p style="margin-bottom:4px;">She copies <b>the exact question in the box below</b>, with those pages pasted under its last line. Here is what <span class="svcName"></span> sends back — as a table, the one you'd save as a photo:</p>
       <div class="sampleanswer">
         <span class="sampletag light">Sample answer</span>
-        <p><b>1. Is it covered?</b> Covered only under conditions. The document's own words: "Imaging (CT/PET scans, MRIs) — 30% coinsurance after deductible," and "Imaging needs a referral from your primary care doctor." In plain language: your plan covers the MRI, but only with a referral from your regular doctor.</p>
-        <p><b>2. The conditions:</b> A referral is required — from your primary care doctor. An in-network provider is required: "Care from out-of-network providers is not covered, except in an emergency." Prior authorization required? <b>Not in the document</b> — the pasted pages never mention it.</p>
-        <p><b>3. Your cost:</b> 30% coinsurance after your deductible. How much the deductible is: <b>Not in the document</b> — these pages don't state it, so no dollar total can be worked out from them.</p>
-        <p><b>4. Questions the document does NOT answer:</b> Does the plan have to approve this MRI before March 12? How much of the deductible is already met? Is Valley Imaging Center in the plan's network? (The document never names providers.)</p>
-        <p style="margin-bottom:2px;">And the same answer as a table — the one you would save as a photo:</p>
         <table class="money sampletable">
           <tr><th>Covered?</th><td>Yes — with conditions</td></tr>
           <tr><th>Referral needed?</th><td>Yes — from your primary care doctor</td></tr>
@@ -343,23 +355,25 @@ Work only from what I pasted. If something is not in the pasted material, write 
     <p class="beat"><b class="tag">WAY 1 — ASK <span class="svcName"></span> FOR HELP:</b></p>
     <p class="micro">MakeDealNow may earn a commission when you sign up through our link — it never changes what you pay.</p>
     <a class="btn bigbtn aiBtn" id="aiBtn2" href="#" target="_blank" rel="noopener"></a>
-    <p>First time? Here's what to expect: <span class="svcName"></span> will ask you to make a <b>free account</b> first. It costs nothing, no card — and it's the only sign-up in this whole kit, so when you see it, it's expected, not a catch. Her free level (about 40 uses a day) is enough for everything in this kit.</p>
-    <div class="redact"><b>Before you paste — cover what she doesn't need:</b> Never paste your Social Security number, or full bank, card, or account numbers — this work never needs them. Anything else you'd rather keep private — a member number, an address — cover it with a fingertip or a scrap of paper <b>before</b> you photograph the page, or leave it out of what you paste. You decide what <span class="svcName"></span> sees.</div>
+    <ul class="slide">
+      <li><b>First time?</b> <span class="svcName"></span> asks you to make a <b>free account</b> first — no card. It's the only sign-up in this whole kit, and her free level (about 40 uses a day) is enough for everything here.</li>
+    </ul>
+    <div class="redact"><b>Before you paste — cover what she doesn't need:</b> Never paste your Social Security number, or full bank, card, or account numbers — this work never needs them. Anything else you'd rather keep private — cover it with a fingertip or a scrap of paper <b>before</b> you photograph the page. You decide what <span class="svcName"></span> sees.</div>
     <div class="pasteguide"><b>How to paste on her page:</b> hold your finger in the question box until <b>Paste</b> appears, tap Paste, add your document pages, then tap her send arrow. Come right back here when you're done.</div>
-    <p><b>When her answer comes back:</b> screenshot the table and save it in the same album as your plan card. If a number in the photo ever disagrees with your plan's own document, the document wins.</p>
+    <p><b>When her answer comes back:</b> screenshot the table, save it beside your plan card. If a number in the photo disagrees with your plan's own document, the document wins.</p>
     <p class="micro">MakeDealNow may earn a commission when you sign up through our link — it never changes what you pay.</p>
     <p class="beat" style="margin-top:18px;"><b class="tag">WAY 2 — DO IT MYSELF:</b></p>
-    <p>Skip the AI entirely. Do you already know your plan information? Then just write down what you know on the worksheet below — for your own review, your own records, all in one place. Don't know a number? Leave it blank — the kit shows you how to get it yourself: the steps above show where it sits in your plan's own pages, and Step 4 has the exact words to ask member services on the phone. Nothing on this route depends on <span class="svcName"></span> — no account, nothing leaves your hands. And if you saved the photo of your plan card in Question 1, that photo does this job too — the worksheet is simply the paper version.</p>
+    <p>Skip the AI entirely. Write what you know on the worksheet below — blank where you don't know a number; the steps above and Step 4's phone words show you how to get it. No account, nothing leaves your hands. (Your Question 1 plan-card photo does this job too — the worksheet is the paper version.)</p>
     <a class="btn bigbtn selfbtn" href="#worksheet">Do it myself — use the worksheet</a>
     <div class="navrow">
       <button id="back2">&#8592; Back</button>
       <button class="next" disabled>Next question &#8594;</button>
     </div>
-    <p class="micro">That's both questions for this stage. When your plan card is saved — the photo from Question 1, with Monica's table saved beside it if you used her — Stage 1 is done.</p>
+    <p class="micro">That's both questions for this stage. When your plan card is saved — the photo from Question 1, with Monica's table beside it if you used her — Stage 1 is done.</p>
   </div>
 
   <h2 id="worksheet">The paper worksheet — the six numbers</h2>
-  <p>This sheet is the paper option. The kit's primary record is the photo: the table from Question 1 — and Monica's table from Question 2, if you used her — saved on your phone as your plan card. If you prefer paper, or want a printed backup, print this sheet and write the six numbers in, checking each one against your own Summary of Benefits and Coverage as you go. If a number in the photo ever disagrees with your plan's own document, the document wins. Six numbers in one place will answer most "what will this cost me?" questions faster than any phone call.</p>
+  <p>The paper option — the kit's main record is the photo (Question 1's table, plus Monica's table if you used her). Print this sheet, write the six numbers in, and check each against your own Summary. If the photo and the document disagree, the document wins.</p>
   <div class="step">
     <p class="wsitem"><b>My plan kind (HMO, PPO, EPO, POS, high-deductible):</b></p><div class="wsline"></div>
     <p class="wsitem"><b>My deductible:</b></p><div class="wsline"></div>
@@ -379,14 +393,13 @@ Work only from what I pasted. If something is not in the pasted material, write 
     <a class="btn" href="index.html">&#8592; Back: the front door</a>
     <a class="btn next" href="your-doctor.html">Next: Your Doctor &mdash; the shared road &#8594;</a>
   </div>
-  <p class="micro">Stage 1 is done. From here, your road is the shared road every lane walks: your doctor, the visit, everything after, the bill. (Your insurer-rights material is a toolbox the later pages draw on when you need it — it isn't a stage you walk.)</p>
+  <p class="micro">Stage 1 is done. From here, your road is the shared road every lane walks: your doctor, the visit, everything after, the bill.</p>
 
   <footer>
     <p>MakeDealNow — The Health Care Rule Kit (preview)</p>
     <p>Educational information — not legal or medical advice.</p>
   </footer>
 </div>
-
 <script>
 /* ============================================================
    THE KIT'S HELPER — MONICA. ONE PLACE ONLY.

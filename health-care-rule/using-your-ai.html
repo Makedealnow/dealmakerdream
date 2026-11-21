@@ -77,161 +77,149 @@
     .step, .rulebox, .samplebox { border:1.5pt solid #666; break-inside:avoid; }
     a { color:#000; text-decoration:none; }
   }
-</style>
+
+    /* slide-style bullets (presentation redesign) */
+    .slide { margin:8px 0 8px 2px; padding-left:22px; }
+    .slide li { margin:9px 0; }
+    .slide li::marker { color:#c45a14; }
+  </style>
 </head>
 <body>
 <header class="titlebar">
   <div class="kit">Health Care Rule Kit</div>
-  <h1>Using Your AI — the kit's helper method</h1>
-  <div class="lane">Read this once, before your first question</div>
+  <h1>Using Your AI Helper</h1>
+  <div class="lane">One-time setup &mdash; come back any time</div>
 </header>
+
+<div class="wrap noPrint" style="padding-bottom:0;">
+  <p class="micro" style="margin-top:12px;"><a href="index.html">&#8592; Start over &mdash; back to the front door</a></p>
+</div>
+
+<div class="loop" id="loopBar" aria-label="Where you are">
+  <span id="ls-watch" class="now"><b>1. Watch</b>the video</span>
+  <span id="ls-steps"><b>2. Do</b>the steps</span>
+  <span id="ls-ask"><b>3. Ask</b><span class="svcName"></span> for help</span>
+  <span id="ls-next"><b>4. Next</b>stage</span>
+</div>
 
 <div class="wrap">
 
-  <!-- VIDEO SLOT (Nov 20, 2026): the primer video (production queue V2, script
-       from prompt layer Part 1) is produced later. This is a clearly-marked
-       placeholder — no video file, nothing that pretends to be one.
-       Jeff previews every video before it goes live. -->
-  <div class="videoslot" role="img" aria-label="AI primer video placeholder">
-    <div class="big">KATIE&rsquo;S AI PRIMER VIDEO GOES HERE</div>
-    <div class="small">Video slot &mdash; placeholder. The primer video is produced later<br>
-    and it is previewed before it goes live.</div>
-  </div>
-  <p class="micro">Katie walks you through this whole page &mdash; her primer video goes in the slot above. (The primer video is made in production.)</p>
+  <div class="videoslot"><p>[ Katie&rsquo;s video for this page goes here &mdash; recorded with the kit&rsquo;s other videos ]</p></div>
 
-  <p class="promise">You learn this method once, right here. After that, every stage just hands you the prompt &mdash; you never have to learn it again.</p>
-  <p>Every stage of this kit hands you paper: plan documents, denial letters, estimates, notices, itemized bills. Reading that paper carefully &mdash; every line, against every other line &mdash; is the work the whole kit is built on. It is also slow, and the paper is written to be hard to read.</p>
-  <p>That is the one job an AI service is genuinely good at: taking a document <i>you hand it</i> and giving it back to you in plain words, sorted the way you ask. So the kit&rsquo;s model is a division of labor, and it never changes:</p>
-  <ul>
-    <li><b>The kit</b> gives you the order &mdash; which stage you&rsquo;re in, what paper to gather, what questions matter, and the exact words (the SAY THIS scripts) for dealing with the humans and the offices.</li>
-    <li><b>Your AI</b> reads the paper with you &mdash; explains it, sorts it, compares two documents line by line, and drafts from facts you give it.</li>
-    <li><b>You</b> check its answers against the paper, make every decision, and do every act: the calls, the signatures, the filings, the sending.</li>
+  <p class="promise">Meet <span class="svcName"></span> — the kit&rsquo;s reading helper, on a button.</p>
+  <ul class="slide">
+    <li>Every stage of this kit has two question boxes. This page explains the helper behind them — once. After this page, you&rsquo;ll just see the plain button.</li>
   </ul>
-  <p>The AI never talks to your insurer, your doctor, or any agency. It never sees anything you don&rsquo;t paste. And it is never the authority &mdash; <b>the paper is.</b> This page teaches you to use it that way: as a fast reader with no memory you should trust and no knowledge of your plan, leashed to your documents by the exact wording of the prompts the stages hand you.</p>
-  <p><i>Read this page once, before you use any prompt in the kit. It is short on purpose. Everything in it protects you.</i></p>
+  <p><b>The division of labor, stated plainly:</b></p>
+  <ul class="checklist">
+    <li><b>The kit guides.</b> It tells you what to do, in order, and gives you the exact words.</li>
+    <li><b>The AI reads.</b> It takes the paperwork you already have and turns it into answers you can check.</li>
+    <li><b>You decide.</b> Every call, signature, and payment stays yours.</li>
+  </ul>
 
-  <h2>What an AI service is, in one paragraph</h2>
-  <p>An AI service (also called a chatbot) is a program you type to &mdash; or talk to &mdash; that answers in plain language. You paste text or upload a photo of a document, ask a question in ordinary words, and it writes back. It is very fast and very confident. It has read enormous amounts of general information, which makes it a good <i>explainer</i> &mdash; but it does <b>not</b> know your plan, your program, your state, or your case, and it will sometimes state things that are wrong in the same confident voice as things that are right. Used the kit&rsquo;s way &mdash; fed your actual documents, and forbidden by the prompt&rsquo;s own words from guessing &mdash; it becomes the best reading partner most people have ever had for paperwork. Used carelessly &mdash; asked questions from memory, its answers believed unchecked &mdash; it is a rumor machine. The difference is entirely in how you use it. That&rsquo;s what this primer is for.</p>
+  <h2>What an AI service is &mdash; in plain words</h2>
+  <ul class="slide">
+    <li>An AI service is a program you type questions to, in ordinary words, and it answers in ordinary words.</li>
+    <li>The useful part for this kit: <b>it can read photographs of documents.</b> Show it a bill, a letter, a form — it reads what&rsquo;s on the page.</li>
+    <li><b>It is a reader, not an authority.</b> It can misread, and it can be confidently wrong. The guardrails below exist because of that.</li>
+  </ul>
 
-  <h2>Where to get one</h2>
-  <p>This kit has a helper: <b><span class="svcName"></span></b>. Wherever the kit offers her help, you will see one button &mdash; <b>&ldquo;Ask <span class="svcName"></span> for help.&rdquo;</b> <span class="svcName"></span> is an AI service you type to: you paste a question from this kit, add your own document pages, and she reads them with you and answers from the paper. She has a free level that is enough for everything in this kit, she works as an app on your phone, and she lets you upload a photo of a document &mdash; a bill, a letter, your plan&rsquo;s pages &mdash; and ask questions about it, which is exactly the work the kit&rsquo;s prompts do.</p>
-  <p>Before you tap that button the first time, know this: <b><span class="svcName"></span> will ask you to make a free account first. It costs nothing, no card &mdash; and it is the only sign-up in this whole kit</b>, so when you see it, it&rsquo;s expected, not a catch. Her free level (about 40 uses a day) is plenty for this kit&rsquo;s pace. She has no account-free guest use &mdash; the free account is the door, and it&rsquo;s a fair one.</p>
-  <p class="micro">MakeDealNow may earn a commission when you sign up through our link — it never changes what you pay.</p>
+  <h2>Where to get one &mdash; the kit&rsquo;s button</h2>
+  <div class="step">
+    <p>The kit&rsquo;s questions are written to work in any good AI service. The button below goes to <b><span class="svcName"></span></b> — the service this kit&rsquo;s questions were tested with.</p>
+    <p><b>One honest expectation:</b> <span class="svcName"></span> will ask you to make a <b>free account</b> first — an email address and a password. That&rsquo;s normal, and it&rsquo;s the only setup there is. The free tier allows roughly 40 uses a day, no card required, and there&rsquo;s no account-free guest use. The whole setup takes a couple of minutes, once.</p>
+    <p class="micro">MakeDealNow may earn a commission when you sign up through our link &mdash; it never changes what you pay.</p>
     <a class="btn bigbtn aiBtn" id="aiBtn" href="#" target="_blank" rel="noopener"></a>
-  <p class="micro">MakeDealNow may earn a commission when you sign up through our link — it never changes what you pay.</p>
-  <p>One honest sentence, because you deserve it up front: the disclosure above is the whole of it &mdash; the price <span class="svcName"></span> charges you is the same whether you arrive through our link or on your own.</p>
-  <p><b>And the choice is always yours.</b> Every place the kit offers <span class="svcName"></span>&rsquo;s help also offers the kit&rsquo;s own paper route &mdash; the stage&rsquo;s worksheet and steps walk you through the same job with no AI at all. Nobody has to use an AI to use this kit. This section is the one full explanation &mdash; the kit introduces <span class="svcName"></span> once, here and at her first button, and after that it doesn&rsquo;t lecture you again: later steps show just the &ldquo;Ask <span class="svcName"></span> for help&rdquo; button and a quiet &ldquo;do it myself&rdquo; link.</p>
-  <p>The other major services also offer a free level, and if you already use one of them, it will run these prompts too &mdash; the choice stays yours. Names, neutrally:</p>
-  <ul>
-    <li><b>ChatGPT</b> (by OpenAI)</li>
-    <li><b>Claude</b> (by Anthropic)</li>
-    <li><b>Gemini</b> (by Google)</li>
-    <li><b>Copilot</b> (by Microsoft)</li>
-  </ul>
-  <p>Whichever you use, use the service&rsquo;s real app or real website &mdash; type the name into your phone&rsquo;s app store or your browser yourself. Do not use look-alike &ldquo;AI helper&rdquo; apps or websites that ads push at you; the ones named here are the genuine articles. Pick one and stay with it through a case, so your pasted material and its answers live in one place you can find again.</p>
+    <p class="micro">MakeDealNow may earn a commission when you sign up through our link &mdash; it never changes what you pay.</p>
+    <p><b>Already use a different service?</b> ChatGPT, Claude, Gemini, and Copilot all read document photos, and the kit&rsquo;s questions work in any of them — copy the question from any stage and paste it there instead. The stages don&rsquo;t mind. And every stage keeps its paper route: the <b>Do it myself</b> button does the same job with the worksheet and the scripts, no AI at all.</p>
+  </div>
 
-  <h2>See it happen first &mdash; with a sample</h2>
-  <p>Before you are ever asked to share a real document, watch the whole thing happen to a made-up one. Here it is, start to finish, with a made-up plan and a made-up visit &mdash; the same demonstration Stage 1 shows at the first question that uses it.</p>
-  <div class="samplebox">
-    <span class="sampletag">Sample — made up, start to finish</span>
-    <p style="margin-top:2px;"><b>The visit (made up):</b> &ldquo;I am scheduled for an MRI of my lower back, at Valley Imaging Center, on March 12.&rdquo;</p>
-    <p style="margin-bottom:4px;"><b>The plan pages pasted with it (made up):</b></p>
-    <div class="sampledoc">
-      <p class="sampledochead">Sample document — SampleCare Standard Silver · Summary of Benefits and Coverage (part of one page)</p>
-      <p style="margin:6px 0;"><b>If you need a test:</b> Diagnostic test (x-ray, blood work) — $40 copayment. Imaging (CT/PET scans, MRIs) — 30% coinsurance after deductible.</p>
-      <p style="margin:6px 0;"><b>Limits:</b> Imaging needs a referral from your primary care doctor. Care from out-of-network providers is not covered, except in an emergency.</p>
-    </div>
-    <p style="margin-bottom:4px;">The question she copies is the kit&rsquo;s real &ldquo;Check this service before I get it&rdquo; question from Stage 1 &mdash; with those pages pasted under its last line. Here is what <span class="svcName"></span> sends back:</p>
-    <div class="sampleanswer">
-      <span class="sampletag light">Sample answer</span>
-      <p><b>1. Is it covered?</b> Covered only under conditions. The document&rsquo;s own words: &ldquo;Imaging (CT/PET scans, MRIs) — 30% coinsurance after deductible,&rdquo; and &ldquo;Imaging needs a referral from your primary care doctor.&rdquo; In plain language: your plan covers the MRI, but only with a referral from your regular doctor.</p>
-      <p><b>2. The conditions:</b> A referral is required — from your primary care doctor. An in-network provider is required: &ldquo;Care from out-of-network providers is not covered, except in an emergency.&rdquo; Prior authorization required? <b>Not in the document</b> — the pasted pages never mention it.</p>
-      <p><b>3. Your cost:</b> 30% coinsurance after your deductible. How much the deductible is: <b>Not in the document</b> — these pages don&rsquo;t state it, so no dollar total can be worked out from them.</p>
-      <p><b>4. Questions the document does NOT answer:</b> Does the plan have to approve this MRI before March 12? How much of the deductible is already met? Is Valley Imaging Center in the plan&rsquo;s network? (The document never names providers.)</p>
-      <p style="margin-bottom:2px;">And the same answer as a table — the one you would save as a photo:</p>
-      <table class="money sampletable">
-        <tr><th>Covered?</th><td>Yes — with conditions</td></tr>
-        <tr><th>Referral needed?</th><td>Yes — from your primary care doctor</td></tr>
-        <tr><th>Approval needed first?</th><td>Not in the document</td></tr>
-        <tr><th>Your cost</th><td>30% coinsurance after deductible</td></tr>
-        <tr><th>Deductible amount</th><td>Not in the document</td></tr>
+  <h2>See her work first &mdash; on a sample, not your papers</h2>
+  <div class="step">
+    <p>Before she ever sees a document of yours, watch her work on one of ours. This is the same worked sample from Stage 1 — a made-up summary of benefits, and the kit&rsquo;s first question asked about it.</p>
+    <div class="samplebox">
+      <h3>The sample document &mdash; a summary of benefits (fictional)</h3>
+      <p><b>Harborview Silver Plan &mdash; Summary of Benefits (sample)</b><br>
+      Deductible: $1,500 per person. Out-of-pocket maximum: $7,350.<br>
+      Primary care visit: $40 copay. Specialist visit: $85 copay.<br>
+      Emergency care: 20% coinsurance after deductible.<br>
+      Prescription drugs: Tier 1 $15 &middot; Tier 2 $55 &middot; Tier 3 30% coinsurance.<br>
+      Out-of-network: not covered except emergency care.</p>
+      <p class="micro">(The sample is silent about imaging, lab work, ambulance charges, and physical therapy — on purpose.)</p>
+      <h3 style="margin-top:16px;">What came back</h3>
+      <table class="wstable">
+        <tr><th>Question</th><th>Answer</th></tr>
+        <tr><td>Deductible</td><td>$1,500 per person</td></tr>
+        <tr><td>Out-of-pocket maximum</td><td>$7,350</td></tr>
+        <tr><td>Primary care visit</td><td>$40 copay</td></tr>
+        <tr><td>Specialist visit</td><td>$85 copay</td></tr>
+        <tr><td>Emergency care</td><td>20% coinsurance after deductible</td></tr>
+        <tr><td>Prescriptions</td><td>Tier 1 $15 &middot; Tier 2 $55 &middot; Tier 3 30%</td></tr>
+        <tr><td>Imaging (MRI, CT)</td><td>Not in the document</td></tr>
+        <tr><td>Lab work</td><td>Not in the document</td></tr>
+        <tr><td>Ambulance</td><td>Not in the document</td></tr>
+        <tr><td>Physical therapy</td><td>Not in the document</td></tr>
+        <tr><td>Out-of-network</td><td>Not covered except emergency care</td></tr>
       </table>
+      <p><b>Notice the last four rows.</b> She said <b>&ldquo;Not in the document&rdquo;</b> — she didn&rsquo;t guess. That&rsquo;s what the kit&rsquo;s questions are built to force. That&rsquo;s the whole demonstration: she reads what&rsquo;s there, and says so when it isn&rsquo;t.</p>
     </div>
-    <p class="micro" style="margin-top:10px;">See the &ldquo;Not in the document&rdquo; answers? That&rsquo;s on purpose. <span class="svcName"></span> works only from the pages she&rsquo;s given — where a page is silent, she says so instead of guessing. Your real answer works exactly the same way.</p>
-  </div>
-  <p>That is all that ever happens to a document in this kit. Nothing above involved a real plan, a real visit, or a real person&rsquo;s paper. When it is your turn, the six moves below are the whole method &mdash; and they never change.</p>
-
-  <h2>The kit&rsquo;s working method — six moves, in order</h2>
-  <p>Every prompt in the kit runs on the same six moves. Learn them once; they never change.</p>
-  <ol class="moves">
-    <li><b>The kit tells you what paper to gather.</b> Each prompt names its documents — the SBC pages, the denial letter, the estimate, the notice, the itemized bill. Gather exactly that paper first. No paper, no prompt: an AI answering from memory is the thing this method exists to avoid.</li>
-    <li><b>You paste the kit&rsquo;s prompt.</b> Copy it exactly as written, word for word, into your AI. The wording is the tool — don&rsquo;t shorten it, and especially don&rsquo;t cut the last paragraph (the honesty rule below explains why).</li>
-    <li><b>You paste your document after it.</b> The text of the letter or bill, or a clear photo of it. Redact first — the rules are in the next section, and they come <i>before</i> any pasting, every time.</li>
-    <li><b>The AI answers.</b> Usually in seconds: an explanation, a table, a list of what&rsquo;s missing, a draft.</li>
-    <li><b>You check its answer against the paper.</b> Not against your memory, not against what sounds right — against the document, line by line, the same pencil work the kit teaches everywhere else. Anything in the answer you can&rsquo;t find in the paper gets treated as <i>not established</i>, whatever the AI&rsquo;s tone. When the result is a table worth keeping, save it as a photo on your phone, in an album or folder named for your plan — that photo is your record. If a number in the photo ever disagrees with your plan&rsquo;s own document, the document wins.</li>
-    <li><b>You act — using the kit&rsquo;s words, not the AI&rsquo;s.</b> The calls, letters, and filings are done by you, with the stage&rsquo;s SAY THIS scripts and templates. The AI&rsquo;s output is raw material for <i>your</i> file and <i>your</i> understanding. It is never sent anywhere as-is without your read.</li>
-  </ol>
-
-  <h2>The redaction rules — before you paste anything, every time</h2>
-  <div class="redact">
-    <p style="margin-top:2px;">Your AI account is yours, but discipline is cheaper than regret. These rules take thirty seconds and they are not optional. This is <b>your</b> rule, applied by you, before anything is shared — <b>you decide what <span class="svcName"></span> sees.</b> That control is the point; it is not a warning tacked on afterward.</p>
-    <p><b>NEVER paste, type, or photograph into any AI service:</b></p>
-    <ul class="neverlist">
-      <li><b>Your Social Security number</b> — in full or in part. Nothing in this kit&rsquo;s work ever needs it.</li>
-      <li><b>Full bank account numbers or full card numbers.</b> A bill&rsquo;s <i>balance</i> is fine; the account you pay <i>from</i> is not the AI&rsquo;s business.</li>
-      <li><b>Passwords</b> — for the AI account itself, your plan portal, your bank, anything. No prompt in this kit will ever ask for one. If anything ever does, it isn&rsquo;t this kit.</li>
-    </ul>
-    <p><b>What the work actually needs is smaller than you think:</b> your <b>name</b> is fine (letters are addressed to you, and drafts need it), and <b>dates, amounts, provider names, service descriptions, and the plan&rsquo;s own reference numbers</b> are the working material of every prompt in the kit. If a document carries a member ID or account number and you&rsquo;d rather not paste it, black it out and write it back in by hand on anything you later print or send — the AI&rsquo;s reading loses nothing.</p>
-    <p style="margin-bottom:2px;"><b>How to black out a number on a photo:</b> on paper, a thick marker over the number, then photograph the page. On a phone photo, open the photo, use the edit/markup tool, and draw a solid box over the number <i>before</i> uploading — and check the edited photo once, zoomed in, to be sure the box is truly opaque. Do this <b>before</b> the photo goes anywhere, not after.</p>
   </div>
 
-  <h2>The honesty rule — and why every prompt ends the same way</h2>
-  <p>Read the last paragraph of any prompt in the kit. They all end with the same instruction, in the same words:</p>
-  <div class="say"><i>Work only from what I pasted. If something is not in the pasted material, write &ldquo;Not in the document&rdquo; — do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language.</i></div>
-  <p>That paragraph is not decoration. It is the kit&rsquo;s tradecraft, and here is why it&rsquo;s there, in plain words:</p>
-  <p>An AI&rsquo;s deepest habit is <b>completing the pattern</b>. Ask it about a document and it wants to give you a complete, smooth answer — and when the document doesn&rsquo;t contain something, its instinct is to fill the hole from general knowledge, or from what documents like yours <i>usually</i> say, without telling you it switched sources. For health coverage, that failure is poison: your plan is not the usual plan, your notice&rsquo;s deadline is not the usual deadline, and an invented number delivered in a confident voice is worse than no number at all, because you might act on it.</p>
-  <p>The closing paragraph is the leash. It orders the AI to work only from your paper, to <i>label</i> every gap &ldquo;Not in the document&rdquo; instead of filling it, and to keep its hands off numbers, dates, deadlines, and rules it cannot point to in what you pasted. An answer full of &ldquo;Not in the document&rdquo; is not a failed answer — it&rsquo;s a map of exactly what to ask the plan, the office, or the agency next, which is what the kit&rsquo;s phone scripts are for.</p>
-  <p class="papersline"><b>We never see your papers.</b> The AI service described here is <b>yours</b> — your account, on a service you choose. MakeDealNow does not provide it, does not connect to it, and <b>never receives, sees, or stores anything you paste into it</b>. Your documents exist only between you and <span class="svcName"></span>. Your paperwork goes from your hands to your AI and back to your hands. That is the design, not an accident.</p>
-  <p>Two corollaries, and then you&rsquo;re ready:</p>
-  <ul>
-    <li><b>The paper governs.</b> When the AI&rsquo;s answer and the document disagree, the document wins — always, without a vote. The guardrails below say it again.</li>
-    <li><b>Never cut the leash to save time.</b> If you retype a prompt from memory and drop the last paragraph, you have built yourself a rumor machine. Copy the prompts whole, every time.</li>
-  </ul>
-
-  <h2>Read this before you trust anything your AI tells you</h2>
-  <p><i>The guardrails. One page. They protect everything else in this layer. If you read nothing else on this page, read this.</i></p>
-  <div class="rulebox">
-    <ol class="guardlist" style="margin:4px 0; padding-left:26px;">
-      <li><b>The AI is not a lawyer, and it is not a doctor.</b> It cannot give you legal advice about your case or medical advice about your care, and neither can this kit. What it can do — all it is for, here — is read paperwork you hand it and give it back in plain words. Decisions about treatment belong to you and your doctor. Decisions about lawsuits, court deadlines, and collections actions belong to you and, when those are in play, a lawyer.</li>
-      <li><b>Never let the AI decide a deadline.</b> Not an appeal deadline, not a hearing window, not a dispute cutoff. Deadlines in this world are printed — on the denial letter, on the agency notice, on the Medicare notice — and the printed date governs, exactly as every stage of this kit repeats. The kit&rsquo;s prompts make the AI <i>copy</i> dates out of your documents so you can see them gathered in one place. Copying is all that is. You read the governing date off the paper yourself, you calendar it yourself, and if the AI&rsquo;s copied date and the paper&rsquo;s date ever differ, the paper&rsquo;s date is the deadline. Full stop.</li>
-      <li><b>If the AI and the paper disagree, the paper wins — and the kit tells you the move.</b> This will happen. The AI will misread a table, drop a line, or state a rule your documents don&rsquo;t contain. When it does: believe the document, note the disagreement in your log, and go to the stage you&rsquo;re in for what to do next — the phone script, the letter, the appeal. The AI&rsquo;s answer is never the move. The kit&rsquo;s stage is the move.</li>
-      <li><b>The AI does not know your plan.</b> Everything true it says about <i>your</i> coverage comes from the pages you pasted in that conversation. If you start a fresh conversation, it starts empty — paste the paper again. And if you ever ask it a coverage question <i>without</i> pasting, you are back to the rumor machine: general answers about typical plans, delivered confidently, about a plan that is not yours. The kit&rsquo;s answer to any coverage question is a document. Keep it that way.</li>
-      <li><b>Your privacy lives in your AI account&rsquo;s settings — check them once.</b> This kit never receives your data; MakeDealNow has no window into your AI account and wants none. What your AI service keeps, and whether it uses conversations to train its models, is controlled by <b>that service&rsquo;s</b> settings — look for its data, privacy, or chat-history controls and set them the way you want them, including any option to keep your chats out of training. The services differ and their settings change; the service&rsquo;s own help pages are the authority on its own switches. Combined with this page&rsquo;s redaction rules — no Social Security numbers, no full account or card numbers, no passwords, ever — that is the whole privacy discipline: the kit&rsquo;s rules govern what you paste, your settings govern what the service keeps.</li>
-      <li><b>When in doubt, slow down.</b> Every genuinely dangerous moment in this system involves speed: a deadline invented, a form signed unread, a first bill paid in fear. The AI answers in seconds, which makes slowness feel unnecessary. It isn&rsquo;t. The paper will still be true in twenty minutes. Check it.</li>
+  <h2>The six moves &mdash; the same on every stage</h2>
+  <div class="step">
+    <ol class="checklist">
+      <li><b>Copy the question.</b> One tap on the stage&rsquo;s copy button.</li>
+      <li><b>Tap the <i>Ask <span class="svcName"></span> for help</i> button.</b> Her page opens; sign in (first time: make the free account).</li>
+      <li><b>Paste.</b> Hold your finger in her question box until <b>Paste</b> appears; tap it.</li>
+      <li><b>Add your document pages.</b> Photograph or attach the paperwork the stage names.</li>
+      <li><b>Send, and read what comes back</b> against your own documents — the guardrails below say how.</li>
+      <li><b>Come back to the stage</b> and do what it says with the answer. The kit&rsquo;s steps are where answers turn into action.</li>
     </ol>
   </div>
-  <p>That&rsquo;s the whole method. The stages still give the order, the scripts still give the words for the humans, and the paper still governs. This page only taught your AI to help carry the file — and now every stage can just hand you the prompt.</p>
+
+  <h2>Before you paste anything &mdash; cover what she doesn&rsquo;t need</h2>
+  <div class="step">
+    <p><b>Redact first, every time.</b> Some numbers are never hers to see:</p>
+    <ul class="checklist">
+      <li><b>Never paste:</b> your Social Security number · full bank account numbers · full card numbers · passwords or PINs of any kind.</li>
+      <li><b>Cover before you photograph:</b> account and member numbers beyond the last few digits, barcodes tied to accounts, anything the question doesn&rsquo;t ask about. A strip of paper or a thumb over the number before the photo does it.</li>
+      <li><b>Typed text:</b> replace a number with [covered] before pasting.</li>
+    </ul>
+    <p class="papersline"><b>Your papers stay between you and <span class="svcName"></span>.</b> MakeDealNow never sees them — the kit&rsquo;s pages don&rsquo;t receive, store, or send your documents anywhere. What you paste goes from your phone to the service you chose, under that service&rsquo;s own privacy policy, which is worth a read before the first real document.</p>
+  </div>
+
+  <div class="say"><b>The honesty rule, and it&rsquo;s the kit&rsquo;s own:</b> &ldquo;We are an educational publisher, not your representative. We don&rsquo;t see your papers, we don&rsquo;t make your calls, and we don&rsquo;t take a side in your dispute. The AI service is a tool the same way a calculator is a tool. What this kit sells is the order of operations — what to ask, what to check, what to say, and what to keep.&rdquo;</div>
+
+  <div class="rulebox">
+    <h3>The guardrails &mdash; true on every stage</h3>
+    <ol>
+      <li><b>The paper wins.</b> If an answer and your document disagree, the document is right and the answer is a misread. Re-check the page yourself.</li>
+      <li><b>Deadlines come from paper, never from the AI.</b> Every date that matters is printed on a notice, a bill, or a letter you hold. Read it there.</li>
+      <li><b>The AI doesn&rsquo;t decide anything.</b> Not whether a bill is fair, not whether to sign, not whether to appeal. It reads; you and the kit&rsquo;s steps decide.</li>
+      <li><b>Check the privacy setting once.</b> In the service&rsquo;s settings, turn off anything that lets your chats be used for training, if the option is offered.</li>
+      <li><b>A confident tone is not evidence.</b> These services sound equally sure when they&rsquo;re right and when they&rsquo;re wrong. The document check is the difference.</li>
+      <li><b>When it matters most, verify at the source.</b> A rule the kit states names where to verify it — the plan, the agency, the notice. The AI is never the source.</li>
+    </ol>
+  </div>
 
   <button class="printbtn" onclick="window.print()">Print this page</button>
-  <p class="micro">Print this and keep it at the front of your file — the redaction rules and the guardrails are worth having on paper.</p>
+  <p class="micro">Print this and keep it with your care file.</p>
 
-  <!-- ================= PREV / NEXT ================= -->
   <div class="navrow" style="margin-top:34px;">
-    <a class="btn" href="index.html">&#8592; Back: Front Door</a>
-    <a class="btn next" href="know-your-plan.html">Next: Stage 1 &mdash; Know Your Plan &#8594;</a>
+    <a class="btn" href="index.html">&#8592; Front door</a>
+    <a class="btn next" href="know-your-plan.html">Stage 1 &mdash; Know Your Plan &#8594;</a>
   </div>
-  <p class="micro">Stage 1 is where <span class="svcName"></span>&rsquo;s help is first offered, at its Question 2 — explained there once, the same way she was introduced here.</p>
 
   <footer>
     <div class="disclaimer">
-      <p><b>Please read this first.</b> This kit is educational information. It is <b>not legal advice</b>, and it is <b>not medical advice</b>. It does not tell you what care to get, what care to refuse, or whether a treatment is right for you &mdash; those decisions belong to you and your doctor. This kit is about rights, paperwork, prices, and billing only. The publisher sells educational information only and performs no services of any kind: nobody will call your insurer, dispute a bill, or negotiate on your behalf. You make your own calls, sign your own forms, and make your own decisions at every step. Health coverage rules vary &mdash; by state, by plan, and by program &mdash; and they change. Wherever this kit states a rule, it also tells you where to verify it against your own documents and notices. If your situation involves a lawsuit, a collections action, or a deadline in court papers, talk to a lawyer.</p>
-      <p><b>One more thing, specific to this page:</b> the AI service described here is <b>yours</b> — your account, on a service you choose. MakeDealNow does not provide it, does not connect to it, and <b>never sees anything you paste into it</b>. Your paperwork goes from your hands to your AI and back to your hands. That is the design, not an accident.</p>
+      <p><b>Please read this first.</b> This kit is educational information. It is <b>not legal advice</b>, and it is <b>not medical advice</b>. It does not tell you what care to get, what care to refuse, or whether a treatment is right for you — those decisions belong to you and your doctor. This kit is about rights, paperwork, prices, and billing only. The publisher sells educational information only and performs no services of any kind: nobody will verify a specialist, attend your procedure, or call a hospital on your behalf. You make your own calls, sign your own forms, and make your own decisions at every step. Health coverage rules vary — by state, by plan, and by program — and they change. Wherever this kit states a rule, it also tells you where to verify it against your own documents and notices. If your situation involves a lawsuit, a collections action, or a deadline in court papers, talk to a lawyer.</p>
+      <p><b>One more thing, specific to this page:</b> the AI service named here is a third-party tool with its own terms and privacy policy, which govern anything you paste into it. MakeDealNow may earn a commission when you sign up through our link — it never changes what you pay, and it does not change what this kit tells you: every question in this kit works in any comparable service, and every stage works on paper without one.</p>
     </div>
     <p>MakeDealNow &mdash; The Health Care Rule Kit (preview)</p>
     <p>Educational information &mdash; not legal or medical advice.</p>
   </footer>
-</div>
 
+</div>
 <script>
 /* ============================================================
    THE KIT'S HELPER — MONICA. ONE PLACE ONLY.

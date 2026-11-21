@@ -82,7 +82,12 @@
     .promptbox, .letterbox { border:1.5pt solid #666; background:#fff; font-size:11.5pt; }
     a { color:#000; text-decoration:none; }
   }
-</style>
+
+    /* slide-style bullets (presentation redesign) */
+    .slide { margin:8px 0 8px 2px; padding-left:22px; }
+    .slide li { margin:9px 0; }
+    .slide li::marker { color:#c45a14; }
+  </style>
 </head>
 <body>
 <header class="titlebar">
@@ -104,95 +109,103 @@
 
 <div class="wrap">
 
-  <!-- VIDEO SLOT: placeholder only — no video file. Jeff previews every video before it goes live. -->
   <video id="katieVideo" controls playsinline preload="metadata" src="media/stage6.mp4"></video>
   <p class="micro">Watch Katie first &mdash; she walks you through this whole stage. (Katie&rsquo;s video for this stage &mdash; preview.)</p>
 
-  <p class="promise">The bill has arrived &mdash; audit it before you pay it. Most of the time this is a calm, line-by-line check against paper you already hold. This kit is a watch, not a job: if everything went smooth, there is little to do. This stage is here for when it didn&rsquo;t.</p>
-  <p>Every stage before this one was moving toward this page. Stage 1 taught you your plan&rsquo;s numbers. Stage 3 verified the doctors. Stage 4 disciplined your signature and started your log. Stage 5 named the cast before the day. Now the bills arrive &mdash; and all of that paper stops being preparation and becomes <b>position</b>. The billing office works from <i>its</i> file: codes, dates, balances. You work from <i>your</i> file: the estimates, the authorizations, the cast list, the logs with dates and names. When the two files disagree, the one that is documented, dated, and written down wins arguments that memory never does.</p>
-  <p>One honesty note: most first bills are not fraud. They are the output of a sloppy, hurried, code-driven system that bills what it can and corrects what it&rsquo;s made to correct. That is not a reason to pay them. It is the reason this stage exists.</p>
+  <p class="promise">The bill has arrived — audit it before you pay it.</p>
+  <ul class="slide">
+    <li>Most of the time: a calm, line-by-line check against paper you already hold.</li>
+    <li><b>This kit is a watch, not a job</b> — if everything went smooth, there&rsquo;s little to do. This stage is here for when it didn&rsquo;t.</li>
+    <li>Most first bills aren&rsquo;t fraud — they&rsquo;re a sloppy, code-driven system that bills what it can and corrects what it&rsquo;s made to correct. That&rsquo;s not a reason to pay them. It&rsquo;s the reason this stage exists.</li>
+  </ul>
 
   <div class="rulebox">
     <h3>Katie&rsquo;s rule for this stage</h3>
-    <p class="r"><b>THE RULE:</b> you are owed an itemized bill &mdash; every charge on its own line &mdash; and billing has to match the rules and your paper: your plan&rsquo;s allowed amounts and cost-sharing, your estimate or agreed price, your coverage, and the protections the earlier stages set up.</p>
-    <p class="r"><b>THE CHECK:</b> the line-by-line audit against your own records. Assemble your paper &mdash; plan card, desk quotes, lobby-call reference numbers, referral logs, authorizations &mdash; and match every line to care you actually received, from a biller you expected, at a status you verified.</p>
-    <p class="r"><b>THE MEANING:</b> every mismatch is a named deviation with a remedy, presented as an audit, not a plea. You are not begging a billing office for mercy. You are showing it, line by line, where its bill breaks its own rules &mdash; and asking it to correct the bill.</p>
+    <p class="r"><b>THE RULE:</b> you are owed an itemized bill — every charge on its own line — and billing has to match the rules and your paper: your plan&rsquo;s allowed amounts, your estimate or agreed price, your coverage, and the protections the earlier stages set up.</p>
+    <p class="r"><b>THE CHECK:</b> the line-by-line audit against your own records — plan card, desk quotes, lobby-call reference numbers, referral logs, authorizations. Every line traces to care you actually received, from a biller you expected, at a status you verified.</p>
+    <p class="r"><b>THE MEANING:</b> every mismatch is a named deviation with a remedy — presented as an audit, not a plea. You&rsquo;re showing the billing office where its bill breaks its own rules, and asking it to correct the bill.</p>
   </div>
 
   <h2>Step 1 &mdash; First rule: never pay the first bill</h2>
 
   <div class="step">
     <h3>EOB first &mdash; the discipline that comes before everything</h3>
-    <p class="beat"><b class="tag">DO THIS:</b> A first bill is a claim, not a verdict. It is the provider&rsquo;s opening statement about what you owe &mdash; frequently produced before your plan has finished processing. Before you pay anything, do three things, in this order: <b>get the itemized bill, assemble your paper, and match them.</b> None of the three is optional.</p>
-    <div class="lanenote"><b class="lane">Lane note &mdash; insured (EOB first):</b> you need <b>two</b> documents before the matching starts, not one: the itemized bill from the provider <i>and</i> the <b>Explanation of Benefits (EOB)</b> from your plan for the same dates. The EOB arrives first in the normal order of things &mdash; and it says, in so many words, <b>&ldquo;this is not a bill.&rdquo;</b> Believe it: <b>you never pay an EOB.</b> You pay a provider bill <i>that matches</i> one. If the EOB hasn&rsquo;t arrived, the claim may not have finished processing &mdash; and a provider bill sent before the plan has paid its share is one of the most common first-bill errors in existence. Wait for the pair.</div>
-    <div class="lanenote"><b class="lane">Lane note &mdash; cash:</b> your second document is the <b>good-faith estimate</b> plus any written agreed price. If you never received an estimate for scheduled care, that absence goes in your log too &mdash; it is itself material at Step 3.</div>
-    <div class="lanenote"><b class="lane">Lane note &mdash; welfare:</b> your second document is your coverage itself &mdash; the notice or card showing you were covered on the date of service. For a covered service from a participating provider, Step 2 of this stage has a short answer, and it is not a number.</div>
+    <p class="beat"><b class="tag">DO THIS:</b> A first bill is a claim, not a verdict — frequently produced before your plan has finished processing. Before you pay anything, three things, in order: <b>get the itemized bill, assemble your paper, and match them.</b> None of the three is optional.</p>
+    <div class="lanenote"><b class="lane">Lane note &mdash; insured (EOB first):</b> you need <b>two</b> documents: the itemized bill <i>and</i> the <b>Explanation of Benefits (EOB)</b> from your plan for the same dates. The EOB says, in so many words, <b>&ldquo;this is not a bill&rdquo;</b> — believe it: <b>you never pay an EOB.</b> You pay a provider bill <i>that matches</i> one. No EOB yet? The claim may not have finished processing — wait for the pair.</div>
+    <div class="lanenote"><b class="lane">Lane note &mdash; cash:</b> your second document is the <b>good-faith estimate</b> plus any written agreed price. Never received an estimate for scheduled care? That absence goes in your log too — it&rsquo;s material at Step 3.</div>
+    <div class="lanenote"><b class="lane">Lane note &mdash; welfare:</b> your second document is your coverage itself — the notice or card showing you were covered on the date of service. For a covered service from a participating provider, Step 2 has a short answer, and it is not a number.</div>
   </div>
 
   <div class="step">
     <h3>The itemized-bill demand</h3>
-    <p class="beat"><b class="tag">DO THIS:</b> A summary bill &mdash; one line, one total, one due date &mdash; cannot be audited. It is not really a bill; it is a number with a deadline attached. You are entitled to an <b>itemized statement</b>: every charge on its own line, with the date of service, a description, the quantity, and the price. The day a bill arrives, before paying a cent: request the itemized version, in writing or by a logged call, and note the request in your log with the date. Do not let a due date printed on a summary bill rush you.</p>
+    <p class="beat"><b class="tag">DO THIS:</b> A summary bill — one line, one total, one due date — cannot be audited. You are entitled to an <b>itemized statement</b>: every charge on its own line, with the date of service, a description, the quantity, and the price. The day a bill arrives, before paying a cent: request the itemized version, in writing or by a logged call, and note the request in your log. Don&rsquo;t let a due date on a summary bill rush you.</p>
     <div class="say"><b class="tag">SAY THIS:</b> &ldquo;Before I pay anything on this account, I need the fully itemized bill &mdash; every charge on its own line, with dates of service, descriptions, quantities, and prices, for [date(s) of service]. A summary total isn&rsquo;t something I can verify. Please send the itemization, and note on the account that I&rsquo;ve requested it and am reviewing the charges.&rdquo;</div>
-    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The itemized bill when it arrives, the summary bill it replaces, and your log entry of the request &mdash; date, name, and what you were told about when it will come.</p>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The itemized bill, the summary bill it replaces, and your log entry of the request — date, name, and when it will come.</p>
   </div>
 
   <h2 id="step2anchor">Step 2 &mdash; The audit: assemble your paper, match line by line</h2>
 
   <div class="step">
     <h3>Assemble the kit&rsquo;s paper</h3>
-    <p class="beat"><b class="tag">DO THIS:</b> Pull the episode&rsquo;s file &mdash; everything the earlier stages told you to keep, now in one stack, in this order:</p>
+    <p class="beat"><b class="tag">DO THIS:</b> Pull the episode&rsquo;s file — everything the earlier stages told you to keep, in one stack, in this order:</p>
     <ul class="checklist">
-      <li>Your <b>plan card</b> &mdash; your plan&rsquo;s money words (Stage 1).</li>
-      <li>The <b>EOBs</b> for the episode (insured) &mdash; the plan&rsquo;s own account of what it allowed, paid, and assigned to you.</li>
+      <li>Your <b>plan card</b> (Stage 1).</li>
+      <li>The <b>EOBs</b> for the episode (insured).</li>
       <li>The <b>good-faith estimate</b> and any written agreed price (cash).</li>
-      <li><b>Desk quotes</b> &mdash; what you were quoted at the desk, and by whom (Stage 4).</li>
-      <li><b>Lobby-call reference numbers</b> &mdash; the reference numbers and names from any lobby call to your plan (Stage 4&rsquo;s desk play).</li>
-      <li><b>Referral logs</b> &mdash; who referred what, to whom, and when.</li>
-      <li>The <b>cast list</b> (Stage 5) &mdash; every biller you expected, with the verification or price you recorded beside each name.</li>
-      <li>The <b>authorizations</b> &mdash; numbers, scopes, dates.</li>
-      <li>Your <b>visit log and episode log</b> &mdash; who you saw, what was done, what was promised, and when.</li>
-      <li>Any <b>notices and forms</b> from the episode &mdash; including, especially, anything you signed, and anything you declined to sign.</li>
+      <li><b>Desk quotes</b> (Stage 4) · <b>Lobby-call reference numbers</b> (Stage 4).</li>
+      <li><b>Referral logs</b> · The <b>cast list</b> (Stage 5) · The <b>authorizations</b>.</li>
+      <li>Your <b>visit log and episode log</b>.</li>
+      <li>Any <b>notices and forms</b> from the episode — especially anything you signed, and anything you declined to sign.</li>
     </ul>
-    <p>If pieces are missing, note the gap rather than abandoning the audit. A partial file still beats the billing office&rsquo;s memory, and several of the checks below run on the bill alone.</p>
+    <p>Pieces missing? Note the gap rather than abandoning the audit — several checks below run on the bill alone.</p>
     <h3 style="margin-top:20px;">Match &mdash; the three piles</h3>
-    <p class="beat"><b class="tag">DO THIS:</b> Work the itemized bill against your file, line by line, with a pencil. <b>Every line should trace to three things &mdash; care you actually received, from a biller you expected, at a status you verified.</b> A line that fails any of the three gets circled, not paid. When the audit is done, the bill is sorted into <b>three piles</b>:</p>
+    <p class="beat"><b class="tag">DO THIS:</b> Work the itemized bill against your file, line by line, with a pencil. <b>Every line should trace to three things — care you actually received, from a biller you expected, at a status you verified.</b> A line that fails any of the three gets circled, not paid. The bill sorts into <b>three piles</b>:</p>
     <ol class="checklist">
-      <li><b>Checks out</b> &mdash; lines that match your paper. A bill that passes, line by line, is a bill you actually owe &mdash; Step 4 covers paying, negotiating, or planning it.</li>
-      <li><b>Errors &amp; deviations</b> &mdash; lines that fail a check. Each circle becomes a numbered item in Step 3&rsquo;s letter.</li>
-      <li><b>Awaiting explanation</b> &mdash; lines neither the bill nor your paper explains. You ask about those in writing, before paying.</li>
+      <li><b>Checks out</b> — lines that match your paper. A bill that passes is a bill you actually owe — Step 4 covers paying it.</li>
+      <li><b>Errors &amp; deviations</b> — lines that fail a check. Each circle becomes a numbered item in Step 3&rsquo;s letter.</li>
+      <li><b>Awaiting explanation</b> — lines neither the bill nor your paper explains. You ask about those in writing, before paying.</li>
     </ol>
-    <p class="beat"><b>Identity checks &mdash; is this your bill at all?</b> Wrong person, wrong dates, wrong episode. <b>Duplicate charges</b> &mdash; the same service, same date, charged twice; the single most common itemized-bill error. <b>Services and supplies never received</b> &mdash; make that claim from your log, not from a feeling, and write the log reference beside the circle.</p>
-    <p class="beat"><b>Quantity and arithmetic checks.</b> Wrong quantities and durations (ten units billed, six given; three days billed, two stayed). Wrong dates. Plain arithmetic &mdash; add the lines; a total that exceeds its own lines is a circle by itself.</p>
-    <p class="beat"><b>Status checks.</b> Was this billed at the status you verified? Your share on the provider bill should equal what the EOB assigned to you &mdash; not the provider&rsquo;s sticker price minus what the plan happened to pay.</p>
-    <div class="say"><b class="tag">SAY THIS (for a line you cannot identify):</b> &ldquo;Line [number] on the itemized bill is described as [description], for [amount]. I don&rsquo;t recognize this charge. Please explain in writing what service it represents, when it was provided, and where its price was disclosed to me before the service.&rdquo; A charge they cannot explain is a charge that frequently does not survive being explained.</div>
-    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The itemized bill with your circles and notes, and the Bill Audit Worksheet (at the bottom of this page) filled in as you worked. The letter in Step 3 is written <i>from</i> the worksheet; the worksheet is the letter&rsquo;s evidence index.</p>
+    <ul class="slide">
+      <li><b>Identity checks:</b> wrong person, wrong dates, wrong episode — is this your bill at all?</li>
+      <li><b>Duplicate charges</b> — the same service, same date, charged twice. The single most common itemized-bill error.</li>
+      <li><b>Services never received</b> — claim it from your log, not a feeling; write the log reference beside the circle.</li>
+      <li><b>Quantity and arithmetic:</b> ten units billed, six given; three days billed, two stayed. Add the lines — a total that exceeds its own lines is a circle by itself.</li>
+      <li><b>Status checks:</b> your share on the provider bill should equal what the EOB assigned to you — not the sticker price minus what the plan happened to pay.</li>
+    </ul>
+    <div class="say"><b class="tag">SAY THIS (for a line you cannot identify):</b> &ldquo;Line [number] on the itemized bill is described as [description], for [amount]. I don&rsquo;t recognize this charge. Please explain in writing what service it represents, when it was provided, and where its price was disclosed to me before the service.&rdquo;</div>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The itemized bill with your circles and notes, and the Bill Audit Worksheet (bottom of this page) filled in as you worked. The letter in Step 3 is written <i>from</i> the worksheet.</p>
   </div>
 
   <div class="devcard">
     <span class="if">If this happens</span>
     <h3>The ancillary cast bills out-of-network at an in-network facility</h3>
-    <div class="lanenote"><b class="lane">Lane note &mdash; insured:</b> an out-of-network balance bill from anesthesiology, radiology, pathology, lab, or an assistant surgeon for care at an in-network facility is a <b>No Surprises deviation</b> &mdash; the exact case the federal law was written to eliminate. Circle it, note &ldquo;Stage 5, Step 3&rdquo; beside it, and it goes in the letter by name. The same protection, emergency chapter: your share for emergency services is the in-network cost-sharing, wherever the emergency was treated. Anything above it is a deviation, not a balance.</div>
+    <div class="lanenote"><b class="lane">Lane note &mdash; insured:</b> an out-of-network balance bill from anesthesiology, radiology, pathology, lab, or an assistant surgeon for care at an in-network facility is a <b>No Surprises deviation</b> — the exact case the federal law was written to eliminate. Circle it, note &ldquo;Stage 5, Step 3&rdquo; beside it, and it goes in the letter by name. Same protection, emergency chapter: your share for emergency services is the in-network cost-sharing, wherever the emergency was treated. Anything above it is a deviation, not a balance.</div>
   </div>
 
   <div class="devcard">
     <span class="if">If this happens</span>
     <h3>A bill arrives for a covered service in the welfare lane</h3>
-    <div class="lanenote"><b class="lane">Lane note &mdash; welfare:</b> a participating provider accepts the program&rsquo;s payment as payment in full for covered services, apart from any small allowed copay your state sets. A balance bill in this lane is not a negotiation opener; it is a deviation to be corrected in writing, and if it persists, routed to the state agency. <b>QMB readers:</b> a bill for Medicare deductibles, coinsurance, or copays is the same deviation in its most clearly forbidden form &mdash; do not pay it; the route is the billing office first, then 1-800-MEDICARE and your state Medicaid agency, with the bills kept as the documentation they are.</div>
+    <div class="lanenote"><b class="lane">Lane note &mdash; welfare:</b> a participating provider accepts the program&rsquo;s payment as payment in full for covered services, apart from any small allowed copay your state sets. A balance bill in this lane is not a negotiation opener; it is a deviation to be corrected in writing, and if it persists, routed to the state agency. <b>QMB readers:</b> a bill for Medicare deductibles, coinsurance, or copays is the same deviation in its most clearly forbidden form — do not pay it; the route is the billing office first, then 1-800-MEDICARE and your state Medicaid agency, with the bills kept as the documentation they are.</div>
   </div>
 
   <div class="devcard">
     <span class="if">If this happens</span>
     <h3>The final bill outruns the good-faith estimate (cash lane)</h3>
-    <div class="lanenote"><b class="lane">Lane note &mdash; cash:</b> compare per provider, the way the estimate was given: a final bill from a provider <b>$400 or more above</b> that provider&rsquo;s good-faith estimate opens the federal <b>patient-provider dispute resolution</b> process &mdash; a formal dispute you must start within <b>120 calendar days of the date on the initial bill</b> &mdash; write that deadline down the week a too-high bill arrives. Below that threshold, the difference is still a Step 3 letter item: an estimate is called <i>good-faith</i> for a reason, and a provider should have to explain a bill that outran it.</div>
-    <p class="beat"><b>Also watch for:</b> bills from billers never on the cast list and never disclosed &mdash; a name on <b>neither</b> the cast list <b>nor</b> your episode log is a question with paperwork attached: who are you, who ordered this, and where was it disclosed? And facility fees and similar lines whose legitimacy depends on the setting: this kit will not tell you any category is always improper, because that isn&rsquo;t true &mdash; a line you cannot identify is a line you ask about, in writing, before paying.</p>
+    <div class="lanenote"><b class="lane">Lane note &mdash; cash:</b> compare per provider, the way the estimate was given: a final bill from a provider <b>$400 or more above</b> that provider&rsquo;s good-faith estimate opens the federal <b>patient-provider dispute resolution</b> process — a formal dispute you must start within <b>120 calendar days of the date on the initial bill</b> — write that deadline down the week a too-high bill arrives. Below that threshold, the difference is still a Step 3 letter item: an estimate is called <i>good-faith</i> for a reason, and a provider should have to explain a bill that outran it.</div>
+    <ul class="slide">
+      <li><b>Also watch for:</b> bills from billers never on the cast list and never disclosed — who are you, who ordered this, and where was it disclosed?</li>
+      <li>And lines you cannot identify — facility fees and the like. This kit won&rsquo;t tell you any category is always improper, because that isn&rsquo;t true. A line you cannot identify is a line you ask about, in writing, before paying.</li>
+    </ul>
   </div>
 
   <h2>Step 3 &mdash; The deviation letter: put it in writing, put a hold on the account</h2>
   <div class="step">
-    <p>Phone calls open this fight; <b>paper moves it.</b> A billing office can out-wait a caller, transfer a caller, and forget a caller. It cannot as easily ignore a dated letter, sent with proof of delivery, that lists specific violations and demands a specific status on the account &mdash; because that letter creates the file that every later rung of the ladder (Step 5) will read.</p>
-    <p class="beat"><b class="tag">DO THIS &mdash; the call that precedes it:</b> One call first &mdash; not to argue the bill line by line, but to establish the account&rsquo;s status while the letter travels:</p>
+    <ul class="slide">
+      <li>Phone calls open this fight; <b>paper moves it.</b> A dated letter, sent with proof of delivery, listing specific violations and demanding a specific status on the account, creates the file every later rung of the ladder (Step 5) will read.</li>
+    </ul>
+    <p class="beat"><b class="tag">DO THIS &mdash; the call that precedes it:</b> one call first — not to argue line by line, but to establish the account&rsquo;s status while the letter travels:</p>
     <div class="say"><b class="tag">SAY THIS:</b> &ldquo;I&rsquo;m calling about account [number], for service on [date]. I&rsquo;ve received the itemized bill and I&rsquo;m disputing specific charges in writing &mdash; the letter is going out [today / this week] with delivery confirmation. I&rsquo;m asking you to place the account in dispute status with a billing hold now, so nothing is sent to collections while the dispute is open, and to note that I called today. Please give me your name, and confirm the hold and the note.&rdquo;</div>
-    <p class="beat">Log the name, the date, and the confirmation &mdash; and then send the letter even if the call went beautifully. Verbal holds evaporate; the letter is the hold&rsquo;s evidence.</p>
+    <p class="beat">Log the name, the date, and the confirmation — then send the letter even if the call went beautifully. Verbal holds evaporate; the letter is the hold&rsquo;s evidence.</p>
     <h3 style="margin-top:20px;">The letter &mdash; copy-ready</h3>
     <p>Copy this letter exactly as it stands into your own document, fill the brackets, delete the lines that don&rsquo;t apply to your lane, and send it the way this step describes &mdash; with proof of delivery. Copies of enclosures only; your originals never leave your folder. This letter is sample wording for your own use, representing yourself &mdash; sending it does not create an attorney&ndash;client relationship with anyone, and it is not legal advice.</p>
     <div class="letterbox" id="letterBox">[Your full name]
@@ -237,89 +250,99 @@ Enclosures (copies only): [itemized bill pages with disputed lines marked · EOB
     <div class="copiedBanner" id="bannerLetter">Copied! Paste it into your own document and fill in the brackets &#8595;</div>
     <div class="fallbackBanner" id="fallbackLetter">Copy didn&rsquo;t work on this phone &mdash; no problem. Hold your finger on the words in the box above until <b>Copy</b> appears, tap Copy, then send it the way this step describes.</div>
     <a class="btn printbtn noPrint" href="worksheets/deviation-letter.pdf" download>Print the deviation letter</a>
-    <p class="beat"><b class="tag">DO THIS &mdash; delivery with proof:</b> Send the letter a way that <b>proves delivery</b> &mdash; certified mail with return receipt, the provider&rsquo;s portal with a saved confirmation, or fax with the confirmation page &mdash; and log the method and date. A copy to the provider&rsquo;s compliance office or patient advocate costs a stamp and is often worth it.</p>
-    <p class="beat"><b class="tag">DO THIS &mdash; the follow-up cadence, and the account hold:</b> The letter asks for the account in <b>dispute status with a billing hold</b> &mdash; confirm that status in writing. Then run a follow-up cadence, calendared, not remembered: if no written acknowledgment arrives within about two weeks, call, reference the letter by its date and delivery proof, ask for the name of the person handling the dispute, and log it. If the response date you set passes with no substantive answer, that silence is itself a file item &mdash; it is the first paragraph of whatever Step 5&rsquo;s next rung receives. Every promise made on any call gets a date in the log and a follow-up on that date.</p>
-    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Your copy of the letter, the delivery proof, the acknowledgment, every response, and the log of every follow-up &mdash; filed with the episode, on top. This packet, complete, is the single most valuable object this kit produces.</p>
-    <p>One calibration, in the kit&rsquo;s honesty frame: a dispute letter does not erase a bill, and a billing hold is a status you request and confirm &mdash; not a spell. What the letter guarantees is that the dispute exists in writing, with dates, on both sides of the counter.</p>
+    <p class="beat"><b class="tag">DO THIS &mdash; delivery with proof:</b> send the letter a way that <b>proves delivery</b> — certified mail with return receipt, the provider&rsquo;s portal with a saved confirmation, or fax with the confirmation page — and log the method and date. A copy to the provider&rsquo;s compliance office or patient advocate costs a stamp and is often worth it.</p>
+    <p class="beat"><b class="tag">DO THIS &mdash; the follow-up cadence:</b> confirm the account&rsquo;s <b>dispute status with a billing hold</b> in writing. Then: no written acknowledgment within about two weeks? Call, reference the letter by its date and delivery proof, ask for the name of the person handling the dispute, and log it. The response date passes with no substantive answer? That silence is itself a file item — the first paragraph of whatever Step 5&rsquo;s next rung receives.</p>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Your copy of the letter, the delivery proof, the acknowledgment, every response, and the log of every follow-up. This packet, complete, is the single most valuable object this kit produces.</p>
+    <p>One calibration: a dispute letter does not erase a bill, and a billing hold is a status you request and confirm — not a spell. What the letter guarantees is that the dispute exists in writing, with dates, on both sides of the counter.</p>
   </div>
 
   <h2>Step 4 &mdash; Negotiate what honestly remains</h2>
   <div class="step">
-    <p>Errors struck, explanations received, protections applied &mdash; what remains is the <b>corrected balance</b>: the amount that survives your audit as genuinely yours. <b>Pay the undisputed part</b> &mdash; nobody negotiates before the audit, because negotiating an unaudited bill means bargaining over their errors as if they were your debts. After the audit, the negotiation is honest, and there are three moves, in order.</p>
-    <p class="beat"><b class="tag">MOVE 1 &mdash; ASK FOR THE PROMPT-PAY / CASH DISCOUNT on the corrected balance:</b> a balance paid in full, now, is worth a discount to almost every provider &mdash; and the discount is asked for, not offered.</p>
+    <ul class="slide">
+      <li>What remains after the audit is the <b>corrected balance</b> — genuinely yours. <b>Pay the undisputed part.</b> Nobody negotiates before the audit: negotiating an unaudited bill means bargaining over their errors as if they were your debts.</li>
+    </ul>
+    <p class="beat"><b class="tag">MOVE 1 &mdash; ASK FOR THE PROMPT-PAY / CASH DISCOUNT on the corrected balance:</b> a balance paid in full, now, is worth a discount to almost every provider — and the discount is asked for, not offered.</p>
     <div class="say"><b class="tag">SAY THIS:</b> &ldquo;The corrected balance is [amount], after the disputed charges were removed. If I pay it in full this week, what discount can you offer for prompt payment? &mdash; and if we agree on a figure, I&rsquo;ll need it in writing, showing the account settled in full at that amount, before I pay.&rdquo;</div>
-    <p class="beat"><b class="tag">MOVE 2 &mdash; APPLY FOR FINANCIAL ASSISTANCE, EVEN MID-FIGHT:</b> if the corrected balance is still beyond you, apply under the hospital&rsquo;s financial assistance policy now &mdash; nonprofit hospitals are required to have such a policy, publish it, and accept applications, and applications can be made at essentially any point in the billing cycle, including while a dispute is open. A <b>complete</b> application generally requires the hospital to hold off on extraordinary collection actions while it is being decided &mdash; one more reason to file it completely and keep the proof of filing.</p>
+    <p class="beat"><b class="tag">MOVE 2 &mdash; APPLY FOR FINANCIAL ASSISTANCE, EVEN MID-FIGHT:</b> nonprofit hospitals must have a financial assistance policy, publish it, and accept applications — at essentially any point in the billing cycle, including while a dispute is open. A <b>complete</b> application generally requires the hospital to hold off on extraordinary collection actions while it&rsquo;s decided.</p>
     <div class="say"><b class="tag">SAY THIS:</b> &ldquo;The corrected balance is still more than I can pay. I want to apply under the hospital&rsquo;s financial assistance policy. Please send me the policy and the application, tell me exactly what documentation you need, and note on the account that an application is being filed. I&rsquo;ll return it complete by [date], and I want confirmation when it&rsquo;s received.&rdquo;</div>
-    <p class="beat"><b class="tag">MOVE 3 &mdash; IF YOU NEED A PAYMENT PLAN, GET IT IN WRITING BEFORE THE FIRST PAYMENT:</b> the total being paid (the corrected balance, at any agreed discount), the installment amount and dates, whether interest or fees apply, what happens if a payment is late, and confirmation that the account stays out of collections while the plan is current. <b>Get every agreement in writing before paying.</b></p>
+    <p class="beat"><b class="tag">MOVE 3 &mdash; IF YOU NEED A PAYMENT PLAN, GET IT IN WRITING BEFORE THE FIRST PAYMENT:</b> the total, the installment amount and dates, whether interest or fees apply, what happens if a payment is late, and confirmation the account stays out of collections while the plan is current.</p>
     <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The assistance policy and application with proof of filing and the decision; the discount agreement; the payment-plan terms and every payment confirmation. A &ldquo;settled&rdquo; account with no paper is an account that can be re-billed.</p>
-    <div class="lanenote"><b class="lane">Lane note &mdash; welfare:</b> this step mostly does not apply to you, and that is the shield working: a covered service&rsquo;s remainder is the program&rsquo;s, not yours. If what remains is a bill your lane says should never have existed, skip this step entirely and go to Step 5: you don&rsquo;t negotiate a deviation, you get it corrected.</div>
+    <div class="lanenote"><b class="lane">Lane note &mdash; welfare:</b> this step mostly does not apply to you, and that is the shield working: a covered service&rsquo;s remainder is the program&rsquo;s, not yours. If what remains is a bill your lane says should never have existed, skip this step and go to Step 5: you don&rsquo;t negotiate a deviation, you get it corrected.</div>
   </div>
 
   <h2>Step 5 &mdash; The escalation ladder, assembled</h2>
   <div class="step">
-    <p>Every earlier stage built a piece of this ladder. Here it is, assembled, in the kit&rsquo;s fixed order &mdash; <b>the system&rsquo;s own processes first, the regulators matched to the violation next, the attorney last.</b></p>
-    <p class="beat"><b class="tag">RUNG 1 &mdash; THE PROVIDER&rsquo;S BILLING OFFICE:</b> The deviation letter (Step 3) and the negotiation (Step 4) live here. Most billing fights end on this rung, because most bills cannot survive their own itemization once someone reads it with a file in hand.</p>
+    <p>The kit&rsquo;s fixed order — <b>the system&rsquo;s own processes first, the regulators matched to the violation next, the attorney last.</b></p>
+    <p class="beat"><b class="tag">RUNG 1 &mdash; THE PROVIDER&rsquo;S BILLING OFFICE:</b> the deviation letter (Step 3) and the negotiation (Step 4) live here. Most billing fights end on this rung.</p>
     <p class="beat"><b class="tag">RUNG 2 &mdash; THE PROVIDER&rsquo;S COMPLIANCE OFFICE / PATIENT ADVOCATE:</b> the office whose job is the institution&rsquo;s conduct, not its collections.</p>
     <div class="say"><b class="tag">SAY THIS:</b> &ldquo;This dispute has been open since [date of letter] without a substantive answer. Please transfer the file to your compliance office &mdash; or connect me with the patient advocate &mdash; and give me that office&rsquo;s direct contact and a reference number for the escalation.&rdquo;</div>
-    <p class="beat"><b class="tag">RUNG 3 &mdash; THE PLAN-SIDE LADDER:</b> when the fight is about the <b>plan&rsquo;s decision</b> &mdash; a denied claim, a refused authorization, a miscalculated cost-share &mdash; the fight belongs on the ladder Stage 2 built: <b>plan appeal (internal appeal), then external review</b>, with the billing dispute and the claim appeal run as the separate tracks they are. (Welfare lane: plan appeal first, then the state fair hearing.)</p>
-    <p class="beat"><b class="tag">RUNG 4 &mdash; THE REGULATORS, MATCHED TO THE VIOLATION:</b> file at the door that matches the deviation &mdash; and file with the packet: the letter, the log, the documents, in order.</p>
+    <p class="beat"><b class="tag">RUNG 3 &mdash; THE PLAN-SIDE LADDER:</b> when the fight is about the <b>plan&rsquo;s decision</b> — a denied claim, a refused authorization, a miscalculated cost-share — run <b>plan appeal (internal appeal), then external review</b>. The billing dispute and the claim appeal are separate tracks. (Welfare lane: plan appeal first, then the state fair hearing.)</p>
+    <p class="beat"><b class="tag">RUNG 4 &mdash; THE REGULATORS, MATCHED TO THE VIOLATION:</b> file at the door that matches the deviation — with the packet: the letter, the log, the documents, in order.</p>
     <ul class="checklist">
-      <li><b>Plan conduct</b> &mdash; denials handled in bad faith, blown appeal deadlines, ghost-network listings, a plan that won&rsquo;t honor its own contract &rarr; your <b>state department of insurance</b> (state insurance department). Forks: self-funded employer plans route to the <b>U.S. Department of Labor</b>; Medicare Advantage complaints run through <b>Medicare</b> itself.</li>
-      <li><b>Surprise-bill violations</b> &mdash; balance bills the No Surprises Act forbids &rarr; the <b>federal No Surprises help desk</b>, run through the Centers for Medicare &amp; Medicaid Services (<b>CMS</b>, cms.gov, under &ldquo;No Surprises&rdquo;).</li>
-      <li><b>Provider billing practices generally</b> &mdash; patterns of improper billing, charges for care never rendered, a billing office that will not correct a documented error &rarr; your <b>state attorney general&rsquo;s consumer protection</b> office.</li>
-      <li><b>Hospital conduct</b> &mdash; screening or discharge-rule violations, price-transparency failures &rarr; <b>CMS and your state hospital-licensing agency</b>.</li>
-      <li><b>Welfare-lane violations</b> &mdash; improper balance billing, notice and hearing failures &rarr; your <b>state Medicaid agency</b> and its managed-care ombudsman first, with <b>HHS</b> as the federal backstop.</li>
+      <li><b>Plan conduct</b> — bad-faith denials, blown appeal deadlines, ghost-network listings &rarr; your <b>state department of insurance</b>. Forks: self-funded employer plans route to the <b>U.S. Department of Labor</b>; Medicare Advantage complaints run through <b>Medicare</b> itself.</li>
+      <li><b>Surprise-bill violations</b> &rarr; the <b>federal No Surprises help desk</b>, run through the Centers for Medicare &amp; Medicaid Services (<b>CMS</b>).</li>
+      <li><b>Provider billing practices generally</b> — patterns of improper billing, charges for care never rendered &rarr; your <b>state attorney general&rsquo;s consumer protection</b> office.</li>
+      <li><b>Hospital conduct</b> — screening or discharge-rule violations, price-transparency failures &rarr; <b>CMS and your state hospital-licensing agency</b>.</li>
+      <li><b>Welfare-lane violations</b> — improper balance billing, notice and hearing failures &rarr; your <b>state Medicaid agency</b> and its managed-care ombudsman first, with <b>HHS</b> as the federal backstop.</li>
     </ul>
-    <p class="beat"><b class="tag">RUNG 5 &mdash; THE ATTORNEY, LAST:</b> you don&rsquo;t need an attorney until you&rsquo;ve run through the regulations that exist for you to use. And if the case ever does reach this rung, you arrive as the client attorneys hope for: a clean record, rights preserved from the beginning, every deviation documented with dates and delivery proofs, every rung below climbed and logged. (Welfare lane: remember your attorney rung may be <b>free</b> &mdash; legal aid takes these cases at no charge in every state.)</p>
-    <p>One calibration: no rung guarantees an outcome, and each office decides on its own timeline. What the ladder guarantees is sequence and weight &mdash; every rung adds a file, a deadline, and a more serious reader.</p>
+    <p class="beat"><b class="tag">RUNG 5 &mdash; THE ATTORNEY, LAST:</b> you don&rsquo;t need an attorney until you&rsquo;ve run through the regulations that exist for you to use. If the case reaches this rung, you arrive with a clean record and every deviation documented. (Welfare lane: your attorney rung may be <b>free</b> — legal aid takes these cases at no charge in every state.)</p>
+    <p>One calibration: no rung guarantees an outcome. What the ladder guarantees is sequence and weight — every rung adds a file, a deadline, and a more serious reader.</p>
   </div>
 
   <h2>Step 6 &mdash; Collections defense</h2>
   <div class="devcard">
     <span class="if">If this happens</span>
     <h3>A bill reaches a collector anyway</h3>
-    <p class="beat"><b class="tag">DO NOT PANIC-PAY:</b> A collector&rsquo;s first letter is built to produce exactly one thing: a fast payment from a frightened person, ideally of an amount nobody has verified. It is Step 1&rsquo;s first rule in a new envelope: a collector&rsquo;s claim is a claim, not a verdict &mdash; and federal law gives you a specific tool for it.</p>
-    <p class="beat"><b>The validation request.</b> Under federal debt-collection law (the Fair Debt Collection Practices Act), a third-party collector must send you information about the debt, and if you <b>dispute the debt in writing within the window stated in their notice</b> &mdash; commonly 30 days from their first written notice &mdash; they must <b>stop collecting until they verify the debt</b> and mail you that verification. Verification should connect the collector to the original account: the provider, the dates, the amount, and their right to collect it.</p>
-    <p class="beat"><b class="tag">DO THIS:</b> The week a collector&rsquo;s first letter arrives: answer it <b>in writing</b>, inside the window their notice states, disputing the debt and requesting validation &mdash; and if the underlying bill is already disputed with the provider, say so, with the letter&rsquo;s date. Send it with delivery proof, keep copies of everything, and log it. Then continue the underlying fight on the ladder (Step 5) from the paper &mdash; a collector&rsquo;s pause is breathing room, not a resolution.</p>
+    <p class="beat"><b class="tag">DO NOT PANIC-PAY:</b> a collector&rsquo;s first letter is built to produce one thing: a fast payment of an amount nobody has verified. A collector&rsquo;s claim is a claim, not a verdict — and federal law gives you a specific tool for it.</p>
+    <p class="beat"><b>The validation request.</b> Under federal debt-collection law (the Fair Debt Collection Practices Act), a third-party collector must send you information about the debt — and if you <b>dispute the debt in writing within the window stated in their notice</b> — commonly 30 days from their first written notice — they must <b>stop collecting until they verify the debt</b> and mail you that verification: the provider, the dates, the amount, and their right to collect it.</p>
+    <p class="beat"><b class="tag">DO THIS:</b> the week a collector&rsquo;s first letter arrives: answer it <b>in writing</b>, inside the window their notice states, disputing the debt and requesting validation. If the underlying bill is already disputed with the provider, say so, with the letter&rsquo;s date. Send with delivery proof, keep copies, log it. Then continue the underlying fight on the ladder (Step 5) — a collector&rsquo;s pause is breathing room, not a resolution.</p>
     <div class="say"><b class="tag">SAY THIS (the validation request &mdash; adapt the brackets):</b> &ldquo;[Your name and address]. [Date]. Re: your letter dated [date], account/reference [number], alleged balance [amount], original provider [name]. I dispute this debt [in full / in the amount of (disputed portion)] and request validation, including an itemized statement of the charges, the dates of service, and documentation of your authority to collect this account. The underlying charges were disputed in writing with the provider on [date of your deviation letter] and that dispute [is open / resulted in (outcome)]. Please do not contact me about this debt again until you have mailed the requested validation. All further communication with me about this debt should be in writing. &mdash; [Your name.]&rdquo;</div>
-    <p class="beat"><b>If the &ldquo;collector&rdquo; is the provider itself,</b> the federal collection statute&rsquo;s main rules generally govern third-party collectors rather than a provider collecting its own bills &mdash; but state consumer-protection law, the provider&rsquo;s own dispute obligations, and every rung of Step 5 still apply, and the written-dispute discipline is identical.</p>
-    <p class="beat"><b>Medical debt and your credit report &mdash; stated honestly, because it changes.</b> As of this kit&rsquo;s writing, the three credit bureaus&rsquo; <b>voluntary</b> practices remove <b>paid</b> medical collections from credit reports and exclude medical collections <b>under $500</b>, and medical collections generally do not appear until they are at least a year old. Those are industry policies, not permanent law &mdash; they can change, and a federal rule that would have gone further was struck down in court in 2025, so do not build a plan on today&rsquo;s version lasting. <b>Several states</b> separately restrict or prohibit medical-debt credit reporting. Verify the current state of play &mdash; your state attorney general&rsquo;s consumer page and the bureaus&rsquo; own announcements are the sources &mdash; before deciding how much a reporting threat weighs.</p>
+    <p class="beat"><b>If the &ldquo;collector&rdquo; is the provider itself,</b> the federal statute&rsquo;s main rules generally govern third-party collectors rather than a provider collecting its own bills — but state consumer-protection law, the provider&rsquo;s dispute obligations, and every rung of Step 5 still apply, and the written-dispute discipline is identical.</p>
+    <p class="beat"><b>Medical debt and your credit report — stated honestly, because it changes.</b> As of this kit&rsquo;s writing, the three credit bureaus&rsquo; <b>voluntary</b> practices remove <b>paid</b> medical collections from credit reports and exclude medical collections <b>under $500</b>, and medical collections generally do not appear until they are at least a year old. Those are industry policies, not permanent law — they can change, and a federal rule that would have gone further was struck down in court in 2025. <b>Several states</b> separately restrict or prohibit medical-debt credit reporting. Verify the current state of play — your state attorney general&rsquo;s consumer page and the bureaus&rsquo; own announcements — before deciding how much a reporting threat weighs.</p>
     <p class="beat"><b>And the standing rule for this whole step:</b> keep disputing <b>from the paper, not from memory.</b> The collector has a balance and a script. You have the itemization with the circles, the letter with the delivery receipt, the log with the names.</p>
   </div>
 
   <h2>The mistakes &mdash; yours to not make</h2>
   <ol class="mistakes">
-    <li>Paying the first bill &mdash; any first bill &mdash; before the itemization, the EOB or estimate, and the match.</li>
+    <li>Paying the first bill — any first bill — before the itemization, the EOB or estimate, and the match.</li>
     <li>Trying to audit a summary bill: one line, one total, nothing to check.</li>
     <li>Paying an EOB. It says it isn&rsquo;t a bill; believe it.</li>
-    <li>Disputing by phone only &mdash; no letter, no delivery proof, no hold confirmed &mdash; and discovering the &ldquo;dispute&rdquo; existed nowhere but the call.</li>
-    <li>Negotiating a discount on an unaudited bill, bargaining over their errors as if they were your debts.</li>
-    <li>Skipping the financial assistance application because the bill is &ldquo;already in dispute&rdquo; &mdash; the application runs on its own track, at any point in the cycle.</li>
+    <li>Disputing by phone only — no letter, no delivery proof, no hold confirmed.</li>
+    <li>Negotiating a discount on an unaudited bill.</li>
+    <li>Skipping the financial assistance application because the bill is &ldquo;already in dispute&rdquo; — the application runs on its own track.</li>
     <li>Making the first payment-plan installment before the plan&rsquo;s terms are in your hand in writing.</li>
-    <li>Ignoring a collector&rsquo;s letter until its dispute window closes &mdash; the validation right has a clock, and the clock is in their notice.</li>
-    <li>Panic-paying a collector to make the letters stop, on an amount nobody verified.</li>
-    <li>Arguing any of it from memory &mdash; reconstructing dates, quotes, and promises instead of reading them off the log you were supposed to keep. (If your log is thin, start it today, from the paper you do have; a late log beats a perfect memory.)</li>
+    <li>Ignoring a collector&rsquo;s letter until its dispute window closes — the validation right has a clock, and the clock is in their notice.</li>
+    <li>Panic-paying a collector on an amount nobody verified.</li>
+    <li>Arguing any of it from memory instead of reading it off the log. (If your log is thin, start it today, from the paper you do have.)</li>
   </ol>
 
   <h2>The deviations &mdash; theirs to answer for</h2>
   <ol class="deviations">
-    <li>A bill sent before the claim finished processing &mdash; the provider&rsquo;s total presented as your balance while the plan&rsquo;s share was still in transit.</li>
-    <li>Duplicate charges, charges for care never received, quantities and dates the record doesn&rsquo;t support &mdash; billed first, corrected only when caught.</li>
-    <li>A balance bill from an out-of-network ancillary provider for care at an in-network facility, or above in-network cost-sharing for emergency care &mdash; the No Surprises core cases, arriving anyway.</li>
-    <li>A bill to a Medicaid patient for a covered service beyond allowed cost-sharing &mdash; and its QMB form, Medicare cost-sharing billed to the one patient federal law says may never be billed it.</li>
+    <li>A bill sent before the claim finished processing — the provider&rsquo;s total presented as your balance while the plan&rsquo;s share was still in transit.</li>
+    <li>Duplicate charges, charges for care never received, quantities and dates the record doesn&rsquo;t support.</li>
+    <li>A balance bill from an out-of-network ancillary provider at an in-network facility, or above in-network cost-sharing for emergency care.</li>
+    <li>A bill to a Medicaid patient for a covered service beyond allowed cost-sharing — and its QMB form.</li>
     <li>A cash patient&rsquo;s final bill $400 or more above the good-faith estimate, with the dispute right nowhere mentioned on the statement.</li>
-    <li>A disputed account sent to collections while a written dispute sat unanswered &mdash; the hold requested, the letter delivered, the escalation made anyway.</li>
-    <li>A financial assistance policy that exists on paper and is never mentioned by the billing office across months of collection calls.</li>
-    <li>A collector pursuing a balance it cannot validate &mdash; no itemization, no authority, nothing but a number bought in a spreadsheet.</li>
+    <li>A disputed account sent to collections while a written dispute sat unanswered.</li>
+    <li>A financial assistance policy that exists on paper and is never mentioned across months of collection calls.</li>
+    <li>A collector pursuing a balance it cannot validate.</li>
   </ol>
 
+  <p><b>What &ldquo;done&rdquo; looks like for Stage 6:</b></p>
+  <ul class="slide">
+    <li>Every bill in your care file has been itemized, audited, and sorted into the three piles.</li>
+    <li>Every deviation has been put to the provider in writing, with delivery proof, inside a dispute with a confirmed hold.</li>
+    <li>What honestly remains is paid, discounted in writing, covered by an assistance decision, or on written payment-plan terms.</li>
+    <li>Every regulator filing, every collector answer, and every outcome is in the packet, in order.</li>
+  </ul>
+
   <h2>Now do it &mdash; two questions, one at a time</h2>
-  <p>Katie explained it. Now use the kit&rsquo;s helper for the two reading jobs in this stage &mdash; or do them yourself on paper. <span class="svcName"></span> was explained once, at Stage 1, Question 2 &mdash; after that, the kit just shows the button.</p>
+  <p>Katie explained it. Now use the kit&rsquo;s helper for the two reading jobs in this stage &mdash; or do them yourself on paper.</p>
 
   <div class="qcard" id="card1">
-    <div class="qhead"><h3>Audit my itemized bill against my paper</h3><span class="qcount">Question 1 of 2</span></div>
-    <p class="needline"><b>You&rsquo;ll need:</b> The provider&rsquo;s fully itemized bill, and your paper for the same care &mdash; EOB, or good-faith estimate and written agreed price, plus your cast list, authorizations, visit or episode notes, and any notices or signed forms.</p>
-    <p>This question compares the bill against your paper, line by line, and sorts it into the stage&rsquo;s three piles.</p>
+    <div class="qhead"><h3>Audit my bill against my paper</h3><span class="qcount">Question 1 of 2</span></div>
+    <p class="needline"><b>You&rsquo;ll need:</b> the itemized bill, your EOB or good-faith estimate, your plan card, and your desk quotes, reference numbers, referral and episode logs — everything Step 2 assembles.</p>
+    <p>This question works your itemized bill against the paper this kit taught you to keep — and sorts it into the three piles.</p>
     <p class="micro">This whole box is what gets copied &mdash; word for word, including the last paragraph.</p>
     <div class="promptbox" id="box1">A provider has billed me. Below I will paste two sets of documents: (1) the provider&#x27;s fully itemized bill, and (2) my paper for the same care — my plan&#x27;s Explanation of Benefits (EOB), or my good-faith estimate and any written agreed price, plus my list of the providers I expected to bill me (my cast list), my authorizations, my visit or episode notes, and any notices or signed forms from the episode.
 
@@ -339,27 +362,24 @@ Work only from what I pasted. If something is not in the pasted material, write 
     <p class="micro">One tap copies the whole question. (Way 2 below doesn&rsquo;t need it.)</p>
     <div class="copiedBanner" id="banner1">Copied! Now choose your way &#8595;</div>
     <div class="fallbackBanner" id="fallback1">Copy didn&rsquo;t work on this phone &mdash; no problem. Hold your finger on the words in the box above until <b>Copy</b> appears, tap Copy, then tap the button below.</div>
-    <p class="pasteguide"><b>What to paste with it:</b> the itemized bill (never the summary), plus the matching paper for the same dates &mdash; EOBs (insured), the good-faith estimate and written agreed price (cash), or your coverage proof for the date of service (welfare) &mdash; and your cast list, authorizations, logs, and any notices or signed forms from the episode.</p>
-    <p><b>What you&rsquo;ll get back &mdash; and what to do with it:</b> your Bill Audit worksheet, worked: every line labeled, the bill sorted into checks out / errors or deviations / awaiting explanation. Do the pencil pass yourself before trusting it: pick three rows at random and trace them to the documents by hand. The labeled errors become the numbered items of the deviation letter &mdash; which is Question 2.</p>
+    <p class="pasteguide"><b>What to paste with it:</b> the itemized bill, the EOB or good-faith estimate, your plan card, and the log entries for the episode — desk quotes, lobby-call reference numbers, referral checks, the cast list.</p>
+    <p><b>What you&rsquo;ll get back:</b> the completed Bill Audit Worksheet — the three piles sorted, the circled lines listed with their reasons, and the numbered dispute items Step 3&rsquo;s letter is written from. Photograph it, or copy it onto the worksheet below. (Your paper stays in charge: if the table disagrees with a document, the document wins.)</p>
     <p style="margin-top:18px;"><b>Two ways from here &mdash; your choice:</b></p>
     <p class="beat"><b class="tag">WAY 1 &mdash; ASK <span class="svcName"></span> FOR HELP:</b></p>
-    <p class="micro">MakeDealNow may earn a commission when you sign up through our link — it never changes what you pay.</p>
+    <p class="micro">MakeDealNow may earn a commission when you sign up through our link &mdash; it never changes what you pay.</p>
     <a class="btn bigbtn aiBtn" id="aiBtn1" href="#" target="_blank" rel="noopener"></a>
-    <div class="pasteguide"><b>How to paste on her page:</b> hold your finger in the question box until <b>Paste</b> appears, tap Paste, add your document pages, then tap her send arrow. Before you paste anything: never paste your Social Security number or full bank or card numbers, and cover any number you don&rsquo;t want seen <i>before</i> you photograph or paste it &mdash; you decide what she sees. Come right back here when you&rsquo;re done.</div>
-    <p class="micro">MakeDealNow may earn a commission when you sign up through our link — it never changes what you pay.</p>
+    <div class="pasteguide"><b>How to paste on her page:</b> hold your finger in the question box until <b>Paste</b> appears, tap Paste, add your document pages, then tap her send arrow. Never paste your Social Security number or full bank or card numbers — cover what she doesn&rsquo;t need <i>before</i> you photograph or paste it. Come right back here when you&rsquo;re done.</div>
+    <p class="micro">MakeDealNow may earn a commission when you sign up through our link &mdash; it never changes what you pay.</p>
     <p class="beat" style="margin-top:18px;"><b class="tag">WAY 2 &mdash; DO IT MYSELF:</b></p>
-    <p>Skip the AI entirely. Work Step 2&rsquo;s audit yourself, line by line, and fill in the Bill Audit Worksheet below. Nothing on this route depends on <span class="svcName"></span> &mdash; no account, nothing leaves your hands.</p>
+    <p>Skip the AI entirely. Work Step 2&rsquo;s audit yourself on the Bill Audit Worksheet below — itemization, three piles, circled lines, in pencil, at your own pace. No account, nothing leaves your hands.</p>
     <a class="btn bigbtn selfbtn" href="#step2anchor">Do it myself &mdash; use Step 2</a>
-    <div class="navrow">
-      <button disabled>&#8592; Back</button>
-      <button class="next" id="next1" style="background:#26221e;color:#fff;border-color:#26221e;">Next question &#8594;</button>
-    </div>
+    <div class="navrow"><button disabled>&#8592; Back</button><button class="next" id="next1">Next question &#8594;</button></div>
   </div>
 
   <div class="qcard hidden" id="card2">
-    <div class="qhead"><h3>Draft my letter from these facts</h3><span class="qcount">Question 2 of 2</span></div>
-    <p class="needline"><b>You&rsquo;ll need:</b> Your finished audit &mdash; each disputed line with its date, description, billed amount, what your paper shows, and why it is wrong &mdash; plus the account number, the provider&rsquo;s billing department address, and the dates of any calls you have already made, with names.</p>
-    <p>This question drafts your deviation letter from those facts, in the kit&rsquo;s letter structure. The kit&rsquo;s own copy-ready letter is in Step 3 above &mdash; the draft is measured against it.</p>
+    <div class="qhead"><h3>Draft my deviation letter</h3><span class="qcount">Question 2 of 2</span></div>
+    <p class="needline"><b>You&rsquo;ll need:</b> your completed Bill Audit Worksheet (or its photograph), the itemized bill, and your log entries for the episode.</p>
+    <p>This question drafts your deviation letter from the audit&rsquo;s findings — the Step 3 letter, filled in.</p>
     <p class="micro">This whole box is what gets copied &mdash; word for word, including the last paragraph.</p>
     <div class="promptbox" id="box2">I am disputing a health care bill in writing. Below I will paste the facts: my audit results — each disputed line with its date, description, billed amount, what my paper shows, and why it is wrong — plus the account number, the provider&#x27;s billing department address, and the dates of any calls I have already made about this bill, with the names of who I spoke to.
 
@@ -380,73 +400,81 @@ Work only from what I pasted. If something is not in the pasted material, write 
     <p class="micro">One tap copies the whole question. (Way 2 below doesn&rsquo;t need it.)</p>
     <div class="copiedBanner" id="banner2">Copied! Now choose your way &#8595;</div>
     <div class="fallbackBanner" id="fallback2">Copy didn&rsquo;t work on this phone &mdash; no problem. Hold your finger on the words in the box above until <b>Copy</b> appears, tap Copy, then tap the button below.</div>
-    <p class="pasteguide"><b>What to paste with it:</b> your finished audit (Question 1&rsquo;s output, checked by your own pencil), the account details, your call log for this bill, the documents you will enclose, and, if you have chosen them, your response deadline and the next step you will name if they don&rsquo;t answer.</p>
-    <p><b>What you&rsquo;ll get back &mdash; and what to do with it:</b> a draft. <b>A draft is not a letter.</b> Read every line against your audit before it goes anywhere: your signature makes its words yours. Correct it, complete it, print it, and send it the way Step 3 teaches &mdash; with delivery proof, logged with the date and method. Where the draft and the kit&rsquo;s wording differ, the kit&rsquo;s wording wins.</p>
+    <p class="pasteguide"><b>What to paste with it:</b> your completed Bill Audit Worksheet (or its photo), the itemized bill, and the relevant log entries.</p>
+    <p><b>What you&rsquo;ll get back:</b> your deviation letter, drafted from Step 3&rsquo;s template with your audit&rsquo;s findings in it. Read it against the worksheet before you send it — your name goes on it, so your eyes go over it first. Then send it Step 3&rsquo;s way, with proof of delivery.</p>
     <p style="margin-top:18px;"><b>Two ways from here &mdash; your choice:</b></p>
     <p class="beat"><b class="tag">WAY 1 &mdash; ASK <span class="svcName"></span> FOR HELP:</b></p>
-    <p class="micro">MakeDealNow may earn a commission when you sign up through our link — it never changes what you pay.</p>
+    <p class="micro">MakeDealNow may earn a commission when you sign up through our link &mdash; it never changes what you pay.</p>
     <a class="btn bigbtn aiBtn" id="aiBtn2" href="#" target="_blank" rel="noopener"></a>
-    <div class="pasteguide"><b>How to paste on her page:</b> hold your finger in the question box until <b>Paste</b> appears, tap Paste, add your document pages, then tap her send arrow. Before you paste anything: never paste your Social Security number or full bank or card numbers, and cover any number you don&rsquo;t want seen <i>before</i> you photograph or paste it &mdash; you decide what she sees. Come right back here when you&rsquo;re done.</div>
-    <p class="micro">MakeDealNow may earn a commission when you sign up through our link — it never changes what you pay.</p>
+    <div class="pasteguide"><b>How to paste on her page:</b> hold your finger in the question box until <b>Paste</b> appears, tap Paste, add your document pages, then tap her send arrow. Never paste your Social Security number or full bank or card numbers — cover what she doesn&rsquo;t need <i>before</i> you photograph or paste it. Come right back here when you&rsquo;re done.</div>
+    <p class="micro">MakeDealNow may earn a commission when you sign up through our link &mdash; it never changes what you pay.</p>
     <p class="beat" style="margin-top:18px;"><b class="tag">WAY 2 &mdash; DO IT MYSELF:</b></p>
-    <p>Skip the AI entirely. Use the kit&rsquo;s copy-ready deviation letter in Step 3 above &mdash; fill the brackets from your worksheet, delete the lines that don&rsquo;t apply to your lane, and send it with proof of delivery. Nothing on this route depends on <span class="svcName"></span> &mdash; no account, nothing leaves your hands.</p>
+    <p>Skip the AI entirely. Copy Step 3&rsquo;s letter yourself, fill the brackets from your worksheet, delete the lines that don&rsquo;t fit your lane, and send it with delivery proof. No account, nothing leaves your hands.</p>
     <a class="btn bigbtn selfbtn" href="#letterBox">Do it myself &mdash; use the letter in Step 3</a>
-    <div class="navrow">
-      <button id="back2">&#8592; Back</button>
-      <button class="next" disabled>Next question &#8594;</button>
-    </div>
-    <p class="micro">That&rsquo;s both questions for this stage &mdash; and for the road.</p>
+    <div class="navrow"><button id="back2">&#8592; Back</button><button class="next" disabled>Next question &#8594;</button></div>
+    <p class="micro">That&rsquo;s both questions for this stage — and the last stage of the road.</p>
   </div>
 
   <div id="worksheetSection">
     <h2 id="worksheet">Bill Audit Worksheet</h2>
-    <p><i>The Health Care Rule Kit &middot; Shared Road, Stage 6 companion. One worksheet per statement &mdash; if three billers send three bills, the episode gets three worksheets, filed in front of each bill. Work it with the itemized bill in one hand and your episode file in the other.</i></p>
-    <p><b>Your facts stay yours.</b> Nothing on this page is uploaded, submitted, or sent anywhere. It exists in exactly one place &mdash; your hands.</p>
+    <p><i>One per bill. Work it in pencil, top to bottom, with the itemized bill and your episode file open beside it. When it&rsquo;s filled in, it <b>is</b> the audit — Step 3&rsquo;s letter is written straight off it.</i></p>
+    <p><b>Your facts stay yours.</b> Nothing here is uploaded or sent anywhere — it exists in exactly one place: your hands.</p>
     <div class="step">
-      <p class="wsitem"><b>Biller / statement</b> &mdash; the provider or group, the account or statement number, and the statement date. <i>Every bill is audited against its own sender; a cast member&rsquo;s bill never hides inside the facility&rsquo;s total on this page.</i></p><div class="wsline"></div>
-      <p class="wsitem"><b>Date(s) of service</b> &mdash; as billed. <i>Checked against your log before any line is read. A wrong date at the top usually means wrong lines below.</i></p><div class="wsline"></div>
-      <p class="wsitem"><b>My paper for this episode</b> &mdash; check what you hold: EOB(s) &#9744; &middot; good-faith estimate / agreed price &#9744; &middot; cast list &#9744; &middot; authorization #(s) &#9744; &middot; visit / episode log &#9744; &middot; coverage on the date (welfare) &#9744;. <i>An unchecked box is a document to request before the audit, not a reason to skip it.</i></p>
-      <p class="wsitem"><b>The audit table</b> &mdash; one row per disputed or questioned line. <i>Lines that check out don&rsquo;t need rows. This table is the index of your deviation letter &mdash; write the letter from it, in this order.</i></p>
-      <p class="wsitem"><b>Error found</b> &mdash; in plain words: duplicate &middot; never received &middot; wrong date &middot; wrong quantity &middot; wrong status &middot; over the estimate &middot; not my episode &middot; unexplained. <i>Plain words are deliberate &mdash; the letter quotes this column.</i></p>
-      <p class="wsitem"><b>Action taken</b> &mdash; circled for the letter &middot; explanation requested &middot; plan appeal opened &middot; assistance applied &middot; other. <i>Every row ends with an action, even if the action is &ldquo;watching for the corrected bill by (date).&rdquo;</i></p>
-      <table class="audit" aria-label="Bill audit table">
-        <tr><th>Line (date &middot; description)</th><th>Billed</th><th>What my paper says (EOB / estimate / agreement / log)</th><th>Error found</th><th>Action taken</th></tr>
-        <tr><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <p class="wsitem"><b>Bill / account number</b> &mdash; the account or statement number, copied exactly as printed.</p><div class="wsline"></div>
+      <p class="wsitem"><b>Biller</b> &mdash; who sent this bill: facility, group, or supplier.</p><div class="wsline"></div>
+      <p class="wsitem"><b>Dates of service</b> &mdash; the range the bill covers.</p><div class="wsline"></div>
+      <p class="wsitem"><b>Total billed</b> &mdash; the bill&rsquo;s total, as printed.</p><div class="wsline"></div>
+      <p class="wsitem"><b>EOB / estimate total</b> &mdash; the plan&rsquo;s total allowed or paid figure (insured), the good-faith estimate total (cash), or &ldquo;covered service — program payment is payment in full&rdquo; (welfare).</p><div class="wsline"></div>
+      <p class="wsitem"><b>Your share per EOB / agreed price</b> &mdash; what your own paper says you owe, before any disputed item is considered.</p><div class="wsline"></div>
+      <table class="wstable">
+        <tr><th>Line</th><th>What it says</th><th>Match?</th><th>Notes</th></tr>
+        <tr><td>1</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>2</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>3</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>4</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>5</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>6</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>7</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>8</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>9</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>10</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>11</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>12</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
       </table>
-      <p class="wsitem"><b>Outcome block</b> &mdash; corrected balance: ______ &middot; discount / assistance result: ______ &middot; plan terms (if any): ______ &middot; account status confirmed (hold / settled / plan current): ______. <i>The stage isn&rsquo;t done when the letter is sent. It&rsquo;s done when this block is filled in.</i></p>
+      <p class="wsitem"><b>Total disputed</b> &mdash; add up every circled line. This is the number the deviation letter disputes.</p><div class="wsline"></div>
+      <p class="wsitem"><b>Corrected balance</b> &mdash; total billed, minus the total disputed. The Step 4 number.</p><div class="wsline"></div>
+      <p class="wsitem"><b>Deviation letter sent</b> &mdash; the date, the delivery method, and the proof kept (receipt, portal confirmation, or fax page).</p><div class="wsline"></div>
+      <p class="wsitem"><b>Response</b> &mdash; the answer received, its date, and what it conceded or refused. If none came, the date the promised window closed — that silence goes in the packet too.</p><div class="wsline"></div>
     </div>
     <button class="printbtn" onclick="window.print()">Print this stage</button>
-    <p class="micro">Print this and keep it in front of the bill it audits, in your care file.</p>
+    <p class="micro">Print this and keep it with the bill in your care file.</p>
     <a class="btn printbtn noPrint" href="worksheets/bill-audit-worksheet.pdf" download>Download the worksheet (PDF)</a>
   </div>
 
   <div class="step">
-    <h3>What &ldquo;done&rdquo; looks like &mdash; for Stage 6, and for the whole road</h3>
-    <p>Every bill you have received has been itemized, assembled against your paper, and matched line by line. The errors and deviations are in a letter, delivered with proof, with the account&rsquo;s dispute status confirmed and the follow-up calendared. What honestly remained has been negotiated from the corrected number &mdash; discounted, assisted, or planned in writing &mdash; and anything still open is standing on a named rung of the ladder with the packet behind it. You knew your plan, or your price, or your shield before you needed it; you verified the cast before the day; you signed like a customer and logged like a witness; and when the bill came, you received it as the customer the system has to be careful with, holding a folder it has to answer. That was the kit. <b>The folder is yours &mdash; keep it.</b></p>
+    <h3>You&rsquo;re done &mdash; the whole road, behind you</h3>
+    <ul class="slide">
+      <li><b>Keep the care file.</b> Keep everything this kit told you to keep — the plan card, the logs, the episode packets, the bill packets — until well past the last deadline in any of them.</li>
+      <li><b>The kit works the same the second time.</b> Next episode, next bill, the same stages run the same way.</li>
+      <li><b>If something new lands in your mailbox</b> — a bill, a notice, a collector&rsquo;s letter — you know which stage it belongs to. Open the kit at that stage and run it.</li>
+    </ul>
+    <p class="micro">MakeDealNow publishes educational kits. If this one did its job, tell someone who needs it — the kit&rsquo;s sales page is at <a href="../health-care-rule-kit.html">makedealnow.com/health-care-rule-kit.html</a>.</p>
   </div>
 
   <div class="navrow" style="margin-top:34px;">
     <a class="btn" href="everything-after.html">&#8592; Back: Stage 5 &mdash; Everything After</a>
-    <a class="btn next" href="index.html">Back to the front door &#8594;</a>
+    <a class="btn next" href="index.html">Front door &#8594;</a>
   </div>
-  <p class="micro">This is the end of the road &mdash; there is no Stage 7. The link on the right takes you back to the front door, where the road starts.</p>
 
   <footer>
     <div class="disclaimer">
-      <p><b>Please read this first.</b> This kit is educational information. It is <b>not legal advice</b>, and it is <b>not medical advice</b>. It does not tell you what care to get, what care to refuse, or whether a treatment is right for you &mdash; those decisions belong to you and your doctor. This kit is about rights, paperwork, prices, and billing only. The publisher sells educational information only and performs no services of any kind: nobody will audit your bill, dispute a charge, or negotiate on your behalf. You make your own calls, sign your own forms, and make your own decisions at every step. Health coverage rules vary &mdash; by state, by plan, and by program &mdash; and they change. Wherever this kit states a rule, it also tells you where to verify it against your own documents and notices. If your situation involves a lawsuit, a collections action, or a deadline in court papers, talk to a lawyer.</p>
+      <p><b>Please read this first.</b> This kit is educational information. It is <b>not legal advice</b>, and it is <b>not medical advice</b>. It does not tell you what care to get, what care to refuse, or whether a treatment is right for you — those decisions belong to you and your doctor. This kit is about rights, paperwork, prices, and billing only. The publisher sells educational information only and performs no services of any kind: nobody will verify a specialist, attend your procedure, or call a hospital on your behalf. You make your own calls, sign your own forms, and make your own decisions at every step. Health coverage rules vary — by state, by plan, and by program — and they change. Wherever this kit states a rule, it also tells you where to verify it against your own documents and notices. If your situation involves a lawsuit, a collections action, or a deadline in court papers, talk to a lawyer.</p>
     </div>
     <p>MakeDealNow &mdash; The Health Care Rule Kit (preview)</p>
     <p>Educational information &mdash; not legal or medical advice.</p>
   </footer>
-</div>
 
+</div>
 <script>
 var AI_SERVICE = { name: "Monica", url: "https://monica.im" };
 document.querySelectorAll(".svcName").forEach(function(el) { el.textContent = AI_SERVICE.name; });

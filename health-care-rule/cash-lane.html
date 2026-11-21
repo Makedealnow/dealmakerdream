@@ -87,180 +87,151 @@
     .promptbox { border:1.5pt solid #666; background:#fff; font-size:11.5pt; max-height:none; overflow:visible; }
     a { color:#000; text-decoration:none; }
   }
-</style>
+
+    /* slide-style bullets (presentation redesign) */
+    .slide { margin:8px 0 8px 2px; padding-left:22px; }
+    .slide li { margin:9px 0; }
+    .slide li::marker { color:#c45a14; }
+  </style>
 </head>
 <body>
 <header class="titlebar">
   <div class="kit">Health Care Rule Kit</div>
-  <h1>The Cash-Pay Lane</h1>
-  <div class="lane">Cash lane &mdash; paying for your own care</div>
+  <h1>Paying Cash &mdash; The Self-Pay Lane</h1>
+  <div class="lane">Your lane &mdash; no insurance card</div>
 </header>
-
+<div class="wrap noPrint" style="padding-bottom:0;">
+  <p class="micro" style="margin-top:12px;"><a href="index.html">&#8592; Start over &mdash; back to the front door</a></p>
+</div>
+<div class="loop" id="loopBar" aria-label="Where you are">
+  <span id="ls-watch" class="now"><b>1. Watch</b>the video</span>
+  <span id="ls-steps"><b>2. Do</b>the steps</span>
+  <span id="ls-prompts"><b>3. Ask</b>for help</span>
+  <span id="ls-next"><b>4. Next</b>stage</span>
+</div>
 <div class="wrap">
-  <!-- VIDEO SLOT: the cash lane Katie video ("Paying Cash: The Lane Where You're
-       the Customer", script T1 in cash-lane-setup-2026-11-19.md) is produced later.
-       Clearly-marked placeholder only — no video file. Jeff previews every video
-       before it goes live. -->
   <video id="katieVideo" controls playsinline preload="metadata" src="media/cash-lane.mp4"></video>
-  <p class="micro">Watch Katie first &mdash; she walks you through this whole lane.</p>
-
-  <p class="promise">The lane where you&rsquo;re not almost a customer. You are one.</p>
-  <p>And hear this first: <b>this lane is a watch, not a job.</b> If everything goes right, there is almost nothing to do &mdash; the process runs on its own. Your only work is knowing what &ldquo;smooth&rdquo; looks like, so you notice the moment it doesn&rsquo;t. The plays for that moment are written out below.</p>
-
-  <h2>First, three quick questions</h2>
-  <div class="step">
-    <p class="beat"><b class="tag">1. No insurance at all right now?</b> Then you&rsquo;re a cash-pay patient in full. Everything in this lane applies to you as written &mdash; and the written estimate in Step 1 below is your single most important right.</p>
-    <p class="beat"><b class="tag">2. You have a plan, but you&rsquo;re paying cash for this care?</b> Then you&rsquo;re in this lane <i>for this service</i>. Two cautions: cash you pay generally does <b>not</b> count toward your plan&rsquo;s deductible or out-of-pocket maximum &mdash; run the math before you decide, not after &mdash; and tell the provider your choice clearly, before the service, and get their answer in your notes. Some providers must bill your insurance if they know you have it.</p>
-    <p class="beat"><b class="tag">3. Between plans?</b> Your self-pay rights cover the care you receive while uninsured &mdash; the estimate right does not depend on <i>why</i> you have no plan. If a bill from that window arrives later, it&rsquo;s judged by this lane&rsquo;s rules: the estimate you were given and the prices that were published. Keep this lane&rsquo;s paper trail exactly as written.</p>
-    <p class="beat"><b class="tag">Covered by Medicaid or a public program instead?</b> Wrong lane &mdash; yours is stronger in several places. Go to <a href="welfare-lane.html">the welfare lane</a>.</p>
-    <p class="beat"><b class="tag">Your facts stay yours:</b> you place yourself, here, by reading. Nothing is uploaded, submitted, or sent anywhere. There is no account and no form &mdash; your answers exist in exactly one place: your hands.</p>
-  </div>
-
-  <p>No insurer in the middle. No network, no authorization, no claim. There is a seller, a price, and a buyer: you. That means you&rsquo;re owed prices and estimates <i>before</i> the service &mdash; and this short lane shows you how to get them, in writing.</p>
-
+  <p class="micro">Watch Katie first &mdash; she walks you through this whole stage. (Katie&rsquo;s video for this stage &mdash; preview.)</p>
+  <p class="promise">No insurance card — your price is agreed before the care, in writing.</p>
+  <ul class="slide">
+    <li><b>Three questions tell you you&rsquo;re in the right lane:</b></li>
+  </ul>
+  <p class="beat"><b>1.</b> <b>Do you pay for your care out of your own pocket</b> &mdash; no insurance, no Medicare, no Medicaid, no plan paying the bills?</p>
+  <p class="beat"><b>2.</b> <b>When a bill comes, does it come straight to you</b> &mdash; the whole amount, with nobody else&rsquo;s payment in between?</p>
+  <p class="beat"><b>3.</b> <b>Have you ever been quoted one price and billed another</b> &mdash; or been afraid to ask what something costs before saying yes?</p>
+  <p class="beat"><b>Do you have Medicaid or a public program instead?</b> Wrong lane &mdash; yours is stronger in several places. Go to <a href="welfare-lane.html">the welfare lane</a>.</p>
+  <p>If you said yes &mdash; especially to the first two &mdash; this is your lane. Your price is agreed <b>before</b> the care, in writing, and the paper you collect is what protects you after.</p>
   <div class="rulebox">
-    <h3>Katie&rsquo;s rule for this lane</h3>
-    <p class="r"><b>THE RULE:</b> she has the right to a good-faith estimate before scheduled care. If she is uninsured or paying for a service herself, federal law &mdash; the No Surprises Act &mdash; requires the provider to give her that estimate, in writing.</p>
-    <p class="r"><b>THE CHECK:</b> the estimate in writing, kept. Dated, with the name of whoever sent it, filed in her folder before the service happens &mdash; and a matching estimate from every other provider who will bill her separately.</p>
-    <p class="r"><b>THE MEANING:</b> a final bill $400 or more over the estimate is federally disputable. That is not a complaint and not a favor she asks for &mdash; it is a process the law built for exactly that gap, and her kept estimate is what opens it.</p>
+    <h3>Katie&rsquo;s rule for this stage</h3>
+    <p class="r"><b>THE RULE:</b> for scheduled, non-emergency care, you are owed a <b>good-faith estimate</b> of expected charges — in writing, before the care — and a final bill <b>$400 or more above</b> that estimate opens a federal dispute.</p>
+    <p class="r"><b>THE CHECK:</b> the estimate, in hand, before the appointment &mdash; and the final bill set beside it, line by line.</p>
+    <p class="r"><b>THE MEANING:</b> a price agreed in advance is a price that can be enforced. The estimate is your contract-shaped paper.</p>
   </div>
 
-  <h2>The steps</h2>
-
+  <h2>Step 1 &mdash; Before any appointment: the good-faith estimate</h2>
   <div class="step" id="step1">
-    <h3>Step 1 &mdash; The good-faith estimate: your price, in writing, before</h3>
-    <p>This right belongs to self-pay patients specifically. Under the federal No Surprises Act, providers must give you a <b>good-faith estimate</b> of the expected charges for scheduled care &mdash; in writing &mdash; when you schedule it far enough ahead (generally, services scheduled at least a few business days out) or when you ask for one. It should list the items and services expected, with their prices, including the providers expected to be involved. And if a final bill from a provider on that estimate comes in <b>$400 or more above it</b>, federal law gives you a dispute process built for exactly that. But it runs on the paper. No estimate, no dispute.</p>
-    <p><b>Treat the estimate as your insurance card.</b> In the insured lane, the card is what the whole system keys off. In this lane, the written estimate does that job: it is the document that names your care, your providers, and your price before anyone starts &mdash; the one page every later conversation points back to. Photograph it the day it arrives and keep the photo on your phone, the way the insured lane keeps its plan card. If a number on paper and a number someone says out loud ever disagree, the paper wins.</p>
-    <p class="beat"><b class="tag">DO THIS:</b> For every scheduled service &mdash; procedure, scan, surgery, therapy series &mdash; request the estimate <b>in writing, before the service</b> &mdash; from the facility, and from every other provider who will bill you separately (surgeon, anesthesiologist, lab, imaging). The main estimate is not the whole bill; the side bills are where estimates quietly stop covering you.</p>
-    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;I&rsquo;m self-pay. Before I schedule, I need my good-faith estimate in writing &mdash; the full expected charge for this service, and a list of any other providers who will bill me separately, so I can get their estimates too. Please send it to me before the appointment, not at check-in.&rdquo;</div>
-    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The estimate itself, dated, with the name of whoever sent it. When the bill arrives, this page is the first thing it gets compared against &mdash; Step 5 and the worksheet exist for exactly that comparison.</p>
+    <ul class="slide">
+      <li><b>The good-faith estimate is a federal right</b> (since 2022) for people paying for themselves — when you schedule care <b>3 or more business days</b> ahead, or ask for an estimate directly.</li>
+      <li><b>What&rsquo;s in it:</b> the expected charges for the item or service, and for the items and services reasonably expected to go with it — every provider and facility involved, each one&rsquo;s expected charges listed.</li>
+      <li><b>The timing:</b> when you schedule <b>at least 10 business days</b> out, the estimate is due within <b>3 business days</b> of scheduling; when you schedule <b>3&ndash;9 business days</b> out, within <b>1 business day</b>; when you simply ask without scheduling, within <b>3 business days</b> of asking. (Verify current rules at <b>cms.gov</b>.)</li>
+      <li><b>One estimate is not the whole episode.</b> If the hospital, the surgeon, and the lab each bill separately, the convening provider is supposed to coordinate one estimate covering the episode.</li>
+    </ul>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;I&rsquo;m paying for this myself &mdash; no insurance. Before I schedule, I need my good-faith estimate in writing, and I need it to cover everything reasonably expected with this care, including charges from any other provider or facility involved. If the total isn&rsquo;t settled, I&rsquo;m not scheduling yet.&rdquo;</div>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The estimate itself, with the date you received it. This is the single most important document in your lane.</p>
   </div>
 
+  <h2>Step 2 &mdash; Shop the price like a customer</h2>
   <div class="step" id="step2">
-    <h3>Step 2 &mdash; Price shopping: published prices, and the discount nobody volunteers</h3>
-    <p>Hospitals are required by federal price-transparency rules to publish their prices &mdash; including the <b>discounted cash price</b> &mdash; and to display several hundred &ldquo;shoppable&rdquo; services you can schedule in advance. The files are enormous and were plainly not designed for a person at a kitchen table. You don&rsquo;t read them. You <i>use</i> them, one service at a time.</p>
-    <p class="beat"><b class="tag">DO THIS:</b> Before scheduled hospital care, find the hospital&rsquo;s price transparency page (search the hospital&rsquo;s name plus &ldquo;price transparency&rdquo; or &ldquo;standard charges&rdquo;). Look up your specific service and find the <b>discounted cash price</b> &mdash; not the gross &ldquo;chargemaster&rdquo; charge, which is the sticker nobody is supposed to pay. If the hospital offers a price-estimator tool for self-pay patients, run your service through it too, and note what it says.</p>
-    <p class="beat"><b class="tag">DO THIS &mdash; compare the building, not just the price:</b> for the same scheduled service &mdash; a scan, a lab panel, a procedure &mdash; price it at the hospital <i>and</i> at an independent facility that does only that service (an independent imaging center, a standalone lab, an outpatient surgery center). The identical service can differ by hundreds of dollars between facilities in the same town, because a hospital&rsquo;s price carries the whole building with it. In this lane, nobody has to ask a network&rsquo;s permission &mdash; comparison shopping actually works here.</p>
-    <p class="beat"><b class="tag">DO THIS &mdash; always ask for the prompt-pay discount:</b> most providers have a self-pay rate &mdash; a prompt-pay or cash discount off the sticker price &mdash; and almost none of them lead with it. The first number you&rsquo;re quoted is usually the chargemaster number: the highest number in the building, the one insurers negotiate <i>down from</i>. A customer asks. Ask <b>before</b> the service, while you still have the only leverage a customer ever has: the ability to schedule somewhere else.</p>
-    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;I&rsquo;m paying for this myself, without insurance. What is your cash price &mdash; your self-pay or prompt-pay rate &mdash; for [service]? Is that the full price, including the facility and any other providers who&rsquo;ll bill me? And can I get that price in writing before I schedule?&rdquo; If you found a published cash price, name it: &ldquo;Your published cash price for this service is [amount] &mdash; I have it dated [date]. Is that the price I&rsquo;ll be charged?&rdquo;</div>
-    <p class="beat"><b class="tag">DO THIS:</b> Ask at least one other provider the same question for any service big enough to matter.</p>
-    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> A screenshot or printout of every published price you found, <b>with the date</b> &mdash; prices get updated, and the dated copy is what was true when you relied on it &mdash; plus every quote: the price, what it includes, the date, and the name of the person who quoted it. Quotes you can&rsquo;t point to later are conversations; quotes in your log are the opening position of every later conversation. If a hospital has no findable price file, or the file omits your service, write that down too, with the date &mdash; a missing price is a deviation (see this lane&rsquo;s lists).</p>
+    <p class="beat"><b class="tag">DO THIS:</b> You are the only payer in the room, which makes you the customer in a way insured patients never quite are. Get <b>two or three prices for the same service</b>, in writing, and compare totals &mdash; not just the headline fee.</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;I&rsquo;m comparing prices for [the service] before I choose where to have it done. What is your total self-pay price &mdash; everything included &mdash; and can you put it in writing as my good-faith estimate?&rdquo;</div>
+    <p class="beat"><b class="tag">DO THIS:</b> Ask for the <b>self-pay or cash discount</b> by name. Providers maintain prices for cash customers that are never the first number quoted. The discount exists whether or not it&rsquo;s offered.</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;Is that your self-pay price, or your standard price? What is the cash price if I pay in full at the time of service?&rdquo;</div>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Every quote, with the office&rsquo;s name, the date, and who gave it. The quote you don&rsquo;t choose is still evidence of the market price.</p>
   </div>
 
+  <h2>Step 3 &mdash; Your doctor &mdash; two doors, same as everyone</h2>
   <div class="step" id="step3">
-    <h3>Step 3 &mdash; The all-in price agreement: the whole price, in writing, before</h3>
-    <p class="beat"><b class="tag">DO THIS:</b> Never pay the first number. The first number is a starting position &mdash; theirs. The estimate (Step 1), the published price (Step 2), and the cash quote (Step 2) are yours. When they disagree, the lowest documented number is the one to talk from.</p>
-    <p class="beat"><b class="tag">DO THIS:</b> Get the agreed price <b>in writing before treatment</b>, whenever the care is schedulable. One page or one email. And the writing has to name what the price <i>includes</i> &mdash; line by line: <b>the facility, the provider&rsquo;s own work, anesthesia, lab work, imaging</b> &mdash; and who, if anyone, still bills separately on top of it. This page converts a negotiation into an agreement &mdash; and an agreement is what you hold them to when the bill says something else.</p>
-    <p><b>The partial-price trap:</b> a quote that covers only the facility &mdash; or only the doctor &mdash; sounds like the price of the service and is not. The rest arrives later, as separate bills, at prices nobody quoted. So never accept a number until the writing answers one question completely: <i>is this everything, and if it isn&rsquo;t, exactly what else is there, and what will that cost?</i> A price that won&rsquo;t say what it includes is not yet a price.</p>
-    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;Before I schedule, I need the agreed price in writing: the service, the total price, what it includes &mdash; facility, provider, anesthesia, lab &mdash; and the names of anyone who will bill me separately, with their prices. Email is fine.&rdquo;</div>
-    <p class="beat"><b class="tag">DO THIS &mdash; deposits:</b> a provider may ask for a deposit or payment before scheduled care. Before you pay anything, establish &mdash; in writing &mdash; whether the amount is a deposit against the estimate or a settled full price, what happens if the final charges differ, and what the refund process is if the service doesn&rsquo;t happen. A deposit handed over without those answers is the cash lane&rsquo;s version of signing the clipboard unread.</p>
-    <div class="say"><b class="tag">SAY THIS (the deposit conversation):</b> &ldquo;Before I pay a deposit, I need three things in writing: whether this is a deposit or the full agreed price, what happens if the final bill is different from the estimate, and how a refund works if the service is cancelled. Email is fine.&rdquo;</div>
-    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The written agreed price and every deposit receipt, in your folder.</p>
+    <p><b>Door 1 &mdash; you need to find one.</b> Choose on the estimate and the cash price, not on habit. Get the new-patient visit&rsquo;s price in writing before the appointment &mdash; and remember Step 1: schedule far enough ahead and the estimate right applies in full.</p>
+    <p><b>Door 2 &mdash; you already have one.</b> The relationship doesn&rsquo;t set the price; the paper does. At every visit from now on, the price conversation happens <b>before</b> anything beyond the visit itself is ordered — the visit&rsquo;s own price, plus a price for anything added to it.</p>
+    <div class="say"><b class="tag">SAY THIS (at the doctor&rsquo;s office, before tests are ordered):</b> &ldquo;I pay cash, so I need the price before anything is done. What will today&rsquo;s visit cost, and if you&rsquo;re ordering tests or referring me somewhere, what will each of those cost &mdash; and can I have those prices in writing before I agree to them?&rdquo;</div>
+    <p><b>Tests and referrals multiply bills.</b> In the insured lane, the desk play verifies the network. In your lane, the same play verifies the <b>price</b> — every facility, lab, and specialist the doctor sends you to gets its own estimate conversation before you go.</p>
   </div>
 
+  <h2>Step 4 &mdash; The visit &mdash; and what&rsquo;s different at the desk</h2>
   <div class="step" id="step4">
-    <h3>Step 4 &mdash; Scope changes: a new service means a new conversation &mdash; before, not after</h3>
-    <p>Sometimes the plan changes once care starts: a test is added, a finding leads to a second procedure, a service you never discussed appears on the schedule. Some of that is medicine, and this kit takes no position on the medicine. The billing rule is separate, and it is simple: <b>a new service is a new price conversation, held before the service &mdash; not a surprise discovered on the bill after it.</b></p>
-    <p class="beat"><b class="tag">DO THIS:</b> Whenever a service is added or changed before it happens, ask for the updated picture before you agree: what the new service is, what it costs at your cash rate, whether it changes the estimate, and who bills it. Ask for the <b>updated estimate in writing</b> covering the new scope. If the change is proposed while you&rsquo;re already at the facility and it isn&rsquo;t urgent, you can say you want the price first &mdash; a schedulable addition can wait for its number.</p>
-    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;That&rsquo;s a new service, and it wasn&rsquo;t in my estimate. Before I agree to it, I need its cash price and an updated good-faith estimate in writing that includes it &mdash; and the name of whoever will bill me for it.&rdquo;</div>
-    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The updated estimate beside the original, each dated. Two estimates for one episode is normal when the scope changed in the open &mdash; what is <i>not</i> normal is a changed scope with only the original paper and a bigger bill.</p>
+    <p class="beat"><b class="tag">DO THIS:</b> <b>Announce your lane at check-in, every time.</b> The desk&rsquo;s default assumption is insurance. Say the words, and watch the paperwork change: no card photocopied, no plan billed &mdash; and your estimate right acknowledged.</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;I&rsquo;m self-pay &mdash; I don&rsquo;t have insurance, and I&rsquo;ll be paying this myself. Please mark the account self-pay, and make sure my good-faith estimate is on file before I&rsquo;m seen.&rdquo;</div>
+    <p class="beat"><b>Deposits:</b> a deposit request is a negotiation, not a law. You can pay a stated deposit against a written estimate — that&rsquo;s ordinary. What you don&rsquo;t do is hand over open-ended payment against an unknown total.</p>
+    <p class="beat"><b>The preventive-visit trap, cash edition:</b> the visit you booked at one price becomes a different, larger bill when a problem gets discussed and treated. Before the visit, ask what makes the price change; during it, if the conversation turns to a new problem, it is fair &mdash; and expected, in your lane &mdash; to ask what addressing it today adds to the bill.</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;Before we go ahead with that today &mdash; what does adding it do to my bill? I&rsquo;d rather know now than when the statement comes.&rdquo;</div>
+    <p class="beat"><b>Forms:</b> the same clipboard discipline as everyone — read before signing, photograph what you sign. In your lane, the form to read twice is any <b>financial agreement</b>: it may commit you to &ldquo;all charges&rdquo; at prices never quoted. Your estimate and any written cash price go in your folder beside it.</p>
   </div>
 
+  <h2>Step 5 &mdash; After the care &mdash; the bill meets the estimate</h2>
   <div class="step" id="step5">
-    <h3>Step 5 &mdash; The bill, measured against the estimate</h3>
-    <p>When the bill arrives, it gets measured &mdash; against the estimate, the published price, and the written agreement, line by line. Not against your memory, and not against what feels fair.</p>
-    <p class="beat"><b class="tag">DO THIS:</b> First, demand the shape that can be checked: if a bill arrives as a single lump number, ask for it <b>itemized, line by line</b>. A lump sum cannot be checked against an estimate; an itemized bill can. Never pay a lump. Then compare, provider by provider: each billed line against the same provider&rsquo;s estimate, and the totals against each other. The worksheet at the bottom of this page is built for exactly this subtraction.</p>
-    <p class="beat"><b class="tag">IF THE DIFFERENCE IS $400 OR MORE:</b> for that provider, the federal <b>patient-provider dispute resolution</b> process opens &mdash; run through the U.S. Department of Health and Human Services, built for exactly this gap. The $400 threshold and the process details are federal rules as of this kit&rsquo;s writing; they can change, and the current version lives on the federal health care website (search &ldquo;patient-provider dispute resolution&rdquo;). Federal law gives you <b>120 calendar days from the date on the initial bill</b> to start the dispute &mdash; write that deadline on your log the week the bill arrives, and don&rsquo;t let it drift. A bill $400 or more over the estimate, per provider, is not a bill to pay and not a bill to ignore: it&rsquo;s a dispute to open.</p>
-    <p class="beat"><b class="tag">IF IT&rsquo;S JUST WRONG &mdash; below $400, or wrong in some other way:</b> say so <b>in writing</b>. Name the line, name what your paper shows, and ask them to correct it or explain it in writing. And while a part of the bill is in written disagreement, <b>pay the undisputed part</b> &mdash; the lines that check out &mdash; and say in the same writing that the rest is disputed and why. Paying what&rsquo;s right while disputing what isn&rsquo;t is the strongest position a customer can stand in: nobody can call you unwilling, and the disagreement is on paper, dated, in both files.</p>
-    <div class="say"><b class="tag">SAY THIS (in writing):</b> &ldquo;I am disputing the charges identified in this letter, which do not match the good-faith estimate and agreed price I hold. I am paying the undisputed amount of [amount] today. Please correct the bill, or explain each disputed charge in writing, identifying the record that supports it.&rdquo;</div>
-    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Every bill, itemized; your comparison notes; and a copy of every disagreement letter, with its date. All of it stays in the folder past the final payment &mdash; a paid bill can be re-billed or sent to collections in error, and your folder is the whole answer.</p>
+    <p class="beat"><b class="tag">DO THIS:</b> When the bill arrives, before paying anything: <b>demand the itemized bill</b> if what arrived is a summary, then set it beside the estimate, line by line. Charges for things never done, quantities that don&rsquo;t match, services never agreed to — circle them.</p>
+    <p><b>The $400 rule:</b> if the final bill from a provider runs <b>$400 or more above</b> that provider&rsquo;s good-faith estimate, you can open the federal <b>patient-provider dispute resolution</b> process — an independent review of the difference. The dispute must be started within <b>120 calendar days from the date on the initial bill</b>, so write that deadline down the week a too-high bill arrives. Starting the process generally pauses collection on the disputed amount while it&rsquo;s decided. (Verify the current process and deadlines at <b>cms.gov</b>.)</p>
+    <div class="say"><b class="tag">SAY THIS (first call on an over-estimate bill):</b> &ldquo;My good-faith estimate for this care was [amount], dated [date], and the bill is [amount] &mdash; that&rsquo;s [difference] more. I need an itemized explanation of the difference, and I&rsquo;m noting today&rsquo;s date: I understand I have 120 days from the initial bill to open a federal dispute if we can&rsquo;t resolve it. Please note the account that the charges are disputed.&rdquo;</div>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The estimate, the itemized bill, and your notes of every call — together, in the episode&rsquo;s folder.</p>
   </div>
 
+  <h2>Step 6 &mdash; Financial assistance &mdash; ask even when you think you won&rsquo;t qualify</h2>
   <div class="step" id="step6">
-    <h3>The financial assistance door &mdash; ask before you pay</h3>
-    <p>For a big hospital bill, this may be the most valuable page in the lane. <b>Nonprofit hospitals are required to have financial assistance (charity care) policies</b> &mdash; income-based help with the bill &mdash; and eligibility often reaches further up the income scale than people assume. Applying is paperwork, not begging: it is a published policy with criteria, and a self-pay patient facing a large bill is exactly who it is written for.</p>
-    <p class="beat"><b class="tag">DO THIS:</b> Always apply before paying a big hospital bill. Ask for the policy and the application <i>before</i> the service if you can, and after the bill if you couldn&rsquo;t. Ask even if you have income &mdash; even if you assume you earn too much. The policy&rsquo;s criteria decide, not your assumption, and not the billing clerk&rsquo;s.</p>
-    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;Before I pay anything on this bill, I want to apply under your financial assistance policy. Please send me the policy and the application, and note my account that an application is coming.&rdquo;</div>
-    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The policy, your application, and the answer &mdash; all in the folder. The shared road develops this fully; in this lane, just never let a big hospital bill pass without the question being asked.</p>
+    <p class="beat"><b class="tag">DO THIS:</b> Nonprofit hospitals are required to have a <b>financial assistance policy</b> — charity care and discounted care for patients under income limits the hospital sets — and to make it available. Ask for the policy and the application <b>before</b> care when it&rsquo;s scheduled, and after the bill when it wasn&rsquo;t.</p>
+    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;I&rsquo;m paying for this myself. Please send me your financial assistance policy and the application. I&rsquo;d like to be screened before we talk about payment amounts.&rdquo;</div>
+    <p class="beat"><b class="tag">DO THIS:</b> <b>Ask at for-profit offices too.</b> Sliding-scale fees, hardship discounts, and prompt-pay reductions exist outside the legal requirement — but only for patients who ask. The question costs nothing.</p>
+    <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The policy, your application, and the answer — approved, reduced, or denied, it goes in the folder.</p>
   </div>
 
-  <div class="emerg">
-    <p><b class="lane">EMERGENCIES &mdash; the honest exception:</b> you don&rsquo;t negotiate in an emergency &mdash; you get care. Federal law (EMTALA) requires hospital emergency departments to screen and stabilize you <b>regardless of ability to pay</b>; emergency care can&rsquo;t be denied for money, and that duty is not conditioned on a deposit conversation. Your customer rights in an emergency are mostly <i>after</i> the fact, and they&rsquo;re real: the itemized bill, the financial-assistance screening, the estimate rules for any follow-up care that gets scheduled, and the billing protections the shared road walks later. Emergencies skip this lane&rsquo;s front end; they do not skip its paper trail &mdash; start the folder with whatever the emergency produced.</p>
-  </div>
+  <div class="smooth"><h3>Emergencies &mdash; the one place the estimate can&rsquo;t go first</h3><p>Emergency care can&rsquo;t wait for paperwork, and federal law (EMTALA) requires hospital emergency departments to screen and stabilize you regardless of ability to pay. There&rsquo;s no estimate before an emergency — your lane&rsquo;s protections there are the itemized bill afterward, the financial assistance application, and the negotiation. Get the care. The paper fight happens later, and this kit&rsquo;s bill stage works for emergency bills the same way.</p></div>
 
+  <h2>Step 7 &mdash; Your folder &mdash; the cash lane&rsquo;s whole filing system</h2>
   <div class="step" id="folder">
-    <h3>Your folder &mdash; in this lane, the record is entirely yours</h3>
-    <p>In the insured lane, three parties keep files: you, the provider, and the plan. In this lane there are only two parties, and the provider&rsquo;s file is a billing system. <b>Your folder is the only complete record of what was quoted, agreed, and charged</b> &mdash; which makes it more important here, not less. Four kinds of paper, in order:</p>
-    <p class="beat"><b class="tag">1.</b> <b>Estimates</b> (Step 1) &mdash; dated, with who sent them.</p>
-    <p class="beat"><b class="tag">2.</b> <b>Published prices</b> (Step 2) &mdash; screenshots, dated.</p>
-    <p class="beat"><b class="tag">3.</b> <b>Quotes and agreements</b> (Steps 2&ndash;3) &mdash; the log of who quoted what, and the written agreed price.</p>
-    <p class="beat"><b class="tag">4.</b> <b>Bills and receipts</b> &mdash; every bill, in its itemized version.</p>
-    <p class="beat"><b class="tag">DO THIS:</b> Start the folder now &mdash; paper or digital, one place &mdash; labeled with the provider and the date of service for each episode of care. Every later step in this kit, including the dispute in Step 5, runs on what&rsquo;s in it. Keep all of it past the final payment.</p>
+    <p class="beat"><b class="tag">DO THIS:</b> One folder — paper or phone photos — per episode of care: the <b>estimate</b>, every <b>competing quote</b>, the <b>financial agreement</b> you signed, the <b>itemized bill</b>, and your <b>notes</b> of every price conversation (who, when, what number). In a lane with no plan and no EOB, this folder is the entire record — and it&rsquo;s enough.</p>
   </div>
 
-  <h2>If this happens &mdash; the deviation plays</h2>
-  <p>The steps above are the smooth path. These cards are not the path &mdash; they are what to do the moment the path bends. Each one is a deviation: something the other side was supposed to do, didn&rsquo;t, and now answers for.</p>
-
-  <div class="devcard">
-    <h3><span class="if">If this happens:</span> the estimate never comes, comes only at check-in, or comes as spoken words</h3>
-    <p class="beat"><b class="tag">DO THIS:</b> Don&rsquo;t let check-in be the first price conversation. Repeat Step 1&rsquo;s words, in writing where you can &mdash; email or portal message &mdash; and log who you asked, when, and what they said. For schedulable care, you can wait for the paper before you proceed; that waiting is the right working, not a delay you caused.</p>
-    <div class="say"><b class="tag">SAY THIS:</b> &ldquo;I asked for my good-faith estimate in writing before the appointment. I don&rsquo;t have it yet. Please send it before we go ahead &mdash; and note in my file that I asked, and when.&rdquo;</div>
-  </div>
-
-  <div class="devcard">
-    <h3><span class="if">If this happens:</span> &ldquo;We don&rsquo;t give prices&rdquo;</h3>
-    <p class="beat"><b class="tag">DO THIS:</b> For schedulable care, that refusal runs against both the estimate duty and the transparency rules. Log who said it, and when, in those words. Then take the service to a provider who <i>will</i> price it &mdash; Step 2&rsquo;s comparison is also your answer here. A seller who won&rsquo;t name a price has told you something worth knowing before the service, not after.</p>
-  </div>
-
-  <div class="devcard">
-    <h3><span class="if">If this happens:</span> the quoted cash price changes at the register, or the bill arrives at sticker rates</h3>
-    <p class="beat"><b class="tag">DO THIS:</b> Produce your paper: the dated quote, with the name of who quoted it, and the written agreement if you have one. Ask them to bill the agreed price, and put your disagreement in writing the same day (Step 5&rsquo;s words) &mdash; paying the undisputed part, disputing the rest. A price agreed and then changed is not a misunderstanding to absorb; it is the deviation this lane&rsquo;s folder exists to answer.</p>
-  </div>
-
-  <div class="devcard">
-    <h3><span class="if">If this happens:</span> a bill arrives from a provider nobody ever named</h3>
-    <p class="beat"><b class="tag">DO THIS:</b> Don&rsquo;t pay it on sight. Check it against your folder: were they on your estimate, your agreement, your list of separate billers? If they were never disclosed when you asked who else would bill you, say exactly that in writing and ask them to identify who ordered their service and where their price was disclosed to you before it. An undisclosed biller is a deviation (see the lists below), and the time to raise it is before payment, not after.</p>
-  </div>
-
-  <div class="devcard">
-    <h3><span class="if">If this happens:</span> a big hospital bill, and nobody ever mentioned financial assistance</h3>
-    <p class="beat"><b class="tag">DO THIS:</b> Run the financial assistance door (above) before you pay anything &mdash; ask for the policy and the application, and note the account. A nonprofit hospital&rsquo;s assistance policy that exists on paper and is never offered in person is a deviation, and your dated request is the paper that proves you walked through the door they didn&rsquo;t open.</p>
-  </div>
+  <div class="devcard"><p class="if">If this happens</p><h3>No estimate was ever offered</h3><p>You asked, or you scheduled far enough ahead, and no estimate arrived before the care. That absence is itself the deviation: the estimate was owed. Document when you asked and what you were told, then dispute from that record — the bill stage&rsquo;s letter adapts: a provider who never gave the required estimate is explaining two failures, not one.</p></div>
+  <div class="devcard"><p class="if">If this happens</p><h3>The bill arrives at triple the quote</h3><p>A verbal quote isn&rsquo;t the estimate — but if the number was given by the office and written down by you with a name and a date, it&rsquo;s evidence of what was represented. Itemize, compare, and put the representation in the dispute letter. Going forward: nothing counts until it&rsquo;s the written estimate.</p></div>
+  <div class="devcard"><p class="if">If this happens</p><h3>A deposit is demanded before emergency care</h3><p>Emergency departments must screen and stabilize regardless of payment. If payment is demanded as a condition of emergency screening, that&rsquo;s a deviation under federal law — note who said it and when, get the care, and report it afterward (the bill stage names the doors).</p></div>
+  <div class="devcard"><p class="if">If this happens</p><h3>You&rsquo;re quoted the &ldquo;standard price&rdquo;</h3><p>The first number is the rack rate almost nobody pays. The self-pay price, the cash discount, and the prompt-pay price are three separate asks — make all three, in that order, and get the best one into the written estimate.</p></div>
+  <div class="devcard"><p class="if">If this happens</p><h3>The office won&rsquo;t put a price in writing</h3><p>For scheduled care, the written estimate is your right, not a courtesy. An office that won&rsquo;t write it down is telling you something about how the bill will go. That&rsquo;s a reason to take Step 2&rsquo;s competing quote and go elsewhere.</p></div>
 
   <h2>The mistakes &mdash; yours to not make</h2>
   <ol class="mistakes">
-    <li>Scheduling care without requesting the good-faith estimate in writing &mdash; then having nothing to dispute from when the bill doubles.</li>
-    <li>Paying the chargemaster number &mdash; the sticker price &mdash; because it was the first and only number you were shown.</li>
-    <li>Never asking for the cash or prompt-pay rate, because nobody mentioned one exists.</li>
-    <li>Handing over a deposit without written answers on what it covers and how refunds work.</li>
-    <li>Treating the facility&rsquo;s price as the whole bill &mdash; forgetting the surgeon, anesthesiologist, lab, and imaging bills that arrive separately.</li>
-    <li>Paying a lump-sum bill without demanding the itemized version and comparing it, line by line, to the estimate.</li>
-    <li>(If you have a plan you&rsquo;re bypassing) paying cash without checking whether the amount counts toward your deductible &mdash; and without the provider&rsquo;s clear agreement to treat you as self-pay for this service.</li>
-    <li>Assuming an emergency erased your rights &mdash; it postponed them; the itemized bill, the assistance screening, and the paper trail all still apply after.</li>
+    <li><b>Scheduling care without the estimate.</b> The right exists; the protection only works if the paper does.</li>
+    <li><b>Accepting the first price as the price.</b> In this lane, the first number is a starting position.</li>
+    <li><b>Comparing headline fees instead of totals.</b> The facility fee, the lab, and the follow-up are part of the price.</li>
+    <li><b>Signing the financial agreement unread</b> &mdash; especially one that commits you to &ldquo;all charges&rdquo; with no estimate attached.</li>
+    <li><b>Paying the summary bill.</b> Itemized first, always — you can&rsquo;t check a total, only lines.</li>
+    <li><b>Letting the 120 days run.</b> The dispute deadline counts from the initial bill, not from when you got around to it.</li>
+    <li><b>Assuming you won&rsquo;t qualify for assistance.</b> The screening is the hospital&rsquo;s job; asking is yours.</li>
   </ol>
-
   <h2>The deviations &mdash; theirs to answer for</h2>
   <ol class="deviations">
-    <li>The good-faith estimate never offered, offered only at check-in, or offered verbally when you asked for it in writing.</li>
-    <li>A final bill $400 or more over the written estimate, per provider &mdash; the exact situation the federal dispute process exists for.</li>
-    <li>No findable published prices, or a price file missing the discounted cash price the transparency rules require.</li>
-    <li>&ldquo;We don&rsquo;t give prices&rdquo; &mdash; for schedulable care, a refusal that runs against both the estimate duty and the transparency rules. Log who said it, and when.</li>
-    <li>A quoted cash price that changes at the register, or a bill issued at chargemaster rates after a lower cash price was agreed.</li>
-    <li>Financial assistance never mentioned by a nonprofit hospital to a self-pay patient facing a large bill &mdash; a policy that exists on paper and is never offered in person.</li>
-    <li>Separate bills from providers never disclosed when you asked who else would bill you.</li>
+    <li><b>An estimate never provided</b> for scheduled care, or provided only after the care happened.</li>
+    <li><b>An estimate missing the episode</b> &mdash; the facility&rsquo;s charges listed, the surgeon&rsquo;s and lab&rsquo;s nowhere in it.</li>
+    <li><b>A final bill $400+ over the estimate</b> with no explanation offered.</li>
+    <li><b>Charges for services never received</b>, or quantities beyond what was done.</li>
+    <li><b>The financial assistance policy never mentioned</b> to a self-pay patient facing a large bill.</li>
+    <li><b>Payment demanded before emergency screening.</b></li>
   </ol>
-
-  <p><b>What &ldquo;done&rdquo; looks like for the cash-pay front end:</b> for any care you can schedule, you have &mdash; before it happens &mdash; the estimate in writing, the published price checked, the cash rate asked for, and the agreed price on paper; and you have a folder where the bill, when it comes, will be compared against all four. You haven&rsquo;t been treated yet, and the seller already knows this buyer reads.</p>
+  <p><b>What &ldquo;done&rdquo; looks like for this stage:</b></p>
+  <ul class="slide">
+    <li>No care gets scheduled in your lane without the estimate in hand.</li>
+    <li>Every price you&rsquo;ve agreed to exists in writing.</li>
+    <li>Every bill gets checked against its estimate before a dollar moves.</li>
+  </ul>
+  <p><b>From here, your road joins everyone else&rsquo;s.</b> The shared stages ahead cover what happens after: referrals and scheduled procedures (<a href="everything-after.html">Stage 5</a>) and the bill itself (<a href="the-bill.html">Stage 6</a>) — written for all three lanes, with cash-lane notes wherever your rules differ.</p>
 
   <h2>Now do it &mdash; two questions, one at a time</h2>
-  <p>Katie explained it. Now use the kit&rsquo;s helper for the two reading jobs in this lane &mdash; or do them yourself on paper. <span class="svcName"></span> was explained once, at Stage 1, Question 2 &mdash; after that, the kit just shows the button.</p>
+  <p>Katie explained it. Now use the kit&rsquo;s helper for the two reading jobs in this stage &mdash; or do them yourself on paper.</p>
 
-    <div class="qcard" id="card1">
-      <div class="qhead"><h3>Read my good-faith estimate</h3><span class="qcount">Question 1 of 2</span></div>
-      <p class="needline"><b>You&rsquo;ll need:</b> Your written good-faith estimate &mdash; from the facility, and from each provider who will bill you separately.</p>
-      <p>This question reads the estimate for you: every provider named, every amount, and &mdash; the valuable part &mdash; who and what is <i>not</i> in it.</p>
-      <p class="micro">This whole box is what gets copied &mdash; word for word, including the last paragraph.</p>
-      <div class="promptbox" id="box1">I am paying for my own care, and a provider has given me a written good-faith estimate. Below I will paste the estimate.
+  <div class="qcard" id="card1">
+    <div class="qhead"><h3>Compare my quotes</h3><span class="qcount">Question 1 of 2</span></div>
+    <p class="needline"><b>You&rsquo;ll need:</b> The prices you collected in Step 2 — every quote, estimate, and cash price, from every office you asked.</p>
+    <p>This question turns a pile of quotes into one honest comparison — totals, not headlines.</p>
+    <p class="micro">This whole box is what gets copied &mdash; word for word, including the last paragraph.</p>
+    <div class="promptbox" id="box1">I am paying for my own care, and a provider has given me a written good-faith estimate. Below I will paste the estimate.
 
 Read only the estimate and give me back:
 1. A list of every provider or facility named in it, and the amount estimated for each one separately.
@@ -270,30 +241,29 @@ Read only the estimate and give me back:
 5. A list of what is NOT in the estimate: any provider involved in my care who is not named, any service I was told about that does not appear. Label each "Not in the document."
 
 Work only from what I pasted. If something is not in the pasted material, write "Not in the document" — do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language.</div>
-      <button class="bigbtn copybtn" data-copy="1">Copy this question</button>
-      <p class="micro">One tap copies the whole question. (Way 2 below doesn&rsquo;t need it.)</p>
-      <div class="copiedBanner" id="banner1">Copied! Now choose your way &#8595;</div>
-      <div class="fallbackBanner" id="fallback1">Copy didn&rsquo;t work on this phone &mdash; no problem. Hold your finger on the words in the box above until <b>Copy</b> appears, tap Copy, then tap the button below.</div>
-      <p class="pasteguide"><b>What to paste with it:</b> the written good-faith estimate &mdash; from the facility <i>and</i> from each separately-billing provider, one run per estimate, the way Step 1 teaches.</p>
-      <p><b>What you&rsquo;ll get back &mdash; and what to do with it:</b> the estimate, itemized by provider &mdash; the exact shape the Cash Care Price Worksheet below wants. Enter each provider&rsquo;s amount on its own worksheet block. A provider &ldquo;Not in the document&rdquo; is a name to demand an estimate from <i>before</i> the service, using Step 1&rsquo;s words &mdash; an unestimated biller discovered afterward is a much weaker position than one pinned down in advance.</p>
-      <p style="margin-top:18px;"><b>Two ways from here &mdash; your choice:</b></p>
-      <p class="beat"><b class="tag">WAY 1 &mdash; ASK <span class="svcName"></span> FOR HELP:</b></p>
-      <p class="micro">MakeDealNow may earn a commission when you sign up through our link — it never changes what you pay.</p>
+    <button class="bigbtn copybtn" data-copy="1">Copy this question</button>
+    <p class="micro">One tap copies the whole question.</p>
+    <div class="copiedBanner" id="banner1">Copied! Now choose your way &#8595;</div>
+    <div class="fallbackBanner" id="fallback1">Copy didn&rsquo;t work on this phone &mdash; no problem. Hold your finger on the words in the box above until <b>Copy</b> appears, tap Copy, then tap the button below.</div>
+    <p class="pasteguide"><b>What to paste with it:</b> every quote and estimate you collected — photos of the written ones, or the numbers with each office&rsquo;s name and the date.</p>
+    <p><b>What you&rsquo;ll get back:</b> the comparison table for the bottom of this page — every provider&rsquo;s total on one line each, and the gaps named. Photograph the table and keep it in the episode&rsquo;s folder.</p>
+    <p style="margin-top:18px;"><b>Two ways from here &mdash; your choice:</b></p>
+    <p class="beat"><b class="tag">WAY 1 &mdash; ASK <span class="svcName"></span> FOR HELP:</b></p>
+    <p class="micro">MakeDealNow may earn a commission when you sign up through our link &mdash; it never changes what you pay.</p>
     <a class="btn bigbtn aiBtn" id="aiBtn1" href="#" target="_blank" rel="noopener"></a>
-      <div class="pasteguide"><b>How to paste on her page:</b> hold your finger in the question box until <b>Paste</b> appears, tap Paste, add your document pages, then tap her send arrow. Before you paste anything: never paste your Social Security number or full bank or card numbers, and cover any number you don&rsquo;t want seen <i>before</i> you photograph or paste it &mdash; you decide what she sees. Come right back here when you&rsquo;re done.</div>
-      <p class="micro">MakeDealNow may earn a commission when you sign up through our link — it never changes what you pay.</p>
-      <p class="beat" style="margin-top:18px;"><b class="tag">WAY 2 &mdash; DO IT MYSELF:</b></p>
-      <a class="btn bigbtn selfbtn" href="#step1">Do it myself &mdash; use Step 1</a>
-      <div class="navrow"><button disabled>&#8592; Back</button><button class="next" id="next1" style="background:#26221e;color:#fff;">Next question &#8594;</button></div>
-      
-    </div>
+    <div class="pasteguide"><b>How to paste on her page:</b> hold your finger in the question box until <b>Paste</b> appears, tap Paste, add your document pages, then tap her send arrow. Never paste your Social Security number or full bank or card numbers — cover what she doesn&rsquo;t need <i>before</i> you photograph or paste it. Come right back here when you&rsquo;re done.</div>
+    <p class="micro">MakeDealNow may earn a commission when you sign up through our link &mdash; it never changes what you pay.</p>
+    <p class="beat" style="margin-top:18px;"><b class="tag">WAY 2 &mdash; DO IT MYSELF:</b></p>
+    <a class="btn bigbtn selfbtn" href="#step1">Do it myself &mdash; use Step 1</a>
+    <div class="navrow"><button disabled>&#8592; Back</button><button class="next" id="next1">Next question &#8594;</button></div>
+  </div>
 
-    <div class="qcard hidden" id="card2">
-      <div class="qhead"><h3>Compare my estimate to my bill &mdash; the $400 check</h3><span class="qcount">Question 2 of 2</span></div>
-      <p class="needline"><b>You&rsquo;ll need:</b> Two documents from the <i>same</i> provider: the good-faith estimate you received before the service, and that provider&rsquo;s final itemized bill. If the bill arrived as one lump number, get the itemized version first (Step 5).</p>
-      <p>This question puts the two documents side by side and does the subtraction &mdash; the number this whole lane exists to produce.</p>
-      <p class="micro">This whole box is what gets copied &mdash; word for word, including the last paragraph.</p>
-      <div class="promptbox" id="box2">I paid for my own care. Below I will paste two documents: (1) the good-faith estimate I received before the service, and (2) the final itemized bill from the same provider.
+  <div class="qcard hidden" id="card2">
+    <div class="qhead"><h3>Check my bill against my estimate</h3><span class="qcount">Question 2 of 2</span></div>
+    <p class="needline"><b>You&rsquo;ll need:</b> Your good-faith estimate and the itemized bill for the same care, side by side.</p>
+    <p>This question does the Step 5 comparison for you — every difference found and measured.</p>
+    <p class="micro">This whole box is what gets copied &mdash; word for word, including the last paragraph.</p>
+    <div class="promptbox" id="box2">I paid for my own care. Below I will paste two documents: (1) the good-faith estimate I received before the service, and (2) the final itemized bill from the same provider.
 
 Compare only these two documents and give me back:
 1. A side-by-side table: each estimated line or provider amount, the billed amount for the same item, and the difference.
@@ -303,69 +273,62 @@ Compare only these two documents and give me back:
 5. Any estimated line that never appears on the bill.
 
 Work only from what I pasted. If something is not in the pasted material, write "Not in the document" — do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language.</div>
-      <button class="bigbtn copybtn" data-copy="2">Copy this question</button>
-      <p class="micro">One tap copies the whole question. (Way 2 below doesn&rsquo;t need it.)</p>
-      <div class="copiedBanner" id="banner2">Copied! Now choose your way &#8595;</div>
-      <div class="fallbackBanner" id="fallback2">Copy didn&rsquo;t work on this phone &mdash; no problem. Hold your finger on the words in the box above until <b>Copy</b> appears, tap Copy, then tap the button below.</div>
-      <p class="pasteguide"><b>What to paste with it:</b> one provider&rsquo;s estimate and that same provider&rsquo;s itemized bill &mdash; one pair per run, because the federal dispute threshold is per provider.</p>
-      <p><b>What you&rsquo;ll get back &mdash; and what to do with it:</b> the difference, computed and shown. Write it in the worksheet&rsquo;s <b>Difference</b> field. At <b>$400 or more over the estimate for that provider</b>, the federal patient-provider dispute process opens &mdash; federal law gives you <b>120 calendar days from the date on the initial bill</b> to start it, so write that deadline down the week the bill arrives, exactly as Step 5 teaches. Below $400, the difference is still a written-disagreement item: an estimate is called <i>good-faith</i> for a reason, and the provider can be asked, in writing, to explain a bill that outran it. Verify the arithmetic with your own subtraction before acting on it &mdash; this number carries a legal process, so it gets the pencil treatment.</p>
-      <p style="margin-top:18px;"><b>Two ways from here &mdash; your choice:</b></p>
-      <p class="beat"><b class="tag">WAY 1 &mdash; ASK <span class="svcName"></span> FOR HELP:</b></p>
-      <p class="micro">MakeDealNow may earn a commission when you sign up through our link — it never changes what you pay.</p>
+    <button class="bigbtn copybtn" data-copy="2">Copy this question</button>
+    <p class="micro">One tap copies the whole question.</p>
+    <div class="copiedBanner" id="banner2">Copied! Now choose your way &#8595;</div>
+    <div class="fallbackBanner" id="fallback2">Copy didn&rsquo;t work on this phone &mdash; no problem. Hold your finger on the words in the box above until <b>Copy</b> appears, tap Copy, then tap the button below.</div>
+    <p class="pasteguide"><b>What to paste with it:</b> the estimate and the itemized bill — and note the date on the initial bill; the 120-day count starts there.</p>
+    <p><b>What you&rsquo;ll get back:</b> the difference, stated plainly — under the threshold, or $400 or more over it, with your deadline dated. What you do with it is Step 5&rsquo;s script and the bill stage.</p>
+    <p style="margin-top:18px;"><b>Two ways from here &mdash; your choice:</b></p>
+    <p class="beat"><b class="tag">WAY 1 &mdash; ASK <span class="svcName"></span> FOR HELP:</b></p>
+    <p class="micro">MakeDealNow may earn a commission when you sign up through our link &mdash; it never changes what you pay.</p>
     <a class="btn bigbtn aiBtn" id="aiBtn2" href="#" target="_blank" rel="noopener"></a>
-      <div class="pasteguide"><b>How to paste on her page:</b> hold your finger in the question box until <b>Paste</b> appears, tap Paste, add your document pages, then tap her send arrow. Before you paste anything: never paste your Social Security number or full bank or card numbers, and cover any number you don&rsquo;t want seen <i>before</i> you photograph or paste it &mdash; you decide what she sees. Come right back here when you&rsquo;re done.</div>
-      <p class="micro">MakeDealNow may earn a commission when you sign up through our link — it never changes what you pay.</p>
-      <p class="beat" style="margin-top:18px;"><b class="tag">WAY 2 &mdash; DO IT MYSELF:</b></p>
-      <a class="btn bigbtn selfbtn" href="#step5">Do it myself &mdash; use Step 5</a>
-      <div class="navrow"><button id="back2">&#8592; Back</button><button class="next" disabled>Next question &#8594;</button></div>
-      <p class="micro">That&rsquo;s both questions for this lane. When your folder holds the estimate, the quotes, and the worksheet started, this lane&rsquo;s front end is done.</p>
+    <div class="pasteguide"><b>How to paste on her page:</b> hold your finger in the question box until <b>Paste</b> appears, tap Paste, add your document pages, then tap her send arrow. Never paste your Social Security number or full bank or card numbers — cover what she doesn&rsquo;t need <i>before</i> you photograph or paste it. Come right back here when you&rsquo;re done.</div>
+    <p class="micro">MakeDealNow may earn a commission when you sign up through our link &mdash; it never changes what you pay.</p>
+    <p class="beat" style="margin-top:18px;"><b class="tag">WAY 2 &mdash; DO IT MYSELF:</b></p>
+    <a class="btn bigbtn selfbtn" href="#step5">Do it myself &mdash; use Step 5</a>
+    <div class="navrow"><button id="back2">&#8592; Back</button><button class="next" disabled>Next question &#8594;</button></div>
+    <p class="micro">That&rsquo;s both questions for this stage.</p>
+  </div>
+
+  <div id="worksheetSection">
+    <h2 id="worksheet">Cash Care Price Worksheet</h2>
+    <p><i>One page per episode of care — one procedure, one course of treatment, one problem being worked up. Start it the day you start collecting prices; finish it the day the last bill is settled. File it at the front of the episode&rsquo;s papers.</i></p>
+    <p><b>Your facts stay yours.</b> Nothing here is uploaded or sent anywhere — it exists in exactly one place: your hands.</p>
+    <div class="step">
+      <p class="wsitem"><b>Care needed</b> &mdash; the service or procedure, in plain words, and who said you need it.</p><div class="wsline"></div>
+      <p class="wsitem"><b>Estimate requested (date)</b> &mdash; when you asked, and from whom. <i>Your right runs from this date.</i></p><div class="wsline"></div>
+      <p class="wsitem"><b>Estimate received (date)</b> &mdash; when the written estimate reached you. If it never did, write that — the absence is evidence.</p><div class="wsline"></div>
+      <p class="wsitem"><b>Estimate total</b> &mdash; the full expected total, all providers and facilities included.</p><div class="wsline"></div>
+      <table class="wstable">
+        <tr><th>Provider / office</th><th>Total quoted</th><th>Includes</th><th>Date</th></tr>
+        <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      </table>
+      <p class="wsitem"><b>Assistance applied?</b> &mdash; yes/no, where, and the answer. <i>Asked is recorded even when the answer is no.</i></p><div class="wsline"></div>
+      <p class="wsitem"><b>Final bill total</b> &mdash; the itemized bill&rsquo;s total, as billed.</p><div class="wsline"></div>
+      <p class="wsitem"><b>Difference</b> &mdash; final bill minus estimate. <i>$400 or more over the estimate opens the federal dispute — started within 120 calendar days from the date on the initial bill.</i></p><div class="wsline"></div>
+      <p class="wsitem"><b>Dispute filed?</b> &mdash; yes/no, the date filed, and the outcome when it comes.</p><div class="wsline"></div>
     </div>
-
-  <h2 id="worksheet">Cash Care Price Worksheet</h2>
-  <p><i>The Health Care Rule Kit &middot; Cash-Pay Lane companion. One block per service or episode of care &mdash; print more copies as needed. Fill the top half BEFORE the service; the bottom half the day the bill arrives.</i></p>
-  <p><b>Your facts stay yours.</b> Nothing on this page is uploaded, submitted, or sent anywhere. It exists in exactly one place &mdash; your hands.</p>
-  <div class="step">
-    <p class="wsitem"><b>Service</b> &mdash; what care, in a few words, named the way the provider names it. <i>So this page and their bill can be matched line to line later.</i></p><div class="wsline"></div>
-    <p class="wsitem"><b>Provider / facility</b> &mdash; who is providing and billing this part. <i>One block per billing provider &mdash; the facility, the surgeon, the lab each get their own, because each sends its own estimate and its own bill.</i></p><div class="wsline"></div>
-    <p class="wsitem"><b>Quoted cash price</b> &mdash; the self-pay or prompt-pay rate you were given, with the date and the name of who quoted it. <i>From Step 2. A quote with a name and a date is a position; without them, it&rsquo;s a rumor.</i></p><div class="wsline"></div>
-    <p class="wsitem"><b>Published price found</b> &mdash; the discounted cash price from the provider&rsquo;s published price list, with the date you found it. <i>From Step 2. Write &ldquo;not found&rdquo; if the list didn&rsquo;t have it &mdash; that&rsquo;s information too.</i></p><div class="wsline"></div>
-    <p class="wsitem"><b>Estimate received (date)</b> &mdash; the date the written good-faith estimate reached you, and the amount. <i>From Step 1. &ldquo;Requested, never sent&rdquo; is also an entry &mdash; write it, with the date you asked.</i></p><div class="wsline"></div>
-    <p class="wsitem"><b>Agreed price in writing</b> &mdash; the final agreed total, and where the writing lives (email, letter, portal message). <i>From Step 3. If there&rsquo;s no writing, this field says &ldquo;none&rdquo; &mdash; and you know your exposure before the service, not after.</i></p><div class="wsline"></div>
-    <p class="wsitem"><b>Final bill</b> &mdash; the amount of the itemized bill when it arrives. <i>Itemized only &mdash; if it arrived as a lump sum, request the itemized version before filling this in.</i></p><div class="wsline"></div>
-    <p class="wsitem"><b>Difference (bill minus estimate)</b> &mdash; subtract. <i>The number this whole worksheet exists to produce. At $400 or more over the estimate, for that provider, the federal dispute process opens &mdash; you have <b>120 calendar days from the date on the initial bill</b> to start it.</i></p><div class="wsline"></div>
-    <table class="ws" aria-label="Cash Care Price Worksheet summary table">
-      <tr><th>Service</th><td>&nbsp;</td></tr>
-      <tr><th>Provider / facility</th><td>&nbsp;</td></tr>
-      <tr><th>Quoted cash price (amount &middot; date &middot; who quoted)</th><td>&nbsp;</td></tr>
-      <tr><th>Published price found (amount &middot; date found)</th><td>&nbsp;</td></tr>
-      <tr><th>Estimate received (amount &middot; date)</th><td>&nbsp;</td></tr>
-      <tr><th>Agreed price in writing (amount &middot; where it lives)</th><td>&nbsp;</td></tr>
-      <tr><th>Final bill (itemized amount &middot; date)</th><td>&nbsp;</td></tr>
-      <tr><th>Difference (bill &minus; estimate)</th><td>&nbsp;</td></tr>
-    </table>
+    <button class="printbtn" onclick="window.print()">Print this stage</button>
+    <p class="micro">Print this and keep it in your folder.</p>
+    <a class="btn printbtn noPrint" href="worksheets/cash-care-price-worksheet.pdf" download>Download the worksheet (PDF)</a>
   </div>
-  <button class="printbtn" onclick="window.print()">Print this lane</button>
-  <p class="micro">Print this and keep it in your folder.</p>
-  <a class="btn printbtn noPrint" href="worksheets/cash-care-price-worksheet.pdf" download>Download the worksheet (PDF)</a>
 
-  <div class="step" style="margin-top:28px;">
-    <h3>From here, your road is the shared road</h3>
-    <p>Your lane&rsquo;s setup is done. From here, your road is the shared road: <b>your doctor, the visit, everything after, the bill</b> &mdash; the same stages every lane walks, with cash-lane notes where your rules differ. The next page is finding your doctor.</p>
-  </div>
-  <div class="navrow">
+  <div class="navrow" style="margin-top:34px;">
     <a class="btn" href="index.html">&#8592; Back: the front door</a>
     <a class="btn next" href="your-doctor.html">Next: Your Doctor &mdash; the shared road &#8594;</a>
   </div>
 
   <footer>
     <div class="disclaimer">
-      <p><b>Please read this first.</b> This kit is educational information. It is <b>not legal advice</b>, and it is <b>not medical advice</b>. It does not tell you what care to get, what care to refuse, or whether a treatment is right for you &mdash; those decisions belong to you and your doctor. This kit is about rights, paperwork, prices, and billing only. The publisher sells educational information only and performs no services of any kind: nobody will call a provider, dispute a bill, or negotiate on your behalf. You make your own calls, sign your own forms, and make your own decisions at every step. Health care pricing and billing rules vary &mdash; by state, by provider, and by situation &mdash; and they change. Wherever this kit states a rule, it also tells you where to verify it. If your situation involves a lawsuit, a collections action, or a deadline in court papers, talk to a lawyer.</p>
+      <p><b>Please read this first.</b> This kit is educational information. It is <b>not legal advice</b>, and it is <b>not medical advice</b>. It does not tell you what care to get, what care to refuse, or whether a treatment is right for you — those decisions belong to you and your doctor. This kit is about rights, paperwork, prices, and billing only. The publisher sells educational information only and performs no services of any kind: nobody will verify a specialist, attend your procedure, or call a hospital on your behalf. You make your own calls, sign your own forms, and make your own decisions at every step. Health coverage rules vary — by state, by plan, and by program — and they change. Wherever this kit states a rule, it also tells you where to verify it against your own documents and notices. If your situation involves a lawsuit, a collections action, or a deadline in court papers, talk to a lawyer.</p>
     </div>
     <p>MakeDealNow &mdash; The Health Care Rule Kit (preview)</p>
     <p>Educational information &mdash; not legal or medical advice.</p>
   </footer>
 </div>
-
 <script>
 /* ============================================================
    THE KIT'S HELPER — MONICA. ONE PLACE ONLY.

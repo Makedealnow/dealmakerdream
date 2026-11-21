@@ -21,6 +21,9 @@
   .needline { background:#eef4ea; border-radius:12px; padding:12px 16px; font-size:19px; }
   .beat { margin:6px 0; }
   .beat b.tag { color:#c45a14; }
+  .slide { margin:8px 0; padding-left:24px; }
+  .slide li { margin:10px 0; }
+  .slide li::marker { color:#c45a14; }
   button, a.btn { font-family:inherit; cursor:pointer; border:none; border-radius:14px; text-decoration:none;
                   display:block; width:100%; text-align:center; }
   .lanedoor { background:#fffdf8; color:#26221e; border:3px solid #c45a14; padding:22px 18px; margin:16px 0 6px;
@@ -48,44 +51,48 @@
 
 <div class="wrap">
 
-  <!-- FRONT-DOOR / ROUTER VIDEO (production queue V1). Katie introduces the kit,
-       the three lanes, and how the walk works. Short template, like Stage 1's. -->
   <video id="katieVideo" controls playsinline preload="metadata" src="media/front-door.mp4"></video>
-  <p class="micro">Watch Katie first — she explains the three lanes and how this kit walks. About a minute.</p>
+  <p class="micro">Watch Katie first — she explains the three lanes. About a minute.</p>
 
-  <p class="promise">Three lanes. One of them is yours. Pick it, and the kit walks your road from there.</p>
-  <p>How your care gets paid for decides which rulebook applies — so the whole kit starts by placing you. One question does most of it: <b>do you have a health insurance card with your name on it?</b> The three doors below are the three answers.</p>
+  <p class="promise">Three lanes. One of them is yours.</p>
+  <ul class="slide">
+    <li><b>Pick your lane below</b> — the kit walks your road from there.</li>
+    <li><b>One question places you:</b> do you have a health insurance card with your name on it?</li>
+  </ul>
 
-  <h2>Which lane are you in?</h2>
+  <h2>Which lane are you in? Tap one:</h2>
 
   <a class="btn lanedoor" href="know-your-plan.html">I have health insurance
-    <small>Through a job, bought it myself, or Medicare. Your first step: learn your plan — what it covers, and what it doesn't.</small></a>
+    <small>Through a job, bought it myself, or Medicare. First step: learn your plan.</small></a>
 
   <a class="btn lanedoor" href="cash-lane.html">I pay cash — no insurance
-    <small>No plan, between plans, or paying cash for this care anyway. You're owed a price in writing before anyone starts.</small></a>
+    <small>You're owed a price in writing before anyone starts.</small></a>
 
   <a class="btn lanedoor" href="welfare-lane.html">Medicaid or a public program covers me
-    <small>Medicaid under any state name, CHIP for your children — or Medicare and Medicaid together.</small></a>
+    <small>Medicaid under any state name, CHIP — or Medicare and Medicaid together.</small></a>
 
   <div class="step">
     <h3>Not sure? Three quick checks</h3>
-    <p class="beat"><b class="tag">1.</b> A card with your name on it, from a job, a marketplace, or Medicare? That's the <b>insurance</b> door.</p>
-    <p class="beat"><b class="tag">2.</b> No card, and you'd pay for care yourself? That's the <b>cash</b> door.</p>
-    <p class="beat"><b class="tag">3.</b> A card from a public program — Medicaid, whatever your state calls it, or CHIP? That's the <b>public program</b> door. Both Medicare <i>and</i> Medicaid? Start there too — that lane holds your strongest protections.</p>
+    <p class="beat"><b class="tag">1.</b> A card with your name on it — job, marketplace, or Medicare? <b>Insurance</b> door.</p>
+    <p class="beat"><b class="tag">2.</b> No card, paying for care yourself? <b>Cash</b> door.</p>
+    <p class="beat"><b class="tag">3.</b> A card from a public program — Medicaid or CHIP? <b>Public program</b> door. Both Medicare <i>and</i> Medicaid? Start there too — your strongest protections live in that lane.</p>
   </div>
 
-  <p class="needline"><b>Your facts stay yours.</b> There is no account to create and nothing to upload. You place yourself, from your own papers, and everything you write down exists in exactly one place — your hands.</p>
+  <p class="needline"><b>Your facts stay yours.</b> No account to create, nothing to upload. Everything you write down exists in exactly one place — your hands.</p>
 
-  <p>Inside your lane, you'll learn one simple way of working, and the kit's helper is explained once, right where you first need her. After your lane's setup, every road merges — the doctor, the visit, everything after, and the bill — with lane notes only where a rule actually changes for you.</p>
+  <ul class="slide">
+    <li><b>After your lane's setup, every road merges:</b> your doctor → the visit → everything after → the bill.</li>
+    <li><b>Lane notes appear only where a rule actually changes for you.</b></li>
+  </ul>
 
   <div class="step">
-    <h3>Every page in the kit — the whole walk</h3>
-    <p class="beat"><b class="tag">Helper method:</b> <a href="using-your-ai.html"><b>Using Your AI</b></a> — the helper-method page. Read it on the way in, after you pick your lane and before your first question — it teaches the kit's helper method once.</p>
+    <h3>Every page in the kit</h3>
+    <p class="beat"><b class="tag">First, the helper method:</b> <a href="using-your-ai.html"><b>Using Your AI</b></a> — read it after you pick your lane, before your first question.</p>
     <p class="beat"><b class="tag">Insured lane:</b> <a href="know-your-plan.html"><b>Stage 1 — Know Your Plan</b></a></p>
     <p class="beat"><b class="tag">Cash lane:</b> <a href="cash-lane.html"><b>The Cash-Pay Lane</b></a></p>
-    <p class="beat"><b class="tag">Medicaid / state coverage lane:</b> <a href="welfare-lane.html"><b>Medicaid or State Coverage — Stay on the Track, Keep Your Rights</b></a></p>
+    <p class="beat"><b class="tag">Medicaid / state coverage lane:</b> <a href="welfare-lane.html"><b>Medicaid or State Coverage</b></a></p>
     <p class="beat"><b class="tag">The shared road, in order:</b></p>
-    <p class="beat"><a href="your-doctor.html"><b>Stage 3 — Your Doctor</b></a> &rarr; <a href="the-visit.html"><b>Stage 4 — The Visit</b></a> &rarr; <a href="everything-after.html"><b>Stage 5 — Everything After</b></a> &rarr; <a href="the-bill.html"><b>Stage 6 — The Bill</b></a> — and the Bill page brings you back here, to the front door.</p>
+    <p class="beat"><a href="your-doctor.html"><b>Stage 3 — Your Doctor</b></a> &rarr; <a href="the-visit.html"><b>Stage 4 — The Visit</b></a> &rarr; <a href="everything-after.html"><b>Stage 5 — Everything After</b></a> &rarr; <a href="the-bill.html"><b>Stage 6 — The Bill</b></a></p>
     <p class="beat" style="margin-top:16px;"><b class="tag">Printables — every worksheet in the kit:</b></p>
     <ul>
       <li><a href="worksheets/know-your-plan-worksheet.pdf"><b>Know Your Plan worksheet — Stage 1</b></a></li>
