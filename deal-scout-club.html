@@ -21,6 +21,12 @@
   .flare-forward-text{background:#f6f8f9;border:1px dashed #b9c6cc;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:.95em}
   .flare-copy{display:block;margin:6px auto;padding:8px 14px;font-size:.95em}
   .club-tally{text-align:center;font-weight:bold;margin:10px 0}
+  .ask-form{display:flex;gap:8px;max-width:520px;margin:14px auto 4px}
+  .ask-form input{flex:1;padding:12px 14px;font-size:1em;border:1px solid #b9c6cc;border-radius:8px;min-width:0}
+  .ask-form button{padding:12px 20px;font-size:1em;border:0;border-radius:8px;background:#177E70;color:#fff;cursor:pointer}
+  .ask-results{max-width:640px;margin:12px auto}
+  .ask-join{text-align:center;background:#eef6f4;border:1px solid #bcd8d2;border-radius:10px;padding:10px 14px;margin:12px 0}
+  .flare-where-locked{color:#8a6d1a;font-weight:bold}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MP01L27H86"></script>
 <script>
@@ -76,8 +82,14 @@
 </ol>
 
 <h2 id="ask">Ask Deal Scout</h2>
-<p>Shopping for something specific? Type it like a search — one line is fine — and Deal Scout will search the club's current flares and check current prices for you.</p>
-<p><a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSedQUJk71IVUn50xUO2v-lnUHg8Beflk06AnsTB2vJ-Oe7IrQ/viewform" target="_blank" rel="noopener">Ask Deal Scout</a></p>
+<p>Shopping for something specific? One box, no forms: type it, hit Search, and matching finds show up right here on the page. Seller names are for members — joining is free, and you see the results first either way.</p>
+<form class="ask-form" id="ask-form" role="search">
+<label for="ask-q" style="position:absolute;left:-9999px">What are you hunting?</label>
+<input id="ask-q" name="q" type="text" placeholder="What are you hunting? Try: air fryer" autocomplete="off">
+<button type="submit">Search</button>
+</form>
+<div class="ask-results" id="ask-results" aria-live="polite"></div>
+<p class="paid">Want Scout to hunt something that isn't up yet? <a href="https://docs.google.com/forms/d/e/1FAIpQLSedQUJk71IVUn50xUO2v-lnUHg8Beflk06AnsTB2vJ-Oe7IrQ/viewform" target="_blank" rel="noopener">Ask Deal Scout to hunt it</a> — that one's a request, so it asks where to send the answer.</p>
 
 <h2>The Deal Scout check</h2>
 <p>No find reaches this page until it passes every step:</p>
@@ -102,7 +114,7 @@
 <h2>Membership — by email</h2>
 <p>Membership runs by email: join the free list below and you're in. No ads, no blasts: the club is pull, not push. You ask; Deal Scout answers. Occasional verified finds by email — unsubscribe anytime.</p>
 
-<h2>Get The Subscription Checklist</h2>
+<h2 id="join">Get The Subscription Checklist</h2>
 <p>Join the free MakeDealNow email list. The first thing you get is our <a href="subscription-trap-checklist.html">Subscription Checklist</a> — the free trials and memberships people forget to cancel, and how to catch yours in time. After that, occasional verified finds by email. No spam, unsubscribe anytime.</p>
 <script async data-uid="0bc558657a" src="https://makedealnow.kit.com/0bc558657a/index.js"></script>
 <p>Or ask the club: <a href="https://docs.google.com/forms/d/e/1FAIpQLSedQUJk71IVUn50xUO2v-lnUHg8Beflk06AnsTB2vJ-Oe7IrQ/viewform" target="_blank" rel="noopener">Ask Deal Scout</a> to hunt for something specific.</p>
@@ -155,6 +167,75 @@
         document.body.removeChild(ta); done();
       }
     });
+  });
+})();
+</script>
+<script>
+// Ask Deal Scout: one-box instant search. Results render on this page —
+// current flares (seller name held for members) plus the free checklist.
+// Nothing is gated: the join invitation comes after the results.
+(function(){
+  var form = document.getElementById('ask-form');
+  var input = document.getElementById('ask-q');
+  var results = document.getElementById('ask-results');
+  if (!form || !input || !results) return;
+  var CHECKLIST_WORDS = ['subscription','subscriptions','trial','trials','prime','audible','membership','memberships','cancel','checklist','streaming','netflix','hulu','spotify','channel','channels','renewal','renewals','app','apps'];
+  function wordsOf(q){ return q.toLowerCase().split(/[^a-z0-9]+/).filter(function(w){ return w.length >= 3 || w === 'tv'; }); }
+  function textMatches(text, words, raw){
+    var t = text.toLowerCase();
+    if (!words.length) return t.indexOf(raw.toLowerCase()) > -1;
+    return words.every(function(w){ return t.indexOf(w) > -1; });
+  }
+  function joinStrip(){
+    var d = document.createElement('div');
+    d.className = 'ask-join';
+    d.innerHTML = 'Members see every seller name — and the Subscription Checklist is free the moment you join. <a href="#join"><strong>Join free \u2193</strong></a>';
+    return d;
+  }
+  function checklistCard(){
+    var d = document.createElement('div');
+    d.className = 'flare';
+    d.innerHTML = '<h3>The Subscription Checklist — free</h3>' +
+      '<p class="flare-meta">The 10-minute sweep for free trials and memberships that quietly start charging you — where each one hides, what it costs after the trial, and the move that disarms it.</p>' +
+      '<p><a href="subscription-trap-checklist.html"><strong>Open the checklist \u2192</strong></a></p>';
+    return d;
+  }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var q = input.value.trim();
+    results.innerHTML = '';
+    if (!q) { input.focus(); return; }
+    var words = wordsOf(q);
+    var shown = 0;
+    var head = document.createElement('p');
+    head.innerHTML = '<strong>Results for \u201C' + q.replace(/</g,'&lt;') + '\u201D:</strong>';
+    results.appendChild(head);
+    document.querySelectorAll('#flare-board .flare').forEach(function(el){
+      if (textMatches(el.textContent, words, q)) {
+        var clone = el.cloneNode(true);
+        clone.querySelectorAll('.flare-forward-unit, button.flare-copy').forEach(function(n){ n.remove(); });
+        var where = clone.querySelector('.flare-where');
+        if (where) where.innerHTML = 'Where: <span class="flare-where-locked">seller name — members only (join free below)</span>';
+        clone.querySelectorAll('a[href^="http"]').forEach(function(a){
+          if (a.hostname && a.hostname.indexOf('makedealnow.com') === -1 && a.hostname.indexOf('docs.google.com') === -1) {
+            a.replaceWith(document.createTextNode(a.textContent));
+          }
+        });
+        results.appendChild(clone);
+        shown++;
+      }
+    });
+    if (words.some(function(w){ return CHECKLIST_WORDS.indexOf(w) > -1; })) {
+      results.appendChild(checklistCard());
+      shown++;
+    }
+    if (!shown) {
+      var none = document.createElement('p');
+      none.textContent = 'Nothing on the board matches \u201C' + q + '\u201D right now. The board lights up as member finds check out — and flares burn for only 72 hours, so it changes fast.';
+      results.appendChild(none);
+    }
+    results.appendChild(joinStrip());
+    if (results.scrollIntoView) { try { results.scrollIntoView({behavior:'smooth', block:'nearest'}); } catch(e) {} }
   });
 })();
 </script>
