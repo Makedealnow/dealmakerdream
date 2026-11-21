@@ -16,16 +16,38 @@
   gtag('js', new Date());
   gtag('config', 'G-MP01L27H86');
 </script>
+<style>
+/* Presentation layout (Nov 20, 2026): one phone screen carries the message —
+   video, tagline, bullets, doors. No prose paragraphs in the hero. */
+.disclosure-strip{font-size:12px;line-height:1.3;padding:5px 10px}
+.site-header{padding:6px 12px}
+.brand img{height:42px;width:auto}
+.brand span{font-size:16px}
+header.site-header nav a{font-size:12.5px}
+.scout-hero{padding:4px 12px 2px}
+.hero-inner{max-width:520px;margin:0 auto;text-align:center}
+.video-facade img{width:min(168px,46vw);height:auto}
+.video-frame video{width:min(230px,64vw);height:auto}
+.scout-hero h1{font-size:25px;line-height:1.15;margin:8px 0 2px}
+.hero-bullets{list-style:none;margin:4px auto 8px;padding:0;max-width:352px;text-align:left}
+.hero-bullets li{position:relative;padding:2px 0 2px 18px;font-size:14.5px;line-height:1.3}
+.hero-bullets li::before{content:"\2022";position:absolute;left:4px;font-weight:700}
+#choices h2{font-size:16px;margin:6px 0 5px}
+.choices-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.choices-grid .choice-tile{display:block;padding:8px 4px;text-align:center;line-height:1.25}
+.choices-grid .choice-tile .choice-title{font-size:13.5px;line-height:1.25}
+.join-box{margin-top:12px}
+.join-box h2{font-size:18px;margin:4px 0 6px}
+.join-box .fineprint{font-size:12px;margin:6px 0 0}
+.video-transcript{margin:10px 0 2px}
+footer{font-size:12.5px}
+</style>
 </head>
 <body>
 <div class="disclosure-strip">MakeDealNow may earn a commission from links on this page — never from Deal Scout Club finds, and never at extra cost to you. <a href="#disclosure">Details</a></div>
 <header class="site-header"><a class="brand" href="index.html"><img src="Logo.PNG" alt="MakeDealNow logo"><span>MakeDealNow</span></a><nav>
 <a href="deal-scout-club.html">Deal Scout Club</a>
 <a href="deal-scout-club.html#ask">Ask Deal Scout</a>
-<a href="subscription-trap-checklist.html">Free Checklist</a>
-<a href="credit-dispute-kit.html">Credit Dispute Kit</a>
-<a href="warranty-test.html">Warranty Test</a>
-<a href="health-care-rule-kit.html">Health Care Rule Kit</a>
 </nav></header>
 
 <section class="scout-hero">
@@ -39,38 +61,39 @@
 <video id="welcomeVideo" controls playsinline preload="none" poster="assets/scout-poster.jpg" src="welcome-scout.mp4"></video>
 </div>
 <h1>I hunt the deals. You save.</h1>
-<p class="lead">I'm Deal Scout. Every deal on this page was checked by me first — the seller, the price, the fine print. If it doesn't check out, it doesn't run.</p>
-<p class="video-summary">Deal Scout in 46 seconds: how he hunts, how every price gets checked, and how the free club works.</p>
+<ul class="hero-bullets">
+<li>Every find checked first — seller, price, fine print.</li>
+<li>The club is free. Nobody earns a cent off club finds.</li>
+<li>Join free — first email brings the Subscription Checklist.</li>
+</ul>
+
+<section id="choices">
+<h2>Pick a door</h2>
+<div class="choices-grid">
+<a class="choice-tile" href="deal-scout-club.html"><span class="choice-title">Deal Scout Club — free</span></a>
+<a class="choice-tile" href="deal-scout-club.html#ask"><span class="choice-title">Ask Deal Scout</span></a>
+<a class="choice-tile" href="subscription-trap-checklist.html"><span class="choice-title">Free Checklist</span></a>
+<a class="choice-tile" href="credit-dispute-kit.html"><span class="choice-title">Credit Dispute Kit — $5 limited time</span></a>
+<a class="choice-tile" href="warranty-test.html"><span class="choice-title">Warranty Test — $5 limited time</span></a>
+<a class="choice-tile" href="health-care-rule-kit.html"><span class="choice-title">Health Care Rule Kit — $10 Black Friday sale through Jan 1</span></a>
+</div>
+<p style="text-align:center;margin:8px 0 0;font-size:13.5px"><a href="comparisons/product-protection.html">See our blinded protection-plan comparisons &#8594;</a></p>
+</section>
+
+<div class="join-box" id="join">
+<h2>Join the Deal Scout Club &#8212; free</h2>
+<script async data-uid="0bc558657a" src="https://makedealnow.kit.com/0bc558657a/index.js"></script>
+<p class="fineprint">Membership runs by email: join the list and you're in. The club is 100% earn-nothing &#8212; MakeDealNow never earns a commission from club finds.</p>
+</div>
+
 <details class="video-transcript">
 <summary>Read the welcome instead</summary>
 <p>"See this? Deals like this hide in plain sight every day — and most folks just walk past. I don't. Hunting them down is my whole job. I'm Deal Scout, and this is MakeDealNow. Every deal here gets checked by me first — the seller, the price, the fine print. If it doesn't check out, it doesn't run. Right below me, pick a door — the club, the free checklist, or one of the kits. And join the club while you're here: members pass good finds to each other, I check every single one, and nobody earns a cent off a club find. Pay it forward. Joining's free, and your first email brings the Subscription Checklist — the trials folks forget to cancel. Tap the button below. I'll be out hunting."</p>
 </details>
-
-<div class="join-box" id="join">
-<h2>Join the Deal Scout Club &#8212; free</h2>
-<p>Get Deal Scout's finds first. Free. No spam &#8212; just deals.</p>
-<p>Join the free MakeDealNow email list and your first delivery is our <a href="subscription-trap-checklist.html">Subscription Checklist</a> &#8212; the free trials and memberships people forget to cancel, and how to catch yours in time. After that, occasional verified finds. Unsubscribe anytime.</p>
-<script async data-uid="0bc558657a" src="https://makedealnow.kit.com/0bc558657a/index.js"></script>
-<p class="fineprint">Membership runs by email: join the list and you're in. The club is 100% earn-nothing &#8212; MakeDealNow never earns a commission from club finds.</p>
-</div>
 </div>
 </section>
 
 <main>
-
-
-<section id="choices">
-<h2>Start here &#8212; pick a door</h2>
-<div class="choices-grid">
-<a class="choice-tile" href="deal-scout-club.html"><span class="choice-title">Deal Scout Club</span><span class="choice-sub">The free pay-it-forward club. Pass a find on; every one gets checked.</span></a>
-<a class="choice-tile" href="deal-scout-club.html#ask"><span class="choice-title">Ask Deal Scout</span><span class="choice-sub">Hunting something specific? Ask Scout to check current prices for you.</span></a>
-<a class="choice-tile" href="subscription-trap-checklist.html"><span class="choice-title">Free Checklist</span><span class="choice-sub">The Subscription Checklist: trials people forget to cancel.</span></a>
-<a class="choice-tile" href="credit-dispute-kit.html"><span class="choice-title">Credit Dispute Kit — $5 limited time</span><span class="choice-sub">Everything we figured out disputing credit report errors: the letters, the deadlines, the playbook. Start with the free one-page checklist.</span></a>
-<a class="choice-tile" href="warranty-test.html"><span class="choice-title">Warranty Test — $5 limited time</span><span class="choice-sub">The five questions that tell you if any extended warranty is worth it — before you sign. Start with the free 5-Minute Test checklist.</span></a>
-<a class="choice-tile" href="health-care-rule-kit.html"><span class="choice-title">Health Care Rule Kit — $10 Black Friday sale through Jan 1</span><span class="choice-sub">Deal with hospitals and health plans as a customer with rights: know your plan, find your doctor, the visit, everything after, and the bill — walked step by step, with a video on every page.</span></a>
-</div>
-<p style="text-align:center;margin:12px 0 0"><a href="comparisons/product-protection.html">See our blinded protection-plan comparisons &#8594;</a></p>
-</section>
 
 <section class="disclosure-block" id="disclosure">
 <h2>Affiliate Disclosure</h2>
