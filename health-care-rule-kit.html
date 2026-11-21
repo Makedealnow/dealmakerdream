@@ -18,6 +18,27 @@
 .guide .fineprint{border-top:1px solid #dde3e6;margin-top:28px;padding-top:12px;font-size:.9em;color:#44525b}
 .guide .kit-video{max-width:640px;margin:12px auto 18px}
 .guide .kit-video video{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:12px;background:#000}
+
+/* Buy block moved to the first screen (Nov 20, 2026): compact top spacing so
+   video + promise + price + consent + buy button fit one phone screen. */
+.site-header{padding:6px 10px;gap:6px}
+.site-header nav{gap:5px 9px}
+.site-header nav a{font-size:12.5px}
+.guide .kit-video{max-width:300px;margin:6px auto 8px}
+.guide h1{margin:2px 0 6px;font-size:1.55rem;line-height:1.22}
+.guide .lede{margin:4px 0 0;font-size:1.05em;line-height:1.35}
+.buyblock .price{margin:10px 0 0}
+.buyblock>p{margin:8px auto 2px}
+.buyblock .trialnote{margin:10px auto 4px}
+
+main{padding-top:10px}
+.guide{padding-top:8px}
+.guide>p:first-of-type{margin-top:0}
+.guide h1{margin-top:0}
+.guide .kit-video{margin-bottom:6px}
+.buyblock .price{margin-top:6px}
+.buyblock .price .launch{font-size:.66em;line-height:1.3}
+.buyblock>p{font-size:.94em;line-height:1.38}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MP01L27H86"></script>
 <script>
@@ -50,6 +71,14 @@
 <div class="kit-video"><video controls playsinline preload="metadata" src="health-care-rule/media/front-door.mp4" title="Katie introduces The Health Care Rule Kit"></video></div>
 <h1>Health care has rules. This kit hands you the rulebook — in order, in plain English.</h1>
 <p class="lede"><strong>Deal with hospitals and health plans as a customer with rights — not a captive.</strong></p>
+
+<div class="buyblock">
+<p class="price">$10 <span class="was">$29</span><span class="launch">Black Friday sale — $10 through January 1, 2027; then $19 (regular price $29).</span></p>
+<p style="text-align:center;max-width:520px;margin:16px auto 4px"><label><input type="checkbox" id="trial-consent"> I agree to the Terms below. I understand I am paying $10 today for the digital kit, and that I can get a full refund any time within 7 days by emailing us.</label></p>
+<p><a class="btn" id="trial-btn" href="https://buy.stripe.com/dRmdR31sVa6rgNaekgcs803">Get the Kit — $10</a></p>
+<p class="trialnote"><strong>Our 7-day money-back guarantee:</strong> You pay $10 today and get the full kit immediately — the checkout confirmation hands you the front-door link, no waiting.<br>If it's not for you: email us within 7 days of purchase and we refund the full $10. No questions, no forms, no hassle.<br>Refunds go back to your original payment method; banks take about 5–10 business days to post them.</p>
+<p style="text-align:center;font-size:.9em;color:#44525b">Secure checkout by Stripe.</p>
+</div>
 <h2>What this kit is</h2>
 <ul>
 <li><strong>Three lanes — one is yours:</strong> insured · cash-pay · Medicaid or state coverage. Pick your lane at the front door; you see only your road.</li>
@@ -87,11 +116,7 @@
 </ul>
 </div>
 
-<p class="price">$10 <span class="was">$29</span><span class="launch">Black Friday sale — $10 through January 1, 2027; then $19 (regular price $29).</span></p>
-<p style="text-align:center;max-width:520px;margin:16px auto 4px"><label><input type="checkbox" id="trial-consent"> I agree to the Terms below. I understand I am paying $10 today for the digital kit, and that I can get a full refund any time within 7 days by emailing us.</label></p>
-<p><a class="btn" id="trial-btn" href="https://buy.stripe.com/dRmdR31sVa6rgNaekgcs803">Get the Kit — $10</a></p>
-<p class="trialnote"><strong>Our 7-day money-back guarantee:</strong> You pay $10 today and get the full kit immediately — the checkout confirmation hands you the front-door link, no waiting.<br>If it's not for you: email us within 7 days of purchase and we refund the full $10. No questions, no forms, no hassle.<br>Refunds go back to your original payment method; banks take about 5–10 business days to post them.</p>
-<p style="text-align:center;font-size:.9em;color:#44525b">Secure checkout by Stripe.</p>
+
 
 <div class="fineprint">
 <p>Digital product (guided online pages with presenter videos, plus printable PDF worksheets). Money-back guarantee: email us within 7 days of purchase for a full refund of the purchase price. This kit is educational information, not legal advice and not medical advice; it does not create an attorney–client or clinician–patient relationship with anyone. No outcomes are guaranteed or implied: no charge struck, bill reduced, coverage decision, or dispute result is promised. Health-plan and provider rules change and vary by plan and state — the kit teaches you to check the rule against your own plan's documents, which govern. Disclosure: we may receive referral fees if you sign up for third-party services through links inside the kit — including the AI helper service named inside — at no extra cost to you. All third-party trademarks, product names, and company names referenced belong to their respective holders; their mention does not imply endorsement or affiliation.</p>
