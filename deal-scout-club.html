@@ -27,6 +27,9 @@
   .ask-results{max-width:640px;margin:12px auto}
   .ask-join{text-align:center;background:#eef6f4;border:1px solid #bcd8d2;border-radius:10px;padding:10px 14px;margin:12px 0}
   .flare-where-locked{color:#8a6d1a;font-weight:bold}
+  .find-form{max-width:520px;margin:12px auto 4px}
+  .find-form textarea{display:block;width:100%;padding:12px 14px;font-size:1em;border:1px solid #b9c6cc;border-radius:8px;font-family:inherit;resize:vertical}
+  .find-form .btn{width:100%;max-width:none;margin-top:10px}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MP01L27H86"></script>
 <script>
@@ -59,10 +62,13 @@
 
 
 <h2>Send a find</h2>
-<p>One door, under a minute, no sign-in: paste a link, or type one line — what it is, where, how much. Add your name if you want the credit line on the find, and your email if you want your Find Report when the flare burns out.</p>
-<p><a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfN73Nt6WJzctIjwLw57CAAn1LrZIAgFy8p2rVGSegP1Zec5A/viewform" target="_blank" rel="noopener">Send a find</a></p>
-<p class="paid">Took a photo of the shelf tag instead? Email it to <a href="mailto:makedealnow@outlook.com?subject=Shelf%20tag%20find">makedealnow@outlook.com</a> with the store name in the subject line. A photo is a bonus, never a requirement — Scout checks the price from the seller's own page either way.</p>
-<p class="paid">Got it? Here's the deal in full: Deal Scout checks it today. If it's real, it goes up as a 72-hour flare with your name on it — and when it burns out, your Find Report lands in your email. Nothing you submit is published as-is, and your link is never published.</p>
+<p>Found a deal? Paste the link in the box — or type what it is, where, and how much. That's all Scout needs.</p>
+<form class="find-form" id="find-form">
+<label for="find-text" style="position:absolute;left:-9999px">Your find</label>
+<textarea id="find-text" rows="3" placeholder="Paste the link, or type: what it is · where · how much"></textarea>
+<button class="btn" type="submit">Send it to Scout</button>
+</form>
+<p class="paid">Opens your email app, addressed to Scout — attach a shelf-tag photo if you have one. Scout checks every find before it goes up.</p>
 
 <h2>The Find Report — how finders get paid</h2>
 <p>The club pays in the only currency a pay-it-forward club honestly can: <strong>credit, and proof your good deed landed.</strong> When your flare burns out, you get one email — your <strong>Find Report</strong>: how many times your find was passed on, how many people grabbed it, and your club tally (finds you've received vs. finds you've sent). Group chats thank you once; the club counts it, and hands you the number.</p>
@@ -235,6 +241,23 @@
     }
     results.appendChild(joinStrip());
     if (results.scrollIntoView) { try { results.scrollIntoView({behavior:'smooth', block:'nearest'}); } catch(e) {} }
+  });
+})();
+</script>
+<script>
+// Send a find: one box, one tap — the find rides to Scout as an email
+// from the visitor's own mail app, so their address is the reply channel
+// for the credit line and the Find Report. No form, no extra boxes.
+(function(){
+  var form = document.getElementById('find-form');
+  var box = document.getElementById('find-text');
+  if (!form || !box) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var text = box.value.trim();
+    if (!text) { box.focus(); return; }
+    location.href = 'mailto:makedealnow@outlook.com?subject=' +
+      encodeURIComponent('Club find') + '&body=' + encodeURIComponent(text);
   });
 })();
 </script>
