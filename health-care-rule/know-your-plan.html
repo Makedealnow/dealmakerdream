@@ -18,6 +18,7 @@
   .loop span { flex:1; text-align:center; font-size:16px; color:#6e6052; padding:6px 2px; border-radius:10px; }
   .loop span b { display:block; font-size:19px; }
   .loop span.now { background:#c45a14; color:#fff; }
+  .loop span.now .svcName { color:#fff; }
   .loop span.done { color:#2e7d32; }
   video { width:100%; border-radius:14px; margin-top:16px; background:#000; }
   .micro { font-size:17px; color:#6e6052; margin:8px 2px 0; }
@@ -266,6 +267,7 @@
         <label class="field" for="lkName">Your plan's name — exactly as it's printed on your card or paperwork</label>
         <input type="text" id="lkName" autocomplete="off" placeholder="Start typing your plan's name…">
         <div class="sugg" id="lkSugg"></div>
+        <p class="micro" id="lkPickHint" hidden>Tap your plan in the list above &mdash; that&rsquo;s what runs the lookup.</p>
         <button class="bigbtn lookupbtn" id="lkBtn">Look up my plan</button>
         <p class="micro">Just the name — it's printed on a million identical cards. It says nothing about you.</p>
       </div>
@@ -275,7 +277,7 @@
       <h3>Your state runs its own marketplace</h3>
       <p>Its plans aren't in the federal file — and we won't guess at your numbers. Your plan's official summary is on your state's own marketplace site:</p>
       <p class="beat"><b class="tag">TAP THIS:</b> Tap the button below → tap <b>"See plans &amp; prices"</b> → type your ZIP code → your state's marketplace shows the same numbers.</p>
-      <a class="btn docbtn" href="https://www.healthcare.gov/see-plans/" target="_blank" rel="noopener">Go to HealthCare.gov — see plans &amp; prices</a>
+      <a class="btn docbtn" href="https://www.healthcare.gov/see-plans/" target="_blank" rel="noopener">HealthCare.gov — it sends you to your state&rsquo;s marketplace</a>
       <p>Or skip the website — your two documents have everything:</p>
       <div class="say"><b>SAY THIS:</b> "Please send me my Summary of Benefits and Coverage and my Evidence of Coverage — the full plan document."</div>
       <p class="micro">Call the member number on the back of your card. Write down who you talked to, and when.</p>
@@ -602,6 +604,7 @@ document.getElementById("back2").addEventListener("click", function() {
     if (found.length > 1){
       var box = E("lkSugg"); box.innerHTML = "";
       found.slice(0, 8).forEach(function(p){ box.appendChild(lkSuggBtn(p)); });
+      E("lkPickHint").hidden = false;
       box.scrollIntoView({behavior:"smooth", block:"center"});
       return;
     }
@@ -623,7 +626,9 @@ document.getElementById("back2").addEventListener("click", function() {
     return "<tr><th>" + label + "</th><td>" + value + (sub ? "<small>" + sub + "</small>" : "") + "</td></tr>";
   }
   function lkEsc(s){ var d = document.createElement("div"); d.textContent = s || ""; return d.innerHTML; }
+  function lkMoney(v){ if (v == null) return v; return String(v).replace(/\d{4,}/g, function(d){ return Number(d).toLocaleString("en-US"); }); }
   function lkRender(p){
+    var ph = E("lkPickHint"); if (ph) ph.hidden = true;
     var html = "";
     if (lkSource === "medicare"){
       var kindLabel = {"MA-PD":"Medicare Advantage with drug coverage","MA":"Medicare Advantage (no drug coverage in this plan)","SNP":"Medicare Special Needs Plan","PDP":"Medicare Part D drug plan"}[p.k] || p.k;
@@ -642,8 +647,8 @@ document.getElementById("back2").addEventListener("click", function() {
     } else {
       html += "<h3>" + lkEsc(p.n) + "</h3><p class='who'>" + lkEsc(p.i) + " · " + lkEsc(p.m) + " · " + lkEsc(p.t) + "</p>";
       html += "<table class='money'>";
-      html += lkRow("Your deductible", lkEsc(p.d), "What you pay first, before the plan pays its share. Family: " + lkEsc(p.df));
-      html += lkRow("Your out-of-pocket maximum — your ceiling for the year", lkEsc(p.o), "The most protective number you own. Family: " + lkEsc(p.of));
+      html += lkRow("Your deductible", lkEsc(p.d), "What you pay first, before the plan pays its share. Family: " + lkEsc(lkMoney(p.df)));
+      html += lkRow("Your out-of-pocket maximum — your ceiling for the year", lkEsc(p.o), "The most protective number you own. Family: " + lkEsc(lkMoney(p.of)));
       html += lkRow("A regular doctor visit (primary care)", lkEsc(p.p));
       html += lkRow("A specialist visit", lkEsc(p.s));
       html += lkRow("An emergency room visit", lkEsc(p.e));

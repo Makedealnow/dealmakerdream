@@ -13,6 +13,14 @@
   header.titlebar .kit { font-size:15px; letter-spacing:.12em; text-transform:uppercase; color:#e8a06a; }
   header.titlebar h1 { font-size:24px; margin:2px 0 0; font-weight:bold; }
   header.titlebar .lane { font-size:16px; color:#e8d9c8; margin-top:2px; }
+  /* progress loop — always visible */
+  .loop { position:sticky; top:0; z-index:10; background:#fffdf8; border-bottom:3px solid #c45a14;
+          display:flex; justify-content:space-between; padding:10px 8px; }
+  .loop span { flex:1; text-align:center; font-size:16px; color:#6e6052; padding:6px 2px; border-radius:10px; }
+  .loop span b { display:block; font-size:19px; }
+  .loop span.now { background:#c45a14; color:#fff; }
+  .loop span.now .svcName { color:#fff; }
+  .loop span.done { color:#2e7d32; }
   video { width:100%; border-radius:14px; margin-top:16px; background:#000; }
   .videoslot { width:100%; aspect-ratio:16/9; border-radius:14px; margin-top:16px; background:#26221e;
                color:#faf6ef; display:flex; flex-direction:column; align-items:center; justify-content:center;
@@ -221,7 +229,7 @@
     <li>Every price you&rsquo;ve agreed to exists in writing.</li>
     <li>Every bill gets checked against its estimate before a dollar moves.</li>
   </ul>
-  <p><b>From here, your road joins everyone else&rsquo;s.</b> The shared stages ahead cover what happens after: referrals and scheduled procedures (<a href="everything-after.html">Stage 5</a>) and the bill itself (<a href="the-bill.html">Stage 6</a>) — written for all three lanes, with cash-lane notes wherever your rules differ.</p>
+  <p><b>From here, your road joins everyone else&rsquo;s.</b> The shared stages ahead start with your doctor (<a href="your-doctor.html">Stage 3</a>), then the visit itself (<a href="the-visit.html">Stage 4</a>), what happens after (<a href="everything-after.html">Stage 5</a>), and the bill itself (<a href="the-bill.html">Stage 6</a>) — written for all three lanes, with cash-lane notes wherever your rules differ.</p>
 
   <h2>Now do it &mdash; two questions, one at a time</h2>
   <p>Katie explained it. Now use the kit&rsquo;s helper for the two reading jobs in this stage &mdash; or do them yourself on paper.</p>

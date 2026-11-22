@@ -13,6 +13,14 @@
   header.titlebar .kit { font-size:15px; letter-spacing:.12em; text-transform:uppercase; color:#e8a06a; }
   header.titlebar h1 { font-size:26px; margin:2px 0 0; font-weight:bold; }
   header.titlebar .lane { font-size:16px; color:#e8d9c8; margin-top:2px; }
+  /* progress loop — always visible */
+  .loop { position:sticky; top:0; z-index:10; background:#fffdf8; border-bottom:3px solid #c45a14;
+          display:flex; justify-content:space-between; padding:10px 8px; }
+  .loop span { flex:1; text-align:center; font-size:16px; color:#6e6052; padding:6px 2px; border-radius:10px; }
+  .loop span b { display:block; font-size:19px; }
+  .loop span.now { background:#c45a14; color:#fff; }
+  .loop span.now .svcName { color:#fff; }
+  .loop span.done { color:#2e7d32; }
   video { width:100%; border-radius:14px; margin-top:16px; background:#000; }
   .videoslot { width:100%; aspect-ratio:16/9; border-radius:14px; margin-top:16px; background:#26221e;
                color:#faf6ef; display:flex; flex-direction:column; align-items:center; justify-content:center;
@@ -127,7 +135,7 @@
     <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The approval letter, the card (photograph both sides), and every renewal notice. Photograph them into your phone album the day they arrive.</p>
   </div>
 
-  <h2>Renewals &mdash; the step this lane lives or dies on</h2>
+  <h2>Step 2 &mdash; Renewals: the step this lane lives or dies on</h2>
   <div class="step">
     <p class="beat"><b class="tag">DO THIS:</b> When the renewal packet comes, treat it like a bill with a deadline — because it is one, and the price of missing it is the coverage itself. <b>Open it the day it arrives. Note the deadline. Return what&rsquo;s asked, the way they ask for it, before the date.</b> Keep proof: a photograph of the completed form, the mailing receipt or the portal confirmation.</p>
     <div class="say"><b class="tag">SAY THIS (if anything in the packet is unclear):</b> &ldquo;I&rsquo;ve received my renewal packet and I want to get it right. Can you tell me exactly what documents you need from me, and the last day they can arrive? &mdash; and your name, please, for my records.&rdquo;</div>
@@ -140,13 +148,13 @@
     <p class="beat"><b class="tag">KEEP THIS PAPER:</b> Every change you report, with the date and how you reported it.</p>
   </div>
 
-  <h2 id="notice-protocol">Every official letter &mdash; the protocol</h2>
+  <h2 id="notice-protocol">Step 3 &mdash; Every official letter: the protocol</h2>
   <div class="step">
     <p><b>Open it the day it arrives. Photograph it. Find the deadline and write it on the letter itself. Then act inside the window</b> — answer, appeal, or call, in that order of preference. A notice you disagree with is not a final word; it&rsquo;s the start of a process with rules, and the next step of this stage is that process.</p>
   </div>
   <div class="ifcard"><p class="if">If this happens</p><h3>A notice says your coverage ends, or a service is denied</h3><p>A decision against you must come as <b>advance written notice</b> — generally at least <b>10 days before</b> the effective date — stating the action, the reasons, and your appeal rights. <b>Appeal before the effective date, or within the window the notice states (often 10 days from the notice date), and your benefits generally continue</b> while the appeal is decided — that timing is the whole game, so the notice&rsquo;s own dates govern: read them off the letter, not from memory. In a managed-care plan, the appeal runs <b>to the plan first</b>, then to a <b>state fair hearing</b> if the plan rules against you. A denial of a service your doctor requested follows the same road: plan appeal, then fair hearing.</p></div>
 
-  <h2>Finding a doctor &mdash; the plan works for you here</h2>
+  <h2>Step 4 &mdash; Finding a doctor: the plan works for you here</h2>
   <div class="step">
     <p class="beat"><b class="tag">DO THIS:</b> Use the plan&rsquo;s directory, then verify — office and plan, both, logged with names and dates, exactly like the insured lane&rsquo;s Stage 3. The difference in your lane: <b>if no in-network doctor is available within the plan&rsquo;s access standards, the plan must arrange care</b> — out of network if necessary, at no extra cost to you. A directory full of dead ends isn&rsquo;t your failure; it&rsquo;s the plan&rsquo;s problem to solve.</p>
     <div class="say"><b class="tag">SAY THIS:</b> &ldquo;I&rsquo;ve called [number] doctors in your directory and none is accepting patients / the wait is [length]. I need [the care]. Please arrange an appointment within your access standards, or authorize one out of network at no extra cost to me. Who is handling this, and when will I hear back?&rdquo;</div>
@@ -160,7 +168,7 @@
     <p class="r"><b>THE MEANING:</b> if the answer is yes and a bill says otherwise, the bill is the deviation — not your debt.</p>
   </div>
 
-  <h2>At the desk &mdash; what&rsquo;s different in your lane</h2>
+  <h2 id="desk">Step 5 &mdash; At the desk: what&rsquo;s different in your lane</h2>
   <div class="step">
     <p class="beat"><b class="tag">DO THIS:</b> Present the card, and confirm the office takes <b>your plan</b> — the specific managed-care plan, not just &ldquo;Medicaid&rdquo; — for this year. If the office says it doesn&rsquo;t take your plan, don&rsquo;t decide at the desk: step aside and call the <b>plan</b> (the number on the card). The plan either confirms, finds you an office that does, or starts the arrangement it owes you.</p>
     <div class="say"><b class="tag">SAY THIS (if a bill for a covered service reaches you):</b> &ldquo;This service was covered by [program/plan] on [date], and I was an active member. My understanding is that the program&rsquo;s payment is payment in full for covered services, apart from any copay in my plan. Please correct the billing and bill the plan. I&rsquo;ll note today&rsquo;s date and your name.&rdquo;</div>
@@ -168,14 +176,14 @@
   </div>
   <div class="ifcard"><p class="if">If this happens &mdash; the clipboard trap</p><h3>A form asks you to agree to pay</h3><p>Read anything that asks for your signature on money twice. For a service your program covers, the program&rsquo;s payment is payment in full by law — a form you sign cannot lawfully move that bill onto you, whatever its wording says. A payment agreement can bind you only for a service the program genuinely doesn&rsquo;t cover, and then only when you were told so, specifically and in writing, before the service. If you&rsquo;re handed such a form and you&rsquo;re not certain the service is non-covered, don&rsquo;t sign at the desk: photograph it, call the plan, and let the plan say whether the service is covered before your signature says anything.</p></div>
 
-  <h2>Medicare too? &mdash; the QMB shield</h2>
+  <h2>Step 6 &mdash; Medicare too? The QMB shield</h2>
   <div class="step">
     <p>If you have <b>both Medicare and Medicaid</b> and your Medicaid includes the <b>Qualified Medicare Beneficiary (QMB)</b> program, federal law is at its most explicit: providers <b>may not bill you</b> for Medicare&rsquo;s deductibles, coinsurance, or copays — at all, in any amount, whether or not your state&rsquo;s Medicaid pays the provider anything toward them. A QMB bill is never a bill you negotiate; it&rsquo;s a bill you return for correction.</p>
     <div class="say"><b class="tag">SAY THIS:</b> &ldquo;I&rsquo;m a Qualified Medicare Beneficiary. Federal law prohibits billing me for Medicare cost-sharing. Please remove this charge and bill the state. If it isn&rsquo;t corrected, I&rsquo;ll be reporting it to 1-800-MEDICARE.&rdquo;</div>
     <p class="beat"><b class="tag">KEEP THIS PAPER:</b> The bill itself — if it has to be reported, the bill is the documentation.</p>
   </div>
 
-  <h2 id="ladder">When you disagree &mdash; the ladder, in order</h2>
+  <h2 id="ladder">Step 7 &mdash; When you disagree: the ladder, in order</h2>
   <div class="step">
     <p class="beat"><b>1. The plan&rsquo;s appeal</b> (managed care) — call the number on the card or the notice; note the deadline on the notice and appeal inside it. Appeal before the effective date to keep benefits running.</p>
     <p class="beat"><b>2. The state fair hearing</b> — if the plan rules against you, you can take the decision to a state hearing officer. The request window is stated on the plan&rsquo;s decision letter — commonly up to <b>90 days from the notice</b>; the letter&rsquo;s number governs.</p>
@@ -209,7 +217,7 @@
     <li>Every notice in your folder has its deadline written on it.</li>
     <li>You know the sentence that ends a wrong bill: <i>the program&rsquo;s payment is payment in full.</i></li>
   </ul>
-  <p><b>From here, your road joins everyone else&rsquo;s.</b> The shared stages ahead cover the visit itself (<a href="the-visit.html">Stage 4</a>), what happens after (<a href="everything-after.html">Stage 5</a>), and the bill (<a href="the-bill.html">Stage 6</a>) — written for all three lanes, with welfare-lane notes wherever your rules differ.</p>
+  <p><b>From here, your road joins everyone else&rsquo;s.</b> The shared stages ahead start with your doctor (<a href="your-doctor.html">Stage 3</a>) — that&rsquo;s your next step below — then the visit itself (<a href="the-visit.html">Stage 4</a>), what happens after (<a href="everything-after.html">Stage 5</a>), and the bill (<a href="the-bill.html">Stage 6</a>) — written for all three lanes, with welfare-lane notes wherever your rules differ.</p>
 
   <h2>Now do it &mdash; two questions, one at a time</h2>
   <p>Katie explained it. Now use the kit&rsquo;s helper for the two reading jobs in this stage &mdash; or do them yourself on paper.</p>
@@ -253,16 +261,16 @@ Work only from what I pasted. If something is not in the pasted material, write 
     <p class="needline"><b>You&rsquo;ll need:</b> The bill, and your coverage paper — the card or approval letter showing you were covered on the date of service.</p>
     <p>This question runs the one check this lane runs on every bill: covered service, participating provider, active coverage.</p>
     <p class="micro">This whole box is what gets copied &mdash; word for word, including the last paragraph.</p>
-    <div class="promptbox" id="box2">A service or benefit in my public coverage has been denied or cut. Below I will paste: (1) the denial or change notice, and (2) any pages I have from my program or plan materials that describe appeals, grievances, or fair hearings.
+    <div class="promptbox" id="box2">I am covered by a public coverage program (Medicaid or a state program). Below I will paste: (1) a bill I received for a health care service, and (2) the card or approval letter showing my coverage on the date of service.
 
 From the pasted material only, tell me:
-1. Who made this decision — the managed-care plan or the state agency — as the notice itself states it.
-2. Every appeal step the pasted material describes, in the order the material gives them: who I appeal to first, what comes after that, and what a fair hearing is called in these documents.
-3. Every deadline the pasted material states for each step, copied exactly, with what each deadline is for.
-4. Anything the pasted material says about asking for my benefits to continue while the appeal is decided — the words it uses, and the deadline it attaches to asking.
-5. What the pasted material does NOT say about appealing this decision. Label each gap &quot;Not in the document.&quot;
+1. What the bill itself states: the provider, the date of service, the service as the bill describes it, and the amount it asks me to pay.
+2. Whether the coverage paper shows I was covered on that date of service &mdash; quote the dates or words it uses.
+3. Whether anything in the pasted material describes this service as covered, not covered, or carrying a copay &mdash; and if a copay, the exact amount the material states.
+4. Whether anything in the pasted material says who should pay this bill &mdash; me, the program, or the plan &mdash; in the material's own words.
+5. What the pasted material does NOT say about this bill or this service. Label each gap &quot;Not in the document.&quot;
 
-Work only from what I pasted. If something is not in the pasted material, write &quot;Not in the document&quot; — do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language.</div>
+Work only from what I pasted. If something is not in the pasted material, write "Not in the document" — do not guess, and do not use outside knowledge to fill the gap. Do not invent numbers, dates, deadlines, or rules. Use plain language.</div>
     <button class="bigbtn copybtn" data-copy="2">Copy this question</button>
     <p class="micro">One tap copies the whole question.</p>
     <div class="copiedBanner" id="banner2">Copied! Now choose your way &#8595;</div>
@@ -276,8 +284,8 @@ Work only from what I pasted. If something is not in the pasted material, write 
     <div class="pasteguide"><b>How to paste on her page:</b> hold your finger in the question box until <b>Paste</b> appears, tap Paste, add your document pages, then tap her send arrow. Never paste your Social Security number or full bank or card numbers — cover what she doesn&rsquo;t need <i>before</i> you photograph or paste it. Come right back here when you&rsquo;re done.</div>
     <p class="micro">MakeDealNow may earn a commission when you sign up through our link &mdash; it never changes what you pay.</p>
     <p class="beat" style="margin-top:18px;"><b class="tag">WAY 2 &mdash; DO IT MYSELF:</b></p>
-    <p>Skip the AI entirely. Use the disagreement ladder above: follow the notice&rsquo;s own appeal instructions, in writing, in order &mdash; plan appeal first for a plan&rsquo;s service denial, straight to the fair hearing for an agency eligibility decision. Nothing on this route depends on <span class="svcName"></span> &mdash; no account, nothing leaves your hands.</p>
-    <a class="btn bigbtn selfbtn" href="#ladder">Do it myself &mdash; use the disagreement ladder</a>
+    <p>Skip the AI entirely. Use the desk script in Step 5 above: for a service your program covers, the program&rsquo;s payment is payment in full &mdash; say so, in writing, and keep a copy of everything. If the bill is for a service your program truly doesn&rsquo;t cover, write the facts on the worksheet below. Nothing on this route depends on <span class="svcName"></span> &mdash; no account, nothing leaves your hands.</p>
+    <a class="btn bigbtn selfbtn" href="#desk">Do it myself &mdash; use the desk script</a>
     <div class="navrow"><button id="back2">&#8592; Back</button><button class="next" disabled>Next question &#8594;</button></div>
     <p class="micro">That&rsquo;s both questions for this stage.</p>
   </div>
