@@ -11,6 +11,7 @@ body{margin:0;font-family:system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif
 a{color:#1f6f43}
 .site-header{background:#fff;border-bottom:1px solid #dde3e6;padding:10px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px}
 .site-header .brand{font-weight:bold;font-size:1.15em;color:#1d2a30;text-decoration:none}
+.site-header .brand img{max-height:48px;width:auto;vertical-align:middle}
 .site-header .brand span{color:#1f6f43}
 .site-header nav{display:flex;flex-wrap:wrap;gap:4px 14px}
 .site-header nav a{color:#44525b;text-decoration:none;font-size:.95em}
@@ -44,6 +45,7 @@ main{max-width:920px;margin:0 auto;padding:16px}
 footer{max-width:920px;margin:0 auto;padding:6px 16px 26px;color:#44525b;font-size:.95em}
 footer a{color:#44525b}
 @media (max-width:560px){
+  .site-header .brand img{max-height:36px}
   .card{padding:6px 14px 16px}
   .plan{padding:4px 12px 12px}
   .plan th,.plan td{display:block;width:auto;padding:2px 0}
