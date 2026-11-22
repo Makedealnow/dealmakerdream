@@ -62,16 +62,17 @@
 
 
 <h2>Send a find</h2>
-<p>Found a deal? Paste the link in the box — or type what it is, where, and how much. That's all Scout needs.</p>
+<p>Found a deal? Paste the link in the box — or type what it is, where, and how much. Add your name if you want the credit. That's all Scout needs.</p>
 <form class="find-form" id="find-form">
 <label for="find-text" style="position:absolute;left:-9999px">Your find</label>
 <textarea id="find-text" rows="3" placeholder="Paste the link, or type: what it is · where · how much"></textarea>
 <button class="btn" type="submit">Send it to Scout</button>
 </form>
-<p class="paid">Opens your email app, addressed to Scout — attach a shelf-tag photo if you have one. Scout checks every find before it goes up.</p>
+<p id="find-thanks" hidden><strong>Got it — Scout's checking it.</strong> If it checks out, it goes up as a flare with your name on it.</p>
+<p class="paid">Goes straight to Scout — no email, no sign-up. Scout checks every find before it goes up.</p>
 
 <h2>The Find Report — how finders get paid</h2>
-<p>The club pays in the only currency a pay-it-forward club honestly can: <strong>credit, and proof your good deed landed.</strong> When your flare burns out, you get one email — your <strong>Find Report</strong>: how many times your find was passed on, how many people grabbed it, and your club tally (finds you've received vs. finds you've sent). Group chats thank you once; the club counts it, and hands you the number.</p>
+<p>The club pays in the only currency a pay-it-forward club honestly can: <strong>credit, and proof your good deed landed.</strong> Leave an email at the end of your find, and when your flare burns out you get one email — your <strong>Find Report</strong>: how many times your find was passed on, how many people grabbed it, and your club tally (finds you've received vs. finds you've sent). Group chats thank you once; the club counts it, and hands you the number.</p>
 
 <h2>The club deal: give to get</h2>
 <p>Members send you their finds; when you spot one, you bring it. There's no membership application and nothing to buy — <strong>sending a find is how you join</strong>. The first 25 finders are the Founding Finders, named right here for good:</p>
@@ -245,19 +246,32 @@
 })();
 </script>
 <script>
-// Send a find: one box, one tap — the find rides to Scout as an email
-// from the visitor's own mail app, so their address is the reply channel
-// for the credit line and the Find Report. No form, no extra boxes.
+// Send a find: one box, one tap — the find posts straight to the club's
+// own list behind this page. No email opens, no form page, no sign-up.
 (function(){
   var form = document.getElementById('find-form');
   var box = document.getElementById('find-text');
+  var thanks = document.getElementById('find-thanks');
   if (!form || !box) return;
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var text = box.value.trim();
     if (!text) { box.focus(); return; }
-    location.href = 'mailto:makedealnow@outlook.com?subject=' +
-      encodeURIComponent('Club find') + '&body=' + encodeURIComponent(text);
+    var btn = form.querySelector('button');
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending\u2026'; }
+    var body = new URLSearchParams();
+    body.append('entry.1808709383', text);
+    fetch('https://docs.google.com/forms/d/e/1FAIpQLSfcBVGqvGy2IF8mskE3kxeXoaV_JKj8fDqYtShyDVLYKBRPEg/formResponse',
+      { method: 'POST', mode: 'no-cors', body: body })
+    .then(function(){
+      form.hidden = true;
+      if (thanks) thanks.hidden = false;
+    })
+    .catch(function(){
+      if (btn) { btn.disabled = false; btn.textContent = 'Send it to Scout'; }
+      box.focus();
+      alert('Could not send \u2014 check your connection and tap again.');
+    });
   });
 })();
 </script>
