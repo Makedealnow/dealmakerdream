@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Before you go to Amazon — a disclosure</title>
+<style>
+  body{margin:0;padding:24px 16px;background:#fff;color:#222;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.55}
+  main{max-width:560px;margin:0 auto}
+  h1{font-size:1.45em;line-height:1.25;margin:0 0 14px}
+  .item{font-size:1.15em;font-weight:700;margin:0 0 4px}
+  .price{margin:0 0 18px;color:#444}
+  .know{font-weight:700;margin:18px 0 6px}
+  p{margin:0 0 12px}
+  a.go{display:block;text-align:center;background:#333;color:#fff;font-weight:700;font-size:1.1em;text-decoration:none;padding:16px 18px;border-radius:6px;margin:22px 0 14px}
+  a.back{color:#333}
+  .bad{background:#f6f6f6;border:1px solid #ccc;padding:12px 14px;margin:0 0 14px}
+  .foot{border-top:1px solid #ddd;margin-top:26px;padding-top:12px;font-size:.88em;color:#666}
+</style>
+</head>
+<body>
+<main>
+<h1>You&rsquo;re leaving Deal Scout Club</h1>
+<p class="item" id="item">Amazon lead</p>
+<p class="price" id="price-line">Spotted on Amazon in current deal listings &mdash; price not checked.</p>
+<p class="know">Two things to know before you go:</p>
+<p><strong>1. The price is not checked.</strong> Amazon doesn&rsquo;t let Deal Scout check its pages firsthand, so this price was spotted in deal listings. Confirm the price and availability on Amazon before you buy.</p>
+<p><strong>2. MakeDealNow may earn a commission.</strong> If you buy through the button below, MakeDealNow may earn a commission from Amazon. It never changes the price you pay. As an Amazon Associate, MakeDealNow earns from qualifying purchases.</p>
+<p class="bad" id="bad" hidden>This link is broken or the lead has expired. Head back to the club board for today&rsquo;s finds.</p>
+<a class="go" id="go" href="#" rel="nofollow sponsored noopener">Continue to Amazon &rarr;</a>
+<p><a class="back" href="deal-scout-club.html">&larr; Back to Deal Scout Club</a></p>
+<p class="foot">This disclosure page is operated by MakeDealNow. It is not part of the Deal Scout Club board, and it is not an Amazon page. Member finds in the club never earn anything &mdash; this applies only to Scout&rsquo;s Amazon leads.</p>
+</main>
+<script>
+function leadDestination(raw){
+  if(!raw) return null;
+  var u;
+  try { u = new URL(raw); } catch(e){ return null; }
+  var hosts = ['www.amazon.com','amazon.com','amzn.to','www.amzn.to','a.co'];
+  if (hosts.indexOf(u.hostname) === -1) return null;
+  if (u.protocol !== 'https:') return null;
+  if (!u.searchParams.get('tag')) u.searchParams.set('tag','makedealnow0c-20');
+  return u.toString();
+}
+(function(){
+  var q = new URLSearchParams(location.search);
+  var item = q.get('item') || 'Amazon lead';
+  var price = q.get('price');
+  var was = q.get('was');
+  document.getElementById('item').textContent = item;
+  if (price) {
+    document.getElementById('price-line').textContent = 'Spotted on Amazon at $' + price + (was ? ' (usually $' + was + ')' : '') + ' \u2014 spotted, not checked.';
+  }
+  var dest = leadDestination(q.get('to'));
+  var btn = document.getElementById('go');
+  if (dest) { btn.href = dest; }
+  else { btn.style.display = 'none'; document.getElementById('bad').hidden = false; }
+})();
+</script>
+</body>
+</html>
