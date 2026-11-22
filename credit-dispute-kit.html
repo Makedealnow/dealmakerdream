@@ -88,14 +88,15 @@
 <p style="text-align:center;font-size:.9em;color:#44525b">Secure checkout by Stripe.</p>
 
 <div class="fineprint">
-<p>Digital download (PDF/Markdown). Money-back guarantee: email us within 7 days of purchase for a full refund of the purchase price. This kit is educational information, not legal advice and not a credit repair service; the publisher is not a "credit repair organization" or "credit services organization" under federal or state law and performs no services. No outcomes are guaranteed or implied. Results described are based on a single past campaign; outcomes will vary, and past results do not guarantee future success. Disclosure: we receive referral fees if you sign up for third-party services through our links, at no extra cost to you. All third-party trademarks, product names, and company names referenced belong to their respective holders; their mention does not imply endorsement or affiliation. Prices for third-party services mentioned inside are approximate, checked late 2026, and change — confirm before ordering. You are responsible for your own letters, deadlines, and decisions.</p>
+<p>Digital download (PDF). Money-back guarantee: email us within 7 days of purchase for a full refund of the purchase price. This kit is educational information, not legal advice and not a credit repair service; the publisher is not a "credit repair organization" or "credit services organization" under federal or state law and performs no services. No outcomes are guaranteed or implied. Results described are based on a single past campaign; outcomes will vary, and past results do not guarantee future success. Disclosure: we receive referral fees if you sign up for third-party services through our links, at no extra cost to you. All third-party trademarks, product names, and company names referenced belong to their respective holders; their mention does not imply endorsement or affiliation. Prices for third-party services mentioned inside are approximate, checked late 2026, and change — confirm before ordering. You are responsible for your own letters, deadlines, and decisions.</p>
 <p>Prices and offers subject to change. Check the current price and terms before buying.</p>
 </div>
 </section>
 </main>
 <h2>Pass it on</h2>
 <p>Know someone this would help? Copy the line below and send it to them — that's how MakeDealNow grows.</p>
-<blockquote>Credit report errors? This kit is everything figured out about disputing them yourself — the services, the letters, the deadlines — in order, for nine bucks: https://makedealnow.com/credit-dispute-kit.html?utm_source=credit-dispute-kit&amp;utm_medium=forward</blockquote>
+<blockquote>Credit report errors? This kit is everything figured out about disputing them yourself — the services, the letters, the deadlines — in order, for five bucks: https://makedealnow.com/credit-dispute-kit.html?utm_source=credit-dispute-kit&amp;utm_medium=forward</blockquote>
+<p style="text-align:center"><button class="btn secondary copy-line" type="button">Copy the line</button></p>
 <footer><p>© MakeDealNow. Search first. Compare better. Unlock better offers.</p><p><a href="privacy-policy.html">Privacy Policy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a></p></footer>
 <script src="assets/app.js"></script>
 <script>
@@ -111,6 +112,17 @@
     box.scrollIntoView({block:'center',behavior:'smooth'});
     box.focus();
     if(lbl){ lbl.style.transition='background .3s'; lbl.style.background='#fdf6ec'; setTimeout(function(){ lbl.style.background=''; },1800); }
+  });
+})();
+</script>
+<script>
+(function(){
+  var b=document.querySelector('.copy-line'); if(!b) return;
+  b.addEventListener('click',function(){
+    var q=document.querySelector('blockquote'); if(!q) return;
+    var done=function(){ b.textContent='Copied \u2713'; setTimeout(function(){ b.textContent='Copy the line'; },2000); };
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(q.textContent.trim()).then(done,done); }
+    else { var r=document.createRange(); r.selectNodeContents(q); var sel=getSelection(); sel.removeAllRanges(); sel.addRange(r); try{document.execCommand('copy');}catch(e){} done(); }
   });
 })();
 </script>

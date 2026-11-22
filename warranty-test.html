@@ -124,7 +124,7 @@
 </div>
 
 <div class="freebox">
-<h2 style="margin-top:10px">Start free: the one-page 5-Minute Test checklist</h2>
+<h2 id="free-checklist" style="margin-top:10px">Start free: the one-page 5-Minute Test checklist</h2>
 <p>The whole test on one page — the five questions, the verdict rule, and the one sentence that ends the conversation at the counter. Free, in exchange for joining the MakeDealNow email list. One email a week, unsubscribe anytime.</p>
 <script async data-uid="8e140537c4" src="https://makedealnow.kit.com/8e140537c4/index.js"></script>
 </div>
@@ -154,6 +154,7 @@
 <h2>Pass it on</h2>
 <p>Know someone about to buy a car, an appliance, or a house? Copy the line below and send it to them — that's how MakeDealNow grows.</p>
 <blockquote>Getting pitched an extended warranty? Run the test before you sign — this kit shows you the math the seller hopes you never do, for five bucks: https://makedealnow.com/warranty-test.html?utm_source=warranty-test&amp;utm_medium=forward</blockquote>
+<p style="text-align:center"><button class="btn secondary copy-line" type="button">Copy the line</button></p>
 <footer><p>© MakeDealNow. Search first. Compare better. Unlock better offers.</p><p><a href="privacy-policy.html">Privacy Policy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a></p></footer>
 <script src="assets/app.js"></script>
 <script>
@@ -250,6 +251,17 @@
     panel.className='verdict ' + cls;
     panel.style.display='block';
     panel.scrollIntoView({block:'nearest',behavior:'smooth'});
+  });
+})();
+</script>
+<script>
+(function(){
+  var b=document.querySelector('.copy-line'); if(!b) return;
+  b.addEventListener('click',function(){
+    var q=document.querySelector('blockquote'); if(!q) return;
+    var done=function(){ b.textContent='Copied \u2713'; setTimeout(function(){ b.textContent='Copy the line'; },2000); };
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(q.textContent.trim()).then(done,done); }
+    else { var r=document.createRange(); r.selectNodeContents(q); var sel=getSelection(); sel.removeAllRanges(); sel.addRange(r); try{document.execCommand('copy');}catch(e){} done(); }
   });
 })();
 </script>
