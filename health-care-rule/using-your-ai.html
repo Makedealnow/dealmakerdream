@@ -13,6 +13,7 @@
   header.titlebar .kit { font-size:15px; letter-spacing:.12em; text-transform:uppercase; color:#e8a06a; }
   header.titlebar h1 { font-size:26px; margin:2px 0 0; font-weight:bold; }
   header.titlebar .lane { font-size:16px; color:#e8d9c8; margin-top:2px; }
+  video { width:100%; border-radius:14px; margin-top:16px; background:#000; }
   .videoslot { width:100%; aspect-ratio:16/9; border-radius:14px; margin-top:16px; background:#26221e;
                color:#faf6ef; display:flex; flex-direction:column; align-items:center; justify-content:center;
                text-align:center; padding:24px; border:3px dashed #e8a06a; }
@@ -69,7 +70,7 @@
   footer .disclaimer { text-align:left; font-size:15px; border-top:2px solid #e5d9c8; padding-top:16px; margin-bottom:20px; }
   .hidden { display:none; }
   @media print {
-    .videoslot, .aiBtn, .selfbtn, .navrow, .printbtn, .noPrint { display:none !important; }
+    video, .videoslot, .aiBtn, .selfbtn, .navrow, .printbtn, .noPrint { display:none !important; }
     body { background:#fff; font-size:13.5pt; }
     .wrap { max-width:none; padding:0; }
     header.titlebar { background:#fff; color:#000; border-bottom:2pt solid #000; padding:0 0 8pt; }
@@ -104,7 +105,8 @@
 
 <div class="wrap">
 
-  <div class="videoslot"><p>[ Katie&rsquo;s video for this page goes here &mdash; recorded with the kit&rsquo;s other videos ]</p></div>
+  <video id="katieVideo" controls playsinline preload="metadata" src="media/using-your-ai.mp4"></video>
+  <p class="micro">Watch Katie first &mdash; she walks you through this whole page. Takes about three minutes.</p>
 
   <p class="promise">Meet <span class="svcName"></span> — the kit&rsquo;s reading helper, on a button.</p>
   <ul class="slide">
